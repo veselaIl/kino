@@ -5,14 +5,19 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
-var mongo = require('mongodb');
+//var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/kino');
 
-var bootstrap = require('bootstrap');
+//bootstrap
+var popper = require('popper.js');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+//var authRouters = require('./routes/authentication');
+
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +44,7 @@ app.use(function(req, res, next) {
 });
 
 
-app.use(authRouters);
+///app.use(authRouters);
 
 // check for login
 app.use(function(req, res, next) {
