@@ -12,8 +12,9 @@ var db = monk('localhost:27017/kino');
 //bootstrap
 var popper = require('popper.js');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
+
 
 //var authRouters = require('./routes/authentication');
 
@@ -46,19 +47,11 @@ app.use(function(req, res, next) {
 
 ///app.use(authRouters);
 
-// check for login
-app.use(function(req, res, next) {
-  if (!req.session.user) {
-    res.redirect('/login');
-  } else {
-    next();
-  }
-});
-
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 fs.readdirSync(path.join(__dirname, 'routes'))
   .forEach(file => {
+    console.log(file);
     var filename = path.basename(file, '.js');
     if (filename !== 'authentication') {
       app.use(require('./routes/' + filename));
