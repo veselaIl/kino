@@ -2,8 +2,10 @@
 <header class='main-nav'>
   <ul>
     <li>
-      <i class='fa fa-tachometer'></i>
-      <span>Панел</span>
+     <a href='/admin'>
+        <i class='fa fa-tachometer'></i>
+        <span>Панел</span>
+      </a> 
     </li>
     <li>
       <i class='fa fa-video-camera'></i>
@@ -14,8 +16,8 @@
       <div >
         <span>Меню</span>
         <div class='dropdown'>
-          <i class='fa fa-desktop'><a href='/admin/cinema'>Кина</a></i>
-          <i class='fa fa-film'><a href='#'>Филми</a></i>
+          <a href='/admin/cinema'><i class='fa fa-desktop'>Кина</i></a>
+          <a href='/admin/movies'><i class='fa fa-film'>Филми</i></a>
         </div>
       </div>
     </li>
@@ -34,23 +36,88 @@
   </ul>
 </header>
 {{!-- CINEMAS --}}
-<div class='content'>
+<div class='cinema'>
+  <div class='content'>
+    {{#if cinemas.length}}
     <div class="row">
-      <div class="col-lg-3 col-md-6">
+    {{#each cinemas}}
+      <div class=" col-md-6 ">
         <div class="panel panel-first">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-xs-3"><i class="fa fa-desktop fa-5x"></i></div>
+              <div class="col-lg-3"><i class="fa fa-desktop fa-5x"></i></div>
               <div class="col-xs-9 text-right">
-                <div class="huge">{{name}}Име</div>
-                <div>{{address}}Адрес</div>
+                <div class="huge">{{name}}</div>
+                <div>{{address}}</div>
+                <div>Зали {{zali.length}}</div>
               </div>
             </div>
-          </div><a href="/admin/cinema/details">
+          </div>
+          <a class='panel-href' href="/admin/cinema/details/{{kinoID}}">
             <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
-            </div></a>
+            </div>
+          </a>
         </div>
       </div>
+      {{/each}}
     </div>
+    {{/if}}
+    {{#each cinemas}}
+      {{#if projections.length}}
+          <div class="container projects">
+            <div class="projects-inner">
+              <header class="projects-header">
+                <div class="title">Ongoing Projections</div>
+                <div class="count">|{{ projections.length}}</div><span class="glyphicon glyphicon-download-alt"></span>
+              </header>
+              <table class="projects-table">
+              <thead>
+                <tr>
+                  <th>Movie</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Budget</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              {{#each projections}}
+                <tr>
+                  <td>
+                    <p>{{ name }}</p>
+                    <p>Google</p>
+                  </td>
+                  <td>
+                    <p>{{startDate}}</p>
+                    <p class="danger-text">Overdue</p>
+                  </td>
+                  <td class="member">
+                    <figure><img src=""/></figure>
+                    <div class="member-info">
+                      <p>{{ endDate }}</p>
+                      <p>UK Design Team</p>
+                    </div>
+                  </td>
+                  <td>
+                    <p></p>
+                    <p>Paid</p>
+                  </td>
+                  <td class="status"><span class="status-text status-orange">In progress</span>
+                    <form class="form" action="#" method="POST">
+                      <select class="action-box selectric">
+                        <label></label><option>Actions</option>
+                        <option>Start project</option>
+                        <option>Send for QA</option>
+                        <option>Send invoice</option>
+                      </select>
+                    </form>
+                  </td>
+                </tr>
+              {{/each}}
+              </table>
+            </div>
+          </div>
+        {{/if}}
+      {{/each}}
+  </div>
 </div>

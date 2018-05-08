@@ -1,0 +1,64 @@
+
+<header class='main-nav'>
+  <ul>
+    <li>
+      <a href='/admin'>
+        <i class='fa fa-tachometer'></i>
+        <span>Панел</span>
+      </a>
+    </li>
+    <li>
+      <i class='fa fa-video-camera'></i>
+      <span>Прожекции</span>
+    </li>
+    <li class='menu'>
+      <i class='fa fa-bars'></i>
+      <div >
+        <span>Меню</span>
+        <div class='dropdown'>
+          <a href='/admin/cinema'><i class='fa fa-desktop'>Кина</i></a>
+          <a href='/admin/movies'><i class='fa fa-film'>Филми</i></a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <i class='fa fa-users'></i>
+      <span>Потребители</span>
+    </li>
+    <li>
+      <i class='fa fa-sliders'></i>
+      <span>Настройки</span>
+    </li>
+    <li>
+      <i class='fa fa-sign-out'></i>
+      <span>Изход</span>
+    </li>
+  </ul>
+</header>
+<div class='content'>
+  <div class='add-movie'>
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    <a href='/admin/movies/addMovie'>Добави филм</a>
+  </div>
+  <div class="container-movie">
+	<div class="cards">
+    {{#if movies.length}}
+    {{#each movies}}
+		<a class="card" href="#">
+			<span class="card-header" style="background-image: url({{ image }});">
+				<span class="card-title">
+					<h3>{{ name }}</h3>
+				</span>
+			</span>
+			<span class="card-summary">
+        {{ description }}
+			</span>
+			<span class="card-meta">
+				 Premier {{ premierDate }}
+			</span>
+		</a>
+    {{/each}}
+    {{/if}}
+    </div>
+  </div>
+</div>
