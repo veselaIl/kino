@@ -11,7 +11,13 @@ router.get('/admin/cinema', function(req, res, next) {
   req.db.get('kino').find().then(function(cinemas){
     res.render('cinema',{ cinemas: cinemas});
   });
-});
+})
+/* ADD PROJECTION TO CINEMA */
+router.get('/admin/cinema/addProjection/:kinoID', function(req, res, next){
+  req.db.get('movies').find().then(function(movies){
+    res.render('addProjection', { movies: movies })
+  })
+})
 
 /* GET admin cinema details page. */
 router.get('/admin/cinema/details/:kinoID', function(req, res, next) {
@@ -28,7 +34,7 @@ router.get('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
     res.render('cinemaDetails', cinema);
   })
 })
-/* EDIT zala */
+/* EDIT ZALA */
 router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
   var zala,
       cinema;
@@ -61,22 +67,120 @@ router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
   })
  
 })
-router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res, next){
+router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res){
   req.db.get('kino').find({ kinoID : +req.params.kinoID }).then(function(cinemas){
      var cinema = data[0] || {};
      res.redirect('/admin/cinema/details/:kinoID?newSalloon', cinema);
   })
 })
 /* GET ALL MOVIES */
-router.get('/admin/movies', function(req, res, next){
+router.get('/admin/movies', function(req, res){
   req.db.get('movies').find().then(function(movies){
     res.render('movies',{ movies: movies});
   })
 })
 
-router.get('/admin/movies/addMovie', function(req, res, next){
+/* GET ADD MOVIE TEMPLATE-FORM */ 
+router.get('/admin/movies/addMovie', function(req, res){
   res.render('addMovie');
 })
+
+/* ADD NEW MOVIE */
+router.post('/admin/movies/addMovie',function(req, res, next){
+  var movie, 
+      id;
+
+  req.db.get('movies').find(
+    { },
+    { sort: { movieID: -1}},
+    function(err, docs) {
+      id = +docs[0].movieID;
+
+      if (req.body && req.body.name) {
+        movie = {
+          movieID : ++id,
+          name: req.body.name,
+          description: req.body.description,
+          duration: +req.body.duration,
+          genre: req.body.genre,
+          image: '/images/movies/' + req.body.image ,
+          trailer : req.body.trailer,
+          director : {
+            name: req.body.director,
+            img : '/images/directors/' + req.body.directorImage },
+          actors : [
+            {
+              name: req.body.actors[0],
+              image : ''
+            },
+            {
+              name: req.body.actors[1],
+              image: ''
+            },
+            {
+              name: req.body.actors[2],
+              image: ''
+            }],
+           premierDate: new Date(req.body.premierDate),
+           dublaj : !req.body.dublaj
+        };
+        req.db.get('movies')
+        .insert(movie)
+        .then(function(data){
+          res.redirect('/admin/movies');
+          res.json({ text: 'You successfully add new Movie!' });
+        })
+      }
+  });
+})
+
+router.get('/admin/movies/editMovie/:movieID', function(req, res){
+  var movie;
+  req.db.get('movies').find({ movieID : +req.params.movieID }).then(function(data){
+    movie = data[0] || {};    
+    res.render('addMovie', movie);
+  })
+})
+
+/*  EDIT MOVIE */
+router.post('/admin/movies/editMovie/:movieID', function(req, res, next){
+  var movie = {
+    movieID : +req.params.movieID,
+    name : req.body.name,
+    description : req.body.description,
+    duration : +req.body.duration,
+    genre : req.body.genre,
+    image : '/images/movies/' + req.body.image,
+    trailer : req.body.trailer, 
+    director : {
+      name : req.body.director,
+      img : '/images/directors/' + req.body.directorImage },
+    actors : [
+      {
+        name : req.body.actors[0],
+        image : ''
+      },
+      {
+        name : req.body.actors[1],
+        image : ''
+      },
+      {
+        name : req.body.actors[2],
+        image : ''
+      }],
+    premierDate : new Date(req.body.premierDate),
+    dublaj : !req.body.dublaj  
+  }
+  req.db.get('movies').update({ movieID : +req.params.movieID  }, movie)
+  .then(function(data) {
+    res.redirect('/admin/movies');
+  })
+})
+
+router.get('/admin/cinema/addCinema', function(req, res){  
+    res.render('addCinema');
+})
+
 /* GET all users registered */
 router.get('/admin/users', function(req, res, next) {
   res.render('adminUsers')

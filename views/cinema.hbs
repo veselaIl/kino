@@ -35,13 +35,18 @@
     </li>
   </ul>
 </header>
+
 {{!-- CINEMAS --}}
-<div class='cinema'>
-  <div class='content'>
-    {{#if cinemas.length}}
+
+<div class='content'>
+  <div class='cinema'>
+    <div class='add-movie'>
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      <a href='/admin/cinema/addCinema'>Добави кино</a>
+    </div>
     <div class="row">
     {{#each cinemas}}
-      <div class=" col-md-6 ">
+      <div class=" col-md-12 ">
         <div class="panel panel-first">
           <div class="panel-heading">
             <div class="row">
@@ -53,23 +58,22 @@
               </div>
             </div>
           </div>
-          <a class='panel-href' href="/admin/cinema/details/{{kinoID}}">
-            <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+          <a data-toggle="collapse" class='panel-href' data-parent="#accordion" href="#collapse{{@index}}">
+        <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
             </div>
           </a>
         </div>
       </div>
-      {{/each}}
-    </div>
-    {{/if}}
-    {{#each cinemas}}
-      {{#if projections.length}}
+       <div class=" col-md-12 panel-collapse collapse" id='collapse{{@index}}'>
           <div class="container projects">
             <div class="projects-inner">
               <header class="projects-header">
-                <div class="title">Ongoing Projections</div>
-                <div class="count">|{{ projections.length}}</div><span class="glyphicon glyphicon-download-alt"></span>
+                <div class="title">Ongoing Projections Kино {{ name }}</div>
+                <div class="count">|{{ projections.length}}</div>
+                <a href='/admin/cinema/addProjection/{{kinoID}}'>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </a>
               </header>
               <table class="projects-table">
               <thead>
@@ -77,11 +81,10 @@
                   <th>Movie</th>
                   <th>Start Date</th>
                   <th>End Date</th>
-                  <th>Budget</th>
                   <th>Status</th>
                 </tr>
               </thead>
-              {{#each projections}}
+                {{#each projections }}
                 <tr>
                   <td>
                     <p>{{ name }}</p>
@@ -98,26 +101,15 @@
                       <p>UK Design Team</p>
                     </div>
                   </td>
-                  <td>
-                    <p></p>
-                    <p>Paid</p>
-                  </td>
                   <td class="status"><span class="status-text status-orange">In progress</span>
-                    <form class="form" action="#" method="POST">
-                      <select class="action-box selectric">
-                        <label></label><option>Actions</option>
-                        <option>Start project</option>
-                        <option>Send for QA</option>
-                        <option>Send invoice</option>
-                      </select>
-                    </form>
                   </td>
                 </tr>
               {{/each}}
               </table>
             </div>
           </div>
-        {{/if}}
-      {{/each}}
+        </div>
+      {{/each}}  
+    </div>
   </div>
 </div>

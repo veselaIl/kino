@@ -247,7 +247,30 @@ li {
 }
 
 /* TABLE CINEMA END*/
-
+/* ADD CINEMA START*/
+.bs-example{
+  margin: 20px;
+}
+.panel-title .glyphicon{
+    font-size: 14px;
+}
+.add-cinema{
+  border:none;
+  display:block;
+  width:100%;
+}
+.panel-title>a{
+  text-decoration:none;
+  color:white;
+}
+.bs-example{
+  margin:0;
+}
+.panel-default>.panel-heading{
+  background-image:none;
+  background-color:rgb(139, 146, 144);
+}
+/* ADD CINEMA END */
 /* MOVIES START */
 .add-movie{
   padding: 10px;
@@ -255,6 +278,10 @@ li {
   color: white;
   font-size: 20px;
   text-align: center;
+}
+.add-movie>a{
+  text-decoration: none;
+  color:white;
 }
 .add-movie:hover{
   background-color:#520d06;
@@ -294,14 +321,23 @@ li {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
+.card .edit-card{
+  display:none;
+}
+.card:hover .edit-card{
+  display:block;
+  overflow:hidden;
+  z-index:4;
+}
 @media (max-width: 700px) {
   .card {
     width: 100%;
+    margin-right: 20px;
   }
 }
 @media (min-width: 700px) {
   .card {
-    max-width: 320px;
+    max-width: 300px;
     margin-right: 20px;
     margin-bottom: 20px;
   }
@@ -311,10 +347,11 @@ li {
 }
 @media (min-width: 980px) {
   .card:nth-child(even) {
+    /* margin-left: 10px; */
     margin-right: 20px;
   }
   .card:nth-child(3n) {
-    margin-right: 0;
+    margin-right: 20px;
   }
 }
 .card>span {
@@ -419,8 +456,8 @@ li {
 /*  MOVIES END */
 
 .content {
-  position: absolute;
-  top:140px;
+  position: relative;
+  /* top:140px; */
   left: 0;
   right: 0;
   bottom: 50px;
@@ -460,8 +497,9 @@ li {
   /* margin-top:5px; */
 }
 .add-zala{
-  padding: 5px; 
-  height:30px;
+  padding: 3px 0; 
+  height:100%;
+  margin-top:110px;
   border-radius: 4px;
   background-color:rgb(172, 15, 15);
   color:white;
@@ -545,8 +583,69 @@ li {
   width: 25px;
   position:relative;
 }
+/* MOVIES START*/
+.content-movies {
+  position: relative;
+  /* top:220px; */
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  margin: auto;
+  width: 80%;
+  background: #fff;
+  /* margin-top: -3em; */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 0.8em;
+  height: 120%;
+  padding-top:0;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
 
-/* ADD MOVIE START */
+.tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  margin-left:200px;
+  background-color:#b30c0c94;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.card:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* MOVIES END */
+.actor-label:first-child{
+  margin-top:40px;
+  display:block;
+}
+.content-addMovie {
+  position: relative;
+  /* top:220px; */
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  margin: auto;
+  width: 80%;
+  background: #fff;
+  /* margin-top: -3em; */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 0.8em;
+  height:99%;
+  padding-top:0;
+}
 textarea {
 	resize: none;
 }
@@ -593,7 +692,9 @@ textarea {
 	border-color: #5e9bfc;
 	color: #5e9bfc;
 }
-
+.edit-title{
+  display:none;
+}
 /* ADD MOVIE END */
 /* ************ EDIT FORM - ЗАЛА ************* */
 .edit-form{
@@ -717,8 +818,8 @@ textarea {
     width:90%;
   }
   .content {
-    position: absolute;
-    top:250px;
+    position: relative;
+    /* top:250px; */
     left: 0;
     right: 0;
     bottom: 50px;
@@ -748,8 +849,11 @@ textarea {
   .col-sm-6.first{
     height: 60%;
   }
-  .conteiner-fluid{
-    /* height:80%; */
+  .content-addMovie{
+    height: 100%;
+    bottom:0;
+    margin:auto;
+    /* top:100px; */
   }
   .seat-map h2{
     width:90%;
@@ -758,7 +862,7 @@ textarea {
     width:90%;
   }
   .content {
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
     bottom: 50px;
@@ -777,20 +881,29 @@ textarea {
     margin-top:20px;
   }
   .add-zala{
-    height: 40px;
-    width:95%;
+    padding: 3px 0; 
+    height:100%;
+    margin-top:0px;
     border-radius: 4px;
     background-color:rgb(172, 15, 15);
     color:white;
-    position:absolute;
-    z-index:4;  
     display:block;
-    font-size:15px;
-    margin: 160px 0 0 20px;
-    text-align:center;
+    width:95%;
+    margin-left:15px;
+    margin-bottom:20px;
+    text-align: center;
+  
   }
   
  .zali{
    margin-top:1px;
  }
+}
+@media only screen and (max-width: 770px){
+  .content-addMovie{
+    height: 170%;
+    bottom:0;
+    margin:0 auto;
+    /* top:148px; */
+  }
 }
