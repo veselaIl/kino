@@ -286,7 +286,7 @@ li {
 .add-movie:hover{
   background-color:#520d06;
   color: #fff;
-  border: 1px solid;
+  /* border: 1px solid; */
 }
 .container-movie {
   max-width: 1100px;
