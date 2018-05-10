@@ -26,6 +26,7 @@ router.get('/admin/cinema/details/:kinoID', function(req, res, next) {
     res.render('cinemaDetails', cinema);
   });
 });
+
 /* GET admin cinema zala details*/
 router.get('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
   req.db.get('kino').find({ kinoID : +req.params.kinoID}, {zali :{ $elemMatch: { zalaID : +req.params.zalaID}}})
@@ -34,6 +35,7 @@ router.get('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
     res.render('cinemaDetails', cinema);
   })
 })
+
 /* EDIT ZALA */
 router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
   var zala,
@@ -67,6 +69,7 @@ router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
   })
  
 })
+/* GET ZALA*/
 router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res){
   req.db.get('kino').find({ kinoID : +req.params.kinoID }).then(function(cinemas){
      var cinema = data[0] || {};
@@ -76,17 +79,25 @@ router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res){
 /* GET ALL MOVIES */
 router.get('/admin/movies', function(req, res){
   req.db.get('movies').find().then(function(movies){
-    res.render('movies',{ movies: movies});
+    if(movies.length){
+      console.log('Movies', movies)
+      res.json(movies);
+    }else{
+      console.log('No movies')
+    }
+  })
+  .catch(function(err){
+    console.log(err);
   })
 })
 
 /* GET ADD MOVIE TEMPLATE-FORM */ 
-router.get('/admin/movies/addMovie', function(req, res){
+router.get('/admin/movies/add', function(req, res){
   res.render('addMovie');
 })
 
 /* ADD NEW MOVIE */
-router.post('/admin/movies/addMovie',function(req, res, next){
+router.post('/admin/movies/add',function(req, res, next){
   var movie, 
       id;
 
@@ -134,7 +145,7 @@ router.post('/admin/movies/addMovie',function(req, res, next){
   });
 })
 
-router.get('/admin/movies/editMovie/:movieID', function(req, res){
+router.get('/admin/movies/edit/:movieID', function(req, res){
   var movie;
   req.db.get('movies').find({ movieID : +req.params.movieID }).then(function(data){
     movie = data[0] || {};    
@@ -143,7 +154,7 @@ router.get('/admin/movies/editMovie/:movieID', function(req, res){
 })
 
 /*  EDIT MOVIE */
-router.post('/admin/movies/editMovie/:movieID', function(req, res, next){
+router.post('/admin/movies/edit/:movieID', function(req, res, next){
   var movie = {
     movieID : +req.params.movieID,
     name : req.body.name,

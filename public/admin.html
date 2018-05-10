@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="website">
+<html ng-app="myApp">
   <head>
     <title>{{title}}</title>
-    {{!-- STYLES --}}
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!-- STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -13,19 +12,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     
-    {{!-- SCRIPTS --}}
+    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    {{!-- STYLE --}}
-    <link rel='stylesheet' href='/stylesheets/adminStyle.css' />
+    <script src="/js/angular/angular.min.js"></script>
+    <script src="/js/angular/angular-route.js"></script>
+    <script src="/myApp.js"></script>   
+    <script src="js/app/controllers/admin/board/AdminController.js"></script>
+    <script src="js/app/controllers/admin/cinema/CinemaController.js"></script>
+    <script src="js/app/controllers/admin/movie/MovieController.js"></script>
+    <script src="js/app/controllers/admin/movie/AddMovieController.js"></script>
+    <script src="js/app/controllers/admin/projection/ProjectionController.js"></script>
+    <script src="js/app/controllers/admin/users/UserController.js"></script>
+    <script src="js/app/controllers/404/NotFoundController.js"></script>
+
+    <script src="js/app/services/MovieService.js"></script>
+
+    <link rel='stylesheet' href='/styles/adminStyle.css' />
     
     
   </head>
   <body>
+    <header class='main-nav'>
+    <ul>
+        <li>
+            <a href='#!/admin'>
+                <i class='fa fa-tachometer'></i>
+                <span>Панел</span>
+            </a> 
+        </li>
+        <li>
+            <a href='#!/projections'>
+                <i class='fa fa-video-camera'></i>
+                <span>Прожекции</span>
+            </a>
+        </li>
+        <li>
+            <a href='#!/cinema'>
+                <i class='fa fa-desktop'></i>
+                <span>Кина</span>
+            </a>
+        </li>
+        <li>
+            <a href='#!/movies'>
+                <i class='fa fa-film'></i>
+                <span>Филми</span> 
+            </a>  
+        </li>
+        <li>
+            <a href='#!/users'>
+                <i class='fa fa-users'></i>
+                <span>Потребители</span>
+            </a>
+        </li>
+        <li>
+            <a href='#!/logout'>
+                <i class='fa fa-sign-out'></i>
+                <span>Изход</span>
+            </a>
+        </li>
+    </ul>
+    </header>
+
+    <div ng-view></div>
+    
 
   </body>
 </html>

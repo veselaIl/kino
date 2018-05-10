@@ -1,0 +1,24 @@
+<div class='content-movies'>
+    <div class='add-movie'>
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        <a href='#!/movies/add'>Добави филм</a>
+    </div>
+    <div class="container-movie">
+        <div class="cards" ng-if="movies.length">
+            <a ng-repeat="movie in movies" class="card" href='#!movies/edit/{{movie.movieID }}'>
+                <span class="tooltiptext">Редактирай</span>
+                <span class="card-header" style="background-image: url('{{ movie.image }}');">
+                    <span class="card-title">
+                        <h3>{{ movie.name }}</h3>
+                    </span>
+                </span>
+                <span class="card-summary">
+                    {{ movie.description }}
+                </span>
+                <span class="card-meta">
+                    Premier {{ movie.premierDate }}
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
