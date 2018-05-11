@@ -12,6 +12,7 @@ myApp.controller('AddMovieController', function($scope, MovieService){
         .catch(function(err){
             console.log(err);
         })
+
     $scope.genres = [
         "Комедия",
         "Екшън",
@@ -31,11 +32,10 @@ myApp.controller('AddMovieController', function($scope, MovieService){
     ] 
    
     $scope.addMovie = function(){
-        $scope.datepicker = datepicker.date;
-       // console.log('addMovie',movie);
+        console.log($("#datetimepicker1").data("datetimepicker").getDate());
        // if($scope.movie.name){
-            console.log($scope);
-            
+            // console.log($scope);
+
            // MovieService.addMovie(movie);
         }
     

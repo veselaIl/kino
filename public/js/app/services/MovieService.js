@@ -1,6 +1,8 @@
 myApp.factory('MovieService', function($http) {
-    var movies = [];
-    var editMovie = {}
+    var movies = [],
+        editMovie = {},
+        movie = {};
+
     return {
         getMovies: function() {
             return new Promise(function(resolve, reject) {
@@ -39,6 +41,18 @@ myApp.factory('MovieService', function($http) {
                     })
                     .catch(function(err){
                         console.log(err);
+                    })
+            })
+        },
+        getMovie: function(id){
+            return new Promise(function(resolve, response){
+                $http.get('/admin/movies/edit/'+movie.id)
+                    .then(function(response){
+                        movie = response.data;
+                        resolve();
+                    })
+                    .catch(function(err){
+                      console.log(err);
                     })
             })
         }

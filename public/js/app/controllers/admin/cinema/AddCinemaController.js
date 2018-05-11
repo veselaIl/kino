@@ -3,7 +3,6 @@ myApp.controller('AddCinemaController', function($scope, CinemaService){
     $scope.numRows = 0;
     $scope.row = {}
     $scope.spaces = [];
-    $scope.capacity = 
 
     $scope.$watch('numRows', function(newValue, oldValue){
         $scope.numRows = newValue;
@@ -13,7 +12,7 @@ myApp.controller('AddCinemaController', function($scope, CinemaService){
     function isBelowThreshold(currentValue) {
         return currentValue < 21 && currentValue > 0;
     }
-
+   
     $scope.addZala = function(){
         var some = $scope.rows.every(isBelowThreshold);
         if(some){
@@ -21,7 +20,9 @@ myApp.controller('AddCinemaController', function($scope, CinemaService){
             $scope.numRows = 0;            
             $(".collapse").collapse('toggle');
         }
+        $scope.cinema.spaces = $scope.spaces;
     }
+
     $scope.getCapacity = function(zala){
         var capacity = 0;
         for (var i = 0; i < zala.length; i++){
@@ -30,4 +31,14 @@ myApp.controller('AddCinemaController', function($scope, CinemaService){
         return capacity;
     }
 
+    $scope.removeZala = function(index){
+         $scope.spaces.splice(index, 1);
+    }
+
+    $scope.addCinema= function(){
+        if($scope.cinema.name && $scope.cinema.address){
+            console.log($scope.cinema);
+            CinemaService.cinema($scope.cinema);
+        }
+    }
 });

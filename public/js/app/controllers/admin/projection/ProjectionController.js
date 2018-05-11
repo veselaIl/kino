@@ -3,9 +3,9 @@ myApp.controller('ProjectionController', function($scope, ProjectionService, Mov
     $scope.title = 'Прожекции';
     $scope.projections = [];
     $scope.cinemas = [];
-    $scope.movies = []
-    $scope.kino = 0;
-    $scope.zala = {}
+    $scope.movies = [];
+    $scope.kino = {};
+    $scope.hourList = [];
 
     ProjectionService.getProjections()
       .then(function(projections){
@@ -33,9 +33,13 @@ myApp.controller('ProjectionController', function($scope, ProjectionService, Mov
       .catch(function(err){
         console.log(err);
       })
+
       $scope.$watch('projection.kinoID', function(newValue, oldValue) {
-        $scope.kino = newValue;        
+        $scope.kino = $scope.cinemas[newValue];        
     }); 
+    $scope.$watch('hours', function(newValue, oldValue) {
+        console.log(newValue);
+    });
     console.log($scope.kino);
     $scope.hours = [
         '10:15',
