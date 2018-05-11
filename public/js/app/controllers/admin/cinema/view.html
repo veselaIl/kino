@@ -1,77 +1,114 @@
-{{!-- CINEMAS --}}
-
 <div class='content'>
   <div class='cinema'>
     <div class='add-movie'>
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
-      <a href='/admin/cinema/addCinema'>Добави кино</a>
+      <a href='#!/cinema/add'>Добави кино</a>
     </div>
-    <div class="row">
-    {{#each cinemas}}
+    <div class="row" ng-repeat="cinema in cinemas track by $index" >
       <div class=" col-md-12 ">
         <div class="panel panel-first">
           <div class="panel-heading">
             <div class="row">
               <div class="col-lg-3"><i class="fa fa-desktop fa-5x"></i></div>
               <div class="col-xs-9 text-right">
-                <div class="huge">{{name}}</div>
-                <div>{{address}}</div>
-                <div>Зали {{zali.length}}</div>
+                <div class="huge">{{cinema.name}}</div>
+                <div>{{cinema.address}}</div>
+                <div>Зали {{cinema.zali.length}}</div>
               </div>
             </div>
           </div>
-          <a data-toggle="collapse" class='panel-href' data-parent="#accordion" href="#collapse{{@index}}">
+          <a data-target="#my-collapse-elemepnt{{$index}}" data-toggle="collapse" class='panel-href' data-parent="#accordion" >
+            <!-- href="#collapse" -->
         <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
             </div>
           </a>
         </div>
       </div>
-       <div class=" col-md-12 panel-collapse collapse" id='collapse{{@index}}'>
-          <div class="container projects">
+      <div class=" col-md-12 panel-collapse collapse" id='my-collapse-elemepnt{{$index}}'>
+        <div class="container projects">
+          <div class="projects-inner">
+            <header class="projects-header">
+              <div class="title">Ongoing Projections Kино {{ cinema.name }}</div>
+              <div class="count">|{{ cinema.projections.length}}</div>
+              <a href='/cinema/projection/add/{{kinoID}}'>
+                <span class="glyphicon glyphicon-plus"></span>
+              </a>
+            </header>
+            <table class="projects-table">
+            <thead>
+              <tr>
+                <th>Movie</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+              <tr ng-repeat="projetion in projections">
+                <td>
+                  <p>{{ name }}</p>
+                  <p>Google</p>
+                </td>
+                <td>
+                  <p>{{ startDate }}</p>
+                  <p class="danger-text">Overdue</p>
+                </td>
+                <td class="member">
+                  <figure><img src=""/></figure>
+                  <div class="member-info">
+                    <p>{{ endDate }}</p>
+                    <p>UK Design Team</p>
+                  </div>
+                </td>
+                <td class="status"><span class="status-text status-orange">In progress</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="container projects"style="margin-top:20px">
             <div class="projects-inner">
               <header class="projects-header">
-                <div class="title">Ongoing Projections Kино {{ name }}</div>
-                <div class="count">|{{ projections.length}}</div>
-                <a href='/admin/cinema/addProjection/{{kinoID}}'>
+                <div class="title">Зали в {{ cinema.name }}</div>
+                <div class="count">|{{ cinema.zali.length}}</div>
+                <a href='/cinema/projection/add/{{kinoID}}'>
                   <span class="glyphicon glyphicon-plus"></span>
                 </a>
               </header>
               <table class="projects-table">
               <thead>
                 <tr>
-                  <th>Movie</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Status</th>
+                  <th>Зала</th>
+                  <th>Реда</th>
+                  <th>Места</th>
                 </tr>
               </thead>
-                {{#each projections }}
-                <tr>
+              <tbody ng-if="zali.length">
+                <tr ng-repeat="zala in cinema.zali ">
                   <td>
-                    <p>{{ name }}</p>
+                    <p>Зала {{ zalaID }}</p>
                     <p>Google</p>
                   </td>
                   <td>
-                    <p>{{startDate}}</p>
-                    <p class="danger-text">Overdue</p>
+                    <p>{{ space.length}}</p>
+                    <!-- <p class="danger-text">Overdue</p> -->
                   </td>
                   <td class="member">
                     <figure><img src=""/></figure>
                     <div class="member-info">
-                      <p>{{ endDate }}</p>
-                      <p>UK Design Team</p>
+                      <p>{{ zala.capacity }}</p>
+                      <!-- <p>UK Design Team</p> -->
                     </div>
-                  </td>
+                  <!-- </td>
                   <td class="status"><span class="status-text status-orange">In progress</span>
-                  </td>
+                  </td> -->
                 </tr>
-              {{/each}}
+              </tbody>
               </table>
             </div>
           </div>
-        </div>
-      {{/each}}  
+      
+      </div>
     </div>
   </div>
 </div>

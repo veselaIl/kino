@@ -31,7 +31,7 @@ myApp.factory('MovieService', function($http) {
         },
         addMovie: function(movie){
             return new Promise(function(resolve, response){
-                $http.push('/admin/movies/add', {data : movie})
+                $http.post('/admin/movies/add', {data : movie})
                     .then(function(response){
                         movie.id = response.data.id;
                         movies.push(movie);

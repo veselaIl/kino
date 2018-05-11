@@ -3,9 +3,9 @@
 var app = angular.module('app', ['ngRoute'])
     .config(function ($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/index', {
                 controller: 'HomeController',
-                templateUrl: '/js/app/controllers/home/home.html'
+                templateUrl: '/js/app/controllers/home/index.html'
             })
     })
 

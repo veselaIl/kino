@@ -9,7 +9,29 @@ router.get('/admin', function(req, res, next) {
 /* GET admin cinemas page. */
 router.get('/admin/cinema', function(req, res, next) {
   req.db.get('kino').find().then(function(cinemas){
-    res.render('cinema',{ cinemas: cinemas});
+    if(cinemas.length){
+      console.log('Cinemas', cinemas)
+      res.json(cinemas);
+    }else{
+      console.log('No cinemas')
+    }
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+})
+/* GET admin cinemas page. */
+router.get('/admin/projections', function(req, res, next) {
+  req.db.get('projections').find().then(function(cinemas){
+    if(cinemas.length){
+      console.log('Cinemas', projections)
+      res.json(projections);
+    }else{
+      console.log('No projections')
+    }
+  })
+  .catch(function(err){
+    console.log(err);
   });
 })
 /* ADD PROJECTION TO CINEMA */
@@ -67,7 +89,6 @@ router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
           });
       }
   })
- 
 })
 /* GET ZALA*/
 router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res){

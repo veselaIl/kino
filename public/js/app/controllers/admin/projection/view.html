@@ -1,0 +1,30 @@
+<div class="content">
+    <div class='add-movie'>
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        <a href='#!/projections/add'>Добави прожекция</a>
+    </div>
+    <div class='content-cinemas' ng-repeat="cinema in cinemas">
+        <div class='content-cinema' ng-if='projection.length'>
+            <div class='content-movies'>
+                <div class="container-movie">
+                    <div class="cards" ng-if="projections.length">
+                        <a ng-repeat="projection in projections" class="card" href='#!movies/edit/{{movie.movieID }}'>
+                            <span class="tooltiptext">Редактирай</span>
+                            <span class="card-header" style="background-image: url('{{ movie.image }}');">
+                                <span class="card-title">
+                                    <h3>{{ projection.name }}</h3>
+                                </span>
+                            </span>
+                            <span class="card-summary">
+                                {{ movie.description }}
+                            </span>
+                            <span class="card-meta">
+                                Premier {{ movie.premierDate }}
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

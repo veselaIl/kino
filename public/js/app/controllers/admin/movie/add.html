@@ -1,113 +1,113 @@
 <div class='content-addMovie'>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                    <h2>Добави филм</h2>
-                </div>
-            </div>
-            <div class='container-fluid addMovie'>
-                <form id="contact-form" class="form" action='' method="POST" role="form">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 left">
-                            <div class="form-group">
-                                <label class="form-label" for="name">Име *</label>
-                                <input type="text" class="form-control" ng-model="movie.name" id="name" name="name" placeholder="Въведете име на филм" tabindex="1" required>
-                            </div>               
-                            <div class="form-group">
-                                <label class="form-label" for="duration">Времетраене *</label>
-                                <input type="number" class="form-control" id='duration' ng-model="movie.duration" name="duration" placeholder="Времетраене в минути" tabindex="2" required min='30' max='220'>
-                            </div>
-                            <script>
-                                $(function () {
-                                    var sd = new Date(), ed = new Date();
-                                    
-                                    $('#datetimepicker1').datetimepicker({
-                                        format: "YYYY/MM/DD"
-                                    })
-                                });
-                            </script>
-                            <div class='container'>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            <label class="form-label" for="premierDate">Дата на премиера *</label>
-                                            <div class='input-group date' id='datetimepicker1'class="datetimepicker">
-                                                <input type='text' class="form-control" ng-model="movie.premierDate"  name="premierDate" required/>
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </div> 
-                            </div>        
-                            <div class="form-inline col-xs-12" style="padding-left:0">
-                                <label class="form-label">Жанр *</label>
-                                <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="genre in genres">
-                                        <input type="checkbox" value="{{genre}}" ng-model="movie.genre" class="form-check-input" id="{{genre}}">
-                                        <label class="form-check-label" for="{{genre}}">{{genre}}</label>
-                                </div>
-                            </div>
-                            
-                            <!--Material textarea-->
-                            <div class="form-group" style="padding-top:70px">
-                                <label class='form-label' for="description">Описание *</label>
-                                <textarea type="text" id="description" ng-model="movie.description" name="description" class="md-textarea form-control" rows="3" required></textarea>
-                            </div>                       
-                        </div>
-                        <div class="col-sm-3 col-sm-offset-0 col-md-6 col-md-offset-0 right">        
-                                <div class="form-group director">
-                                    <div class='col-xs-6'>
-                                        <label class="form-label" for="director">Директор *</label>
-                                        <input type="text" class="form-control" id="director" ng-model="movie.director.name" name="director" placeholder="Име на директор" tabindex="1" required>
-                                    </div>
-                                    <div class='col-xs-6'>
-                                        <label class="form-label" for="exampleFormControlFile1">Снимка на директор *</label>
-                                        <input type="file" class="form-control-file" ng-model="movie.director.image" style="padding-bottom:30px" name="directorImage" value='{{ director.img }}' id="exampleFormControlFile1">
-                                    </div>
-                                </div>                                
-                                <div class="form-group">
-                                    <label class="form-label" style="padding-top:50px"for="actor1">Актьор 1*</label>
-                                    <input type="text" class="form-control" id="actor1" ng-model="movie.actors[0].name" name="actors"  placeholder="Актьор 1" tabindex="1" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="actor2">Актьор 2</label>
-                                    <input type="text" class="form-control" id="actor2" name="actors" ng-model="movie.actors[1].name" placeholder="Актьор 2" tabindex="1">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="actor3">Актьор 3</label>
-                                    <input type="text" class="form-control" id="actor3" name="actors" ng-model="movie.actors[2].name" placeholder="Актьор 3" tabindex="1">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="image">Качете постер *</label>
-                                    <input type="file" class="form-control" id="image" ng-model="movie.image" name="image" placeholder="Качете снимка" tabindex="1">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="trailer">Линк към трейлър *</label>
-                                    <input type="text" class="form-control" id="trailer" name="trailer" ng-model="movie.trailer" placeholder="Трейлър" tabindex="1">
-                                </div>
-                                <div class="form-group"> <!-- Radio group !-->
-                                <label class="form-label"> Дублиран *</label>
-                                <div class="radio" >
-                                <label>
-                                    <input type="radio" ng-model="movie.dublaj" name="dublaj" value="1">
-                                     Да
-                                </label>
-                                <label style="margin-left: 10px">
-                                    <input type="radio"  name="dublaj" ng-model="movie.dublaj" value="0">
-                                    Не
-                                </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-start-order">Запази</button>
-                        </div>
-                    </div>
-                </form>            
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h2>Добави филм</h2>
             </div>
         </div>
-        <small id="passwordHelpBlock" class="form-text text-muted">
-            Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
-        </small>
+        <div class='container-fluid addMovie'>
+            <form id="contact-form" class="form">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 left">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Име *</label>
+                            <input type="text" class="form-control" ng-model="movie.name" id="name" name="name" placeholder="Въведете име на филм" tabindex="1" required>
+                        </div>               
+                        <div class="form-group">
+                            <label class="form-label" for="duration">Времетраене *</label>
+                            <input type="number" class="form-control" id='duration' ng-model="movie.duration" name="duration" placeholder="Времетраене в минути" tabindex="2" required min='30' max='220'>
+                        </div>
+                        <script>
+                            $(function () {
+                                var sd = new Date(), ed = new Date();
+                                
+                                $('#datetimepicker1').datetimepicker({
+                                    format: "YYYY/MM/DD"
+                                })
+                            });
+                        </script>
+                        <div class='container'>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="premierDate">Дата на премиера *</label>
+                                        <div class='input-group date' id='datetimepicker1'class="datetimepicker">
+                                            <input type='text' class="form-control" ng-model="movie.premierDate" required/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div> 
+                        </div>        
+                        <div class="form-inline col-xs-12" style="padding-left:0">
+                            <label class="form-label">Жанр *</label>
+                            <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="genre in genres">
+                                    <input type="checkbox" value="{{genre}}"  ng-model="movie.genre" class="form-check-input" >
+                                    <label class="form-check-label" >{{genre}}</label>
+                            </div>
+                        </div>
+                        
+                        <!--Material textarea-->
+                        <div class="form-group" style="padding-top:70px">
+                            <label class='form-label' for="description">Описание *</label>
+                            <textarea type="text" id="description" ng-model="movie.description" name="description" class="md-textarea form-control" rows="3" required></textarea>
+                        </div>                       
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-0 col-md-6 col-md-offset-0 right">        
+                            <div class="form-group director">
+                                <div class='col-xs-6'>
+                                    <label class="form-label" for="director">Директор *</label>
+                                    <input type="text" class="form-control" id="director" ng-model="movie.director.name" name="director" placeholder="Име на директор" tabindex="1" required>
+                                </div>
+                                <div class='col-xs-6'>
+                                    <label class="form-label" for="exampleFormControlFile1">Снимка на директор *</label>
+                                    <input type="file" class="form-control-file" ng-model="movie.director.image" style="padding-bottom:30px" name="directorImage" value='{{ director.img }}' id="exampleFormControlFile1">
+                                </div>
+                            </div>                                
+                            <div class="form-group">
+                                <label class="form-label" style="padding-top:50px"for="actor1">Актьор 1*</label>
+                                <input type="text" class="form-control" id="actor1" ng-model="movie.actors[0].name" name="actors"  placeholder="Актьор 1" tabindex="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="actor2">Актьор 2</label>
+                                <input type="text" class="form-control" id="actor2" name="actors" ng-model="movie.actors[1].name" placeholder="Актьор 2" tabindex="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="actor3">Актьор 3</label>
+                                <input type="text" class="form-control" id="actor3" name="actors" ng-model="movie.actors[2].name" placeholder="Актьор 3" tabindex="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="image">Качете постер *</label>
+                                <input type="file" class="form-control" id="image" ng-model="movie.image" name="image" placeholder="Качете снимка" tabindex="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="trailer">Линк към трейлър *</label>
+                                <input type="text" class="form-control" id="trailer" name="trailer" ng-model="movie.trailer" placeholder="Трейлър" tabindex="1">
+                            </div>
+                            <div class="form-group"> <!-- Radio group !-->
+                            <label class="form-label"> Дублиран *</label>
+                            <div class="radio" >
+                            <label>
+                                <input type="radio" ng-model="movie.dublaj" name="dublaj" value="1">
+                                    Да
+                            </label>
+                            <label style="margin-left: 10px">
+                                <input type="radio"  name="dublaj" ng-model="movie.dublaj" value="0">
+                                Не
+                            </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-start-order" ng-click="addMovie()">Запази</button>
+                    </div>
+                </div>
+            </form>            
+        </div>
     </div>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+        Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
+    </small>
+</div>
