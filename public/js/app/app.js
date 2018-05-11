@@ -2,9 +2,9 @@
 var app = angular.module('App', ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
     .config(function ($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/index', {
                 controller: 'HomeController',
-                templateUrl: '/js/app/controllers/home/home.html'
+                templateUrl: '/js/app/controllers/home/index.html'
             })
             .when('/projections', {
                 controller: 'ProjectionsController',

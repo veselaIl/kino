@@ -11,7 +11,7 @@
                     <div class="col-sm-6 col-md-6 left">
                         <div class="form-group">
                             <label class="form-label" for="name">Име *</label>
-                            <input type="text" class="form-control" ng-model="movie.name" id="name" name="name" placeholder="Въведете име на филм" tabindex="1" required>
+                            <input type="text" class="form-control" value ="{{movie.name}}" ng-model="movie.name" id="name" name="name" placeholder="Въведете име на филм" tabindex="1" required>
                         </div>               
                         <div class="form-group">
                             <label class="form-label" for="duration">Времетраене *</label>
@@ -31,8 +31,8 @@
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label class="form-label" for="premierDate">Дата на премиера *</label>
-                                        <div class='input-group date' id='datetimepicker1'class="date">
-                                            <input data-format="YYYY/MM/DD" type='text' class="form-control"  required/>
+                                        <div class='input-group date' id='datetimepicker1'class="datetimepicker">
+                                            <input type='text' class="form-control" ng-model="movie.premierDate" required/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -44,15 +44,15 @@
                         <div class="form-inline col-xs-12" style="padding-left:0">
                             <label class="form-label">Жанр *</label>
                             <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="genre in genres">
-                                    <input type="checkbox" value="{{::genre}}"  ng-model="movie.genre" class="form-check-input" >
-                                    <label class="form-check-label" >{{::genre}}</label>
+                                    <input type="checkbox" value="{{genre}}"  ng-model="movie.genre" class="form-check-input" >
+                                    <label class="form-check-label" >{{genre}}</label>
                             </div>
                         </div>
                         
                         <!--Material textarea-->
                         <div class="form-group" style="padding-top:70px">
                             <label class='form-label' for="description">Описание *</label>
-                            <textarea type="text" id="description" ng-model="movie.description" name="description" class="md-textarea form-control" rows="3" required></textarea>
+                            <textarea type="text" id="description" ng-model="movie.description" name="description" value="{{movie.description}}"class="md-textarea form-control" rows="3" required></textarea>
                         </div>                       
                     </div>
                     <div class="col-sm-3 col-sm-offset-0 col-md-6 col-md-offset-0 right">        
@@ -110,4 +110,4 @@
     <small id="passwordHelpBlock" class="form-text text-muted">
         Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
     </small>
-</div>
+    </div>

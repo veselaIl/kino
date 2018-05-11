@@ -2,18 +2,47 @@ var express = require('express');
 var router = express.Router();
 
 /* GET admin home page. */
-router.get('/admin', function(req, res, next) {
+router.get('/admin', function(req, res) {
   res.render('admin');
 });
 
 /* GET admin cinemas page. */
-router.get('/admin/cinema', function(req, res, next) {
+router.get('/admin/cinema', function(req, res) {
   req.db.get('kino').find().then(function(cinemas){
-    res.render('cinema',{ cinemas: cinemas});
+    if(cinemas.length){
+      console.log('Cinemas', cinemas)
+      res.json(cinemas);
+    }else{
+      console.log('No cinemas')
+    }
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+})
+
+router.post('/admin/cinema/add', function(req, res){
+  console.log(req);
+  // req.db.get('kino').insert({
+    
+  // })
+});
+/* GET admin cinemas page. */
+router.get('/admin/projections', function(req, res, next) {
+  req.db.get('projections').find().then(function(cinemas){
+    if(cinemas.length){
+      console.log('Cinemas', projections)
+      res.json(projections);
+    }else{
+      console.log('No projections')
+    }
+  })
+  .catch(function(err){
+    console.log(err);
   });
 })
 /* ADD PROJECTION TO CINEMA */
-router.get('/admin/cinema/addProjection/:kinoID', function(req, res, next){
+router.get('/admin/cinema/addProjection/:kinoID', function(req, res){
   req.db.get('movies').find().then(function(movies){
     res.render('addProjection', { movies: movies })
   })
@@ -28,7 +57,7 @@ router.get('/admin/cinema/details/:kinoID', function(req, res, next) {
 });
 
 /* GET admin cinema zala details*/
-router.get('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
+router.get('/admin/cinema/details/:kinoID/:zalaID', function(req, res){
   req.db.get('kino').find({ kinoID : +req.params.kinoID}, {zali :{ $elemMatch: { zalaID : +req.params.zalaID}}})
   .then(function(cinemas){
     var cinema = cinemas[0] || {};
@@ -37,7 +66,7 @@ router.get('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
 })
 
 /* EDIT ZALA */
-router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
+router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res){
   var zala,
       cinema;
   req.db.get('kino').find({ kinoID : +req.params.kinoID}, {zali :{ $elemMatch: { zalaID : +req.params.zalaID}}})
@@ -67,7 +96,6 @@ router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res, next){
           });
       }
   })
- 
 })
 /* GET ZALA*/
 router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res){
@@ -97,7 +125,7 @@ router.get('/admin/movies/add', function(req, res){
 })
 
 /* ADD NEW MOVIE */
-router.post('/admin/movies/add',function(req, res, next){
+router.post('/admin/movies/add',function(req, res){
   var movie, 
       id;
 
@@ -147,10 +175,12 @@ router.post('/admin/movies/add',function(req, res, next){
 
 router.get('/admin/movies/edit/:movieID', function(req, res){
   var movie;
-  req.db.get('movies').find({ movieID : +req.params.movieID }).then(function(data){
-    movie = data[0] || {};    
-    res.render('addMovie', movie);
-  })
+  req.db.get('movies').find({ movieID : +req.params.movieID })
+    .then(function(data){
+      movie = data[0] || {};    
+      res.json('Movie', movie)
+    })
+    
 })
 
 /*  EDIT MOVIE */
@@ -188,9 +218,9 @@ router.post('/admin/movies/edit/:movieID', function(req, res, next){
   })
 })
 
-router.get('/admin/cinema/addCinema', function(req, res){  
-    res.render('addCinema');
-})
+// router.get('/admin/cinema/add', function(req, res){  
+//     res.render('addCinema');
+// })
 
 /* GET all users registered */
 router.get('/admin/users', function(req, res, next) {

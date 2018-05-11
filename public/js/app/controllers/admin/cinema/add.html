@@ -1,0 +1,90 @@
+<div class='content-addMovie'>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">  
+                    <h2>Добави кино</h2>
+                </div>
+            </div>
+            <div class='container-fluid addMovie'>
+                <form id="contact-form" class="form" >
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Име *</label>
+                            <input type="text" class="form-control" ng-model="cinema.name" id="name" name="name" placeholder="Въведете име на филм" tabindex="1" required>
+                        </div>               
+                        <div class="form-group">
+                            <label class="form-label" for="address"> Адрес *</label>
+                            <input type="text" class="form-control" id='address' ng-model="cinema.address"  name="address" placeholder="Въведете адрес" tabindex="2" required >
+                        </div>
+                        <div ng-if="spaces.length"> 
+                            <div class="card col-xs-6" style="width: 18rem;" ng-repeat="zala in spaces track by $index"  >
+                                <div class="card-body">
+                                    <h5 class="card-title" style="position:relative">Зала {{$index+1}}</h5>
+                                    <h4 class="card-subtitle mb-2 text-muted" ng-bind='zala.length'> реда</h4>
+                                    <p class="card-text">Брой места {{getCapacity(zala)}}</p>
+                                    <a class="btn btn-remove" value="{{ $index }}" ng-click="removeZala()">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bs-example">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default add-cinema">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne"><span class="glyphicon glyphicon-plus"></span> Добави зала</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <form class='form'>
+                                                <div class="form-group">
+                                                    <label class="form-label" for='rows'> Редове </label>
+                                                    <input type='number' class='form-control' id='rows' name='space' ng-model='numRows' min='0' max='20' placeholder="Въведете редове"> 
+                                                </div>
+                                                <div class='form-group'ng-repeat="row in rows track by $index">
+                                                    <label class='form-label' for='seats'> Ред {{ $index+1 }}  Места</label>
+                                                    <input type='number' class='form-control' ng-model="rows[$index]"  id='seats' name='seats' placeholder="Въведете места" min='1' max='20'>
+                                                </div>
+                                                <div class='' style="display:none;">
+                                                    <input type="submit"   />
+                                                </div>
+                                                <div class="text-center">
+                                                    <button type="submit"class="btn btn-start-order" ng-click="addZala()">Добави</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>               
+                    </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-start-order" ng-click="addCinema()">Запази</button>
+                        </div>
+                    </div>
+                </form>            
+            </div>
+        </div>
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
+        </small>
+    </div>
+    <script>
+        $(document).ready(function(){
+            // Add minus icon for collapse element which is open by default
+            $(".collapse.in").each(function(){
+                $(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+            });
+            
+            // Toggle plus minus icon on show hide of collapse element
+            $(".collapse").on('show.bs.collapse', function(){
+                $(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+            }).on('hide.bs.collapse', function(){
+                $(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+            });
+        });
+    </script>
+    
+    
+    
+    

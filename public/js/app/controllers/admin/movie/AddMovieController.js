@@ -2,7 +2,7 @@ myApp.controller('AddMovieController', function($scope, MovieService){
     $scope.title='Филми';
     $scope.newMovie = {};
     $scope.movies = [];
-
+    $scope.genreList = {};
     MovieService.getMovies()
         .then(function(movies){
             console.log('then', movies);
@@ -12,6 +12,7 @@ myApp.controller('AddMovieController', function($scope, MovieService){
         .catch(function(err){
             console.log(err);
         })
+
     $scope.genres = [
         "Комедия",
         "Екшън",
@@ -29,7 +30,16 @@ myApp.controller('AddMovieController', function($scope, MovieService){
         "Технологичен",
         "Документален"
     ] 
-    console.log($scope);
-    console.log($scope.action);
+   
+    $scope.addMovie = function(){
+        console.log($("#datetimepicker1").data("datetimepicker").getDate());
+       // if($scope.movie.name){
+            // console.log($scope);
+
+           // MovieService.addMovie(movie);
+        }
+    
+   
+   // console.log($scope.action);
         
 })

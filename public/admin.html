@@ -15,6 +15,7 @@
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -22,8 +23,10 @@
     <script src="/js/angular/angular.min.js"></script>
     <script src="/js/angular/angular-route.js"></script>
     <script src="/myApp.js"></script>   
+    <script src="/js/app/directives/checkList.js"></script>
     <script src="js/app/controllers/admin/board/AdminController.js"></script>
     <script src="js/app/controllers/admin/cinema/CinemaController.js"></script>
+    <script src="js/app/controllers/admin/cinema/AddCinemaController.js"></script>
     <script src="js/app/controllers/admin/movie/MovieController.js"></script>
     <script src="js/app/controllers/admin/movie/AddMovieController.js"></script>
     <script src="js/app/controllers/admin/projection/ProjectionController.js"></script>
@@ -31,7 +34,8 @@
     <script src="js/app/controllers/404/NotFoundController.js"></script>
 
     <script src="js/app/services/MovieService.js"></script>
-
+    <script src="js/app/services/CinemaService.js"></script>
+    <script src="js/app/services/ProjectionService.js"></script>
     <link rel='stylesheet' href='/styles/adminStyle.css' />
     
     
@@ -40,7 +44,7 @@
     <header class='main-nav'>
     <ul>
         <li>
-            <a href='#!/admin'>
+            <a href='#!/'>
                 <i class='fa fa-tachometer'></i>
                 <span>Панел</span>
             </a> 

@@ -1,0 +1,50 @@
+<div class='content-addMovie'>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h2>Добави прожекция</h2>
+            </div>
+        </div>
+        <div class='container-fluid addProjection'>
+            <form id="contact-form" class="form">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1"class='form-label'> Кино</label>
+                        <select class="form-control" ng-model="projection.kinoID" id="exampleFormControlSelect1">
+                            <option ng-repeat="cinema in cinemas" value="{{ $index }}">{{ cinema.name }}</option>
+                        </select>
+                    </div> 
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1"class='form-label'> Зала</label>
+                        <select class="form-control" ng-model="projection.zalaID" id="exampleFormControlSelect1">
+                            <option ng-repeat="zala in kino.zali"> {{ zala.zalaID }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1"class='form-label'> Филм</label>
+                        <select class="form-control" ng-model="projection.movieID" id="exampleFormControlSelect1">
+                            <option ng-repeat="movie in movies" value="{{ movie.movieID }}">{{ movie.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-inline col-xs-12" style="padding-left:0">
+                        <label class="form-label"> Часове *</label>
+                        <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="hour in hours track by $index">
+                            <input type="checkbox" value="{{ hour }}"  check-list='checked' class="form-check-input{{$index}}" >
+                            <label class="form-check-label{{$index}}" >{{ hour }}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"> Цена *</label>
+                        <input type="number" class='form-control' step='.01' min='0' max='20' ng-model="projection.ticket" >
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-start-order" ng-click="addProjection()"> Добави</button>
+                    </div>    
+                </div>
+            </form>
+        </div>        
+    </div>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+        Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
+    </small>
+</div>
