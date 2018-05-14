@@ -44,20 +44,17 @@
                 <th>Status</th>
               </tr>
             </thead>
-              <tr ng-repeat="projetion in projections">
+              <tr ng-repeat="projection in projections | filter:{ kinoID : cinema.kinoID}">
                 <td>
-                  <p>{{ name }}</p>
-                  <p>Google</p>
+                  <p>{{ projection.movieID }}</p>
                 </td>
                 <td>
-                  <p>{{ startDate }}</p>
-                  <p class="danger-text">Overdue</p>
+                  <p>{{ projection.startDate }}</p>
                 </td>
                 <td class="member">
-                  <figure><img src=""/></figure>
+                  <!-- <figure><img src=""/></figure> -->
                   <div class="member-info">
-                    <p>{{ endDate }}</p>
-                    <p>UK Design Team</p>
+                    <p>{{ projection.endDate }}</p>
                   </div>
                 </td>
                 <td class="status"><span class="status-text status-orange">In progress</span>
@@ -86,22 +83,17 @@
               <tbody ng-if="zali.length">
                 <tr ng-repeat="zala in cinema.zali ">
                   <td>
-                    <p>Зала {{ zalaID }}</p>
-                    <p>Google</p>
+                    <p>Зала {{ zala.zalaID }}</p>
                   </td>
                   <td>
-                    <p>{{ space.length}}</p>
+                    <p>{{ zala.space.length}}</p>
                     <!-- <p class="danger-text">Overdue</p> -->
                   </td>
                   <td class="member">
                     <figure><img src=""/></figure>
                     <div class="member-info">
                       <p>{{ zala.capacity }}</p>
-                      <!-- <p>UK Design Team</p> -->
                     </div>
-                  <!-- </td>
-                  <td class="status"><span class="status-text status-orange">In progress</span>
-                  </td> -->
                 </tr>
               </tbody>
               </table>

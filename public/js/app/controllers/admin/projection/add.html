@@ -39,21 +39,31 @@
                         <!-- <select class="form-control" ng-model="projection.movieID" id="exampleFormControlSelect1">
                             <option ng-repeat="movie in movies" value="{{ movie.movieID }}">{{ movie.name }}</option>
                         </select> -->
-                    </div>                
+                    </div>       
                     <div class="form-group">
-                        <label class="form-label">Избери часове</label>
-                        <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="hour in hours">
-                            <input type="checkbox" name='check' value="{{::hour}}" ng-blur="isChecked(hourList)" ng-model="hourList[$index]" class="form-check-input" ng-required="projection.hours.length === 0"/>
-                            <label class="form-check-label" >{{::hour}}</label>
+                        <label class="form-label">Избери дата/и</label>
+                        <div>
+                            <multiple-date-picker moment="moment" ng-model="projectionDates"></multiple-date-picker>
+                        </div>
+                        <!-- <input class='date-range' type="text" name="daterange"  value="05/01/2018 - 01/15/2018" /> -->
+                    </div>
+                    <div class="form-group" ng-repeat="date in projectionDates track by $index">
+                        <label class='form-label'>Тип на прожекция</label>
+                        <select ng-model="::initTypeValue">
+                            <option value="{{ ::item.value }}" ng-repeat="item in ::types">{{ ::item.name }}</option>
+                        </select>
+                        <label class="form-label">Избери часове {{ date.milliseconds() }}</label>
+                        <div class="form-check" style="padding-left:0"  ng-repeat="hour in ::hours"> 
+                            <label class="form-check-label" >
+                                <input type="checkbox" name='check_{{$parent.$index}}_{{$index}}' value="{{::hour}}" class="form-check-input"/>
+                                {{::hour}}
+                                <input type="hidden" value="{{ date }}" name="time_{{$parent.$index}}">
+                            </label>
                             <div ng-messages="form.check.$error" ng-show="form.check.$invalid && form.check.$touched">
                                 <ng-message when="required"> Това поле е задължително</ng-message>
                             </div>
                         </div>
                         <span class='error-message1'>{{ message1 }}</span>                         
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Избери начална и крайна дата</label>
-                        <input class='date-range' type="text" name="daterange"  value="05/01/2018 - 01/15/2018" />
                     </div>
                     <div class="form-group price">
                         <label class="form-label "> Цена *</label>

@@ -19,6 +19,7 @@
     "mongodb": "^3.0.7",
     "monk": "^6.0.5",
     "morgan": "~1.9.0",
+    "multiple-date-picker": "^2.1.6",
     "popper.js": "^1.14.3",
     "startbootstrap-3-col-portfolio": "^4.0.0"
   }

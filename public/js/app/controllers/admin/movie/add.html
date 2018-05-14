@@ -45,15 +45,14 @@
                         </div>        
                         <div class="form-inline col-xs-12" style="padding-left:0">
                             <label class="form-label">Жанр *</label>
-                                <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="genre in genres">
-                                    <input type="checkbox" name='option' value="{{::genre}}" ng-model="movie.genres[$index]" class="form-check-input" ng-required="movie.genre.length === 0"/>
-                                    <label class="form-check-label" >{{::genre}}</label>
-                                </div>      
-                                <div ng-messages="form.option.$error" ng-show="form.option.$invalid && form.option.$touched">
-                                    <ng-message when="required"> Това поле е задължително</ng-message>
-                                </div>
-                        </div>
-                        
+                            <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="genre in genres">
+                                <input type="checkbox" name='option' value="{{::genre}}" ng-model="movie.genres[$index]" class="form-check-input" ng-required="movie.genre.length === 0"/>
+                                <label class="form-check-label" >{{::genre}}</label>
+                            </div>      
+                            <div ng-messages="form.option.$error" ng-show="form.option.$invalid && form.option.$touched">
+                                <ng-message when="required"> Това поле е задължително</ng-message>
+                            </div>
+                        </div>                        
                         <!--Material textarea-->
                         <div class="form-group" style="padding-top:70px">
                             <label class='form-label' for="description">Описание *</label>

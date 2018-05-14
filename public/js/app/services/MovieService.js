@@ -20,7 +20,7 @@ myApp.factory('MovieService', function($http, $routeParams) {
             });
         },
         getMovie: function(id){
-            return new Promise(function(resolve, reject){               
+            return new Promise(function(resolve, reject){     
                 $http.get('/api/movies/edit/' + id)
                     .then(function(response){
                         console.log(response);

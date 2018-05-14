@@ -1,11 +1,9 @@
-myApp.controller('EditMovieController', function($scope, MovieService){
-    $scope.title='Филми';
+myApp.controller('EditMovieController', function($scope, $routeParams, MovieService){
     $scope.newMovie = {};
     $scope.movie = {};
-    console.log($scope);
-    MovieService.getMovie()
+    MovieService.getMovie($routeParams.id)
         .then(function(movie){
-            console.log('then', movie);
+            console.log('then', );
             $scope.movie = movie;
             $scope.$apply();
         })

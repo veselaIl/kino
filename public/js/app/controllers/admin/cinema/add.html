@@ -25,11 +25,11 @@
                             </div>
                         </div>
                         <div ng-if="spaces.length"> 
-                            <div class="card col-xs-6" style="width: 18rem;" ng-repeat="zala in spaces track by $index"  >
+                            <div class="card-add col-xs-6" ng-repeat="zala in spaces track by $index"  >
                                 <div class="card-body">
-                                    <h5 class="card-title" style="position:relative" ng-model="zala.zalaID">Зала {{$index+1}}</h5>
-                                    <h4 class="card-subtitle mb-2 text-muted" ng-model="zala.space.length" value={{space.length}}> {{ zala.space.length }} реда </h4>
-                                    <p class="card-text" ng-model="capacity" value={{zala.capacity}} >Брой места {{ zala.capacity}}</p>
+                                    <h5 class="card-add-title"  ng-model="zala.zalaID">Зала {{$index+1}}</h5>
+                                    <p class="card-add-subtitle mb-2 text-muted" ng-model="zala.space.length" value={{space.length}}> {{ zala.space.length }} реда </h4>
+                                    <p class="card-add-text" ng-model="capacity" value={{zala.capacity}} >Брой места {{ zala.capacity}}</p>
                                     <a class="btn btn-remove" value="{{ $index }}" ng-click="removeZala()">Remove</a>
                                 </div>
                             </div>

@@ -33,15 +33,6 @@ myApp.controller('AddCinemaController', function($scope, CinemaService){
         }
     }
 
-    // $scope.getCapacity = function(zala){
-    //     var capacity;
-    //     for (var i = 0; i < zala.length; i++){
-    //         capacity += zala[i]; 
-    //     }
-    //     return capacity;
-
-    // }
-
     $scope.removeZala = function(index){
          $scope.spaces.splice(index, 1);
     }
