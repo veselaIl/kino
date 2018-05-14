@@ -6,6 +6,7 @@ app.factory('RegisterService', function($http){
         return new Promise(function (resolve, reject) {
             $http.post('/api/register', {user : user})
                 .then(function (response){
+                    console.log(response.id);
                     user._id = response.data.id;
                     console.log('response', response.data);
                     console.log('user', user);
