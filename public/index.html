@@ -1,69 +1,67 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html lang="en" ng-app="App">
   <head>
-    <title>{{title}}</title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--CSS-->
-    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
- 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
-    <link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
-
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>{{title}}</title>
 
     <script src="/vendors/bootstrap/ui-bootstrap-tpls-3.0.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     
     <!--VENDORS-->
-    <script src="/vendors/angular/angular.min.js"></script>
-    <script src="/vendors/angular/angular-route.min.js"></script>
-    <script src="/vendors/angular/angular-animate.min.js"></script>
-    <script src="/vendors/angular/angular-touch.min.js"></script>
-    <script src="/vendors/angular/angular-locale_bg.js"></script>
+    <script src="vendors/angular/angular.min.js"></script>
+    <script src="vendors/angular/angular-route.min.js"></script>
+    <script src="vendors/angular/angular-animate.min.js"></script>
+    <script src="vendors/angular/angular-touch.min.js"></script>
+    <script src="vendors/angular/angular-locale_bg.js"></script>
+    <script src="vendors/bootstrap/ui-bootstrap-tpls-3.0.3.min.js"></script>
 
     <!--APP CONTROLLERS-->
-    <script src="/js/app/app.js"></script>
-    <script src="/js/app/controllers/home/HomeController.js"></script>
-    <link rel="stylesheet" href="styles/style.css">
-    
+    <script src="js/app/app.js"></script>
+    <script src="js/app/controllers/home/HomeController.js"></script>
   </head>
   <body>
     <!--HEADER-->
-    <div class="wrapper">
-      <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-          <div class="container-fluid container-fluid-custom">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              </button>
-          </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-nav-custom nav-left">
-              <li><a href="#!/kino">Кина<span class="sr-only">(current)</span></a></li>
-              <li><a href="#!/program">Програма</a></li>
-              <li><a href="#!/Hall">Зали</a></li>
-              </ul>
-              <a class="logo"><img src="/images/logo.png"></a>
-              <ul class="nav navbar-nav navbar-nav-custom navbar-right nav-right">
-              <li><a href="#!/login" data-toggle="modal" data-target="#modalForm">Вход</a></li>
-              <!-- <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li> -->
-              </ul>
-          </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+    <!-- <header ng-include src="'header.html'"></header> -->
+    <div ng-controller="CollapseController">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" role="navigation">
+        <a class="navbar-brand logo" href="#">
+          <img src="/images/logo.png">
+        </a>
+        <button class="navbar-toggler" type="button" ng-click="isNavCollapsed = !isNavCollapsed" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+          <ul class="navbar-nav mr-auto navbar-right nav-right">
+              <li class="nav-item">
+                <a  class="nav-link" href="#!/kino">Кина<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!/projections">Програма</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!/halls">Зали</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link 2</a>
+            </li>
+          </ul>
+        </div>
       </nav>
     </div>
-
     <!--VIEW-->
     <div ng-view></div>
 
     <!--FOOTER-->
-    <div ng-include="footer.html"></div>
-
+    <footer ng-include src="footer.html"></footer>  
   </body>
 </html>

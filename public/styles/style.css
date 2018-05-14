@@ -64,7 +64,7 @@ a {
   color: rgb(85, 1, 85);
 }
 /*SETTING LOGO AND LOGO IMG*/
-.logo{
+/* .logo{
   display: block;
   position: absolute;
   left: 50%;
@@ -73,9 +73,9 @@ a {
   width: 270px;
   margin-left: -80px;
   margin-top: 10px
-}
+} */
 .logo>img{
-  height: 80px;
+  width: 200px;
 }
 
 /*BOOTSTRAP VIDEO CAROUSEL*/
