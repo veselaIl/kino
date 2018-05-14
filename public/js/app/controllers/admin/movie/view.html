@@ -5,9 +5,9 @@
     </div>
     <div class="container-movie">
         <div class="cards" ng-if="movies.length">
-            <a ng-repeat="movie in movies" class="card" href='#!movies/edit/{{movie.movieID }}'>
+            <a ng-repeat="movie in movies" class="card" href='#!movies/edit/{{movie.movieID}}'>
                 <span class="tooltiptext">Редактирай</span>
-                <span class="card-header" style="background-image: url('{{ movie.image }}');">
+                <span class="card-header" style="background-image: url('{{ movie.image }}')"style=" width:300px;">
                     <span class="card-title">
                         <h3>{{ movie.name }}</h3>
                     </span>

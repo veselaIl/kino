@@ -314,6 +314,7 @@ li {
   padding-bottom: 30px;
   background: #fefff9;
   color: #363636;
+  width:100%;
   text-decoration: none;
   -moz-box-shadow: rgba(0, 0, 0, 0.19) 0 0 8px 0;
   -webkit-box-shadow: rgba(0, 0, 0, 0.19) 0 0 8px 0;
@@ -325,11 +326,14 @@ li {
 .card .edit-card{
   display:none;
 }
+
+
 .card:hover .edit-card{
   display:block;
   overflow:hidden;
   z-index:4;
 }
+
 .btn-remove{
   margin-top: 5px;
   width: 100%;
@@ -368,7 +372,7 @@ li {
   display: block;
 }
 .card .card-summary {
-  padding: 5% 5% 3% 5%;
+  padding: 6% 5% 6% 5%;
 }
 .card .card-header {
   position: relative;
@@ -615,7 +619,12 @@ li {
   display: inline-block;
   border-bottom: 1px dotted black;
 }
-
+ng-message{
+  color:red;
+}
+.messages >div{
+  color:red;
+}
 .tooltiptext {
   visibility: hidden;
   width: 100px;
@@ -659,6 +668,11 @@ li {
 textarea {
 	resize: none;
 }
+.movieDate {
+  display:inline-flex;
+  width:200%;
+  margin-bottom:15px;
+}
 .form-label {
 	font-size: 12px;
 	color: #5e9bfc;
@@ -685,8 +699,9 @@ textarea {
 .js-unhighlight-label {
 	color: #999 
 }
-.btn-start-order {
-	background: 0 0 #ffffff;
+.btn-add {
+  background: 0 0 #ffffff;
+    width:100%;
     border: 1px solid #2f323a;
     border-radius: 3px;
     color: #2f323a;
@@ -698,7 +713,7 @@ textarea {
     text-transform: uppercase;
     transition: all 0.25s ease 0s;
 }
-.btn-start-order:hover,.btn-start-order:active, .btn-start-order:focus {
+.btn-add:hover,.btn-add:active, .btn-add:focus {
 	border-color: #5e9bfc;
 	color: #5e9bfc;
 }
@@ -706,6 +721,8 @@ textarea {
   display:none;
 }
 /* ADD MOVIE END */
+
+
 /* ************ EDIT FORM - ЗАЛА ************* */
 .edit-form{
   display:inline-grid; 
@@ -761,6 +778,29 @@ textarea {
   width:100%;
   margin-top:30px;
 }
+/* PROJECTION START*/
+.price{
+  padding-top: 40px;
+}
+.list{
+  display:block;
+  width:100%;
+  font-size: 16px;
+}
+.error-message{
+  color:red;
+}
+.error-message1{
+  width: 100%;
+  display: -webkit-box;
+}
+.daterangepicker{
+  width: 40%;
+}
+.date-range{
+  width:100%;
+}
+/* PROJECTION END */
 /********************* TABLO *******************/
 .huge {
     font-size: 16px;
@@ -814,7 +854,7 @@ textarea {
   }   
 } */
 @media only screen and (max-width: 992px){
-  .btn-start-order{
+  .btn-add{
     width:100%
   }
 }
@@ -915,5 +955,8 @@ textarea {
     bottom:0;
     margin:0 auto;
     /* top:148px; */
+  }
+  .movieDate{
+    width:90%;
   }
 }
