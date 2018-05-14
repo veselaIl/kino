@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute'])
+var myApp = angular.module('myApp', ['ngRoute', 'ngMessages','ui.bootstrap'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
@@ -25,6 +25,11 @@ var myApp = angular.module('myApp', ['ngRoute'])
                 controller: 'AddMovieController',
                 templateUrl: '/js/app/controllers/admin/movie/add.html',
                 title: 'Добави филм'
+            })
+            .when('/movies/edit/:id',{
+                controller: 'MovieController',
+                templateUrl:'/js/app/controllers/admin/movie/edit.html',
+                title:'Редактирай'
             })
             .when('/projections', {
                 controller: 'ProjectionController',

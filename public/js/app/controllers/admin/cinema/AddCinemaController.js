@@ -3,42 +3,59 @@ myApp.controller('AddCinemaController', function($scope, CinemaService){
     $scope.numRows = 0;
     $scope.row = {}
     $scope.spaces = [];
-
+    $scope.zalaID = 0;
+    $scope.cinema = {};
+    
     $scope.$watch('numRows', function(newValue, oldValue){
         $scope.numRows = newValue;
         $scope.rows = new Array(newValue).fill().map( (v,i)  => i );
     });
 
     function isBelowThreshold(currentValue) {
-        return currentValue < 21 && currentValue > 0;
+        return currentValue < 21 && currentValue > 0 && currentValue !== undefined
     }
    
-    $scope.addZala = function(){
+    $scope.addZala = function(notValid){
         var some = $scope.rows.every(isBelowThreshold);
-        if(some){
-            $scope.spaces.push($scope.rows);
+        if (some && $scope.rows.length && !notValid){
+            var mesta = 0
+            $scope.rows.forEach(element => {
+                return mesta += element
+            });
+            $scope.spaces.push({
+                zalaID : ++$scope.zalaID,
+                space : $scope.rows,
+                capacity : mesta
+            })
+            $scope.disabled === true;
             $scope.numRows = 0;            
             $(".collapse").collapse('toggle');
         }
-        $scope.cinema.spaces = $scope.spaces;
     }
 
-    $scope.getCapacity = function(zala){
-        var capacity = 0;
-        for (var i = 0; i < zala.length; i++){
-            capacity += zala[i]; 
-        }
-        return capacity;
-    }
+    // $scope.getCapacity = function(zala){
+    //     var capacity;
+    //     for (var i = 0; i < zala.length; i++){
+    //         capacity += zala[i]; 
+    //     }
+    //     return capacity;
+
+    // }
 
     $scope.removeZala = function(index){
          $scope.spaces.splice(index, 1);
     }
+  
 
-    $scope.addCinema= function(){
-        if($scope.cinema.name && $scope.cinema.address){
-            console.log($scope.cinema);
-            CinemaService.cinema($scope.cinema);
+    $scope.addCinema= function($event){
+        $event.preventDefault();
+        $scope.cinema.zali = $scope.spaces;
+        if($scope.cinema.name && $scope.cinema.address && $scope.cinema.zali.length){
+            CinemaService.addCinema($scope.cinema);
+            window.location.href='/admin.html#!/cinema'
         }
+       
+      
+        
     }
 });

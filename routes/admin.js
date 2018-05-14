@@ -6,6 +6,7 @@ router.get('/admin', function(req, res) {
   res.render('admin');
 });
 
+/********* CINEMA *********** */
 /* GET admin cinemas page. */
 router.get('/admin/cinema', function(req, res) {
   req.db.get('kino').find().then(function(cinemas){
@@ -21,24 +22,79 @@ router.get('/admin/cinema', function(req, res) {
   });
 })
 
-router.post('/admin/cinema/add', function(req, res){
-  console.log(req);
+// ADD CINEMA
+router.post('/api/cinema/add', function(req, res){
+  var cinema, 
+      id;
+  console.log(req.body);
+  req.db.get('kino').find(
+    { },
+    { sort: { kinoID: -1}},
+    function(err, docs) {
+      id = +docs[0].kinoID;
+      if (req.body) {
+        cinema = {
+          kinoID : ++id,
+          name : req.body.cinema.name,
+          address : req.body.cinema.address,
+          zali : req.body.cinema.zali,
+          projections : [],
+          reservations : []
+        }
+        req.db.get('kino')
+        .insert(cinema)
+        .then(function(data){
+          res.json({ text: 'You successfully add new Cinema!' , id : cinema.kinoID});
+        })
+        .catch(function(err) {
+          console.log('catch', err);
+          res.status(err.status || 500);
+          res.send();
+        });
+      }else{
+        res.status(400);
+        res.send();
+      }
   // req.db.get('kino').insert({
     
   // })
+  });
+});
+//  GET PROJECTIONS IN CINEMA 
+router.get('/api/cinema/projections/:id', function(req, res){
+  req.db.get('kino').find({ kinoID: +req.params.id})
+    .then(function(cinema){
+      if(cinema){
+        console.log('cinema', cinema);
+        res.json({ cinema : cinema})
+      }else{
+        res.status(err.status || 400);
+      res.send();
+      }
+    })  
+    .catch(function(err){
+      console.log('catch', err);
+      res.status(err.status || 400);
+      res.send();
+    })
+
 });
 /* GET admin cinemas page. */
-router.get('/admin/projections', function(req, res, next) {
-  req.db.get('projections').find().then(function(cinemas){
-    if(cinemas.length){
-      console.log('Cinemas', projections)
-      res.json(projections);
+router.get('/api/projections/', function(req, res) {
+  req.db.get('projections').find().then(function(projections){
+    if(projections.length){
+      console.log('Projections', projections)
+      res.json({ projections: projections});
     }else{
-      console.log('No projections')
+      console.log('No projections');
+      res.status(err.status || 400);
+      res.send();
     }
   })
   .catch(function(err){
     console.log(err);
+    res.status(err.status || 400);
+    res.send();
   });
 })
 /* ADD PROJECTION TO CINEMA */
@@ -64,6 +120,9 @@ router.get('/admin/cinema/details/:kinoID/:zalaID', function(req, res){
     res.render('cinemaDetails', cinema);
   })
 })
+
+
+/*****END CINEMA ******** */
 
 /* EDIT ZALA */
 router.post('/admin/cinema/details/:kinoID/:zalaID', function(req, res){
@@ -104,8 +163,12 @@ router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res){
      res.redirect('/admin/cinema/details/:kinoID?newSalloon', cinema);
   })
 })
+
+/******* MOVIES ***** */
+
+
 /* GET ALL MOVIES */
-router.get('/admin/movies', function(req, res){
+router.get('/api/movies', function(req, res){
   req.db.get('movies').find().then(function(movies){
     if(movies.length){
       console.log('Movies', movies)
@@ -119,72 +182,62 @@ router.get('/admin/movies', function(req, res){
   })
 })
 
-/* GET ADD MOVIE TEMPLATE-FORM */ 
-router.get('/admin/movies/add', function(req, res){
-  res.render('addMovie');
-})
-
 /* ADD NEW MOVIE */
-router.post('/admin/movies/add',function(req, res){
+router.post('/api/movies/add',function(req, res){
   var movie, 
       id;
-
+  console.log(req.body);  
   req.db.get('movies').find(
     { },
     { sort: { movieID: -1}},
     function(err, docs) {
       id = +docs[0].movieID;
 
-      if (req.body && req.body.name) {
+      if (req.body) {
         movie = {
           movieID : ++id,
-          name: req.body.name,
-          description: req.body.description,
-          duration: +req.body.duration,
-          genre: req.body.genre,
-          image: '/images/movies/' + req.body.image ,
-          trailer : req.body.trailer,
-          director : {
-            name: req.body.director,
-            img : '/images/directors/' + req.body.directorImage },
-          actors : [
-            {
-              name: req.body.actors[0],
-              image : ''
-            },
-            {
-              name: req.body.actors[1],
-              image: ''
-            },
-            {
-              name: req.body.actors[2],
-              image: ''
-            }],
-           premierDate: new Date(req.body.premierDate),
-           dublaj : !req.body.dublaj
+          name: req.body.movie.name,
+          description: req.body.movie.description,
+          duration: +req.body.movie.duration,
+          genre: req.body.movie.genres,
+          image: req.body.movie.image ,
+          trailer : req.body.movie.trailer,
+          director : req.body.movie.director,
+          actors : req.body.movie.actors,
+          premierDate: req.body.movie.premieDate,
+          dublaj : !req.body.movie.dublaj
         };
+       
         req.db.get('movies')
         .insert(movie)
         .then(function(data){
-          res.redirect('/admin/movies');
-          res.json({ text: 'You successfully add new Movie!' });
+          res.json({ text: 'You successfully add new Movie!' , id : movie.movieID});
         })
-      }
+        .catch(function(err) {
+          console.log('catch', err);
+          res.status(err.status || 500);
+          res.send();
+        });
+      }else{
+        res.status(400);
+        res.send();
+      }     
   });
 })
 
-router.get('/admin/movies/edit/:movieID', function(req, res){
+/* GET MOVIE TO EDIT */
+router.get('/api/movies/edit/:movieID', function(req, res){
   var movie;
+  console.log(req.params);
   req.db.get('movies').find({ movieID : +req.params.movieID })
     .then(function(data){
       movie = data[0] || {};    
       res.json('Movie', movie)
-    })
-    
+    })    
 })
 
 /*  EDIT MOVIE */
-router.post('/admin/movies/edit/:movieID', function(req, res, next){
+router.post('/api/movies/edit/:movieID', function(req, res, next){
   var movie = {
     movieID : +req.params.movieID,
     name : req.body.name,
@@ -217,15 +270,14 @@ router.post('/admin/movies/edit/:movieID', function(req, res, next){
     res.redirect('/admin/movies');
   })
 })
-
+/********END MOVIES***** */
 // router.get('/admin/cinema/add', function(req, res){  
 //     res.render('addCinema');
 // })
 
-/* GET all users registered */
-router.get('/admin/users', function(req, res, next) {
-  res.render('adminUsers')
-});
-
+// /* GET all users registered */
+// router.get('/admin/users', function(req, res, next) {
+//   res.render('adminUsers')
+// });
 
 module.exports = router;

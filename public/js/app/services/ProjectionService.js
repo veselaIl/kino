@@ -4,13 +4,12 @@ myApp.factory('ProjectionService', function($http) {
     return {
         getProjections: function() {
             return new Promise(function(resolve, reject) {
-                $http.get('/admin/projections')
-                //$http.get('/api/products')
+                $http.get('/api/projections')
                     .then(function(response) {
                         // necessery actions before the resolve
+                        console.log(response);
                         projections = response.data;
-                        // console.log(movies);
-                        resolve(movies);
+                        resolve(projections);
                     })
                     .catch(function(err) {
                         reject(err);

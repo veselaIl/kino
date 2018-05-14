@@ -1,12 +1,12 @@
-myApp.factory('MovieService', function($http) {
+myApp.factory('MovieService', function($http, $routeParams) {
     var movies = [],
         editMovie = {},
         movie = {};
-
+        
     return {
         getMovies: function() {
             return new Promise(function(resolve, reject) {
-                $http.get('/admin/movies')
+                $http.get('/api/movies')
                 //$http.get('/api/products')
                     .then(function(response) {
                         // necessery actions before the resolve
@@ -19,9 +19,20 @@ myApp.factory('MovieService', function($http) {
                     });
             });
         },
-        editMovies: function(movie){
+        getMovie: function(id){
+            return new Promise(function(resolve, reject){               
+                $http.get('/api/movies/edit/' + id)
+                    .then(function(response){
+                        console.log(response);
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })
+            })
+        },
+        editMovie: function(movie){
             return new Promise(function(resolve, reject){
-                $http.patch('/admin/movies/edit/'+movie.id, { data : movie})
+                $http.patch('/api/movies/edit/'+ movie.id, { data : movie})
                     .then(function(response){
                        editMovie = response.data;
                        resolve();
@@ -33,11 +44,11 @@ myApp.factory('MovieService', function($http) {
         },
         addMovie: function(movie){
             return new Promise(function(resolve, response){
-                $http.post('/admin/movies/add', {data : movie})
+                $http.post('/api/movies/add', { movie : movie})
                     .then(function(response){
                         movie.id = response.data.id;
                         movies.push(movie);
-                        resolve(movies);
+                        resolve();
                     })
                     .catch(function(err){
                         console.log(err);

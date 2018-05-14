@@ -12,5 +12,7 @@ myApp.controller('CinemaController', function($scope, CinemaService){
         .catch(function(err){
             console.log(err);
         })
+
+           
         
 })
