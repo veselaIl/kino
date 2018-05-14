@@ -4,15 +4,18 @@ var path = require('path');
 var express = require('express');
 var bodyParser = require("body-parser");
 var logger = require('morgan');
-//var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/kino');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-
+var sha1 = require('sha1');
 //bootstrap
 var popper = require('popper.js');
 
+//var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
+
+
+var registerRouters = require('./routes/register');
+var loginRouters = require('./routes/login')
 var app = express();
 
 // view engine setup
@@ -42,15 +45,24 @@ app.use(function(req, res, next) {
   req.db = db;
   next();
 });
-///app.use(authRouters);
 
-//app.use('/', indexRouter);
-//app.use('/users', usersRouter);
+app.use(registerRouters);
+app.use(loginRouters);
+
+//check for login
+// app.use(function(req, res, next){
+//   if(!req.session.user){
+//     res.redirect('/login');
+//   } else {
+//     next();
+//   }
+// });
+
 fs.readdirSync(path.join(__dirname, 'routes'))
   .forEach(file => {
     console.log(file);
     var filename = path.basename(file, '.js');
-    if (filename !== 'authentication') {
+    if (filename !== 'register' || filename !== 'login') {
       app.use(require('./routes/' + filename));
     }
   });

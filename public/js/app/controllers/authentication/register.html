@@ -1,0 +1,42 @@
+<div ng-controller="RegisterController" class="container-main">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card card-body">
+                    <h3 class="auth-title">Регистрация</h3>
+                    <!-- <div class="alert alert-danger error">
+                        <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Паролата е твърде кратка.
+                    </div> -->
+                    <div class="error"></div>
+                    <form ng-submit="registerUser($event)" action="" method="POST">
+                        <div ng-if="errors.length" class="errors">                            
+                            <div ng-repeat="error in errors" class="error">{{error}}</div>
+                        </div>
+                        <div class="form-group has-error">
+                            <input ng-model="newUser.email" class="form-control input-lg" placeholder="Въведете e-mail" name="email" type="email">
+                        </div>
+                        <div class="form-group has-success">
+                            <input ng-model="newUser.password" class="form-control input-lg" placeholder="Въведете парола" name="password" value="" type="password">
+                        </div>
+                        <div class="form-group has-success">
+                            <input ng-model="newUser.confirmPassword" class="form-control input-lg" placeholder="Потвърдете паролата" name="confirmPassword" value="" type="password">
+                        </div>                                    
+                        <div class="checkbox">
+                            <label class="small">
+                                <input name="terms" type="checkbox"> Абониране за бюлетин
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button class="btn forward-btn-lg">Регистрация</button>
+                                </div> <!-- form-group// -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

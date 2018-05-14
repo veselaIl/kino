@@ -31,136 +31,15 @@
       </div>
   </div> -->
 
-<!--TABLE FOR PROJECTIONS-->
 <div class="container-main">
-  <div class="table-responsive">
-      <table class="table table-hover table-dark">
-          <tbody>
-              <!--Start of row-->
-              <tr>
-                  <th scope="row"></th>
-                  <td>
-                      <a href="#!/preview-movie">
-                      <div class="tmb-zoom">
-                          <div class="img-zoom">
-                              <img class="thumbnail" src="/images/super-patrul-2-2018.jpg">
-                          </div>
-                      </div>
-                      </a>
-                  </td>
-                  <td class="custom-td">
-                      <h1 class="title"><a href="#!/preview-movie">СУПЕР ПАТРУЛ 2</a></h1>
-                      <p class="premier">Премиера 27 април 2018г.</p>
-                      <!-- <a class="ticket" href="buy-ticket">Купи билет</a> -->
-                      <div class="row-attr">
-                          <ul class="type-item">
-                              <li><img src="/images/IMAX.png"></li>
-                          </ul>
-                          <ul class="timeline">
-                              <li>12:30</li>
-                              <li>15:30</li>
-                              <li>20:30</li>
-                              <li>12:30</li>
-                              <li>15:30</li>
-                          </ul>
-                      </div>
-                      <div class="row-attr">
-                          <ul class="type-item">
-                              <li><img src="/images/realD.png"></li>
-                          </ul>
-                          <ul class="timeline">
-                              <li>12:30</li>
-                              <li>15:30</li>
-                          </ul>
-                      </div>
-                      <p class="marks"><span>*</span> За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр</p>
-                  </td>
-              </tr>
-              <!--End of row-->
-              <tr>
-                  <th scope="row"></th>
-                  <td><a href="#!/preview-movie"><img class="thumbnail" src="/images/super-patrul-2-2018.jpg"></a></td>
-                  <td class="custom-td">
-                      <h1 class="title"><a href="#!/preview-movie">СУПЕР ПАТРУЛ 2</a></h1>
-                      <p class="premier">Премиера 27 април 2018г.</p>
-                      <!-- <a class="ticket" href="buy-ticket">Купи билет</a> -->
-                      <div class="row-attr">
-                          <ul class="type-item">
-                              <li><img src="/images/IMAX.png"></li>
-                          </ul>
-                          <ul class="timeline">
-                              <li>12:30</li>
-                              <li>15:30</li>
-                              <li>20:30</li>
-                              <li>12:30</li>
-                              <li>15:30</li>
-                          </ul>
-                      </div>
-                      <div class="row-attr">
-                          <ul class="type-item">
-                              <li><img src="/images/realD.png"></li>
-                          </ul>
-                          <ul class="timeline">
-                              <li>12:30</li>
-                              <li>15:30</li>
-                          </ul>
-                      </div>
-                      <p class="marks"><span>*</span> За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр</p>
-                  </td>
-              </tr>
-              <tr>
-                  <th scope="row"></th>
-                  <td><a href="#!/preview-movie"><img class="thumbnail" src="/images/super-patrul-2-2018.jpg"></a></td>
-                  <td class="custom-td">
-                      <h1 class="title"><a href="#!/preview-movie">СУПЕР ПАТРУЛ 2</a></h1>
-                      <p class="premier">Премиера 27 април 2018г.</p>
-                      <!-- <a class="ticket" href="buy-ticket">Купи билет</a> -->
-                      <div class="row-attr">
-                          <ul class="type-item">
-                              <li><img src="/images/IMAX.png"></li>
-                          </ul>
-                          <ul class="timeline">
-                              <li>12:30</li>
-                              <li>15:30</li>
-                              <li>12:30</li>
-                              <li>15:30</li>
-                          </ul>
-                      </div>
-                      <div class="row-attr">
-                          <ul class="type-item">
-                              <li><img src="/images/2D.png"></li>
-                          </ul>
-                          <ul class="timeline">
-                              <li>12:30</li>
-                              <li>15:30</li>
-                          </ul>
-                      </div>
-                      <p class="marks"><span>*</span> За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр</p>
-                  </td>
-              </tr>
-              <tr>
-                  <th scope="row"></th>
-                  <td><a href="#!/preview-movie"><img class="thumbnail" src="/images/super-patrul-2-2018.jpg"></a></td>
-                  <td class="custom-td">
-                      <h1 class="title"><a href="#!/preview-movie">СУПЕР ПАТРУЛ 2</a></h1>
-                      <p class="premier">Премиера 27 април 2018г.</p>
-                      <!-- <a class="ticket" href="buy-ticket">Купи билет</a> -->
-                      <div class="row-attr">
-                          <ul class="type-item">
-                              <li><img src="/images/2D.png"></li>
-                          </ul>
-                          <ul class="timeline">
-                              <li>12:30</li>
-                              <li>15:30</li>
-                              <li>20:30</li>
-                          </ul>
-                      </div>
-                      <p class="marks"><span>*</span> За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр</p>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+    <div ng-if="movies.length" class="row">
+      <div ng-repeat="movie in movies" class="col-sm-3">
+          <a href="#!/preview-movie/{{ movie.movieID }}">
+              <img class="thumbnail-md" ng-src="url('{{ movie.image }}');">
+              <h3 class="title-sm">{{ movie.name }}</h3>
+          </a>
+      </div>
+    </div>
 </div>
 
 

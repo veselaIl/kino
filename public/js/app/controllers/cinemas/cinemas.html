@@ -1,0 +1,18 @@
+<div ng-controller="CinemaController" class="container-main">
+    <div ng-if="cinemas.length" class="row">
+        <div ng-repeat="cinema in cinemas" class="col-sm-6">
+            <a href="#!/view-cinema/{{ cinema.}}">
+                <img class="thumbnail-md" src="/images/cinemas/cinema1.jpg">
+                <h3 class="title-sm">ITC Technologica</h3>
+                <p>Бургас 8000, Морска градина</p>
+            </a>
+        </div>
+        <!-- <div class="col-sm-6">
+            <a href="#!/view-cinema">
+                <img class="thumbnail-md" src="/images/cinemas/cinema2.jpg">
+                <h3 class="title-sm">ITC World</h3>
+                <p>Бургас 8000, ул. „Сердика“ 2</p>
+            </a>
+        </div> -->
+    </div>
+</div>
