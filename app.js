@@ -5,10 +5,9 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
-//var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/kino');
-
+var sha1 = require('sha1');
 //bootstrap
 var popper = require('popper.js');
 
@@ -16,8 +15,8 @@ var popper = require('popper.js');
 //var usersRouter = require('./routes/users');
 
 
-//var authRouters = require('./routes/authentication');
-
+var registerRouters = require('./routes/register');
+var loginRouters = require('./routes/login')
 var app = express();
 
 
@@ -47,16 +46,23 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(registerRouters);
+app.use(loginRouters);
 
-///app.use(authRouters);
+//check for login
+// app.use(function(req, res, next){
+//   if(!req.session.user){
+//     res.redirect('/login');
+//   } else {
+//     next();
+//   }
+// });
 
-//app.use('/', indexRouter);
-//app.use('/users', usersRouter);
 fs.readdirSync(path.join(__dirname, 'routes'))
   .forEach(file => {
     console.log(file);
     var filename = path.basename(file, '.js');
-    if (filename !== 'authentication') {
+    if (filename !== 'register' || filename !== 'login') {
       app.use(require('./routes/' + filename));
     }
   });

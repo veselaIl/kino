@@ -247,6 +247,32 @@ a {
 }
 /*END OF BOOTSTRAP VIDEO CAROUSEL*/
 
+/*HOME PAGE*/
+.title-sm{
+  font-size: 16px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+.col-sm-3>a{
+  text-decoration: none;
+  color: #fff;
+}
+/*CONTACT US PAGE*/
+.row{
+  margin-top: 15px;
+  color: #fff;
+}
+.col-md-12{
+  margin-top: 15px;
+  color: #fff;
+}
+.cinema-title{
+  text-align: center;
+  background-color: rgba(85, 1, 85, 0.7);
+  border: 1px solid rgb(85, 1, 85);
+  border-radius: 6px;
+  padding: 8px 0 0 0;
+}
 
 /*SETTINGS OF PROJECTIONS TABLE*/
 /*IMAGE RESIZEING THUMBNAIL*/
@@ -257,6 +283,10 @@ a {
   margin-top: 15px;
   margin-bottom: 8px;
   border: none;
+}
+.thumbnail-md{
+  width: 220px;
+  height: 324px;
 }
 /*Zooming img
 .tmb-zoom{
@@ -447,8 +477,8 @@ table{
   display: block;
 }
 .container-info{
-  display: block;
   margin: 0 auto;
+  margin-top:  15px;
   max-width: 980px;
   width: 100%;
   padding: 0 20px;
@@ -531,7 +561,6 @@ main{
 .description{
   font-size: 13px;
   color: white;
-  padding-left: 10px;
 }
 /*<!--Table with info for Director, Actors etc.-->*/
 table{
@@ -899,10 +928,20 @@ main{
 .col-u9{
   width: 70%;
 }
-.side-nav-custom{
-  background: rgba(0, 0, 0, 0.8);
-  border-top-left-radius: 6px;
+.col-u3 .sidebar-nav{
+  width: 252px;
+  padding: 20px 0;
+  margin: 28px 0 0;
+  background: linear-gradient(to right, rgba(85, 1, 85, 0.9) 0%, rgba(85, 1, 85, 0.7) 50%, rgba(85, 1, 85, 0.3) 100%);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
+.user-row{
+  margin-top: 50px;
+}
+/* .side-nav-custom{
+  border-top-left-radius: 6px;
+} */
 .navbar-default .side-nav-custom>.active>a,
 .navbar-default .side-nav-custom>li>a{
   color: #fff;
@@ -942,7 +981,7 @@ main{
   display: table-cell;
   vertical-align: middle;
   width: 55px;
-  height: 35px;
+  height: 39px;
   text-align: center;
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
@@ -972,27 +1011,31 @@ main{
   -webkit-border-bottom-left-radius: 3px;
   -moz-border-radius-topleft: 3px;
   -moz-border-radius-bottomleft: 3px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
   -webkit-transition: -webkit-transform 0.3s, transform 0.3s, color 0.3s;
   -o-transition: -webkit-transform 0.3s, transform 0.3s, color 0.3s;
   transition: -webkit-transform 0.3s, transform 0.3s, color 0.3s;
 }
 .profile-menu>ul>li>a>.txt:hover{
-  padding-left: 20px;
+  padding-left: 16px;
   color: whitesmoke;
   transition: color 0.3s, transform 0.1s;
   transition-delay: 0.9s;
+  background-color: transparent;
+  border: none;
+}
+.nav-item.active {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 /*Left side of user navigation setting of personal information page*/
 .container-wrap{
   position: relative;
   top: -30px;
   width: 728px;
-  height: 100%;
-  margin-left: -40px;
+  min-height: 414px;
   padding: 28px 38px;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.5);
 }
 .purple-u{  
   border: 2px solid  rgb(85, 1, 85);
@@ -1028,3 +1071,64 @@ main{
   width: 85px;
 }
 /*END OF USER PROFILE PAGE*/
+/*LOGIN REGISTER*/
+.auth-title{
+  text-align: center;
+  color: white;
+  background-color: rgba(85, 1, 85, 0.8);
+  border: rgb(85, 1, 85);
+  border-radius: 5px;
+  padding: 12px 0;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+.form-control{
+  padding: 10px;
+  font-size: 14px;
+}
+.card{
+  background-color: rgba(0, 0, 0, .5);
+  border: 1px solid rgba(0, 0, 0, .65);
+}
+.purple.p-sm{
+  border: 1px solid rgb(85, 1, 85);
+  margin-top: 8px;
+}
+button.btn.forward-btn-lg{
+  background-color: rgba(85, 1, 85, 0.6);
+  border: 1px solid rgb(85, 1, 85);
+  padding: 6px 100px;
+  color: white;
+  margin-left: 80px;
+}
+
+a.btn.forward-btn-lg.btn-small{
+  display: block;
+  text-decoration: none;
+  background-color: rgba(85, 1, 85, 0.6);
+  border: 1px solid rgb(85, 1, 85);
+  font-size: 12px;
+  width: 50%;
+  margin: 0 auto;
+  color: white;
+}
+a.btn.forward-btn-lg.btn-small:hover{
+  background-color: rgb(85, 1, 85);
+  border: 1px solid rgb(36, 1, 36);
+}
+button.btn.forward-btn-lg:hover{
+  background-color: rgb(85, 1, 85);
+  border: 1px solid rgb(36, 1, 36);
+}
+.or{
+  display: block;
+  margin: 0 25px;
+}
+.small{
+  display: block;
+  margin-left: 15px
+}
+.bulletin{
+  display: block;
+  margin-left: 10px;
+}

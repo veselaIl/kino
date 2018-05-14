@@ -3,65 +3,52 @@
   <head>
     
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
     <!--CSS-->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="/vendors/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>{{title}}</title>
 
     <script src="/vendors/bootstrap/ui-bootstrap-tpls-3.0.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     
     <!--VENDORS-->
-    <script src="vendors/angular/angular.min.js"></script>
-    <script src="vendors/angular/angular-route.min.js"></script>
-    <script src="vendors/angular/angular-animate.min.js"></script>
-    <script src="vendors/angular/angular-touch.min.js"></script>
-    <script src="vendors/angular/angular-locale_bg.js"></script>
-    <script src="vendors/bootstrap/ui-bootstrap-tpls-3.0.3.min.js"></script>
+    <script src="/vendors/angular/angular.min.js"></script>
+    <script src="/vendors/angular/angular-route.min.js"></script>
+    <script src="/vendors/angular/angular-animate.min.js"></script>
+    <script src="/vendors/angular/angular-touch.min.js"></script>
+    <script src="/vendors/angular/angular-locale_bg.js"></script>
+    <script src="/vendors/bootstrap/ui-bootstrap-tpls-3.0.3.min.js"></script>
 
     <!--APP CONTROLLERS-->
-    <script src="js/app/app.js"></script>
-    <script src="js/app/controllers/home/HomeController.js"></script>
+    <script src="/js/app/app.js"></script>
+    <script src="/js/app/controllers/home/HomeController.js"></script>
+    <script src="/js/app/controllers/movies/MovieController.js"></script>
+    <script src="/js/app/controllers/cinemas/CinemaController.js"></script>
+    <script src="/js/app/controllers/projections/ProjectionController.js"></script>
+    <script src="/js/app/controllers/authentication/LoginController.js"></script>
+    <script src="/js/app/controllers/authentication/RegisterController.js"></script>
+    <script src="/js/app/controllers/user/UserController.js"></script>
+    <script src="/js/app/controllers/404/NFCtrl.js"></script>
+    <script src="/js/app/services/s/RegisterService.js"></script>
+    <script src="/js/app/services/s/LoginService.js"></script>
+    <script src="/js/app/services/s/UserService.js"></script>
+    <script src="/js/app/services/s/MovieService.js"></script>
+    <script src="/js/app/services/s/CinemaService.js"></script>
   </head>
   <body>
     <!--HEADER-->
-    <!-- <header ng-include src="'header.html'"></header> -->
-    <div ng-controller="CollapseController">
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" role="navigation">
-        <a class="navbar-brand logo" href="#">
-          <img src="/images/logo.png">
-        </a>
-        <button class="navbar-toggler" type="button" ng-click="isNavCollapsed = !isNavCollapsed" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <header ng-include src="'header.html'"></header>
     
-        <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-          <ul class="navbar-nav mr-auto navbar-right nav-right">
-              <li class="nav-item">
-                <a  class="nav-link" href="#!/kino">Кина<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#!/projections">Програма</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#!/halls">Зали</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link 2</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
     <!--VIEW-->
     <div ng-view></div>
 
     <!--FOOTER-->
     <footer ng-include src="footer.html"></footer>  
+
+    <!--Google Maps API-->
+    <!-- <script src="node_modules/angular-ui-map/src/ui-map.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script> -->
   </body>
 </html>
