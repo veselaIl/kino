@@ -11,34 +11,32 @@
 </div> -->
 
 <!--Movie info--> 
-<div class="container-fluid">
+<div ng-controller="MovieController" class="container-fluid">
     <section class="dark collapse in first last">
-        <div class="container container-info">
-            <h3 class="cinema-title">ПОВЕЧЕ ИНФОРМАЦИЯ ЗА СУПЕР ПАТРУЛ 2</h3>
+        <div ng-if="movie.movieID" class="container container-info">
+            <h3 class="cinema-title">ПОВЕЧЕ ИНФОРМАЦИЯ ЗА {{ movie.name }}</h3>
             <!--Premier Date and Duration-->
             <div class="row">
                 <div class="col-md-6">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                     <h4 class="premiere-title">Премиерна дата:</h4>
-                    <p class="premiere-date">27 април 2018г.</p>
+                    <p class="premiere-date">{{ movie.premiereDate }}</p>
                 </div>
                 <div class="col-md-6">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                     <h4 class="duration">Времетраене:</h4>
-                    <p class="duration-minutes">180 мин.</p>
+                    <p class="duration-minutes">{{ movie.duration }} мин.</p>
                 </div>
             </div>
             <hr class="purple-u">
             <!--Movie Poster and Description-->
             <div class="row">
                 <div class=" col-md-6">
-                    <img class="movie-poster" src="/images/super-patrul-2-2018.jpg">
+                    <img class="movie-poster" style="background-image: url('{{ movie.image }}')">
                 </div>
                 <div class=" col-md-6">
                     <p class="description">
-                        Любимият на всички полицейски екип се завръща в дългоочакваното продължение на култовата комедия СУПЕР ПАТРУЛ. Когато между САЩ и Канада възниква граничен диспут, Супер Патрулът трябва да се притече на помощ. С помощта на един доста нестандартен полицейски подход и безброй невероятно комични и абсурдни моменти получаваме СУПЕР ПАТРУЛ 2.
-                        ФИЛМЪТ СЕ РАЗПРОСТРАНЯВА ВЪВ ФОРМАТ:
-                        2D
+                        {{ movie.description}}
                     </p>
                 </div>
             </div>
@@ -50,24 +48,24 @@
                                 <tr>
                                 <th scope="col"></th>
                                 <th scope="col">ОРИГИНАЛНО ЗАГЛАВИЕ:</th>
-                                <th scope="col">Super Troopers 2</th>
+                                <th scope="col">{{ movie.name }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                 <th scope="row"></th>
                                 <td>ЖАНР:</td>
-                                <td>Мистерия, Криминале, Комедия</td>
+                                <td ng-repeat="genre in genres">{{ movie.genre }}</td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>
                                 <td>АКТЬОРИ</td>
-                                <td>Ерик Столханске, Пол Сотър, Стив Лем, Джей Чандрашекхар, Кевин Хефернън</td>
+                                <td ng-repeat="actor in actors">{{ movie.actor }}</td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>
                                 <td>РЕЖИСЬОР:</td>
-                                <td>Джей Чандрашекхар</td>
+                                <td>{{ movie.director }}</td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>

@@ -1,5 +1,5 @@
 
-var app = angular.module('App', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('App', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
 
 app.config(function ($routeProvider) {
     $routeProvider
@@ -13,11 +13,11 @@ app.config(function ($routeProvider) {
             templateUrl: '/js/app/controllers/cinemas/cinemas.html',
             title: 'Кина'
         })
-        .when('/halls', {
-            controller: 'HallController',
-            templateUrl:'/js/app/controllers/halls/halls.html',
-            title: 'Зали'
-        })
+        // .when('/halls', {
+        //     controller: 'HallController',
+        //     templateUrl:'/js/app/controllers/halls/halls.html',
+        //     title: 'Зали'
+        // })
         .when('/movies', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/movies.html',
@@ -37,23 +37,22 @@ app.config(function ($routeProvider) {
             controller: 'RegisterController',
             templateUrl: '/js/app/controllers/authentication/register.html',
             title: 'Регистрация'
+        })        
+        .when('/logout', {
+            controller: 'LogoutController'
         })
-        .when('/profile', {
+        .when('/user/profile', {
             controller: 'UserController',
             templateUrl: '/js/app/controllers/user/profile.html',
             title: 'Моят профил'
         })
+        .when('/movies/preview-movie/', {
+            controller: 'MovieController',
+            templateUrl: '/js/app/controllers/movies/preview-movie.html'
+        })
         .otherwise({
-            controller: 'NFCtlr',
+            controller: 'NFCtrl',
             templateUrl: '/js/app/controllers/404/view.html'
         });
     
 });
-
-app.controller('CollapseController', function ($scope) {
-    $scope.isNavCollapsed = true;
-    $scope.isCollapsed = false;
-    $scope.isCollapsedHorizontal = false;
-});
-
-    

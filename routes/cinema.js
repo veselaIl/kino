@@ -4,7 +4,7 @@ var router = express.Router();
 //GET ALL Cinemas
 router.get('/cinemas', function (req, res){
     req.db
-        .get('cinemas').find()
+        .get('kino').find()
         .then(function (cinemas){
             if(cinemas.length){
                 res.json(cinemas);

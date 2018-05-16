@@ -1,54 +1,56 @@
 <div ng-controller="LoginController" class="container-main">
     <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="card">
-                        <article class="card-body">                            
-                                <h3 class="auth-title">Влез чрез:</h3>
-                            <p>
-                                <a href="" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i>Twitter</a>
-                                <a href="" class="btn btn-block btn-outline-primary"> <i class="fab fa-facebook-f"></i>Facebook</a>
-                            </p>
-                            <hr>
-                            <form ng-submit="loginUser($event)" action="" method="POST">
-                                <div ng-if="errors.length" class="errors">
-                                    <div ng-repeat="error in errors" class="error">{{error}}</div>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <article class="card-body">                            
+                            <h3 class="auth-title">Влез чрез:</h3>
+                        <p>
+                            <a href="" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i>Twitter</a>
+                            <a href="" class="btn btn-block btn-outline-primary"> <i class="fab fa-facebook-f"></i>Facebook</a>
+                        </p>
+                        <hr>
+                        <form ng-submit="loginUser($event, form.$invalid)" name="loginForm" action="" method="POST">
+                            <div ng-if="errors.length" class="errors">
+                                <div ng-repeat="error in errors" class="error">{{error}}</div>
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="user.email" class="form-control" name="email"  placeholder="Вашият e-mail" type="email" required>
+                                <div class="messages" ng-show="loginForm.email.$touched && loginForm.email.$invalid">Моля въведете вашият имейл адрес!</div>
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <input ng-model="user.password" class="form-control" name="password"  placeholder="Вашата парола" type="password" required>
+                                <div class="messages" ng-show="loginForm.password.$touched && loginForm.password.$invalid">Моля въведете вашата парола!</div>
+                            </div> <!-- form-group// -->                                      
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button class="btn forward-btn-lg">Вход</button>
+                                    </div> <!-- form-group// -->
                                 </div>
-                                <div class="form-group">
-                                    <input ng-model="user.email" class="form-control" name="email"  placeholder="Вашият e-mail" type="email">
-                                </div> <!-- form-group// -->
-                                <div class="form-group">
-                                    <input ng-model="user.password" class="form-control" name="password"  placeholder="Вашата парола" type="password">
-                                </div> <!-- form-group// -->                                      
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <button class="btn forward-btn-lg">Вход</button>
-                                        </div> <!-- form-group// -->
-                                    </div>
+                            </div>
+                        </form>   
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <hr class="purple p-sm">
+                                </div><span><small class="or">или</small></span>
+                                <div class="col-md-5">
+                                    <hr class="purple p-sm">
                                 </div>
-                            </form>   
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <hr class="purple p-sm">
-                                    </div><span><small class="or">или</small></span>
-                                    <div class="col-md-5">
-                                        <hr class="purple p-sm">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <a class="btn forward-btn-lg btn-small">Нова регистрация</a>
-                                        </div> <!-- form-group// -->
-                                    </div>                          
-                                    <a class="small" href="#!/forgottenPassword">Забравена парола?</a>  
-                                </div>                
-                                </div> <!-- .row// -->                                                                  
-                            <!-- </form> -->
-                        </article>
-                    </div> <!-- card.// -->
-                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <a href="/#!/register" class="btn forward-btn-lg btn-small">Нова регистрация</a>
+                                    </div> <!-- form-group// -->
+                                </div>                          
+                                <a class="small" href="#!/forgottenPassword">Забравена парола?</a>  
+                            </div>                
+                            </div> <!-- .row// -->                                                                  
+                        <!-- </form> -->
+                    </article>
+                </div> <!-- card.// -->
             </div>
+        </div>
     </div>
 </div>

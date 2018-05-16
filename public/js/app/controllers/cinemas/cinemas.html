@@ -1,10 +1,11 @@
 <div ng-controller="CinemaController" class="container-main">
     <div ng-if="cinemas.length" class="row">
-        <div ng-repeat="cinema in cinemas" class="col-sm-6">
-            <a href="#!/view-cinema/{{ cinema.}}">
-                <img class="thumbnail-md" src="/images/cinemas/cinema1.jpg">
-                <h3 class="title-sm">ITC Technologica</h3>
-                <p>Бургас 8000, Морска градина</p>
+        <div> Кина</div>
+        <div ng-repeat="cinema in cinemas track by $index" class="col-md-6">
+            <a href="#!/view-cinema/{{ cinema.kinoID}}">
+                <img class="thumbnail-md" style="background-image: url('{{ cinema.image }}')">
+                <h3 class="title-sm">{{cinema.name}}</h3>
+                <p>{{cinema.address}}</p>
             </a>
         </div>
         <!-- <div class="col-sm-6">
