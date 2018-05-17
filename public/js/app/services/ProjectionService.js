@@ -27,6 +27,19 @@ myApp.factory('ProjectionService', function($http,) {
                         reject(err);
                     })
             })
+        },
+        addProjections: function(projections){
+            return new Promise(function(resolve, reject){
+                $http.post('/api/projections/add', { projections : projections})
+                    .then(function(response){
+                        console.log(response);
+                        projections = response.data;
+                        resolve(projections);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    })
+            })
         }
     }
 })

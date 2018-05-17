@@ -6,20 +6,21 @@
             </div>
         </div>
         <div class='container-fluid addProjection'>
-            <form id="contact-form" name="form" class="form" ng-submit="addProjection($event,form.$invalid)" action='' method="POST" novalidate>
+            <form id="contact-form" name="form" class="form" ng-submit="addProjection($event,form.$invalid)" action='' method="POST"
+                novalidate>
                 <div class="row">
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1"class='form-label'> Кино *</label>
+                        <label for="exampleFormControlSelect1" class='form-label'> Кино *</label>
                         <select class="form-control" name="select" ng-model="projection.kinoID" id="exampleFormControlSelect1" required>
                             <option ng-repeat="cinema in cinemas" value="{{ cinema.kinoID}}">{{ cinema.name }}</option>
                         </select>
                         <div ng-messages="form.select.$error" ng-show="form.select.$invalid && form.select.$touched">
                             <ng-message when="required"> Това поле е задължително</ng-message>
                         </div>
-                    </div> 
+                    </div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1"class='form-label'> Зала *</label>
-                        <select  name='zala' class="form-control" ng-model="projection.zalaID" id="exampleFormControlSelect1" required>
+                        <label for="exampleFormControlSelect1" class='form-label'> Зала *</label>
+                        <select name='zala' class="form-control" ng-model="projection.zalaID" id="exampleFormControlSelect1" required>
                             <option ng-repeat="zala in kino.zali"> {{ zala.zalaID }}</option>
                         </select>
                         <div ng-messages="form.zala.$error" ng-show="form.zala.$invalid && form.zala.$touched">
@@ -27,8 +28,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1"class='form-label'> Филм *</label>
-                        <input class='list'name='list' ng-blur="validate(projection.movie)" list="testList" type="" ng-model="projection.movie" required />
+                        <label for="exampleFormControlSelect1" class='form-label'> Филм *</label>
+                        <input class='list' name='list' ng-blur="validate(projection.movie)" list="testList" type="" ng-model="projection.movie"
+                            required />
                         <datalist id="testList">
                             <option ng-repeat="movie in movies" value="{{ movie.name}} "></option>
                         </datalist>
@@ -39,54 +41,49 @@
                         <!-- <select class="form-control" ng-model="projection.movieID" id="exampleFormControlSelect1">
                             <option ng-repeat="movie in movies" value="{{ movie.movieID }}">{{ movie.name }}</option>
                         </select> -->
-                    </div>       
+                    </div>
                     <div class="form-group">
                         <label class="form-label">Избери дата/и</label>
                         <div>
-                            <multiple-date-picker moment="moment" ng-model="projectionDates"></multiple-date-picker>
+                            <multiple-date-picker moment="moment" disable-days-before="today" ng-model="projectionDates"></multiple-date-picker>
                         </div>
                         <!-- <input class='date-range' type="text" name="daterange"  value="05/01/2018 - 01/15/2018" /> -->
                     </div>
-                    <div class="form-group" ng-repeat="date in projectionDates track by $index">
-                        <label class='form-label'>Тип на прожекция</label>
-                        <select ng-model="::initTypeValue">
-                            <option value="{{ ::item.value }}" ng-repeat="item in ::types">{{ ::item.name }}</option>
+                    <div class="form-group projectionAdd"  ng-repeat="date in projectionDates track by $index">
+                        <span class="projectionDate">{{ date.format('MMM Do YYYY') }}</span>
+                        <label class="projectionDate-label">Тип на прожекция</label>
+                        <select class="projectionType" ng-model="::types.model[$index]">
+                            <option value="" selected='selected'>Избери тип</option>
+                            <option value="{{ ::item.value }}" name="type_{{$index}}"  ng-repeat="item in ::types.availableOptions"  >{{ ::item.name }}</option>
                         </select>
-                        <label class="form-label">Избери часове {{ date.milliseconds() }}</label>
-                        <div class="form-check" style="padding-left:0"  ng-repeat="hour in ::hours"> 
-                            <label class="form-check-label" >
-                                <input type="checkbox" name='check_{{$parent.$index}}_{{$index}}' value="{{::hour}}" class="form-check-input"/>
-                                {{::hour}}
-                                <input type="hidden" value="{{ date }}" name="time_{{$parent.$index}}">
-                            </label>
-                            <div ng-messages="form.check.$error" ng-show="form.check.$invalid && form.check.$touched">
-                                <ng-message when="required"> Това поле е задължително</ng-message>
+                        <div class="chooseHours">
+                            <label class="projectionDate-label">Избери часове</label>
+                            <div class="form-check" style="padding-left:0" ng-repeat="hour in ::hours">
+                                <label class="form-check-label">
+                                    <input type="checkbox" ng-model="hourList[$parent.$index][$index]" name='check_{{$parent.$index}}_{{$index}}' value="{{::hour}}" class="form-check-input"
+                                    />{{::hour}}
+                                    <input type="hidden" value="{{ date }}" ng-model="time" name="time_{{$parent.$index}}">
+                                </label>
+                                <div ng-messages="form.check.$error" ng-show="form.check.$invalid && form.check.$touched">
+                                    <ng-message when="required"> Това поле е задължително</ng-message>
+                                </div>
                             </div>
-                        </div>
-                        <span class='error-message1'>{{ message1 }}</span>                         
-                    </div>
-                    <div class="form-group price">
-                        <label class="form-label "> Цена *</label>
-                        <input type="number" name="price" class='form-control' step='.01' min='5' max='20' ng-model="projection.ticket" required/>
-                        <div ng-messages="form.price.$error" ng-show="form.price.$invalid && form.price.$touched">
-                            <ng-message when="required"> Това поле е задължително</ng-message>
-                            <ng-message when="min"> Минималната цена е 5лв</ng-message>
-                            <ng-message when="max"> Максималната цена е 20лв</ng-message>
+                            <span class='error-message1'>{{ message1 }}</span>
                         </div>
                     </div>
                     <div class="text-center">
                         <button type="submit" ng-click="submitted = true" class="btn btn-add"> Добави</button>
-                    </div>   
+                    </div>
                     <div ng-show="submitted && form.$invalid" class="alert alert-danger">
                         <div ng-show="form.select.$error.required"> Кино е задължително</div>
                         <div ng-show="form.zala.$error.required"> Зала е задължителна</div>
                         <div ng-show="form.list.$error.required"> Филм е задължителен</div>
                         <div ng-show="form.ckeck.$error.required"> Часът е задължителен</div>
-                        <div ng-show="form.price.$error.required"> Цената е задължителна</div>  
-                    </div> 
+                        <div ng-show="form.price.$error.required"> Цената е задължителна</div>
+                    </div>
                 </div>
             </form>
-        </div>        
+        </div>
     </div>
     <small id="passwordHelpBlock" class="form-text text-muted">
         Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
