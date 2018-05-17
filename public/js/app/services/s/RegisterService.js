@@ -6,7 +6,7 @@ app.factory('RegisterService', function($http){
         return new Promise(function (resolve, reject) {
             $http.post('/register', {user : user})
                 .then(function (response){
-                    console.log('response', response.data);
+                    console.log('From Register Service response: ', response.data);
                     resolve(response.data);
                 })
                 .catch(function(err){

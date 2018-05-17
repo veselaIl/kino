@@ -1,10 +1,10 @@
-app.factory('MovieService', function($http, $routeParams){
+app.factory('MovieService', function($http){
     var movies = [],
         movie = {};
     
     function getMovies (){
         return new Promise(function (resolve, reject){
-            $http.get('/api/movies')
+            $http.get('/movies')
                 .then(function (response) {
                     console.log('MovieService Response: ', response);
                     movies = response.data;
@@ -17,12 +17,13 @@ app.factory('MovieService', function($http, $routeParams){
         });
     }
 
-    function getCurrentMovie(id){
+    function getMovie(id){
+        console.log('MovieID: ', id);
         return new Promise(function (resolve, reject){
-            $http.get('/api/movies/preview-movie/' + id)
+            $http.get('/movies/preview-movie/' + id)
                 .then(function (response){
-                    movie = response.data;
-                    resolve();
+                    movie = response.data.movie;
+                    resolve(movie);
                 })
                 .catch(function (err){
                     reject(err);
@@ -30,7 +31,7 @@ app.factory('MovieService', function($http, $routeParams){
         })
     }
     return{
-        getMovies: getMovies
-        //getMovie: getCurrentMovie
+        getMovies: getMovies,
+        getMovie: getMovie
     }
 })

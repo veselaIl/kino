@@ -4,13 +4,12 @@ var router = express.Router();
 var movie;
 
 //GET ALL movies
-router.get('/api/movies', function (req, res){
+router.get('/movies', function (req, res){
     console.log('movies.js', req.db.get('movies').find());
     req.db
         .get('movies').find()
         .then(function (movies){
             if(movies.length){
-                console.log('movies', movies);
                 res.json(movies);
             } else {
                 console.log('No movies');
@@ -22,13 +21,19 @@ router.get('/api/movies', function (req, res){
 })
 
 //GET current movie
-// router.get('/api/movies/preview-movie/:id', function(req, res){
-//     req.db  
-//         .get('movies').find({ movieID: +req.params.movieID })
-//         .then(function(data){
-//             movie = data[0] || {};
-//             res.json('Movie', movie);
-//         })
-// })
+router.get('/movies/preview-movie/:movieID', function(req, res){
+    req.db
+        .get('movies').findOne({ movieID: +req.params.movieID})
+        .then(function(movie){
+            if(movie){
+                res.json({ movie : movie});
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err){
+            res.sendStatus(err || 400);
+        })
+})
 
 module.exports = router;

@@ -13,6 +13,11 @@ app.config(function ($routeProvider) {
             templateUrl: '/js/app/controllers/cinemas/cinemas.html',
             title: 'Кина'
         })
+        .when('/cinemas/view-cinema/:kinoID', {
+            controller: 'CinemaController',
+            templateUrl: '/js/app/controllers/cinemas/view-cinema.html',
+            title: 'Кина'
+        })
         // .when('/halls', {
         //     controller: 'HallController',
         //     templateUrl:'/js/app/controllers/halls/halls.html',
@@ -21,6 +26,11 @@ app.config(function ($routeProvider) {
         .when('/movies', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/movies.html',
+            title: 'Филми'
+        })
+        .when('/movies/preview-movie/:movieID', {
+            controller: 'MovieController',
+            templateUrl: '/js/app/controllers/movies/preview-movie.html',
             title: 'Филми'
         })
         .when('/projections', {

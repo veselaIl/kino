@@ -1,4 +1,4 @@
-app.controller('RegisterController', function ($scope, $location, RegisterService) {
+app.controller('RegisterController', function ($scope, $location, $rootScope, RegisterService) {
     $scope.users = [];
     $scope.initUser = {
         email: '',
@@ -17,7 +17,9 @@ app.controller('RegisterController', function ($scope, $location, RegisterServic
         if(!invalid){
             RegisterService.registerUser($scope.newUser)
                 .then(function (data){
-                    $rootScope.user = data;
+                    console.log('Register Controller $rootScope.user', $rootScope.user);
+                    $rootScope.user = data;                    
+                    console.log('Register Controller data', data);
                     console.log('Регистрацията е успешна!');
                     if($rootScope.user.isAdmin === true){
                         $location.path('/admin');

@@ -7,7 +7,6 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var logger = require('morgan');
 var monk = require('monk');
-//var database = 'localhost:27017/b';
 var database = 'localhost:27017/kino';
 var db = monk(database);
 var sha1 = require('sha1');
