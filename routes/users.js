@@ -6,7 +6,7 @@ var router = express.Router();
 //   res.render('users');
 // });
 //GET User profile page
-router.get('/user/:id', function (res, req){
+router.get('/#!/user/profile/:id', function (res, req){
     if(!req.session.user){
         res.sendStatus(401);
     } else {

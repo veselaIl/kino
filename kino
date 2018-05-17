@@ -33,6 +33,7 @@
 Потребител:
 	- email
 	- password
+	- confirmPassword
 	- име
 	- фамилия
 	- любими

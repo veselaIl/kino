@@ -10,25 +10,22 @@
         <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
             <ul class="navbar-nav mr-auto navbar-right nav-right">
                 <li class="nav-item">
-                    <a  class="nav-link" href="#!/cinemas">Кина<span class="sr-only">(current)</span></a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#!/projections">Програма</a>
-                </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#!/halls">Зали</a>
+                    <a  class="nav-link" href="/#!/cinemas">Кина<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!/movies">Филми</a>
+                    <a class="nav-link" href="/#!/halls">Зали</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!/projections">Прожекции</a>
+                    <a class="nav-link" href="/#!/movies">Филми</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!/login">Вход</a>
+                    <a class="nav-link" href="/#!/projections">Програма</a>
                 </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="#!/register">Регистрация</a>
+                <li ng-if="userChecked && !$root.user" class="nav-item">
+                    <a class="nav-link" href="/#!/login">Вход</a>
+                </li>
+                <li ng-if="userChecked && $root.user" class="nav-item">
+                    <a ng-click="logout($event)" class="nav-link" href="/#!/logout">Изход</a>
                 </li>
             </ul>
         </div>

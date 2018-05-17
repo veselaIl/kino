@@ -7,17 +7,15 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var logger = require('morgan');
 var monk = require('monk');
-var db = monk('localhost:27017/kino');
+//var database = 'localhost:27017/b';
+var database = 'localhost:27017/kino';
+var db = monk(database);
 var sha1 = require('sha1');
 //bootstrap
 var popper = require('popper.js');
 
-//var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-
-
 var registerRouters = require('./routes/register');
-var loginRouters = require('./routes/login')
+var loginRouters = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -29,14 +27,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'myKey_xsjdhHDmdjsd@&$$_+)&^',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     maxAge: 1000*60*60*24*30 // 30 day
   }
@@ -47,6 +44,11 @@ app.use(function(req, res, next) {
   req.db = db;
   next();
 });
+db.then(function() {
+    console.log('Connected to ' + database);
+}).catch(function(err) {
+  console.log('Unable to connect to database! ', err);
+});
 
 app.use(registerRouters);
 app.use(loginRouters);
@@ -54,7 +56,7 @@ app.use(loginRouters);
 //check for login
 // app.use(function(req, res, next){
 //   if(!req.session.user){
-//     res.redirect('/login');
+//     res.sendStatus(401);
 //   } else {
 //     next();
 //   }
@@ -64,9 +66,9 @@ fs.readdirSync(path.join(__dirname, 'routes'))
   .forEach(file => {
     console.log(file);
     var filename = path.basename(file, '.js');
-    if (filename !== 'register' || filename !== 'login') {
+    //if (filename !== 'register' || filename !== 'login') {
       app.use(require('./routes/' + filename));
-    }
+    //}
   });
 
 // catch 404 and forward to error handler

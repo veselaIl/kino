@@ -1,45 +1,99 @@
-<!-- VIDEO CAROUSEL -->
-<!-- <div class="container-video-carousel">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <div id="random_number1" class="carousel slide youtube-carousel"  data-ride="carousel" data-interval="false">
-          <div class="carousel-inner">
-            <div class="video-container item active">
-              <div class="youtube-video" id='6cuDWLnbfqE'></div>
+
+<div class="container-main">
+    <div class="date-picker">
+        <div class="date-picker-header">
+            <p>
+                <a href="#" class="theme-selector active" data-theme="by-day"><i class="fa fa-calendar fa-inverse"></i><span>BY DAY</span></a>
+                <a href="#" class="theme-selector " data-theme="by-movie"><i class="fa fa-film fa-inverse"></i><span>BY MOVIE</span></a>
+            </p>
+
+            <div class="order-by-container">
+                <select id="order-by" name="order-by" class="order-by">
+                    <option value="release-date" selected="">Най-нови</option>
+                    <option value="alpha">Подреди по азбучен ред</option>
+                    <option value="session-times">Movies ordered by session times</option>
+                </select>
             </div>
-            <div class="video-container item">
-              <div class="youtube-video" id='iDeD7SDIf-Q'></div>
             </div>
-            <div class="video-container item ">
-              <div class="youtube-video" id='Kavbmiaar4c'></div>
+          <div class="dates" id="datePicker">
+            <a id="prev">
+              <img src="https://d10u9ygjms7run.cloudfront.net/template_1/img/CarouselArrowLeft@2x.png" class="initial loading" data-was-processed="true">
+            </a>
+            <div id="date-scroller" class="frame" style="overflow:hidden">
+              <ul class="slidee">          
+                  <li class="active"><a data-date="2018-05-15" href="#">
+                      вт<span class="date">15</span>Май
+                  </a></li>
+                  <li class=""><a data-date="2018-05-15" href="#">
+                      вт<span class="date">15</span>Май
+                  </a></li>
+                  <li class=""><a data-date="2018-05-15" href="#">
+                      вт<span class="date">15</span>Май
+                  </a></li>
+                  <li class=""><a data-date="2018-05-15" href="#">
+                      вт<span class="date">15</span>Май
+                  </a></li>
+                  <li class=""><a data-date="2018-05-15" href="#">
+                      вт<span class="date">15</span>Май
+                  </a></li>
+              </ul>
             </div>
+            <a id="next">
+              <img src="https://d10u9ygjms7run.cloudfront.net/template_1/img/CarouselArrowRight@2x.png" class="initial loading" data-was-processed="true">
+            </a>
           </div>
-          <div class="controls">
-            <a class="left carousel-control" href="#random_number1" data-slide="prev">
-              <div class="left-button">
-                <div class="glyphicon glyphicon-chevron-left"></div>
-              </div>
-            </a>
-            <a class="right carousel-control" href="#random_number1" data-slide="next">        
-              <div class="right-button">
-                <div class="glyphicon glyphicon-chevron-right"></div>
-              </div>
-            </a>
+      </div>
+  
+      <div class="container">
+        <div class="movie-list">
+          <div class="movie-list-item">
+            <div class="row">
+              <div class="col-md-3">
+                  <a>
+                    <img class="movie-image" width="200px" src="/images/super-patrul-2-2018.jpg">
+                  </a>
+                </div>
+                <div class="col-md-9">
+                  <a href="">
+                    <h3 class="movie-title">Супер патрул 2</h3>
+                  </a>
+                  <p class="movie-description">
+                      The Avengers are called on to defeat the twisted Thanos, who is scheming to alter reality with the Infinity Stones so he can destroy mankind. ‘’It started with an idea… Bring together a group of remarkable people to see if we could become something more.’’ If ever there was a time when the world needed superheroes, it’s now. Thanos (Josh Brolin) is on his way, and each Avenger can feel an impending sense of doom creeping across the globe. On a mission to collect all the Infinity Stones, Thanos aims to harness their extraordinary power to bend reality and ultimately obliterate Earth and every living creature on it..
+                  </p>
+                  <div class="movielist-meta-container">
+                      <div>
+                          Режисьор: <span>Robert Downey Jr.</span>
+                      </div>
+                      <div>
+                        Актьори: <span>Chris Pratt, Scarlett Johansson, Chris Evans, Chris Hemsworth, Josh Brolin</span>
+                      </div>
+                      <div>
+                        Продължителност: <span>200 мин.</span>
+                      </div> 
+                  </div>                      
+                  <!--Buttons favourites and buy ticket-->
+            <div class="row">
+                <div class="col-md-6">
+                <a href="#" class="button fixedPosition favourites"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Добави в любими</span></a>
+                </div>
+                <div class="col-md-6">
+                <a href="#" class="button fixedPosition favourites"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a>
+                </div>
+            </div>         
+                </div>
+            </div>
+            
           </div>
         </div>
       </div>
-      </div>
-  </div> -->
 
-<div class="container-main">
-    <div ng-if="movies.length" class="row">
+    <div ng-if="movies.length" class="row">    
       <div ng-repeat="movie in movies" class="col-sm-3">
-          <a href="#!/preview-movie/{{ movie.movieID }}">
-              <img class="thumbnail-md" ng-src="url('{{ movie.image }}');">
-              <h3 class="title-sm">{{ movie.name }}</h3>
-          </a>
+        <a href="#!/preview-movie/{{ movie.movieID }}">
+          <img class="thumbnail-md" ng-src="url('{{ movie.image }}');">
+          <h3 class="title-sm">{{ movie.name }}</h3>      
+        </a>
       </div>
     </div>
+  </div>
 </div>
-
-
