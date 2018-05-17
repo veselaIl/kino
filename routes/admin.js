@@ -122,12 +122,34 @@ router.post('/api/projection/add', function(req, res){
           res.status(err.status || 500);
           res.send();
         });
-      }else {
+      } else {
         res.status(err.status || 500);
         res.send();
       } 
   })
 });
+/* ADD PROJECTIONS */
+router.post('/api/projections/add', function(req, res){
+
+  console.log(req.body.projections);
+  if (req.body.projections){
+    req.db.get('projection')
+    .insert(req.body.projections)
+    .then(function(projections){
+      res.json({projections : projections});
+    })
+    .catch(function(err){
+      console.log(err);
+      res.status(err.status || 500);
+      res.send();
+    })
+  } else { 
+    res.status(err.status || 500);
+    res.send;
+  }
+  
+})
+
 
 // /* GET admin cinema details page. */
 // router.get('/admin/cinema/details/:kinoID', function(req, res, next) {
