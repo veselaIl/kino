@@ -52,6 +52,20 @@ myApp.factory('ProjectionService', function($http,) {
                         reject(err);
                     })
             })
+        },
+        getProjection : function(id){
+            return new Promise(function(resolve, reject){
+                console.log(id);
+                $http.get('/api/projections/' + id  )
+                    .then(function(response){
+                        console.log(response)
+                        projection = response.data;
+                        resolve(projection);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    })
+            })
         }
     }
 })

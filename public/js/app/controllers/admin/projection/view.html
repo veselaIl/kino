@@ -1,7 +1,7 @@
 <div class="content">
     <div class='add-movie'>
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        <a href='#!/projections/add'>Следваща прожекция</a> 
+        <a href='#!/projections/add'>Добави прожекция</a> 
     </div>
     
     <div class="itemsPerPage">
@@ -32,7 +32,7 @@
                 </td>
                 <td>{{ projection.movie }}</td>
                 <td>{{ types.availableOptions[projection.type].name }}</td>
-				<td><button type="button" ng-click="removeItem(value)" class="btn btn-sm btn-danger">
+				<td><a href="#!/projections/{{projection._id}}" class="btn btn-sm btn-danger">
 				    <i class="glyphicon glyphicon-eye-open"></i></button>
 				</td>
 			</tr>

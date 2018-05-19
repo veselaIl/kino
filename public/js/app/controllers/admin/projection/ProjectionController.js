@@ -1,5 +1,5 @@
 
-myApp.controller('ProjectionController', function($scope, $document, ProjectionService, MovieService, CinemaService){
+myApp.controller('ProjectionController', function($scope, $document, $routeParams, ProjectionService, MovieService, CinemaService){
 
   $scope.cinemas = [];
   $scope.movies = [];
@@ -62,16 +62,16 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
         });
       })
   });
-  console.log()
+
   //Get All movies  
   MovieService.getMovies()
-  .then(function(movies){
-    $scope.movies = movies;
-    $scope.$apply();
-  })
-  .catch(function(err){
-    console.log(err);
-  })   
+    .then(function(movies){
+      $scope.movies = movies;
+      $scope.$apply();
+    })
+    .catch(function(err){
+      console.log(err);
+    })   
 
   //get Cinemas
   CinemaService.getCinemas()
@@ -81,20 +81,35 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
     })
     .catch(function(err){
       console.log(err);
-    })  
-
-
+    })
+  //get projection 
+  ProjectionService.getProjection($routeParams.id)
+    .then(function(projection){
+      $scope.projectionDetails = projection.projection;
+      $scope.$apply();
+      MovieService.getMovieByName($scope.projectionDetails.movie)
+        .then(function(data){
+          $scope.movie = data.movie;
+          $scope.$apply();
+          console.log($scope.movie, 'film');
+        })
+        .catch(function(err){
+          console.log(err);
+        })
+     
+    })
+    .catch(function(err){
+      console.log(err);
+    })
+  
+ 
   function isBeetween(currentStart, currentEnd, start, end) {
     return currentStart >= start && currentEnd <= end
   }
 
-
   $scope.$watch('projection.kinoID', function(newValue, oldValue) {
     $scope.kino = $scope.cinemas[newValue];        
   }); 
-  $scope.$watch('hours', function(newValue, oldValue) {
-      // console.log(newValue);
-  });
 
   $scope.validate = function(input){
     var movieNames = $scope.movies.map(movie => movie.name);
@@ -102,10 +117,9 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
       $scope.message = "Невалиден филм"
     }else{
       $scope.message = '';
-    }
-    
+    }    
   }
-
+  //Добави прожекция
   $scope.addProjection = function($event, invalid){
     $event.preventDefault();
     var projects = $scope.projects.map(project => moment(project).format('MM DD YYYY')),
@@ -125,6 +139,8 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
       list.push(hour);
       hour = [];
     })
+    var cinemaProjections = $scope.projections.filter(projection => projection.kinoID === +$scope.projection.kinoID &&
+      projection.zalaID === +$scope.projection.zalaID);
     var current = {},
         final = [],
         time;
@@ -134,7 +150,10 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
           current = {
             type : $scope.types.model[index],
             time : new Date( el + ' ' + $scope.hours[parseInt(item)]).getTime()/1000,
-            mesta : []
+            mesta : [],
+            zalaID : $scope.projection.zalaID,
+            kinoId: $scope.projection.kinoID,
+            movie: $scope.projection.movie
           }
           final.push(current);
           console.log(final,'final'); 
@@ -142,18 +161,13 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
     })
     $scope.projection.projections = final;
     if(!invalid){   
-      ProjectionService.addProjections(final);
+      ProjectionService.addProjections(final).then(function(response){
+        window.location.href = '/admin.html#!/projections';
+      });
       CinemaService.getProjections($scope.projection.kinoID).then(function(cinema){
         $scope.cinema = cinema[0];
         $scope.$apply();
       });
-
-      var cinemaProjections = $scope.projections.filter(projection => projection.kinoID === +$scope.projection.kinoID &&
-      projection.zalaID === +$scope.projection.zalaID);
-      console.log($scope.projection);
-      ProjectionService.addProjection($scope.projection).then(function(response){
-        window.location.href = '/admin.html#!/projections';
-      })
     }
 }
   $scope.$watch('projectionDates', function(newValue, oldValue){
@@ -162,9 +176,15 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
         console.log($scope.projectionDates);
         $scope.projects= $scope.projectionDates.map(item => item._d);
     }
-}, true);  
-$scope.selected = function(){
-  console.log($scope.initTypeValue)
-}
-   $scope.daysAllowed = [moment().date]
+  }, true);  
+
+  $scope.selected = function(){
+    console.log($scope.initTypeValue)
+  }
+  
+  $scope.daysAllowed = [moment().date]
+    
+  
+  
+  
 })
