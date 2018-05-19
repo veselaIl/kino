@@ -30,6 +30,20 @@ myApp.factory('MovieService', function($http, $routeParams) {
                     })
             })
         },
+        getMovieByName : function(name){
+            return new Promise(function(resolve, reject){
+                console.log(name);
+                $http.get('/api/movie/'+ name)
+                    .then(function(response){
+                        console.log(response, 'movie');
+                        movie = response.data;
+                        resolve(movie);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    })
+            })
+        },
         editMovie: function(movie){
             return new Promise(function(resolve, reject){
                 $http.patch('/api/movies/edit/'+ movie.id, { data : movie})

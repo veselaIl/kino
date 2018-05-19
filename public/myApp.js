@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ui.bootstrap','multipleDatePicker', 'angularUtils.directives.dirPagination'])
+var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'multipleDatePicker'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
@@ -40,6 +40,11 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ui.bootstrap','mu
                 controller: 'ProjectionController',
                 templateUrl: "/js/app/controllers/admin/projection/add.html",
                 title: 'Добави прожекция'
+            })
+            .when('/projections/:id',{
+                controller: 'ProjectionController',
+                templateUrl: "/js/app/controllers/admin/projection/details.html",
+                title: 'Прожекция Детайли'
             })
             .when('/users', {
                 controller: 'UserController',

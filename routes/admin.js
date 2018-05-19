@@ -1,10 +1,7 @@
 var express = require('express');
+var ObjectId = require('mongodb').ObjectId; 
 var router = express.Router();
 
-/* GET admin home page. */
-router.get('/admin', function(req, res) {
-  res.render('admin');
-});
 
 /********* CINEMA *********** */
 /* GET admin cinemas page. */
@@ -72,7 +69,7 @@ router.get('/api/cinema/projections/:id', function(req, res){
         res.json({ cinema : cinema})
       }else{
         res.status(err.status || 400);
-      res.send();
+        res.send();
       }
     })  
     .catch(function(err){
@@ -83,7 +80,7 @@ router.get('/api/cinema/projections/:id', function(req, res){
 });
 /* GET projections cinemas page. */
 router.get('/api/projections/', function(req, res) {  
-  req.db.get('projections').find()
+  req.db.get('projection').find()
     .then(function(data){
       console.log(data);
       res.json(Array.isArray(data) ? data : [])})
@@ -105,6 +102,18 @@ router.get('/api/projects/', function(req, res) {
       res.send();
     })
 });
+/* GET PROJECTION */
+router.get('/api/projections/:id', function(req, res){
+  req.db.get('projection').find({ _id : new ObjectId(req.params.id)})
+    .then(function(data){
+      projection = data[0] || []
+      res.json({projection : projection});
+    })
+    .catch(function(err){
+      res.status(err.status || 500);
+      res.send();
+    })
+})
 /* ADD PROJECTION TO CINEMA */
 router.post('/api/projection/add', function(req, res){
   var projection, 
@@ -245,7 +254,6 @@ router.get('/api/movies', function(req, res){
 router.post('/api/movies/add',function(req, res){
   var movie, 
       id;
-  console.log(req.body);  
   req.db.get('movies').find(
     { },
     { sort: { movieID: -1}},
@@ -287,7 +295,6 @@ router.post('/api/movies/add',function(req, res){
 /* GET MOVIE TO EDIT */
 router.get('/api/movies/edit/:id', function(req, res){
   var movie;
-  console.log(req.params);
   req.db.get('movies').find({ movieID : +req.params.movieID })
     .then(function(data){
       movie = data[0] || {};    
@@ -295,6 +302,21 @@ router.get('/api/movies/edit/:id', function(req, res){
     })    
 })
 
+/* GET MOVIE BY NAME */
+router.get('/api/movie/:name', function(req, res){
+  var movie;
+  console.log(req.params);
+  req.db.get('movies').find({ name: req.params.name})
+    .then(function(data){
+      movie = data[0] || {};
+      res.json({ movie: movie})
+    })
+    .catch(function(err){
+      console.log(err);
+      res.status(err.status || 500);
+      res.send();
+    })
+})
 // /*  EDIT MOVIE */
 // router.post('/api/movies/edit/:movieID', function(req, res, next){
 //   var movie = {

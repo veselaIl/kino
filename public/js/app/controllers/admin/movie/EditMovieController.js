@@ -9,6 +9,6 @@ myApp.controller('EditMovieController', function($scope, $routeParams, MovieServ
         })
         .catch(function(err){
             console.log(err);
-        })
+    })   
         
 })
