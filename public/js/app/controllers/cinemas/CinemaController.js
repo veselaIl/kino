@@ -12,13 +12,13 @@ app.controller('CinemaController', function ($scope, $rootScope, $routeParams, C
 
     //Get current Cinema Page
     CinemaService.getCinema($routeParams.kinoID)
-    .then(function (cinema){
-        $scope.cinema = cinema;
-        $scope.$apply();
-    })
-    .catch(function (err){
-        console.log(err);
-    })
+        .then(function (cinema){
+            $scope.cinema = cinema;
+            $scope.$apply();
+        })
+        .catch(function (err){
+            console.log(err);
+        })
 
     $scope.cinemas = [];
     $scope.cinema = {};

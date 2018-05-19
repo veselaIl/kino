@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongodb = require('mongodb');
 
 //GET ALL Cinemas
 router.get('/cinemas', function (req, res){
@@ -13,10 +14,6 @@ router.get('/cinemas', function (req, res){
                 res.sendStatus(404);
             }
         })
-        .catch(function (err){
-            console.log(err);
-            res.sendStatus(err || 400);
-        })
 })
 
 //GET current cinema
@@ -25,7 +22,7 @@ router.get('/cinemas/view-cinema/:kinoID', function (req, res){
     console.log('Request body', req.body);
     console.log('DB Kino collection: ', req.db.get('kino').findOne({ kinoID: +req.params.kinoID }));
     req.db   
-        .get('kino').findOne({ kinoID: +req.params.kinoID})//може да пробвам с kinoID
+        .get('kino').findOne({ _id: req.params.kinoID})
         .then(function (cinema){
             if(cinema){
                 console.log('Response JSON: ', res.json);
@@ -33,9 +30,6 @@ router.get('/cinemas/view-cinema/:kinoID', function (req, res){
             } else {
                 res.sendStatus(404);
             }            
-        })
-        .catch(function (err){
-            res.sendStatus(err || 400);
         })
 })
 

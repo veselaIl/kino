@@ -501,7 +501,6 @@ section.first{
 }
 section.dark{
   color: #ffffff;
-  background: rgba(0, 0, 0, .7);
   padding: 25px 0;
 }
 .row-m{
@@ -547,6 +546,7 @@ main{
   font-size: 18px;
   font-weight: bold;
   margin: 0 0 20px 40px;
+  text-align: left;
 }
 .duration{
   font-size: 17px;
@@ -569,7 +569,7 @@ main{
 }
 .description{
   font-size: 13px;
-  color: white;
+  color: #554c4c;
 }
 /*<!--Table with info for Director, Actors etc.-->*/
 table{
@@ -1488,5 +1488,24 @@ div.date-picker div.dates #movieCalendar {
 /*PREVIEW MOVIE PAGE*/
 .table-movie>tbody>tr>td, .table-movie>tbody>tr>th, .table-movie>tfoot>tr>td, .table-movie>tfoot>tr>th, .table-movie>thead>tr>td, .table-movie>thead>tr>th{
   font-size: 12px;
+  color: #554c4c;
 }
 /*END PREVIEW MOVIE PAGE*/
+
+/*HOME PAGE*/
+.col-md-9>a{
+  text-decoration: none;
+}
+.col-md-9>a:hover{
+  text-shadow: -2px 2px 6px rgba(114, 28, 36);
+}
+.col-md-9 .movie-title:hover{
+  font-size: 26px;
+}
+/* prevent animation */
+.ng-animate.no-animate {
+  transition: 0s none;
+  -webkit-transition: 0s none;
+  animation: 0s none;
+  -webkit-animation: 0s none;
+}

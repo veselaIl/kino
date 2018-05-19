@@ -59,7 +59,10 @@ router.post('/register', function(req, res){
                                     delete user.password;
                                     req.session.user = user;
                                     req.session.save(() =>{
-                                        res.json({ isAdmin: user.isAdmin });
+                                        res.json({ 
+                                            isAdmin: user.isAdmin,
+                                            favourites: user.favourites
+                                         });
                                     });
                                 })
                         })
@@ -67,10 +70,7 @@ router.post('/register', function(req, res){
                             console.log(err);
                         });
                 }
-            })
-            .catch(function(err){
-                req.sendStatus(err || 500);
-            })
+            });
         
     }
 });

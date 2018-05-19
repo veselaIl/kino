@@ -28,7 +28,7 @@ app.config(function ($routeProvider) {
             templateUrl: '/js/app/controllers/movies/movies.html',
             title: 'Филми'
         })
-        .when('/movies/preview-movie/:movieID', {
+        .when('/movies/preview-movie/:id', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/preview-movie.html',
             title: 'Филми'

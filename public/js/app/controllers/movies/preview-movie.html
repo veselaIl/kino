@@ -13,7 +13,7 @@
 <!--Movie info--> 
 <div ng-controller="MovieController" class="container-main">
     <section class="dark collapse in first last">
-        <div ng-if="movie.movieID" class="container container-info">
+        <div ng-if="movie._id" class="container container-info">
             <h3 class="cinema-title">ПОВЕЧЕ ИНФОРМАЦИЯ ЗА {{ movie.name }}</h3>
             <!--Premier Date and Duration-->
             <div class="row">
@@ -31,8 +31,8 @@
             <hr class="red-line">
             <!--Movie Poster and Description-->
             <div class="row">
-                <div class=" col-sm">
-                    <img class="movie-poster" ng-src="{{ movie.image }}">
+                <div class="col-sm">
+                    <img class="movie-poster center-block" ng-src="{{ movie.image }}">
                 </div>
                 <div class=" col-sm">
                     <p class="description">
@@ -53,17 +53,17 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                <th scope="row"></th>
+                                <th ng-if="movie.genre.length" scope="row"></th>
                                     <td>ЖАНР:</td>
-                                    <td ng-repeat="genre in movie.genre">
-                                        <span>{{ ::movie.genre.join(', ') }}</span>
+                                    <td ng-repeat="genre in movie.genre track by $index">
+                                        {{ movie.genre.join(', ') }}
                                     </td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>
-                                    <td>АКТЬОРИ</td>
-                                    <td ng-if="movie.actors.length" ng-repeat="actor in movie.actors">
-                                        <span>{{ actor.name.join(', ') }}</span>
+                                    <td ng-if="movie.actors.length">АКТЬОРИ</td>
+                                    <td ng-repeat="actor in movie.actors">
+                                        <span>{{ actor.join(', ') }}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -93,12 +93,13 @@
             </div>
             
             <!--Buttons favourites and buy ticket-->
-            <div class="row">
-                <div class="col-md-6">
-                <a href="#" class="button fixedPosition favourites"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Добави в любими</span></a>
+            <div ng-controller="UserController" class="row">
+                <div ng-if="$root.user" class="col-md-6">
+                    <a href="#" ng-if="!isInFavourites" ng-click="addToFavourites($event)" class="button fixedPosition favourites no-animate"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Добави в любими</span></a>
+                    <a href="#" ng-if="isInFavourites" ng-click="addToFavourites($event)" class="button fixedPosition favourites no-animate"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Премахни от любими</span></a>
                 </div>
-                <div class="col-md-6">
-                <a href="#" class="button fixedPosition favourites"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a>
+                <div ng-if="$root.user" class="col-md-6">
+                <a href="#"  class="button fixedPosition favourites"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a>
                 </div>
             </div>
         </div>

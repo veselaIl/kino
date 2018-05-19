@@ -34,7 +34,10 @@ router.post('/login', function (req, res){
                 delete user.password;
                 req.session.user = user;
                 req.session.save(() =>{
-                    res.json({ isAdmin: user.isAdmin });
+                    res.json({ 
+                        isAdmin: user.isAdmin,                            
+                        favourites: user.favourites
+                    });
                 });
             } else {
                 console.log('User not found or bad password!');

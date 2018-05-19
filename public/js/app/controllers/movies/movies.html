@@ -1,17 +1,17 @@
 <div ng-controller="MovieController" class="container-main">
     <div ng-if="movies.length" class="row">
-        <div ng-repeat="movie in movies track by $index" class="col-md-3 movie-content">
-            <a href="/#!/movies/preview-movie/{{ movie.movieID }}">
+        <div ng-repeat="movie in movies" class="col-md-3 movie-content">
+            <a href="/#!/movies/preview-movie/{{ movie._id }}">
                 <img class="thumbnail-sm" ng-src="{{ movie.image }}">
                 <h3 class="title-sm">{{ movie.name }}</h3>
                 <div class="premiere">Премиера: {{ movie.premierDate }} | {{ movie.duration }}</div>
                 <div class="button reserve-ticket center-block">
-                    <a href="/#!/movie/{{ movie.movieID }}/reserveTicket">
+                    <a href="/#!/movie/reserveTicket/{{ movie._id }}">
                         <div class="sm-btn">Резервирай</div>
                     </a>
                 </div>
                 <div class="button reserve-ticket center-block">
-                    <a href="/#!/movie/{{ movie.movieID }}/buyTicket">
+                    <a href="/#!/movie/buyTicket/{{ movie._id }}">
                         <div class="sm-btn">Купи</div>
                     </a>
                 </div>

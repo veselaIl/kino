@@ -37,6 +37,9 @@ router.post('/api/cinema/add', function(req, res){
           kinoID : ++id,
           name : req.body.cinema.name,
           address : req.body.cinema.address,
+          //adding fields for image and phone number 
+          image: req.body.cinema.image,
+          phoneNumber: req.body.cinema.phoneNumber,
           zali : req.body.cinema.zali,
           projections : [],
           reservations : []

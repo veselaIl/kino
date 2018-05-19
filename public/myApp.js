@@ -14,8 +14,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages','ui.bootstrap','mul
                 controller: 'AddCinemaController',
                 templateUrl: '/js/app/controllers/admin/cinema/add.html',
                 title: 'Добави кино'
-            }
-            )
+            })
             .when('/movies', {
                 controller: 'MovieController',
                 templateUrl: '/js/app/controllers/admin/movie/view.html',

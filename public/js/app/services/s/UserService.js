@@ -14,6 +14,18 @@ app.factory('UserService', function ($http){
         })
     }
 
+    function addToFavourites(movieID){
+        return new Promise(function (resolve, reject){
+            $http.post('/user/favourites/' + movieID)
+                .then(function (response){
+                    resolve(response.data);
+                })
+                .catch(function (err){
+                    reject(err);
+                })
+        })
+    }
+
     function changeUserProfile(user){
         return new Promise(function (resolve, reject){
             $http.post('/user/profile', {user: user})
@@ -51,6 +63,7 @@ app.factory('UserService', function ($http){
     }
     return{
         getUserProfile: getUserProfile,
-        changeUserProfile: changeUserProfile
+        changeUserProfile: changeUserProfile,
+        addToFavourites: addToFavourites
     }
 })

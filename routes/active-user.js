@@ -3,7 +3,25 @@ var router = express.Router();
 
 //GET current user
 router.get('/active-user', function (req, res){
-    res.json(req.session.user ? { isAdmin: req.session.user.isAdmin} : undefined);
+    var id = req.session.user ? req.session.user._id : -1;
+    if(id !== -1){
+        req.db.get('users').findOne({ _id: id})
+            .then(function (user){
+                if(user){
+                    res.json({
+                        isAdmin : user.isAdmin,
+                        favourites : user.favourites
+                    });
+                } else {
+                    req.session.destroy();
+                    res.sendStatus(404);
+                }                
+            });
+
+    } else {
+        res.json();
+    }
+    
 })
 
 //Change user profile

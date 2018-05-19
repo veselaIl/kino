@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
-var movie;
+var mongodb = require('mongodb');
 
 //GET ALL movies
 router.get('/movies', function (req, res){
@@ -21,18 +20,18 @@ router.get('/movies', function (req, res){
 })
 
 //GET current movie
-router.get('/movies/preview-movie/:movieID', function(req, res){
+router.get('/movies/preview-movie/:id', function(req, res){
     req.db
-        .get('movies').findOne({ movieID: +req.params.movieID})
-        .then(function(movie){
-            if(movie){
-                res.json({ movie : movie});
+        .get('movies').find({ _id: new mongodb.ObjectId(req.params.id) })
+        .then(function(movies){
+            if(movies){
+                console.log('Movies2.js: ', movies);
+                var movie = movies[0] || {};
+                console.log('Movies2.js: Movie: ', movie);
+                res.json({ movie: movie });
             } else {
                 res.sendStatus(404);
             }
-        })
-        .catch(function (err){
-            res.sendStatus(err || 400);
         })
 })
 
