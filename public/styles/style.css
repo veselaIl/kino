@@ -9,7 +9,7 @@ body {
 }
 /*POSITION OF MAIN CONTENT*/
 .container-main{
-  padding-top: 50px;
+  padding-top: 112px;
   margin: 0 auto;
   height: 100%;
   width: 980px
@@ -265,10 +265,13 @@ a {
 }
 .cinema-title{
   text-align: center;
-  background-color: rgba(85, 1, 85, 0.7);
-  border: 1px solid rgb(85, 1, 85);
+  background-color: rgba(114, 28, 36, 0.8);
+  border: 1px solid rgb(114, 28, 36);
   border-radius: 6px;
   padding: 8px 0 0 0;
+}
+.cinema-title h3{
+  color: black;
 }
 
 /*SETTINGS OF PROJECTIONS TABLE*/
@@ -282,13 +285,18 @@ a {
   border: none;
 }
 .thumbnail-md{
-  width: 220px;
-  height: 324px;
+  width: 320px;
+  height: 220px;
+}
+.thumbnail-md:hover{
+  -webkit-box-shadow: 0 8px 12px 0 rgba(253, 253, 253, 0.26), 0 4px 12px 0 rgba(12, 11, 12, 0.25);
+  box-shadow: 0 8px 12px 0 rgba(255, 212, 204, 0.26), 0 4px 12px 0 rgba(253, 41, 13, 0.25);
 }
 /*Zooming img
-.tmb-zoom{
+ .tmb-zoom{
     position: absolute;
-    top: 10%;
+    top: 100%;
+    left: 50%;
     width: 245px;
     -webkit-transform: translate(-50%,-50%); 
     -moz-transform: translate(-50%,-50%); 
@@ -298,7 +306,7 @@ a {
 }
 .img-zoom{
   width: 50%;
-  height: 50%; 
+  height: 50%;
 }
 .img-zoom img{
   -webkit-transition: all 1s ease;
@@ -306,7 +314,7 @@ a {
   -o-transition: all 1s ease; 
   -ms-transition: all 1s ease; 
   transition: all 1s ease;
-}
+} 
 .img-zoom:hover img{
   -webkit-transform:scale(1.25); 
     -moz-transform:scale(1.25); 
@@ -314,6 +322,7 @@ a {
     -o-transform:scale(1.25); 
      transform:scale(1.25);
 }*/
+
 table{
   background-color: rgba(0, 0, 0, .7);
 }
@@ -323,10 +332,10 @@ table{
 .table-hover>tbody>tr>th>td{
   border-top: white;
 }
-.table>tbody>tr:hover{
+/* .table>tbody>tr:hover{
   background-color: rgba(0, 0, 0, .4);
   transition-duration: 0.8s;
-}
+} */
 
 .title{
   margin-top: 13px;
@@ -439,7 +448,7 @@ table{
   font-weight: 400; }
 /*END OF LOGIN/REGISTER FORMS MODAL*/      
 
-/*PAGE MOVIEW PREVIEW MORE INFO*/
+/*PAGE MOVIE PREVIEW MORE INFO*/
 /*CAROUSEL SETTINGS IMAGES FOR MOVIE PREVIEW*/
 .carousel-inner>.item>img{
   width: 70%;
@@ -529,23 +538,26 @@ main{
 .premiere-title{
   font-size: 17px;
   font-weight: bold;
-  margin: 0 0 5px 0;
+  margin: 0 0 5px 40px;
+  text-align: left;
+  color: #ffc107;
 }
 /*p Premiere date*/
 .premiere-date{
   font-size: 18px;
   font-weight: bold;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px 40px;
 }
 .duration{
   font-size: 17px;
   font-weight: bold;
-  margin: 0 0 5px 0;
+  margin: 0 0 5px 20px;
+  color: #ffc107;
 }
 .duration-minutes{
   font-size: 18px;
   font-weight: bold;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px 20px;
 }
 .col-left{
   width: 30%;
@@ -569,7 +581,7 @@ table{
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  background: rgba(85, 1, 85, 0.6);
+  background: rgba(114, 28, 36, 0.6);
   font-size: 14px;
   line-height: 30px;
   padding: 6px 30px;
@@ -579,7 +591,7 @@ table{
   color: #fff;
   overflow: hidden;
   text-decoration: none;
-  border: 1px solid #fff;
+  border: 1px solid rgb(114, 28, 36);
   text-transform: uppercase;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -618,8 +630,8 @@ table{
   text-transform: uppercase;
 }
 .button:hover{
-  background-color: rgba(85, 1, 85, 0.5);
-  border: 1px solid rgb(85, 1, 85);
+  background-color: rgba(114, 28, 36, 0.8);
+  border: 1px solid rgb(114, 28, 36);
   border-radius: 3px;
 }
 /*END OF PAGE MOVIEW PREVIEW MORE INFO*/
@@ -1360,3 +1372,121 @@ div.date-picker div.dates #movieCalendar {
     box-shadow: 4px 4px 8px #000000;
   }
 /*end movie-list-item*/
+/*new navbar color*/
+.bg-light-blue{
+  background-color: #721c24;
+}
+.navbar-dark{
+  color: white;
+}
+.bg-light-blue .navbar-nav .nav-link{
+  color: white;
+}
+
+/*STYLES FOR CINEMAS PAGE*/
+.address{
+  font-size: 14px;
+  color: #554c4c;
+  text-align: center;
+}
+.page-title{
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  color: black;
+}
+.red-line{
+  border: 2px solid  #721c24;
+  margin: 0 0 10px 0;
+}
+.center-block{
+  display: table;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.col-md-6>a{
+  text-decoration: none;
+  color: black;
+}
+.cinema-description h4, p{
+  color: #000000;
+}
+.contants-form{
+  margin-top:  40px;
+}
+.btn-red{
+  background-color: rgba(114, 28, 36, 0.8);
+  border: 1px solid rgb(114, 28, 36);
+}
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
+}
+.form-group>input:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
+  border: #721c24;
+}
+.form-group>textarea:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
+  border: #721c24;
+}
+/*END OF STYLES FOR CINEMAS PAGE*/
+
+/*All movies page*/
+.thumbnail-sm{
+  width: 220px;
+  height: 300px; 
+}
+.thumbnail-sm:hover{
+  outline: 10px;
+  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
+}
+.title-sm{
+  text-align: center;
+  color: rgb(114, 28, 36);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.premiere{
+  text-align: center;
+  font-size: 14px;
+  color: #554c4c;
+}
+/*Reserve-Buy ticket button*/
+.movie-content{
+  margin-bottom: 25px;
+}
+.movie-content>a{
+  text-decoration: none;
+}
+.reserve-ticket{
+  background-color: rgba(114, 28, 36, 0.8);
+  border: 1px solid rgb(114, 28, 36);
+  border-radius: 25px;
+  width: 80%;
+  margin-top: 5px;
+}
+.reserve-ticket>a{
+  text-decoration: none;
+  color: white;
+}
+.reserve-ticket:hover{
+  background-color: rgba(114, 28, 36);
+  border: 1px solid rgb(114, 28, 36);
+  border-radius: 25px;
+}
+.button .sm-btn{
+  padding: 0;
+  margin-bottom: 0;
+  line-height: 20px;
+}
+/*END All movies page*/
+
+/*PREVIEW MOVIE PAGE*/
+.table-movie>tbody>tr>td, .table-movie>tbody>tr>th, .table-movie>tfoot>tr>td, .table-movie>tfoot>tr>th, .table-movie>thead>tr>td, .table-movie>thead>tr>th{
+  font-size: 12px;
+}
+/*END PREVIEW MOVIE PAGE*/

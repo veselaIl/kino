@@ -1,8 +1,5 @@
-app.controller('CinemaController', function ($scope, CinemaService) {
-    //$scope.title = "Cinema";
-    $scope.cinemas = [];
-    //console.log(CinemaService.getCinemas());
-
+app.controller('CinemaController', function ($scope, $rootScope, $routeParams, CinemaService) {   
+    //GET All cinemas page
     CinemaService.getCinemas()
         .then(function (cinemas){
             console.log('CinemaController CinemaService.getCinemas(): ', cinemas);
@@ -12,4 +9,17 @@ app.controller('CinemaController', function ($scope, CinemaService) {
         .catch(function (err){
             console.log(err);
         })
+
+    //Get current Cinema Page
+    CinemaService.getCinema($routeParams.kinoID)
+    .then(function (cinema){
+        $scope.cinema = cinema;
+        $scope.$apply();
+    })
+    .catch(function (err){
+        console.log(err);
+    })
+
+    $scope.cinemas = [];
+    $scope.cinema = {};
 });

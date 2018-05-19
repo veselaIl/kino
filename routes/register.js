@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var sha1 = require('sha1');
 
-function isLogged(req){
-    return req.session.user;
-}
+// function isLogged(req){
+//     return req.session.user;
+// }
 
 function validateEmail(email) {
     var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -42,10 +42,14 @@ router.post('/register', function(req, res){
                         .then(function(users){
                             var user = {};
                             if (users.length){
+                                user.email = req.body.user.email;
+                                user.firstName = '';
+                                user.lastName = '';
                                 user.isAdmin = false;
                                 user.favourites = [];
                                 user.reservations = [];
                             } else {
+                                user.email = req.body.user.email;
                                 user.isAdmin = true;
                             }
                             user.password = sha1(req.body.user.email + req.body.user.password);

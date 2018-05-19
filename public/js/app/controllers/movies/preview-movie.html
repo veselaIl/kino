@@ -11,7 +11,7 @@
 </div> -->
 
 <!--Movie info--> 
-<div ng-controller="MovieController" class="container-fluid">
+<div ng-controller="MovieController" class="container-main">
     <section class="dark collapse in first last">
         <div ng-if="movie.movieID" class="container container-info">
             <h3 class="cinema-title">ПОВЕЧЕ ИНФОРМАЦИЯ ЗА {{ movie.name }}</h3>
@@ -20,7 +20,7 @@
                 <div class="col-md-6">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                     <h4 class="premiere-title">Премиерна дата:</h4>
-                    <p class="premiere-date">{{ movie.premiereDate }}</p>
+                    <p class="premiere-date">{{ movie.premierDate }}</p>
                 </div>
                 <div class="col-md-6">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -28,22 +28,22 @@
                     <p class="duration-minutes">{{ movie.duration }} мин.</p>
                 </div>
             </div>
-            <hr class="purple-u">
+            <hr class="red-line">
             <!--Movie Poster and Description-->
             <div class="row">
-                <div class=" col-md-6">
-                    <img class="movie-poster" style="background-image: url('{{ movie.image }}')">
+                <div class=" col-sm">
+                    <img class="movie-poster" ng-src="{{ movie.image }}">
                 </div>
-                <div class=" col-md-6">
+                <div class=" col-sm">
                     <p class="description">
-                        {{ movie.description}}
+                        {{ movie.description }}
                     </p>
                 </div>
             </div>
             <!--Table with info for Director, Actors etc.-->
             <div class="row">
                 <div class="col-md-12">
-                        <table class="table table-sm">
+                        <table class="table table-sm table-movie">
                             <thead>
                                 <tr>
                                 <th scope="col"></th>
@@ -54,28 +54,38 @@
                             <tbody>
                                 <tr>
                                 <th scope="row"></th>
-                                <td>ЖАНР:</td>
-                                <td ng-repeat="genre in genres">{{ movie.genre }}</td>
+                                    <td>ЖАНР:</td>
+                                    <td ng-repeat="genre in movie.genre">
+                                        <span>{{ ::movie.genre.join(', ') }}</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>
-                                <td>АКТЬОРИ</td>
-                                <td ng-repeat="actor in actors">{{ movie.actor }}</td>
+                                    <td>АКТЬОРИ</td>
+                                    <td ng-if="movie.actors.length" ng-repeat="actor in movie.actors">
+                                        <span>{{ actor.name.join(', ') }}</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>
                                 <td>РЕЖИСЬОР:</td>
-                                <td>{{ movie.director }}</td>
+                                <td>{{ movie.director.name }}</td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>
                                 <td>КАТЕГОРИЯ:</td>
-                                <td>Не се препоръчва за деца под 12</td>
+                                <td>Не се препоръчва за деца под {{movie.category}}</td>
                                 </tr>
                                 <tr>
                                 <th scope="row"></th>
                                 <td>ИЗЛЪЧВА СЕ В:</td>
                                 <td>2D</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>ДУБЛИРАН:</td>
+                                    <td ng-if="!movie.dublaj">НЕ</td>
+                                    <td ng-if="movie.dublaj">ДА</td>
                                 </tr>
                             </tbody>
                         </table>

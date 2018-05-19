@@ -1,47 +1,49 @@
 <div ng-controller="CinemaController" class="container-main">
     <div class="container">
         <div class="col-md-12 cinema-title">
-            <h3>ITC Technologica</h3>
+            <h3>{{cinema.name}}</h3>
         </div>
-        <div class="row">
+        <div class="row cinema-description">
             <div class="col-md-7">
                 <h4>Зали</h4>
-                <hr class="purple">
-                <p>15 зали, включително LUXE, PREMIUM и VIP зали. 2858 места</p>
+                <hr class="red-line">
+                <p>Описание на залите</p>
             </div>
             <div class="col-md-5">
-                <h4>Паркинг</h4>
-                <hr class="purple">
-                <p>Открит, платен паркинг. Паркингът е неохраняем!Безплатен престой от четири часа за зрителите и клиентите на ресторантите в киното. Паркинг талонът се валидира на касите на киното.</p>
-                <h5>Връзка с нас:</h5>
-                <hr class="purple">
-                <p>0888 88 88 88</p>
+                <!-- <h4>Паркинг</h4>
+                <hr class="red-line">
+                <p>Открит, платен паркинг. Паркингът е неохраняем!Безплатен престой от четири часа за зрителите и клиентите на ресторантите в киното. Паркинг талонът се валидира на касите на киното.</p> -->
+                <h4>Връзка с нас:</h4>
+                <hr class="red-line">
+                <p>{{cinema.phoneNumber}}</p>
             </div>
         </div>
     </div>
     <div class="container">          
-        <div class="row">
+        <div class="row cinema-description">
         <div class="col-md-7">
+            <h4>Къде да ни намерите:</h4>
+            <hr class="red-line">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47071.29005196179!2d27.445454530307607!3d42.49249595907471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a694c37813c18b%3A0x901f4a077fc5e205!2z0YPQuy4g4oCe0JrQvdGP0Lcg0JDQu9C10LrRgdCw0L3QtNGK0YAg0JHQsNGC0LXQvdCx0LXRgNCz4oCcIDI4LCA4MDAwINCR0YPRgNCz0LDRgSDQptC10L3RgtGK0YAsINCR0YPRgNCz0LDRgQ!5e0!3m2!1sbg!2sbg!4v1526118061506" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+           
             <!--iframe tria city center-->
             <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2941.7673748937837!2d27.468583315297387!3d42.49649793446724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a694bf0be41de3%3A0xd0ecc67a37961b2f!2z0KLRgNC40LAg0KHQuNGC0Lgg0KbQtdC90YLRitGA!5e0!3m2!1sbg!2sbg!4v1526118308739" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> -->
         </div>
-    
         <div class="col-md-5">
-            <form>
+            <form class="contants-form">
             <div class="form-group">
-                <input type="text" class="form-control" name="" value="" placeholder="Name">
+                <input type="text" class="form-control" name="" value="" placeholder="Вашето име">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="" value="" placeholder="E-mail">
+                <input type="email" class="form-control" name="" value="" placeholder="Вашият e-mail">
             </div>
             <div class="form-group">
-                <input type="tel" class="form-control" name="" value="" placeholder="Phone">
+                <input type="tel" class="form-control" name="" value="" placeholder="Телефонен номер">
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="" rows="3" placeholder="Message"></textarea>
+                <textarea class="form-control" name="" rows="3" placeholder="Съобщение"></textarea>
             </div>
-            <button class="btn btn-default" type="submit" name="button">
+            <button class="btn btn-success" type="submit" name="button">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Изпрати
             </button>
             </form>

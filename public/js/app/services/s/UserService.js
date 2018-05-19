@@ -3,7 +3,7 @@ app.factory('UserService', function ($http){
 
     function getUserProfile(user){
         return new Promise(function (resolve, reject){
-            $http.get('/#!/user/profile', {user: user})
+            $http.get('/user/profile', {user: user})
                 .then(function (response){
                     user._id = response.data.id;
                     resolve(user);
@@ -16,7 +16,7 @@ app.factory('UserService', function ($http){
 
     function changeUserProfile(user){
         return new Promise(function (resolve, reject){
-            $http.post('/#!/user/profile', {user: user})
+            $http.post('/user/profile', {user: user})
                 .then(function (response){
                     user.firstName = response.data.firstName;
                     user.lastName = response.data.lastName;
@@ -30,7 +30,7 @@ app.factory('UserService', function ($http){
 
     function getChangePassword(user){
         return new Promise(function (resolve, reject){
-            $http.get('/#!/user/profile/change-password', {user: user})
+            $http.get('/user/profile/change-password', {user: user})
                 .then(function (response){                    
                     user._id = response.data.id;
                     resolve(user);
