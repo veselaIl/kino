@@ -10,7 +10,10 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
   $scope.hourList = [];
   $scope.projection = {};
   $scope.projectionDate = [];
-  
+  $scope.today = moment();
+  $scope.pageSize = 10 ;
+  $scope.currentPage = 1;
+
   $scope.types = {
     model: [],
     availableOptions: [
@@ -49,7 +52,17 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
     .catch(function(err){
       console.log(err);
     })
-
+  
+  ProjectionService.getProjects()
+    .then(function(projects){
+       $scope.$apply(function() { 
+        $scope.allProjections = projects;
+        $scope.allProjections.forEach(function(projection){
+          return projection.time = moment(new Date(projection.time * 1000)).format('MMMM Do YYYY HH:mm');
+        });
+      })
+  });
+  console.log()
   //Get All movies  
   MovieService.getMovies()
   .then(function(movies){
@@ -112,42 +125,36 @@ myApp.controller('ProjectionController', function($scope, $document, ProjectionS
       list.push(hour);
       hour = [];
     })
-    console.log(list);
     var current = {},
-        final = [];
-    //get dates and add hours
+        final = [],
+        time;
+    console.log(list);//get dates and add hours
     projects.forEach(function(el,index){
-      current = {};
-      times = [];
-      current.times = [];
-      current.type = $scope.types.model[index];
-      // console.log(list);     
-      list[index].forEach(function(item){  
-        console.log(item);      
-        times.push(new Date( el + ' ' + $scope.hours[parseInt(item)]).getTime()/1000);
-        current.times = times;
-        current.mesta = [];
-      }); 
-      final.push(current); 
-    }); 
-    console.log(final);
-
-
-
-    if(!invalid){
+      list[index].forEach(function(item){
+          current = {
+            type : $scope.types.model[index],
+            time : new Date( el + ' ' + $scope.hours[parseInt(item)]).getTime()/1000,
+            mesta : []
+          }
+          final.push(current);
+          console.log(final,'final'); 
+      });
+    })
+    $scope.projection.projections = final;
+    if(!invalid){   
       ProjectionService.addProjections(final);
       CinemaService.getProjections($scope.projection.kinoID).then(function(cinema){
         $scope.cinema = cinema[0];
         $scope.$apply();
       });
+
       var cinemaProjections = $scope.projections.filter(projection => projection.kinoID === +$scope.projection.kinoID &&
-      projection.zalaID === +$scope.projection.zalaID);;
-      var projects = cinemaProjections.find(projection => isBeetween($scope.projection.startDate, $scope.projection.endDate, projection.startDate, projection.endDate));
+      projection.zalaID === +$scope.projection.zalaID);
+      console.log($scope.projection);
       ProjectionService.addProjection($scope.projection).then(function(response){
         window.location.href = '/admin.html#!/projections';
       })
     }
-
 }
   $scope.$watch('projectionDates', function(newValue, oldValue){
     if(newValue){

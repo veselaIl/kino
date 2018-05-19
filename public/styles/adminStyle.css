@@ -821,6 +821,27 @@ textarea {
 .chooseHours{
   border-bottom: 2px solid #aa3022;
 }
+.projectionsPerPage{
+  margin-top:5px;
+  /* display:inline-block; */
+}
+table> thead{
+  background-color: #b30c0c;
+  color:white;
+}
+.tableHeader{
+  display:block;
+}
+.currentTime{
+  width: 100%;
+  font-size: 16px;
+  color: #b30c0c;
+  padding: 5px 0;
+  margin-right: 58%;
+}
+.headerInfo{
+  margin:0;
+}
 .projectionDate{
   display: block;
   width:15%;

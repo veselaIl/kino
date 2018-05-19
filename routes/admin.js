@@ -90,6 +90,18 @@ router.get('/api/projections/', function(req, res) {
       res.send();
     })
 });
+/* GET projections cinemas page. */
+router.get('/api/projects/', function(req, res) {  
+  req.db.get('projection').find()
+    .then(function(data){
+      console.log(data);
+      res.json(Array.isArray(data) ? data : [])})
+    .catch(function(err){
+      console.log('catch', err);
+      res.status(err.status || 500);
+      res.send();
+    })
+});
 /* ADD PROJECTION TO CINEMA */
 router.post('/api/projection/add', function(req, res){
   var projection, 
@@ -107,10 +119,7 @@ router.post('/api/projection/add', function(req, res){
           movieID: req.body.projection.movie,
           zalaID: req.body.projection.zalaID,
           kinoID: req.body.projection.kinoID,
-          mesta : [],
-          startDate: req.body.projection.startDate,
-          endDate: req.body.projection.endDate,
-          hours : req.body.projection.hours
+          projections : req.body.projection.projections
         }
         req.db.get('projections')
         .insert(projection)

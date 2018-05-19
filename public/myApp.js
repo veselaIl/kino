@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMessages','ui.bootstrap','multipleDatePicker'])
+var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ui.bootstrap','multipleDatePicker', 'angularUtils.directives.dirPagination'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
