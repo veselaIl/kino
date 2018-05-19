@@ -15,6 +15,18 @@ myApp.factory('ProjectionService', function($http,) {
                     });
             });
         },
+        getProjects: function(){
+            return new Promise(function(resolve, reject){
+                $http.get('/api/projects')
+                    .then(function(response){
+                        projects = response.data;
+                        resolve(projects);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    });
+            })
+        },
         addProjection: function(projection){
             return new Promise(function(resolve, reject){
                 $http.post('/api/projection/add', { projection : projection})

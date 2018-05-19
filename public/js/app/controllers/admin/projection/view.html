@@ -1,37 +1,42 @@
 <div class="content">
     <div class='add-movie'>
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        <a href='#!/projections/add'>Добави прожекция</a>
+        <a href='#!/projections/add'>Следваща прожекция</a> 
     </div>
-    <table st-table="displayedCollection" ng-repeat="cinema in cinemas" st-safe-src="rowCollection" class="table table-striped">
-        <thead>
-            <th class="cinema-title" st-sort="kinoID">Kино {{ cinema.name }}</th>
+    
+    <div class="itemsPerPage">
+        <span class="currentTime" ng-model="today">{{ today.format('MMM Do YYYY HH:mm:ss') }}</span> 
+        <label class="projectionsPerPage" for="search">Прожекции на страница:
+            <input type="number" min="1" max="100" class="contol" ng-model="pageSize">
+        </label>
+    </div>
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+        <thead>            
             <tr class='head-table'>
-                <th st-sort="zalaID">Зала</th>
-                <th st-sort="movieID">Филм</th>
-                <th st-sort="startDate">Начална дата</th>
-                <th st-sort="endDate">Крайна дата</th>
-                <th st-srot="status"> Статус</th>
-            </tr>
-            <tr>
-            <th colspan="5"><input st-search="" class="form-control" placeholder="Търсене..." type="text"/></th>
+                <th st-sort="time">
+                    <h5 class='headerInfo'>Информация</h5>
+                    <span class="tableHeader">Дата час</span>
+                    <span class="tableHeader">Резервирани билети</span>
+                </th>                
+                <th st-sort="type">Филм</th>
+                <th>Тип</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
 <!-- CHANGED -->
-			<tr ng-repeat="(key, value) in projections | filter : { kinoID : cinema.kinoID}">
-				<td>{{value.zalaID}}</td>
-				<td>{{value.movieID}}</td>
-                <td>{{value.startDate}}</td>
-                <td>{{value.endDate}}</td>
-                <td>{{value.status}}</td>
+			<tr dir-paginate="projection in allProjections | filter:q | itemsPerPage: pageSize  | orderBy: 'time'  track by $index " current-page="currentPage">
 				<td>
-				<button type="button" ng-click="removeItem(value)" class="btn btn-sm btn-danger">
-					<i class="glyphicon glyphicon-remove-circle">
-					</i>
-				</button>
+                 <h5>{{ projection.time }}</h5>
+                 <span>{{ projection.mesta }}</span>
+                </td>
+                <td>{{ projection.movie }}</td>
+                <td>{{ types.availableOptions[projection.type].name }}</td>
+				<td><button type="button" ng-click="removeItem(value)" class="btn btn-sm btn-danger">
+				    <i class="glyphicon glyphicon-eye-open"></i></button>
 				</td>
 			</tr>
 			</tbody>
-		</table>
+        </table>
+        
 </div>
