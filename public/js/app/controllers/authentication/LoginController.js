@@ -16,7 +16,8 @@ app.controller('LoginController', ['$scope', '$rootScope', '$location', 'LoginSe
                     console.log('Login success!', data);
                     $rootScope.user = data;
                     if($rootScope.user.isAdmin === true){
-                        $location.path('/admin.html');
+                        //$location.path('/admin.html');
+                        $location.path('/admin.html/');
                     } else {
                         $location.path('/');
                     }

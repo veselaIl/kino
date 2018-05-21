@@ -13,6 +13,7 @@ router.get('/active-user', function (req, res){
                         favourites : user.favourites
                     });
                 } else {
+                    console.log('test');
                     req.session.destroy();
                     res.sendStatus(404);
                 }                

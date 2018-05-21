@@ -19,11 +19,14 @@
                     <a class="nav-link" href="/#!/movies">Филми</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#!/projections">Програма</a>
+                    <a class="nav-link" href="/#!/projections">Програма</a>                   
                 </li>
                 <li ng-if="userChecked && !$root.user" class="nav-item">
                     <a class="nav-link" href="/#!/login">Вход</a>
                 </li>
+                <li ng-if="userChecked && $root.user" class="nav-item">
+                        <a ng-click="profile($event)" class="nav-link" href="/#!/profile">Профил</a>
+                    </li>
                 <li ng-if="userChecked && $root.user" class="nav-item">
                     <a ng-click="logout($event)" class="nav-link" href="/#!/logout">Изход</a>
                 </li>
@@ -31,3 +34,7 @@
         </div>
     </nav>
 </div>
+
+
+
+  

@@ -1,69 +1,73 @@
 app.factory('UserService', function ($http){
     var user = {};
 
-    function getUserProfile(user){
+    function addToFavourites(id){
         return new Promise(function (resolve, reject){
-            $http.get('/user/profile', {user: user})
-                .then(function (response){
-                    user._id = response.data.id;
-                    resolve(user);
-                })
-                .catch(function (err){
-                    reject(err);
-                })
-        })
-    }
-
-    function addToFavourites(movieID){
-        return new Promise(function (resolve, reject){
-            $http.post('/user/favourites/' + movieID)
+            $http.post('/user/favourites/' + id)
                 .then(function (response){
                     resolve(response.data);
                 })
                 .catch(function (err){
                     reject(err);
-                })
-        })
+                });
+        });
     }
 
-    function changeUserProfile(user){
+    function showUserInfo(){
         return new Promise(function (resolve, reject){
-            $http.post('/user/profile', {user: user})
-                .then(function (response){
-                    user.firstName = response.data.firstName;
-                    user.lastName = response.data.lastName;
-                    resolve();
-                })
-                .catch(function (err){
-                    console.log(err);
-                })
-        })
-    }
-
-    function getChangePassword(user){
-        return new Promise(function (resolve, reject){
-            $http.get('/user/profile/change-password', {user: user})
-                .then(function (response){                    
-                    user._id = response.data.id;
-                    resolve(user);
+            $http.get('/profile', { user: user })
+                .then(function (response) {
+                    resolve(response.data);
                 })
                 .catch(function (err){
                     reject(err);
-                })
-        })
+                });
+        });
     }
 
-    function changeUserPassword(user){
-        // return new Promise(function (resolve, reject){
-        //     $http.post('/profile/change-password', {user: user})
-        //         .then(function (response){
-                    
-        //         })
-        // })
+    function changeUserInfo(user){
+        console.log('UserService changeUserInfo: ', user);
+        return new Promise(function (resolve, reject){
+            $http.post('/profile', { user: user })
+                .then(function (response){
+                    console.log("changeUserInfo", response);
+                    resolve(response.data);
+                })
+                .catch(function (err){
+                    reject(err);
+                });
+        });
     }
+
+    function changePassword(user){
+        console.log('UserService changePassword: ', user);
+        return new Promise(function (resolve, reject){
+            $http.post('/profile/change-password', { user: user })
+                .then(function(response){
+                    console.log("changePassword", response);
+                    resolve(response.data);
+                })
+                .catch(function (err){
+                    reject(err);
+                });
+        });
+    }
+
+    function getFavourites(user){
+        return new Promise(function (resolve, reject){
+            $http.get('/profile/favourites', {user : user})
+                .then(function (response){
+                    console.log('User Service getFavourites: ', response);
+                    resolve(response.data);
+                })
+        });
+    }
+
     return{
-        getUserProfile: getUserProfile,
-        changeUserProfile: changeUserProfile,
-        addToFavourites: addToFavourites
+        addToFavourites: addToFavourites,
+        changeUserInfo: changeUserInfo,
+        showUserInfo: showUserInfo,
+        changePassword: changePassword,
+        getFavourites: getFavourites
     }
 })

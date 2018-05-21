@@ -51,11 +51,31 @@ app.config(function ($routeProvider) {
         .when('/logout', {
             controller: 'LogoutController'
         })
-        .when('/user/profile', {
+        .when('/profile', {
             controller: 'UserController',
             templateUrl: '/js/app/controllers/user/profile.html',
             title: 'Моят профил'
         })
+        .when('/profile/change-password', {
+            controller: 'UserController',
+            templateUrl: '/js/app/controllers/user/change-password.html',
+            title: 'Моят профил'
+        })
+        .when('/profile/favourites', {
+            controller: 'UserController',
+            templateUrl: '/js/app/controllers/user/favourites.html',
+            title: 'Моят профил'
+        })
+        // .when('/profile/newsletter', {
+        //     controller: 'UserController',
+        //     templateUrl: '/js/app/controllers/user/newsletter.html',
+        //     title: 'Моят профил'
+        // })
+        // .when('/profile/orders', {
+        //     controller: 'UserController',
+        //     templateUrl: '/js/app/controllers/user/orders.html',
+        //     title: 'Моят профил'
+        // })
         .when('/movies/preview-movie/', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/preview-movie.html'
