@@ -13,5 +13,29 @@ myApp.controller('MovieController', function($scope, $routeParams, MovieService)
         .catch(function(err){
             console.log(err);
         })
-   
+        var indexes = [];
+        $scope.genres = [
+            "Комедия",
+            "Екшън",
+            "Драма",
+            "Анимация",
+            "Криминален",
+            "Романтичен",
+            "Фентъзи",
+            "Мюзикал",
+            "Трилър",
+            "Ужаси",
+            "Биографичен",
+            "Исторически",
+            "Научно-популярен",
+            "Технологичен",
+            "Документален"
+        ];
+        $scope.checkSelected = function(){
+            if($scope.movie.genres === 0){
+                return false;
+            }
+            return true;
+        }    
+       console.log($scope);
 })

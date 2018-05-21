@@ -25,13 +25,13 @@
                                 <div ng-message="max">Времетраенете трябва да е не повече от 220 минути</div>
                             </div>
                         </div>
-                        <div class='container'>
+                        <div class='container' ng-controller="DatePickerController">
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 left">
                                     <p class="form-group ">
                                         <label class='form-label'>Дата на премиера *</label>
                                         <div class='movieDate col-md-15'>
-                                            <input type="text" name="date" class="form-control" readonly="readonly" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup.opened" datepicker-options="dateOptions" required close-text="Close" alt-input-formats="altInputFormats" />
+                                            <input type="text" name="date" class="form-control" readonly="readonly" uib-datepicker-popup="{{format}}" value="{{movie.premierDate}}" ng-model="movie.premierDate" is-open="popup.opened" datepicker-options="dateOptions" required close-text="Close" alt-input-formats="altInputFormats" />
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
                                             </span>
@@ -45,8 +45,8 @@
                         </div>        
                         <div class="form-inline col-xs-12" style="padding-left:0">
                             <label class="form-label">Жанр *</label>
-                                <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="genre in genres">
-                                    <input type="checkbox" name='option' value="{{::genre}}" ng-model="movie.genres[$index]" class="form-check-input" ng-required="movie.genre.length === 0"/>
+                                <div class="form-check col-xs-4" style="padding-left:0"  ng-repeat="genre in genres track by $index">
+                                    <input type="checkbox"  name='option' ng-model="movie.genre[$index] "ng-checked="movie.genre[$index]" class="form-check-input" ng-required="movie.genre.length === 0" />
                                     <label class="form-check-label" >{{::genre}}</label>
                                 </div>      
                                 <div ng-messages="form.option.$error" ng-show="form.option.$invalid && form.option.$touched">
@@ -72,10 +72,13 @@
                                     <ng-message when="required"> Това поле е задължително</ng-message>
                                 </div> 
                             </div>                               
-                            <div class='col-xs-6'>
-                                <label class="form-label" for="exampleFormControlFile1">Снимка на директор </label>
+                            <div id="hide" class='col-xs-6'>
+                                <label class="form-label" for="exampleFormControlFile1">Снимка на директор 
                                 <!-- <input type="file" class="form-control-file" ng-model="movie.director.image" style="padding-bottom:30px" name="directorImage" value='{{ director.img }}' id="exampleFormControlFile1"> -->
-                                <input type="file" ng-file-select="onFileSelect($files)" ng-model="movie.director.image" >
+                                <input type="file" ng-file-select="onFileSelect($files)" accept="image/*" ng-model="movie.director.img" >
+                                </label>
+                                <span ng-file-select="onFileSelect($files)" class="btn btn-primary btn-lg" role="button">Test</span>
+
                             </div>
                         </div>                                
                         <div class="form-group">
@@ -112,11 +115,11 @@
                             <label class="form-label"> Дублиран *</label>
                             <div class="radio" >
                                 <label>
-                                    <input type="radio" ng-model="movie.dublaj" name="dublaj" value="1" ng-required="true">
+                                    <input type="radio" ng-model="movie.dublaj" ng-value="true" name="dublaj" value="1" ng-required="true">
                                         Да
                                 </label>
                                 <label style="margin-left: 10px">
-                                    <input type="radio"  name="dublaj" ng-model="movie.dublaj" value="0" ng-required="true">
+                                    <input type="radio"  name="dublaj" ng-model="movie.dublaj" ng-value="false" value="0" ng-required="true">
                                     Не
                                 </label>
                             </div>   

@@ -16,6 +16,18 @@ myApp.factory('CinemaService', function($http) {
                     });
             });
         },
+        getCinema: function(projection){
+            return new Promise(function(resolve, reject){
+                $http.get('/api/cinema/'+ projection.kinoId+ '/' + projection.zalaID )
+                    .then(function(response){
+                        cinema = response.data;
+                        resolve(cinema);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    })
+            })
+        },
         addCinema: function(cinema){
             return new Promise(function(resolve, reject) {
                 $http.post('/api/cinema/add', { cinema: cinema })
@@ -33,18 +45,32 @@ myApp.factory('CinemaService', function($http) {
             });
         },
         getProjections: function(id){
+            console.log(id + 'Id na kino');
             return new Promise(function(resolve, reject){
-                console.log(id);
                 $http.get('/api/cinema/projections/'+id)
-                .then(function(response){
-                    console.log(response);
-                    cinema = response.data.cinema;
-                    resolve(cinema);
-                })
-                .catch(function(err){
-                    reject(err);
-                })
+                    .then(function(response){
+                        console.log(response);
+                        cinema = response.data.cinema;
+                        resolve(cinema);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    })  
             })
-        }
+        },
+        addProjections: function(projections, cinema){
+            console.log(cinema, 'cinema');
+            return new Promise(function(resolve, reject){
+                $http.post('/api/projections/add/'+ cinema.kinoID , { projections : projections})
+                    .then(function(response){
+                        console.log(response);
+                        projections = response.data;
+                        resolve(projections);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    })
+            })
+        },
     }
 });
