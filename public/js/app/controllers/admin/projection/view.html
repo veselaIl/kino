@@ -3,14 +3,32 @@
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         <a href='#!/projections/add'>Добави прожекция</a> 
     </div>
-    
-    <div class="itemsPerPage">
+   <div class="itemsPerPage">
         <span class="currentTime" ng-model="today">{{ today.format('MMM Do YYYY HH:mm:ss') }}</span> 
         <label class="projectionsPerPage" for="search">Прожекции на страница:
             <input type="number" min="1" max="100" class="contol" ng-model="pageSize">
         </label>
     </div>
+       
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped first-table">
+        <thead>
+            <tr>
+                <th colspan="4">Следваща прожекция</th>
+            </tr>
+        </thead>
+        <tbody class="next">
+            <tr >
+                <td> {{ allProjections[0].time}} </td>
+                <td> {{ allProjections[0].movie}}</td>
+                <td> {{ types.availableOptions[allProjections[0].type - 1].name }}</td>
+                <td><a href="#!/projections/{{allProjections[0]._id}}" class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-eye-open"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+       
         <thead>            
             <tr class='head-table'>
                 <th st-sort="time">
@@ -25,13 +43,13 @@
         </thead>
         <tbody>
 <!-- CHANGED -->
-			<tr dir-paginate="projection in allProjections | filter:q | itemsPerPage: pageSize  | orderBy: 'time'  track by $index " current-page="currentPage">
+			<tr dir-paginate="projection in allProjections.slice(1) | itemsPerPage: pageSize  | orderBy: 'time'  track by $index " current-page="currentPage">
 				<td>
                  <h5>{{ projection.time }}</h5>
                  <span>{{ projection.mesta }}</span>
                 </td>
                 <td>{{ projection.movie }}</td>
-                <td>{{ types.availableOptions[projection.type].name }}</td>
+                <td>{{ types.availableOptions[projection.type - 1].name }}</td>
 				<td><a href="#!/projections/{{projection._id}}" class="btn btn-sm btn-danger">
 				    <i class="glyphicon glyphicon-eye-open"></i></button>
 				</td>

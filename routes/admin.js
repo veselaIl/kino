@@ -18,7 +18,22 @@ router.get('/admin/cinema', function(req, res) {
     console.log(err);
   });
 })
-
+// GET CINEMA
+router.get('/api/cinema/:id/:zala', function(req, res){
+  var cinema;
+  console.log(req.params);
+  req.db.get('kino').find({ kinoID : +req.params.id}, {}, {zali :{ $elemMatch: { zalaID : +req.params.zala}}})
+    .then(function(data){
+      // console.log(data)
+      cinema = data[0] || {};
+      res.json({ cinema: cinema })
+    })
+    .catch(function(err){
+      console.log(err);
+      res.status(err.status || 500);
+      res.send();
+    })
+})
 // ADD CINEMA
 router.post('/api/cinema/add', function(req, res){
   var cinema, 
@@ -62,27 +77,20 @@ router.post('/api/cinema/add', function(req, res){
 });
 //  GET PROJECTIONS IN CINEMA 
 router.get('/api/cinema/projections/:id', function(req, res){
-  req.db.get('kino').find({ kinoID: +req.params.id})
-    .then(function(cinema){
-      if(cinema){
-        console.log('cinema', cinema);
-        res.json({ cinema : cinema})
-      }else{
-        res.status(err.status || 400);
-        res.send();
-      }
-    })  
+  req.db.get('kino').find({ kinoID : req.params.id})
+    .then(function(data){
+      var cinema = data[0] || {};
+      res.json({ cinema: cinema});
+    })
     .catch(function(err){
-      console.log('catch', err);
-      res.status(err.status || 400);
-      res.send();
+      res.status(err.status || 500);
+      res.send;
     })
 });
 /* GET projections cinemas page. */
 router.get('/api/projections/', function(req, res) {  
   req.db.get('projection').find()
     .then(function(data){
-      console.log(data);
       res.json(Array.isArray(data) ? data : [])})
     .catch(function(err){
       console.log('catch', err);
@@ -94,7 +102,6 @@ router.get('/api/projections/', function(req, res) {
 router.get('/api/projects/', function(req, res) {  
   req.db.get('projection').find()
     .then(function(data){
-      console.log(data);
       res.json(Array.isArray(data) ? data : [])})
     .catch(function(err){
       console.log('catch', err);
@@ -114,45 +121,60 @@ router.get('/api/projections/:id', function(req, res){
       res.send();
     })
 })
-/* ADD PROJECTION TO CINEMA */
-router.post('/api/projection/add', function(req, res){
-  var projection, 
-      id;
+// /* ADD PROJECTION TO CINEMA */
+// router.post('/api/projection/add', function(req, res){
+//   var projection, 
+//       id;
 
-  req.db.get('projections').find(
-    { },
-    { sort: { projectionID: -1}},
-    function(err, docs) {
-      id = +docs[0].projectionID;
+//   req.db.get('projections').find(
+//     { },
+//     { sort: { projectionID: -1}},
+//     function(err, docs) {
+//       id = +docs[0].projectionID;
 
-      console.log(req.body);
-      if (req.body){
-        projection = {
-          movieID: req.body.projection.movie,
-          zalaID: req.body.projection.zalaID,
-          kinoID: req.body.projection.kinoID,
-          projections : req.body.projection.projections
-        }
-        req.db.get('projections')
-        .insert(projection)
-        .then(function(projection){
-          res.json({ text: 'Projection successfully added', projection : projection});
-        })
-        .catch(function(err){
-          console.log(err);
-          res.status(err.status || 500);
-          res.send();
-        });
-      } else {
+//       console.log(req.body);
+//       if (req.body){
+//         projection = {
+//           movieID: req.body.projection.movie,
+//           zalaID: req.body.projection.zalaID,
+//           kinoID: req.body.projection.kinoID,
+//           projections : req.body.projection.projections
+//         }
+//         req.db.get('projections')
+//         .insert(projection)
+//         .then(function(projection){
+//           res.json({ text: 'Projection successfully added', projection : projection});
+//         })
+//         .catch(function(err){
+//           console.log(err);
+//           res.status(err.status || 500);
+//           res.send();
+//         });
+//       } else {
+//         res.status(err.status || 500);
+//         res.send();
+//       } 
+//   })
+// });
+router.post('/api/projections/add/:kinoID', function(req, res){
+  console.log(req.body);
+  console.log(req.params);
+  if(req.body.projections){
+    req.db.get('kino').findOneAndUpdate({ kinoID : +req.params.kinoID }, {$push: { projections : req.body.projections }})
+      .then(function(data){
+        console.log(data);
+        res.json({projections: projections})
+      })
+      .catch(function(err){
+        console.log(err);
         res.status(err.status || 500);
         res.send();
-      } 
-  })
-});
+      })
+  }
+})
 /* ADD PROJECTIONS */
 router.post('/api/projections/add', function(req, res){
 
-  console.log(req.body.projections);
   if (req.body.projections){
     req.db.get('projection')
     .insert(req.body.projections)
@@ -239,7 +261,7 @@ router.get('/admin/cinema/details/:kinoID?newSalloon', function(req, res){
 router.get('/api/movies', function(req, res){
   req.db.get('movies').find().then(function(movies){
     if(movies.length){
-      console.log('Movies', movies)
+      // console.log('Movies', movies)
       res.json(movies);
     }else{
       console.log('No movies')
