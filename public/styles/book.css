@@ -1,0 +1,2655 @@
+/**
+* Organizing all styles specific to the checkout process and new design; many styles have been moved over from existing stylesheets and reduced to accomodate new design and simplification priority.
+  * Carolyn Pierce Oct 2013
+ */
+
+/* -----------------------------------*/
+/* =Helper Classes and Base / Foundation Overrides   */
+/* -----------------------------------*/
+
+html { padding: 0; margin: 0; height: 100%; }
+body { background-color: #fff; height: 100%; }
+body a{-webkit-transition: none; -moz-transition: none; -o-transition: none; transition: none;}
+form { background-color: #EBEBEB; margin: 0; }
+
+#siteContainer { background-color: #EBEBEB; }
+.remove { display: none!important; }
+.collapseEmpty { display: none; }
+p.lead { line-height: normal; margin-bottom: 15px; }
+
+
+/* -----------------------------------*/
+/* =Error Managment                   */
+/* -----------------------------------*/
+
+.errorText,
+.successText  { color: #f15500; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px; margin-bottom: 16px; }
+.error h5,
+.errorText h5,
+.errorText p { color: #f15500; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px; margin-bottom: 5px; text-transform: none; }
+.errorText div { color: #f15500 !important; }
+
+.error ul { margin-bottom: 10px; }
+.error li { color: #f15500; list-style: disc outside none; margin: 0 0 0 13px; padding: 0 0 3px 1px; }
+
+.errorText ul { margin-bottom: 0px; }
+.errorText li { line-height: 18px; margin-bottom: 5px; list-style: disc outside none; margin: 0 0 0 13px; padding: 0 0 3px 1px; }
+
+.ticketBoxoffice .errorMessages { border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 5px; }
+.ticketBoxoffice .errorMessages.noborder { border: none; margin: 0px; padding: 0px; }
+.ticketBoxoffice .errorMessages .errorHeaderMessage { margin: 0 0 12px 0px; }
+.ticketBoxoffice .errorMessages.noborder .errorHeaderMessage { margin: 0px; }
+.ticketBoxoffice .errorMessages .errorSupportingMessages { margin: 0 0 9px 25px; }
+.ticketBoxoffice .errorMessages .errorFooterMessage { margin: 0 0 10px 0px; }
+
+.ticketBoxoffice .errorMessages #removePromo { color: black; }
+.ticketBoxoffice .errorMessages #promoRemoved { color: green; }
+
+.signin #primary > div.error { margin: 10px 0; padding: 8px 10px; display: block; }
+.errorState input { border: 1px solid #FF0000; /*background: #f1e6e6;*/ }
+.errorText .error { color: #f15500; }
+.error .threeCol160 #sub_content { width: 180px; }
+.error #primary .errorText h3.error { border-bottom: 0; }
+
+.module-alternate .errorText { margin-bottom: 0px; }
+
+.ctaDropdown { cursor: pointer; color: #4AA7F6; display: inline; position: relative; z-index: 0; }
+
+.ctaDropdown:before { border-color: transparent transparent transparent #4AA7F6; border-style: solid; border-width: 6px 0 6px 8px; bottom: 3px; content: ""; display: block; right: -16px; position: absolute; width: 0; }
+.ctaDropdown:hover:before { border-color: transparent transparent transparent #0286F2;}
+.ctaDropdown:after { border-color: transparent transparent transparent #FFF; border-style: solid; border-width: 3px 0 3px 4px; bottom: 6px; content: ""; display: block; right: -12px; position: absolute; width: 0; }
+
+.ctaDropdown.collapse:before{border-width: 8px 6px 0; bottom: 5px; border-color: #4AA7F6 rgba(0, 0, 0, 0)}
+.ctaDropdown.collapse:hover:before{border-color: #0286F2 rgba(0, 0, 0, 0)}
+.ctaDropdown.collapse:after{border-width: 4px 3px 0; bottom: 9px; border-color: #FFFFFF  rgba(0, 0, 0, 0); right: -13px;}
+
+.ctaBack { cursor: pointer; color: #4AA7F6; display: inline-block; position: relative; z-index: 0;margin-left: 10px; }
+.ctaBack:before {
+    border: 3px solid#fff;
+    content: "";
+    display: block;
+    position: absolute;
+    left: -9px;
+    bottom: 5px;
+    width: 0;
+    -webkit-box-shadow: 2px 2px 0 1px #4AA7F6; 2px 2px 0 1px #4AA7F6; 2px 2px 0 1px #4AA7F6;
+    box-shadow: 2px 2px 0 1px #4AA7F6;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    pointer-events: none;
+    z-index: 1;
+}
+.ctaBack:hover {color: #0286F2; }
+
+
+/*no fancy stuff for ie8*/
+.ie8 .ctaDropdown:before,
+.ie8 .ctaDropdown:hover:before,
+.ie8 .ctaDropdown:after { display: none; }
+
+/********PAGE LAYOUT********/
+.commonContainer { width: 937px; margin: 0px auto; position: relative; }
+/* for pages with the .com header*/
+.noNav { padding-top: 50px;}
+.hasNav { padding-top: 100px; }
+form .row .row { margin: 0; }
+.row > div { vertical-align: top; }
+.row > div:last-child { margin-right: 0px; }
+
+.row .row { margin-left: 0px; }
+
+.main { padding-top: 0; width: 620px; display: inline-block; margin: 0 15px 0 0; vertical-align: top; /* added this to fix the VMe lightbox. hopefully it does not break anything */ position: inherit; }
+.main:after { content: ""; clear: both; height: 1px; width: 1px; display: block; }
+
+.side { width: 298px; display: inline-block; font-size: 13px; vertical-align: top; }
+.side:after { content: ""; clear: both; height: 1px; width: 1px; display: block; }
+
+
+.wide { }
+.wide:after { content: ""; clear: both; height: 1px; width: 1px; display: block; }
+
+/* wider main container */
+.twoCol180 .main { width: 736px; }
+.twoCol180 .side { width: 180px; }
+
+
+/* wider main container used on promo pages*/
+.twoCol160 .main { width: 746px; }
+.twoCol160 .side { width: 160px; }
+
+
+/* wider main container used on check balance*/
+.twoCol300 .main { width: 606px; }
+.twoCol300 .side { width: 300px; }
+
+/* .com pages that are wider */
+.dotComContainer {  width:1260px}
+.dotComContainer .main { width: 932px; }
+.dotComContainer .side { width: 300px; }
+
+
+/* -----------------------------------*/
+/* =Generic Utilities                 */
+/* -----------------------------------*/
+.block-center { text-align: center; }
+
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after { content: " "; /* 1 */ display: table; /* 2 */ }
+
+.cf:after { clear: both; }
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf { *zoom: 1; }
+
+/********TOP OF THE PAGE KIND OF STUFF********/
+
+
+
+
+ul.breadcrumb { display: inline-block; width: 295px; float: right; padding: 0; color: #cccccc; font-family: 'Times New Roman'; font-size: 18px; font-style: italic; margin-bottom: 0px; }
+
+.breadcrumb li { display: inline-block; position: relative; }
+.breadcrumb li.complete { color: #4c4c4c; }
+
+/*Line between steps*/
+.breadcrumb li:before {z-index:1; background: none repeat scroll 0 0 #CCCCCC; bottom: 33px; content: ""; height: 1px; left: 36px; position: absolute; width: 84px; }
+.breadcrumb > *:first-child:before { display: none; }
+.breadcrumb li.complete:before { background: none repeat scroll 0 0 #4c4c4c; }
+.breadcrumb li.payment:before { left: -64px; }
+.breadcrumb li.confirmation:before { left: -47px; }
+
+/*horizontal spacing for steps*/
+.breadcrumb li.tickets { margin-right: 46px;  width:50px; }
+.breadcrumb li.payment { margin-right: 23px; width:63px; }
+.breadcrumb li.confirmation { width:97px; }
+
+/* Target tablets*/
+@media screen  {
+    /*.breadcrumb li.payment:before { left: -20px; }*/
+
+}
+
+/* Target Chrome only*/
+/*@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .breadcrumb li:after { left: 38px; }
+    .breadcrumb li.tickets { margin-right: 45px; }
+    .breadcrumb li.payment { margin-right: 22px; }
+}*/
+
+
+.breadcrumb .icon { margin: 0px auto 4px auto;  display: block; vertical-align: bottom;
+  height: 24px;
+    width: 24px;
+    padding: 2px 7px;
+border-radius:12px;
+border:1px solid #4C4C4C;
+z-index:99;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100%;     /* Old browsers */
+    -moz-background-size: 100%;     /* FF3.6+ */
+    -webkit-background-size: 100%;     /* Chrome,Safari4+ */
+    -o-background-size: 100%;     /* Opera 11.10+ */
+    -ms-background-size: 100%;     /* IE10+ */
+    background-origin: content-box;     /* Old browsers */
+    -moz-background-origin: content-box;     /* FF3.6+ */
+    -webkit-background-origin: content-box;     /* Chrome,Safari4+ */
+    -o-background-origin: content;     /* Opera 11.10+ */
+    -ms-background-origin: content;     /* IE10+ */
+    text-indent: -999em;
+    opacity:0.3;
+
+}
+
+/* darker styling for incomplete or inactive step*/
+.breadcrumb .tickets .icon { background-image: url(../../../../images/commerce/shared/icon-ticket-dark.svg); height:24px; width:24px; padding:2px 4px; }
+.breadcrumb .payment .icon {   background-image: url("../../../../images/commerce/shared/icon-currency.svg"); }
+.breadcrumb .confirmation .icon { background-image: url(../../../../images/commerce/shared/icon-check.svg); height:24px; width:24px; padding:2px 5px;  }
+
+/* darker styling for completed or active step*/
+.breadcrumb .tickets.complete .icon { opacity:1.0; }
+.breadcrumb .payment.complete .icon {  opacity:1.0;  }
+.breadcrumb .confirmation.complete .icon {  opacity:1.0;  }
+
+/* -----------------------------------*/
+/* =Modules                           */
+/* -----------------------------------*/
+/* modules with standard padding all around */
+
+.module { margin-bottom: 20px; position: relative; background: #fff; padding: 20px 20px 20px 20px; border: 1px solid #ccc; }
+.module-standard .module { padding: 0px; border: none; margin: 0px; }
+
+.module-double { position: relative; border: 1px solid #ccc; margin-bottom: 0px; background: #fff; display: table; border-bottom: none; }
+.module-double .module { width: 50%; background: none; display: inline-block; border: none; border-right: 1px solid #ccc; margin-bottom: 0px; vertical-align: top; }
+.module-double .module-standard:last-child,
+.module-double .module:last-child { border: medium none; padding-left: 40px; float: right; }
+    /*Don't have extra padding on gift card order*/
+    .module-double .create:last-child { padding-left: 20px;}
+
+
+.module-double:after { clear: both; height: 100%; width: 1px; height: 1px; }
+
+.module-double .module-standard { width: 50%; background: none; display: inline-block; border: none; margin-bottom: 0px; vertical-align: top; }
+.module-double .module-standard:after { border-color: #CCCCCC; border-style: solid; border-width: 1px 0 0 1px; clear: both; content: ""; height: 100%; left: -1px; position: absolute; top: 0; width: 1px; z-index: 10; }
+.module-double .module-standard:last-child { float: right; }
+
+
+.module-standard { margin-bottom: 20px; position: relative; background: #fff; padding: 20px 20px 20px 20px; border: 1px solid #ccc; }
+
+.module-stacked { border-bottom: 1px solid #ccc; }
+.module-stacked .module-standard { margin-bottom: 0px; border-bottom: none; }
+
+.module-standard .module-standard { }
+
+.module-standard > fieldset:last-child,
+.module-standard > div:last-child,
+.module-standard > p:last-child { margin-bottom: 0px; }
+
+.module-standard .paymentSectionDividerLine {
+    border-bottom: 1px solid #ccc;
+    margin: 15px -20px 20px -20px;
+}
+
+#pageError,
+#pageSuccess { margin-bottom: 0px; position: relative; background: #fff; padding: 8px 20px; border: 1px solid #ccc; border-bottom: 0; }
+
+.errorText i,
+#pageError i { background: url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll -74px -111px #FFFFFF; display: inline-block; height: 20px; margin-right: 0; padding: 7px 8px; position: relative; top: 4px; width: 22px; }
+/* used for the "Or"*/
+.module-option { background: none repeat scroll 0 0 #CCCCCC; border-radius: 39px; color: #FFFFFF; font-family: "alternate-gothic-no-1-d","Futura Condensed","Arial Narrow",Arial,sans-serif; font-size: 36px; left: 46.8%; padding: 9px 12px 5px; position: absolute; text-transform: uppercase; top: 38%; z-index: 99; }
+
+.side .module-standard { margin-bottom: 0px; border-bottom: 0px; }
+.side .module-timer { padding:10px 20px;}
+
+/* modules that have a gray bg. Used for error messages and the right column ticket total */
+.module-alternate { margin-bottom: 0; position: relative; background: ##EBEBEB; padding: 10px 20px; border: 1px solid #ccc; border-bottom: 0px; }
+.side .module-alternate { padding: 10px 15px; }
+
+.module-no-padding { padding: 0; }
+/* modules that have the notch ticket cutout along the bottom. Require at least one child element in order for the "notch" to show up. */
+.module-cutout { background: none repeat scroll 0 0 #fff; border: 1px solid #ccc; color: #333; margin: 0; padding: 15px 20px 13px; position: relative; text-align: center; }
+
+.side .module-cutout { border-bottom: 1px solid #ccc; }
+
+.module-cutout:before { background: none repeat scroll 0 0 rgba(0,0,0,0); border-color: #ccc; border-style: solid; border-top-left-radius: 30px; border-width: 1px 0 0 1px; bottom: 0; content: ""; display: block; height: 15px; left: 129px; position: absolute; width: 15px; z-index: 10; }
+
+.module-cutout:after { background: none repeat scroll 0 0 rgba(0,0,0,0); border-color: #ccc; border-style: solid; border-top-right-radius: 30px; border-width: 1px 1px 0 0; bottom: 0; content: ""; display: block; height: 15px; left: 144px; position: absolute; width: 15px; z-index: 10; }
+
+.module-cutout > *:first-child:after { background: none repeat scroll 0 0 #ebebeb; border-top-left-radius: 30px; border-top-right-radius: 30px; bottom: -2px; content: ""; height: 16px; left: 130px; position: absolute; width: 30px; }
+
+/*no fancy stuff for ie8*/
+.ie8 .module-cutout:before,
+.ie8 .module-cutout:after,
+.ie8 .module-cutout > *:first-child:after { background: none; border: none; }
+.ie8 .module-cutout p { margin: 0px; }
+
+.module-cutout p { margin: 0 0 10px 0; }
+.module-cutout p:last-child { margin: 0 0 9px 0px; }
+
+
+/* Carolyn: this might no longer be necessary, so commenting out other module types for now.*/
+/* modules with no right padding for lists */
+/*.module-standard-visual {
+    margin-bottom: 20px;
+    position: relative;
+    background: #fff;
+    padding: 20px 0 20px 20px;
+    border: 1px solid #ccc;
+}*/
+/*.module-alternate-visual {
+    margin-bottom: 20px;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 0 2px 1px rgba(30,30,30,.1);
+    padding: 15px 0 15px 20px;
+    font-size: 0;
+}*/
+
+/* modules for legacy pages */
+/*.module-full-bleed {
+    background: #fff;
+    box-shadow: 0px 0px 2px 1px rgba(30,30,30, 0.10);
+}*/
+
+/* borderless module */
+/*.module-visual {
+    margin-bottom: 20px;
+    position: relative;
+}*/
+
+.module-inline-header { padding: 20px 0 10px 10px; }
+
+
+/* -----------------------------------*/
+/* =Advertising                       */
+/* -----------------------------------*/
+/* normal ad modules in-page */
+.module-ad { margin-bottom: 20px; position: relative; z-index: 1; }
+.module-ad:after { background: transparent url(../images/advert-bg.gif) no-repeat right bottom; width: 300px; height: 10px; content: " "; position: absolute; right: 0; bottom: -11px; }
+
+/********Ad HEADER ********/
+#header-wrapper { margin: 0 auto; background-color: #EBEBEB; }
+.GoogleActiveViewClass { padding: 10px 0; }
+.side .GoogleActiveViewClass { padding: 0; }
+#ad_banner_top { text-align: center; }
+
+/********MAIN HEADER ********/
+#HeaderContainer,
+#headerContainer { display: block; /*height: 60px;*/ margin: 0 auto 30px auto; padding: 0; position: relative; }
+#headerPurchase { background: #333; height: 60px; }
+/*#headerPurchase * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }*/
+
+
+#guestpurchase_ad { float: right; padding: 0 12px 0 0; }
+
+/* Changed to new logo*/
+
+
+#logo {
+    display: block; margin: 0; position: relative; top: 9px; width: 222px;
+    height: 42px;
+    background-image: url(../../../../images/commerce/shared/fan_h_web-mpp.svg);
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100%; /* Old browsers */
+    -moz-background-size: 100%; /* FF3.6+ */
+    -webkit-background-size: 100%; /* Chrome,Safari4+ */
+    -o-background-size: 100%; /* Opera 11.10+ */
+    -ms-background-size: 100%; /* IE10+ */
+    background-origin: content-box; /* Old browsers */
+    -moz-background-origin: content-box; /* FF3.6+ */
+    -webkit-background-origin: content-box; /* Chrome,Safari4+ */
+    -o-background-origin: content; /* Opera 11.10+ */
+    -ms-background-origin: content; /* IE10+ */
+    text-indent: -999em;
+
+}
+body.nosvg #logo { background-image: url(../../../../images/commerce/shared/fan_h_web-mpp.png); }
+#logo a { display: block; height: 42px; margin: 0; text-decoration: none; text-indent: -200em; width: 222px; }
+
+
+
+/*#nav_shadow { background: url("../../../../images/global/nav_shadow.png") repeat-x scroll left center transparent; bottom: 0px; height: 4px; position: static; width: 960px; z-index: -1; }*/
+
+#bannerMessage { color: #FFFFFF; float: right; font-family: 'Times New Roman'; font-size: 18px; font-style: italic; line-height: 56px; position: absolute; right: 0; text-align: right; z-index: 98; }
+.hasMemberGreeting #bannerMessage{ display:none; }
+
+#memberGreeting {
+    color: #ebebeb;
+    float: right;
+    font-family: "proxima-nova",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 60px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    z-index: 97;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/******** END MAIN HEADER ********/
+
+/******** FOOTER********/
+#footerContainer { text-align: center; background-color: #fff; bottom: 0; margin-bottom: 0; margin-top: 100px; width: 100%; }
+/**//*#footerContainer { text-align: center; background-color: #fff; bottom: 0; margin-bottom: 0; margin-top: 60px; width: 100%; }*/
+
+#footer { height: auto; }
+#footer a { text-decoration: none; }
+#footer #contents { padding: 0px; }
+#footer ul { padding: 27px 0 0 0; }
+#footer p { padding: 27px 0 0 0; margin: 0; font-size: 14px; }
+#footer ul + p,
+#footer p + p { padding: 10px 0 27px 0; }
+
+/*nbcu pixel is adding the image <img src="//www.nbcudigitaladops.com/hosted/housepix.gif"> which is adding whitespace under the foother */
+#siteContainer > img { width: 0; height: 0; display: block; }
+/******** END FOOTER********/
+
+
+/* -----------------------------------*/
+/* Typography and Headings            */
+/* -----------------------------------*/
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+
+/*#heading .section-header { margin-top:0px;}*/
+
+.section-header { /*border-bottom: 10px solid #4c4c4c;*/ line-height: 29px; /*padding:0px;*/ font-size: 38px; display: inline-block; }
+.section-header:after { background: none repeat scroll 0 0 #ebebeb; /*width:12px;*/ }
+/*no fancy stuff for ie8*/
+.ie8 .section-header:after { background: none; }
+
+h1.header-primary { font-size: 38px; line-height: 35px; margin: 0; }
+
+.module h2,
+.module-standard h2,
+h2.header-secondary { /*color: #4C4C4C;*/ font-size: 26px; line-height: 21px; margin-bottom: 14px; margin-top: 0; }
+    .mBox .module h2 {  margin-bottom: 14px !important; }
+
+.module-standard h2.inline { vertical-align: middle; margin: 0; }
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    h2, h2.header-secondary { line-height: 23px; }
+}
+
+h2.header-secondary span.offer { background: url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll -42px -80px #FFFFFF; display: inline-block; height: 22px; margin-right: 10px; width: 18px; }
+h2 span.secondary { font-family: "proxima-nova", Helvetica, Arial, sans-serif; color: #929292; text-transform: capitalize; font-weight: 400; font-size: 14px; display: inline-block; }
+/*h2.inline{margin-bottom:0}*/
+
+h3 { font-size: 26px; }
+h3.movieTitle,
+h3#movieTitle {font-size: 28px; font-weight: normal; margin: 0; line-height: 23px; }
+/**//*h3#movieTitle { font-weight: normal; margin: 0; line-height: 22px; }*/
+
+.strikethrough,
+.loyalty-strikethrough { text-decoration:line-through; }
+
+/* -----------------------------------*/
+/* =Reset Lists                       */
+/* -----------------------------------*/
+ol,
+ul,
+dl { list-style-image: none; list-style-position: outside; list-style-type: none; line-height: 17px; margin: 0; font-size: 14px; }
+
+ul.policy_nav { display: block; padding-bottom: 10px; }
+ul.policy_nav li { border-left: 1px solid #EBEBEB; float: left; padding: 0 10px; }
+ul.policy_nav li.first { border-left: none; padding-left: 0; }
+
+/* -----------------------------------*/
+/* =Forms                             */
+/* -----------------------------------*/
+label { font-weight: 700; margin-bottom: 6px; }
+
+/*override defaults from foundation*/
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea { box-shadow: none; height: auto; -moz-transition: none; -o-transition: none; -webkit-transition: none; transition: none; }
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, textarea:focus { box-shadow: none; height: auto; -moz-transition: none; -o-transition: none; -webkit-transition: none; transition: none; }
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+label { font-size: 16px; }
+label { text-transform: capitalize; color: #929292; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; font-weight: 400; display: inline-block; }
+label.useRewards { text-transform: none;}
+label span {text-transform: lowercase;  }
+label span.rewardsName {  text-transform: none;}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label { margin: 0; vertical-align: middle; }
+
+input[type=text],
+input[type=password],
+select { font-size: 14px; line-height: 16px; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-weight: 400; color: #4c4c4c; border-radius: 3px; background: #ebebeb; border: 1px solid #929292; padding: 9px 4px; }
+select { padding: 6px 4px; }
+
+input[type=text]:focus,
+input[type=password]:focus,
+select:focus { background: #fff; border: 1px solid #4c4c4c; }
+
+table input[type=text],
+table input[type=password],
+table input[type="file"],
+table input[type="checkbox"],
+table input[type="radio"],
+table select { margin-bottom: 0px; }
+
+/*general form grouping rules*/
+fieldset { border: none; padding: 0; position: relative; margin: 0; }
+
+fieldset > label:last-child,
+fieldset > ul:last-child,
+fieldset > div:last-child,
+fieldset > p:last-child { margin-bottom: 0px; }
+
+.fieldCol2 .fieldContainer { float: left; display: inline-block; margin-right: 10px; }
+.checkoutPage .fieldCol2 { margin-left: 18px; }
+    /* Special formatting to make sure the first / last name block is always vertically aligned to the bottom*/
+    .checkoutPage .customerInfo { display:table; vertical-align:bottom; margin-bottom:10px;}
+    .checkoutPage .customerInfo .fieldContainer { float:none; margin-bottom:0px;}
+.checkoutPage .fieldCol2 .fieldContainer { margin-left: 0px; }
+.form-stacked .fieldCol2 .fieldContainer { clear: none; }
+.fieldCol2 p { margin-bottom: 5px; }
+.fieldContainer .inline-block { display: inline-block; }
+
+
+/* forms where the label is placed to the left of the input */
+.form-inline .fieldContainer { margin-bottom: 10px; vertical-align: middle; }
+
+.form-inline input[type=text],
+.form-inline input[type=password],
+.form-inline select { width: 190px; display: inline-block; background-position: 156px -113px; vertical-align: middle; margin-bottom: 0px; }
+.form-inline label { display: inline-block; width: 95px; vertical-align: middle; margin-bottom: 0; }
+.form-inline .button,
+.form-inline button { vertical-align: middle; display: inline-block; margin-bottom: 0px; margin-left: 10px; }
+
+/* forms where the label is stacked on top of the input*/
+.main .module-double .module-standard:first-child fieldset.form-stacked { width: 366px; min-height: 202px; }
+
+.form-stacked .fieldContainer { margin-bottom: 10px; width: 260px; clear: left; }
+.fieldCol2 .fieldContainer { clear: none; }
+.form-stacked .fieldContainer:last-child { margin-bottom: 0px; }
+.module-double .form-stacked .buttonContainer,
+.module-double .form-stacked .fieldContainer { width: 270px; }
+.module-double .module-standard:last-child .buttonContainer,
+.module-double .module-standard:last-child .fieldContainer { width: auto; }
+
+.form-stacked.fieldContainer input:last-child { margin-bottom: 0px; }
+.form-stacked label { display: block; margin-bottom: 1px; }
+.form-stacked input[type=text],
+.form-stacked input[type=password],
+.form-stacked select { margin-bottom: 0px; }
+.form-stacked .errorText { margin-bottom: 0px; margin-top: 5px; }
+
+.form-stacked button { display: inline-block; top: -2px; }
+
+.fieldControls,
+.fieldActions { display: inline-block; }
+
+
+.form-stacked .fieldControls { width: 261px; margin-right: 5px; vertical-align: top; }
+.form-stacked .fieldActions { width: 83px; }
+
+.field-content .fieldControls { margin-right: 20px; }
+.field-content .fieldCheckControls { margin-right: 0px; display: block; }
+
+.fieldControls .errorText { margin-bottom: 10px; }
+
+section { display: block; }
+section:after { content: ""; clear: both; height: 1px; width: 1px; display: block; }
+
+label.checkbox { min-height: 20px; padding-left: 20px; color: #4C4C4C; width: auto; }
+	label.fanmail,
+	label.createAccount {text-transform:none;}
+    label.createAccount { white-space:nowrap}
+
+label.radio { min-height: 20px; color: #4C4C4C; width: auto; }
+label.radio input { margin-right: 5px; margin-bottom: 5px; }
+
+
+.field-content .form-stacked label,
+.radio > label { padding: 0 0 0 5px; /*why is this font so big? looks funny on promo survey page font-size: 16px;*/ display: inline; }
+.field-content .form-stacked label.checkbox { display: block; }
+
+
+.field-content .form-stacked label.checkboxLabel { padding-left: 20px; }
+.field-content .form-stacked label.stacked { padding: 0px; display: block; }
+
+label.checkbox input[type="checkbox"] { float: left; margin-left: -20px; margin-bottom: 0px; }
+/* Chrome Styled Dropdown*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .form-inline select,
+    select { -webkit-appearance: button; -webkit-border-radius: 2px; -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1); -webkit-padding-end: 32px; -webkit-padding-start: 7px; -webkit-user-select: none; background: url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll 100% -135px #ebebeb; background-position: 100% -135px; border: 1px solid #929292; overflow: hidden; padding-top: 7px; padding-bottom: 7px; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 0px; }
+    select:hover,
+    select:focus { background: url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll 100% -135px #fff; border: 1px solid #4c4c4c; -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1); }
+}
+
+/*@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .expMonthDropdown select { background-position: 109px -113px;}
+    .expYearDropdown select { background-position: 72px -113px;}
+}*/
+
+/*Override deault table styling*/
+table tr th,
+table tr td { color: #4c4c4c; font-size: 14px; }
+
+
+/* -----------------------------------*/
+/* =Button Override                   */
+/* -----------------------------------*/
+
+.buttonContainer { display: block; }
+
+.ticketBoxoffice .buttonContainer {
+
+	border-top:1px solid #ccc;
+	padding-top:25px;
+	margin-top:20px
+}
+
+.buttonContainer .buttonHolder,
+.buttonContainer .button:after,
+.buttonContainer button:after,
+.buttonContainer:after { content: ""; clear: both; height: 1px; width: 1px; display: block; }
+.buttonContainer .buttonHolder,
+.buttonContainer button,
+.buttonContainer .button { margin-bottom: 0px; float: right; }
+
+
+.vs .left { float: left; }
+
+.buttonContainerLeft button,
+.buttonContainerLeft .button { margin-bottom: 0px; float: none; }
+.mobile_delivery .buttonContainerLeft .button {margin-left: 0px; }
+.buttonContainer a.ctaBack {padding-top:15px; }
+
+.button, button, .btn { background: none repeat scroll 0 0 #F15500; border: medium none; border-radius: 4px; box-shadow: none; color: #FFFFFF; cursor: pointer; display: inline-block; font-family: "proxima-nova",Helvetica,Arial,sans-serif; font-size: 16px; font-weight: 600 !important; line-height: 14px; overflow: hidden; padding: 13px 17px 10px; position: relative; -moz-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; }
+.btn:focus,
+.btn:hover,
+button:focus,
+.button:focus,
+button:hover,
+.button:hover { font-size: 16px; background: #ff7900; color: #fff; padding: 13px 17px 10px; }
+
+.button.active,
+/*.button:active,*/
+.btn.active,
+/*.btn:active,*/
+.btn.disabled,
+.btn[disabled],
+button.disabled,
+button[disabled],
+.button.disabled,
+.button[disabled] { border: none; padding: 13px 17px 10px; font-size: 16px; }
+
+input.button[disabled],
+input.button.disabled,
+input.button:hover,
+input.button:focus,
+input.button { height: 38px; line-height: 14px; padding-top: 10px; font-size: 16px; }
+
+button.secondary,
+.button.secondary { font-size: 16px; padding: 10px 17px 10px; background-color: #929292; color: #fff; margin-right:20px; }
+button.secondary:focus,
+.button.secondary:focus,
+button.secondary:hover,
+.button.secondary:hover { font-size: 16px; padding: 10px 17px 10px; background-color: #4c4c4c; color: #fff;margin-right:20px; }
+
+.button.small:focus,
+.button.small:hover,
+button.small:focus,
+button.small:hover,
+button.small,
+.button.small { font-weight: 600 !important; border: none; font-size: 16px; margin-bottom: 0px; padding: 11px 9px 10px 9px;white-space: nowrap; width:auto; }
+button.small[disabled],
+.button.small[disabled] { font-weight: 600 !important; font-size: 16px; border: none; padding: 11px 9px 10px 9px; margin-bottom: 0px; width:auto;}
+
+/* Target Chrome only*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .button.small.disabled:hover,
+    button.small.disabled:hover,
+    .button.small[disabled]:hover,
+    button.small[disabled]:hover,
+    .button.small:focus,
+    .button.small:hover,
+    button.small:focus,
+    button.small:hover,
+    button.small,
+    .button.small { border: none; margin-bottom: 0px; padding: 11px 9px 12px 9px; }
+    button.small[disabled],
+    .button.small[disabled] { border: none; padding: 11px 9px 12px 9px; margin-bottom: 0px;width:auto; white-space: nowrap;}
+
+
+    .button.disabled:hover,
+    button.disabled:hover,
+    .button[disabled]:hover,
+    button[disabled]:hover,
+    button.disabled,
+    button[disabled],
+    .button.disabled,
+    .button[disabled],
+    button:focus,
+    .button:focus,
+    button:hover,
+    .button:hover,
+    .button,
+    button { font-size: 16px; padding: 14px 17px 11px; }
+}
+
+.button.disabled:hover,
+button.disabled:hover,
+.button[disabled]:hover,
+button[disabled]:hover { border: none; }
+
+
+/******** TQP AND PRE-TQP********/
+
+/*.showtimeDate {width:190px; }*/
+.ticketBoxoffice .section.buttonContainer button { float: right; }
+
+/* ticket type column*/
+.ticketType { padding: 0 10px 0 0; font-weight: normal; text-align: left; }
+.ticketBoxoffice .numberofTickets select { width: 55px; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .ticketBoxoffice .numberofTickets select { width: 68px; }
+}
+
+.ticketBoxoffice .numberofTickets input[type="text"] { max-width: 40px; text-align: center; font-size: 18px; }
+.ticketBoxoffice td { padding: 0 10px 0 0; }
+.ticketBoxoffice .help { margin: 0px; }
+.ticketBoxoffice .reservedMessage { padding: 0 0 10px 0; }
+
+
+#multipleAreaToggleController ul li { display: inline-block; margin-right: 20px; }
+
+table.quantityTable { background: none; border: none; }
+table.quantityTable tr th.ticketType { color: #4C4C4C; font-size: 14px; padding-bottom: 7px; padding-right: 10px; text-align: right; /*don't declare width; let it auto scale width: 140px;*/ font-weight: 600; }
+
+table.quantityTable tr td { color: #4C4C4C; font-size: 14px; padding: 0px; padding-bottom: 7px; font-weight: 600; }
+table.quantityTable tr td.extended_desc { font-weight: normal; }
+table.quantityTable tr td.numberofTickets { width: 60px; }
+table.quantityTable tr td.equals,
+table.quantityTable tr td.timesX { width: 10px; }
+table.quantityTable tr td.pricePerTicket { width: 50px; }
+table.quantityTable tr td.rowTotal { width: 100px; }
+table.quantityTable tr td.rowTotal input[type="text"] { background: none; cursor: text; font-weight: 600; width: auto; border-radius: 0px; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    table.quantityTable tr td.numberofTickets { width: 75px; }
+}
+
+table.quantityTable tr.even, table tr.alt, table tr:nth-of-type(2n) { background: none; border: none; }
+
+
+/* the default margin on the bottom causes things to not line up vertically in the ticket table*/
+table.quantityTable td input { margin-bottom: 0px; }
+
+.quantity div.specialNote {
+  color: #919191;
+  display: inline-block;
+  font-size: 11px;
+  margin-top: 10px;
+}
+.quantity span.specialNote { color: #919191; }
+
+/******** Checkout: General********/
+/*13874 - GQ - changed width/height to absolute positioning*/
+.main .inactive { background-color: rgba(255, 255, 255, 0.50); display: block; position: absolute; top: 0; bottom: 0; left: 0; right: 0; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF); z-index: 1; }
+#offersStackContainer { position:relative; padding-top: 5px;}
+#partialLoginSection li { border-top:1px solid #ccc; padding-top:20px; }
+
+/* 13874 - I remove this shit
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .main .inactive { top: 0px; }
+}*/
+
+/* ie8 hack for transparency*/
+.ie8 .main .inactive { background: transparent url(../../../../images/express/color-ffffff-alpha-80.png) 0 0; }
+.main .ghost { background-color: rgba(255, 255, 255, 0.8); display: block; height: 100%; left: -1px; position: absolute; top: 0; width: 100%; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF); }
+
+/* ie8 hack for transparency*/
+.ie8 .main .ghost { background: transparent url(../../../../images/express/color-ffffff-alpha-80.png) 0 0; }
+
+/* need to overwrite the previous style for items to become active DO NOT REMOVE */
+.main .inactive.remove { display: none; }
+#pf_top_ad_div { margin-top: 8px; }
+
+
+.checkoutPage .fieldContainer { margin-left: 18px; }
+
+/******** Checkout: Login Section ********/
+ul.signin { border-top:1px solid #dddddd;margin-top: 0px; padding-top:20px; margin-top:15px; }
+.signinOptions label { font-family: "proxima-nova", Helvetica, Arial, sans-serif; text-transform: uppercase; font-weight: bold; color: #4c4c4c; font-style: normal; }
+.loginOptions .fieldContainer { width: 260px; }
+.signin #loginButton { margin: 3px 0 0 0; float: right; clear: right; }
+.waiting { cursor: wait; }
+.main .link { cursor: pointer; }
+.main #genericPaymentError { margin: 0 0 10px 50px; }
+.main .paymentOptions #genericPaymentError { margin: 0 0 10px 0px; }
+
+.main .paymentOptions #removePromo { display: block; margin: 10px 0 25px 0; color: black; }
+.main .paymentOptions #promoRemoved { display: block; margin: 0 0 20px 0; color: green; }
+
+.main .forgotpw { padding: 0; display: inline-block; margin-bottom: 5px; }
+span.fieldNote,
+.main span.guest { color: #929292; display: inline-block; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; line-height: 16px; text-transform: none; margin-top: 5px; }
+
+.form-inline span.fieldNote { display: block; margin-left: 119px; margin-top: 2px; }
+
+.main .guest.button { width: auto; }
+/*.loggedInOption { display:none; }*/
+.main #welcomeMessage { margin: 0 0 0 14px; /*font-size: 16px;*/ /*display: block;*/ }
+#welcomeMessage, .welcome { display:none; }
+#welcomeMessage.messageTop { margin:0 0 10px 0; }
+/*#welcomeMessage h2 { display:inline-block; }*/
+.welcome h2 { display:inline-block; }
+.checkout .offersStackHR { display:none; }
+
+.main .signOut {  float: right;  font-size: 14px;  padding-left: 9px;  padding-top: 2px;}
+.main .signOutSpinner { float: right; margin:0 0 0 14px; }
+
+li.welcome {margin-bottom:15px; }
+
+.partialSignin { margin-top:15px; }
+.partialSignin .fieldContainer { width: auto; }
+.form-stacked .partialSignin .fieldControls {width:260px;}
+.form-stacked .partialSignin .fieldActions {  width: 93px; margin-top:19px;}
+.main .partialSignin .forgotpw { margin-top:5px;}
+
+.fandangoCredit { margin: -25px 0 25px 0; display: block; }
+    /* remove formatting if displayed within the receipt*/
+	.purchaseBreakDown td.fandangoCredit { display: table-cell; margin: 0;}
+.fandangoCredit .creditMessage { margin:10px 0px 0px 0px;}
+.fandangoCredit .creditMessage span {color:#21a407; }
+
+/******** Checkout: Payment Section ********/
+.ccPayment .fieldContainer { width: 260px; }
+h2 .paymentlock { background: url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll 0 -96px transparent; display: inline-block; margin: 0 0 0 6px; width: 11px; height: 17px; }
+/*.paymentOptions { width:540px;}*/
+
+h3.payment-subheader {font-size: 22px;}
+.expMonthDropdown { display: inline-block; margin-right: 7px; width: 142px; }
+.expYearDropdown { display: inline-block; width: 106px; }
+
+
+.mini { display: inline-block; width: 40px; }
+.small { display: inline-block; width: 65px; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .mini { display: inline-block; width: 60px; }
+}
+
+fieldset ul #creditcard { padding: 0 0 0px 2px; display: inline-block; margin: 0px; }
+fieldset ul #paypal,
+fieldset ul #paypalonetouch,
+fieldset ul #vme { padding: 0; display: inline-block; margin: 0px; cursor:pointer; }
+
+ul.payment { margin-bottom: 0px; }
+ul.payment li { margin-top: 15px; }
+
+.form-stacked ul.signin .errorText { margin-left: 21px; margin-bottom: 5px; margin-top: 0px; }
+.form-stacked ul.saveInfo .errorText,
+.form-stacked ul.joinInfo .errorText,
+.form-stacked ul.loyalty .errorText,
+.form-stacked ul.payment .errorText { margin-left: 21px; margin-bottom: 5px; }
+.form-stacked ul.payment .fieldContainer .errorText { margin-left: 0px; margin-top: 0px; margin-bottom: 5px; }
+.form-stacked ul.payment .fieldContainer #promoMsg { margin-top: 5px; } 
+.form-stacked #updatePasswordError.errorText { margin-bottom:20px; }
+
+.main .paymentRadio { margin-bottom: 7px; vertical-align: middle; }
+
+/*Credit Card Section*/
+label#creditcard span.remove { display: none; }
+label#creditcard span,
+.totalRow .paymentLogo span.creditcard { background: url("../../../../images/express/credit-card-sprite.png") no-repeat scroll 0 0 transparent; display: inline-block; margin: 0; vertical-align: middle; margin-right: 9px; }
+label#creditcard .visa,
+.totalRow .paymentLogo span.visa { background-position: 0 0; height: 38px; width: 53px; }
+label#creditcard .visa.ghost { background-position: -53px 0; }
+label#creditcard .amex,
+.totalRow .paymentLogo span.amex { background-position: 0 -38px; height: 39px; width: 40px; }
+label#creditcard .amex.ghost { background-position: -40px -38px; }
+label#creditcard .mastercard,
+.totalRow .paymentLogo span.mastercard { background-position: 0 -77px; height: 33px; width: 52px; }
+label#creditcard .mastercard.ghost { background-position: -52px -77px; }
+label#creditcard .discover,
+.totalRow .paymentLogo span.discover { background-position: 0 -110px; height: 32px; width: 51px; }
+label#creditcard .discover.ghost { background-position: -51px -110px; }
+/*label#creditcard .chasefreedom {background-position: 0 -142px;height: 33px;width: 53px;}
+label#creditcard .chasefreedom.ghost {background-position: -53px -142px;}*/
+label#creditcard .chasefreedom { display:none!important;}
+/*label#creditcard .visasignature { background-position: 0 -175px; height: 29px; width: 63px; }*/
+label#creditcard .visasignature,
+.totalRow .paymentLogo span.visasignature { background: url("../../../../images/visasignature/visasig-logo-transbg.png") no-repeat scroll 0 0 transparent; height: 35px; width: 65px; background-size: 55px; }
+label#creditcard .americanexpress { background-position: 0 -204px; height: 29px; width: 50px; }
+
+/* add citi logo */
+/*label#creditcard .chasefreedom { display: none; }
+label#creditcard .branding { background-position: 0 -233px; height: 32px; width: 51px; }
+label#creditcard .branding.ghost { background-position: -51px -233px; }*/
+
+.reveal-modal .checkmark,
+.main .checkmark { background: url("../../../../images/express/green-check.png") no-repeat scroll 0 0 transparent; width: 15px; height: 15px; vertical-align: text-top; margin: 0 0 0 5px; }
+/*.main .code { display: block; padding: 1%; cursor: pointer; }*/
+
+/*cvv section*/
+.main .cvvDetail input#cvv { width: 50px; display: inline; min-width: 105px; }
+.main a.cvv { display: inline-block; }
+.main input.cvv { width: 50px; display: inline-block; }
+.main .credit_cvv input.cvv { font-size: 18px; }
+
+.main .highlight { background-color: #ffffc5; }
+
+/*Applepay Section*/
+.applepayPayment{display:none;}
+.applepayPayment span.applepay {
+  margin: 0;
+  height: 34px;
+  width: 57px;
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url("../../../../images/commerce/redesign/payment-icon-applepay.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.applepayPayment .applepayMessage { margin: 10px 30px 0 21px; width: auto; }
+#applepayContinue {
+  width: 202px;
+  text-indent: -9999px;
+  background-color: #000;
+  background-image: url("../../../../images/commerce/redesign/payment-btn-applepay.png");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#applepayContinue:hover,
+#applepayContinue[disabled] {
+  background-color: #333;
+}
+#applepayContinue.apple-pay-setup {
+  background-image: url("../../../../images/commerce/redesign/payment-btn-applepay-setup.png");
+}
+
+/*Paypal Section */
+span.paypal, span.paypalonetouch { background: url("https://www.paypal.com/en_US/i/logo/PayPal_mark_50x34.gif") no-repeat scroll 2px 0 transparent; margin: 0; height: 34px; width: 57px; display: inline-block; vertical-align: middle; }
+.ppPayment .ppal, .paypalonetouchPayment .paypalonetouchMessage { margin: 10px 30px 0 21px; width: auto; }
+
+span.vme { background: url(https://static.v.me/img/vme_accpt_mark.png) no-repeat scroll 2px 0 transparent; margin: 0; height: 34px; width: 105px; display: inline-block; vertical-align: middle; text-indent: -9999em; }
+
+/*Visa Checkout*/
+span.visacheckout { background: url(https://assets.secure.checkout.visa.com/VmeCardArts/partner/POS_vertical_large_49x31.png) no-repeat scroll 2px 0 transparent; margin: 0; height: 34px; width: 56px; display: inline-block; vertical-align: middle; text-indent: -9999em; }
+.totalRow span.visacheckout { background: url(https://assets.secure.checkout.visa.com/VmeCardArts/partner/POS_vertical_large_49x31.png) no-repeat scroll 2px 0 transparent; margin: 0; height: 31px; width: 49px; display: inline-block; vertical-align: middle; text-indent: -9999em; }
+.visaCheckoutPayment .visaCheckoutMessage { margin: 10px 30px 0 21px; width: auto; }
+
+span.helpImg { background: none repeat scroll 0 0 #999999; border-radius: 40px; color: #FFFFFF; cursor: pointer; display: inline-block; font-size: 13px; font-weight: bold; margin: 0 3px; padding: 1px 6px; position: relative; top: -2px; }
+
+/*MasterPass Section*/
+span.masterPass {
+    background: url(https://static.masterpass.com/dyn/img/acc/en/US/mp_acc_060px.png) no-repeat scroll 2px 0 transparent;
+    margin: 0;
+    height: 34px;
+    width: 56px;
+    display: inline-block;
+    vertical-align: middle;
+    text-indent: -9999em;
+    background-size: 49px;
+}
+.totalRow span.masterPass { background: url(https://www.mastercard.com/mc_us/wallet/img/en/US/mp_mc_acc_030px_gif.gif) no-repeat scroll 2px 0 transparent; margin: 0; height: 31px; width: 49px; display: inline-block; vertical-align: middle; text-indent: -9999em; }
+.masterPassPayment .masterPassMessage { margin: 10px 30px 0 21px; width: auto; }
+
+/*#fanMailOptInCheckBox { margin: 0 0 0 22px; }
+.main #fanMailOptInCheckBox + label { font-size: 13px; }*/
+
+/******** Checkout: Gift Card Section ********/
+.paymentLink .fieldContainer { width: auto; margin-top: 5px; }
+
+.paymentLink .fandangoGiftcard p {margin:7px 0px;}
+.paymentLink .fieldControls { width: 310px; margin-right: 5px; vertical-align: top; }
+
+.paymentLink .fieldActions { width: 83px; }
+.paymentLink input[type="text"],
+.paymentLink input[type="password"],
+.paymentLink select { /*width:260px;*/ display: inline-block; }
+
+/*.paymentLink  .promo {
+  margin-top: 0;
+}*/
+
+.exhibitorGiftcard .giftCardNumber { margin-right: 7px; width: 197px; }
+.exhibitorGiftcard .giftCardPin { width: 102px; }
+
+.fandangoGiftcard .giftCardNumber  { margin-right: 7px; width: 197px; }
+.fandangoGiftcard .giftCardPin { width: 102px; }
+
+
+.exhibitorGiftcard .giftCardNumber input,
+.exhibitorGiftcard .giftCardPin input { margin-bottom: 0px; }
+
+.giftCardDisclaimer { display: block;margin-top: 10px;}
+
+/******** Checkout: Theater Rewards ********/
+.loyaltyOptions .fieldContainer { width: 420px; margin-top: 10px; }
+.loyaltyOptions .fieldControls { width: 260px; margin-right: 5px; margin-bottom: 5px; }
+.loyaltyOptions .fieldActions { width: 105px; }
+.loyaltyOptions ul.loyalty { margin-bottom: 0px; }
+
+.loyaltyInfo{ display: table; }
+.loyaltyCard .loyaltyInfo {margin-bottom: 10px; margin-left: 18px; }
+.loyaltyInfo img { display: table-cell; padding-right: 10px;  }
+    /* used on TQP*/
+    div.loyaltyImage { display: table-cell; padding-right: 10px; width:101px; height:56px; }
+    div.loyaltyImage.amc { background: url("../../../../images/commerce/redesign/theater-rewards-amc.png") no-repeat scroll 0px 0px transparent;}
+    div.loyaltyImage.regal {background: url("../../../../images/commerce/redesign/theater-rewards-regal.png") no-repeat scroll 0px 0px transparent;}
+
+.loyaltyText { display: table-cell; vertical-align: top; width: 475px; }
+.loyaltyText p { line-height: normal; margin-bottom: 0px; }
+.loyaltyCard .loyaltyText p {  margin-bottom: 7px; }
+
+/********Checkout: COMPLETE PURCHASE********/
+/*.completePurchase {  padding: 5px 0; /* IS THIS NEEDED? - it breaks the VMe lightbox */ /*position:relative;}*/
+.completePurchase button { position: relative; /*right:-390px;*/ }
+.completePurchasePanel { display: block; }
+.completePurchase p { clear: both; padding: 20px 0 0 0; margin: 0px; }
+.completePurchase #continueToVMe { height: 39px; margin: 0; width: 151px; }
+
+.completePurchase #continueToVisaCheckout { height: 47px; margin: 0; width: 213px; }
+.completePurchase #continueToMasterPass { height: 47px; margin: 0; width: 213px;}
+.completePurchase #continueToMasterPass .button{ padding: 0;}
+
+.checkoutPage .main .spinner { /*background: url("../../../../images/global/ajax-loader-small.gif") no-repeat scroll 50% 50% #fff;*/ height: 16px; position: relative; width: 16px; float: right; z-index: 1; }
+.checkoutPage .main #signinSpinner { top: 12px; right: 9px; }
+
+.checkoutPage .main .fieldActions .spinner { float: right; left: 4px; top: 28px; }
+.checkoutPage .main .fieldActions #loyaltycardSpinner {
+  left: -8px;
+  top: 30px;
+}
+.checkoutPage .main .fieldActions #promoSpinner { top: 9px; }
+
+.checkoutPage .main .buttonContainer .spinner { top: 13px; right: 9px; /*padding-right: 10px;*/ }
+
+.checkoutPage .main .fieldActions .checkmark {
+  float: left;
+  left: 10px;
+  position: relative;
+  top: 30px;
+}
+.checkoutPage .main .fieldActions #applyGift { float: left; top: 17px; }
+
+.checkoutPage .main .fieldActions #applyExhibitorGift { float: left; top: 19px; }
+.checkoutPage .main .fieldActions #applyLoyalty { float: left; top: 18px; }
+.checkoutPage .main .fieldActions #applyPromo { float: left; top: 0px; }
+
+.notes, .applepayNotes { font-size: 13px; line-height: 16px; color: #929292; }
+#termsNote { margin:7px 0 0 18px; }
+#termsNote, #autoOptInNotes { display:none; }
+.legal { font-size: 11px; line-height: 14px; color: #929292; }
+
+/********Checkout: CREATE ACCOUNT********/
+.joinFandango { font-size: 16px; line-height: 20px; }
+.joinFandango .fieldContainer { margin-top: 5px; margin-bottom: 5px; width:100%; }
+.joinFandango .fieldContainer label { display:block; }
+.joinFandango .fieldContainer #createPasswordInput { width:260px; display:inline-block; }
+.joinFandango .fieldContainer div { width:220px; margin-left:10px; display:inline-block; vertical-align:top; font-style:italic; }
+
+.joinFandango ul.join { list-style-type: disc; margin: 10px 0 10px 16px; }
+.joinFandango .join li { padding: 0 0 3px 0; font-size: 14px; }
+.joinFandango ul.joinInfo { margin-bottom: 0px; }
+
+.joinFandango h3 { font-family: "proxima-nova", Helvetica, Arial, sans-serif; margin: 0 0 6px 0px; font-weight: bold; font-size: 16px; line-height: 13px; }
+.joinFandango .actionContainer { margin: 20px 0 40px 50px; }
+.joinFandango .createAccountInfo { margin-bottom: 10px; }
+
+.joinFandango li.guestSaveCC { margin: -5px 0 3px 21px; }
+.joinFandango #createPasswordSecondaryInput { margin-bottom: 0; }
+
+/********Restricted Payment Message**********/
+.paymentMessageText { color: #4aa7f6; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px; margin: 10px 0 10px 20px !important; }
+
+/********User Confirmation********/
+.seatConfirmation { font-size: 16px; font-weight: bold; margin: 0; padding: 0; }
+.confirmationNo { display: block; margin: 5px 0 0 0; text-transform: uppercase; }
+
+.expressConfirmation .main,
+.userConfirmation .main { }
+
+.expressConfirmation .side,
+.userConfirmation .side { }
+
+.expressConfirmation #ad_banner_top div,
+.userConfirmation #ad_banner_top div { padding: 10px auto; text-align: center; }
+
+#completedReturn .purchaseBreakDown .total,
+.expressConfirmation .purchaseBreakDown .total,
+.userConfirmation .purchaseBreakDown .total,
+.expressConfirmation .purchaseInfo .reservedSeats,
+.userConfirmation .purchaseInfo .reservedSeats { font-weight: bold; }
+
+/* -----Confirmation page -------*/
+
+/* -----Error display -------*/
+/*
+#container.purchase #primary h3.error { }
+
+    #container.purchase #primary h3.error + a { font-size: 16px; margin: 0 0 20px 0; padding: 0; display: inline-block; }
+
+
+.on-confirm #content {  height: auto; padding: 20px 0 0 20px; position: relative; text-align: center; width: 760px; }
+
+.on-confirm #primary { display: block; float: none; margin: 0; overflow: visible; text-align: left; width: 720px; }*/
+
+/*.on-confirm h3 {margin: 11px 0 3px; padding: 0; }*/
+.on-confirm h3.error { margin: 20px 0 40px; color: #FE0007; font-weight: bold; }
+.on-confirm ul.gifts { margin: 0 0 24px 0; }
+.on-confirm ul.gifts li { background: url(../../../../images/purchase/confirmation_sprite.jpg) no-repeat transparent -656px 0; margin: 0 0 2px; padding: 9px 0 4px 30px; }
+.on-confirm .pickUpOptions { /*text-align: center; margin: 35px 0 15px;*/ position: relative; z-index: 1; }
+.on-confirm .pickUpOptions .methodImage { position: relative; width: 100%; z-index: 1; }
+/*.on-confirm .pickUpOptions .methodDescription{background:#f5f4f4;border-bottom: 1px solid #F3F3F3;border-top: 1px solid #F3F3F3;display: block;height: 127px;left: 0;position: absolute;top: 0;width: 100%;z-index: -1;}
+*/
+.on-confirm .pickUpOptions ul { display: inline-block; *display: inline; -ms-zoom: 1; zoom: 1; margin-left: 20px; position: relative; text-align: left; vertical-align: top; width: 30%; }
+.on-confirm .pickUpOptions ul:first-child { margin-left: 0; }
+.on-confirm .pickUpOptions ul.creditCard { }
+
+.on-confirm .pickUpOptions ul li.image { padding-top: 20px; }
+
+.on-confirm .pickUpOptions ul li .fastest { display: table; font-family: times new roman; font-size: 18px; font-style: italic; margin: -26px auto 0; padding-bottom: 9px; text-align: center; }
+.on-confirm .pickUpOptions ul span.orange { display: table; ; font-size: 18px; margin: -26px auto 0; padding-bottom: 9px; text-align: center; color: #ff7900; text-transform: uppercase; font-weight: bold;}
+
+.on-confirm .pickUpOptions ul li.image a {
+    background-image: url("../../../../images/commerce/shared/icon-mobile.svg");
+    display: block;
+    margin: 0 auto;
+    height: 57px; /*necessary to prevent images cropped in IE*/
+    width: 58px;
+    text-indent: -999em;
+    border-radius:29px;
+    padding:19px;
+    border:1px solid #4C4C4C;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100%;     /* Old browsers */
+    -moz-background-size: 100%;     /* FF3.6+ */
+    -webkit-background-size: 100%;     /* Chrome,Safari4+ */
+    -o-background-size: 100%;     /* Opera 11.10+ */
+    -ms-background-size: 100%;     /* IE10+ */
+    background-origin: content-box;     /* Old browsers */
+    -moz-background-origin: content-box;     /* FF3.6+ */
+    -webkit-background-origin: content-box;     /* Chrome,Safari4+ */
+    -o-background-origin: content;     /* Opera 11.10+ */
+    -ms-background-origin: content;     /* IE10+ */
+
+}
+.on-confirm .pickUpOptions ul li.image a.mobileTicket {background-image: url("../../../../images/commerce/shared/icon-mobile.svg");  }
+.on-confirm .pickUpOptions ul li.image a.printHome { background-image: url("../../../../images/commerce/shared/icon-print.svg");padding:15px;}
+.on-confirm .pickUpOptions ul li.image a.willCall,
+.on-confirm .pickUpOptions ul li.image a.confirmationNumber { background-image: url("../../../../images/commerce/shared/icon-number-pound.svg"); }
+.on-confirm .pickUpOptions ul li.image a.creditCard { background-image: url("../../../../images/commerce/shared/icon-commerce-cc.svg"); padding:14px; }
+
+
+.on-confirm .pickUpOptions ul li.title { }
+.on-confirm .pickUpOptions ul li.title a { display: table; margin: 0 auto; }
+.on-confirm .pickUpOptions ul li.desc { text-align: center; margin: 4px 0; height: auto; }
+
+/*.on-confirm #chooseMethod { border-bottom: 1px solid #E5E5E5; }*/
+.stepsListings { /*font-size:17px;*/ margin-bottom: 20px; }
+.stepsListings ol { /*font-size: 16px;*/ list-style: decimal; margin: 0 23px 0px; }
+.stepsListings ol li { font-weight: bold; margin: 7px 0; }
+.stepsListings ol li span { font-weight: normal; }
+
+
+/*Confirmation Page: PayPal Split Pay */
+#PayPalSplitPaySection a { display:block; padding:0; text-indent:-999em; width:211px; height:48px; background: transparent url(../../../../images/commerce/mobile/SplitWithPayPal-Default.svg) no-repeat 0 0; }
+
+/*Confirmation Page: Purchase summary */
+#purchaseDetails .purchaseInfo { display: inline-block; /*width:265px;*/ width: 240px; margin-right: 25px; }
+
+.purchaseInfo .moviePoster { width: 98px; display: inline-block; vertical-align: top; padding-top: 0px; }
+
+h3.movieTitle { line-height: 21px; margin: 0; }
+span.movieRating { font-family: 'Times New Roman'; font-size: 14px; font-style: italic; }
+.purchaseInfo h4 { font-weight: bold; margin: 0; font-size: 13px; }
+.purchaseInfo h4 span { font-weight: normal; }
+.purchaseInfo p { color: #4C4C4C; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 18px; margin: 0; text-transform: none; }
+.purchaseInfo p.showDate { margin-top: 15px; }
+.purchaseInfo #starImg { margin: 4px 0; }
+.purchaseInfo p.auditorium { margin-top: 15px; }
+.purchaseInfo p.amenityList { color: #333; font-weight: normal; font-size: 14px; line-height: normal; margin-top: 10px; }
+
+/*.purchaseInfo .movieInfo { width:auto;}*/
+
+/*Confirmation Page: Theater Details*/
+#purchaseDetails .theaterInfo { display: inline-block; /*width:189px;*/ width: 215px; margin-right: 25px; }
+h2.theaterName { color: #4C4C4C; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 17px; text-transform: none; margin-top: 0px; }
+.theaterInfo p.theaterMap { margin-bottom: 10px; }
+
+
+/*Confirmation Page: Receipt*/
+#purchaseDetails .purchaseBreakDown { display: inline-block; margin-right: 0px; width: 190px; }
+.purchaseBreakDown td { padding: 3px 0; }
+.purchaseBreakDown td.amount { padding: 3px 0px; text-align: right; }
+
+.purchaseBreakDown tr.total td { padding: 15px 0 0; }
+#listingConfNumberOnly { margin: 0 0 50px; }
+#listingConfNumberOnly .sub-response { margin-top: 0; }
+.amenities a,
+a.amenityPopup { color: #333; cursor: pointer; font-weight: normal; padding-right: 3px; }
+.amenities a:hover,
+.amenities a:focus,
+a.amenityPopup:hover,
+a.amenityPopup:focus { color: #4aa7f6; }
+#moreOptions { margin: 20px 0 0; }
+.bottomoffers { margin: 20px 0 0; }
+#container.purchase.on-confirm.threeCol160 .bottomoffers { margin-top: 0; }
+
+/*Confirmation PageWe thought you also might like*/
+.otherMovies { }
+.otherMovies .moviePoster { margin-bottom: 20px; margin-right: 20px; }
+
+/********Mobile Ticket********/
+.back { margin-bottom: 20px; text-transform: capitalize; }
+
+
+#ticket-left {
+    background-image: url("../../../../images/commerce/shared/icon-mobile.svg");
+    display: inline-block;
+    margin-right: 13px;
+    height: 58px;
+    width: 58px;
+    margin-bottom: 0px;
+    float: left;
+    text-indent: -999em;
+    border-radius:29px;
+    padding:19px;
+    border:1px solid #4C4C4C;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100%;     /* Old browsers */
+    -moz-background-size: 100%;     /* FF3.6+ */
+    -webkit-background-size: 100%;     /* Chrome,Safari4+ */
+    -o-background-size: 100%;     /* Opera 11.10+ */
+    -ms-background-size: 100%;     /* IE10+ */
+    background-origin: content-box;     /* Old browsers */
+    -moz-background-origin: content-box;     /* FF3.6+ */
+    -webkit-background-origin: content-box;     /* Chrome,Safari4+ */
+    -o-background-origin: content;     /* Opera 11.10+ */
+    -ms-background-origin: content;     /* IE10+ */
+
+}
+.mobile_delivery #ticket-left {background-image: url("../../../../images/commerce/shared/icon-mobile.svg");  }
+.print_home #ticket-left { background-image: url("../../../../images/commerce/shared/icon-print.svg");padding:15px;}
+.confirmation_number #ticket-left { background-image: url("../../../../images/commerce/shared/icon-number-pound.svg"); }
+.credit_card #ticket-left { background-image: url("../../../../images/commerce/shared/icon-commerce-cc.svg"); padding:14px; }
+
+#ticket-right { display: inline-block; width: 506px; }
+#ticket-right .form-inline label { display: block; width: auto; }
+.mobile_delivery .countrycode { color: #333333; float: left; font-size: 18px; font-weight: normal; margin: 2px 4px 0 0; line-height: 38px; }
+.mobile_delivery input.phone_number { color: #333333; font-size: 18px; margin-right: 3px; width: 52px; }
+.fanAlertCheckbox { margin-bottom: 6px; display: block; }
+#ticket-right .fanAlertCheckbox label {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#ticket-right .fanAlertCheckbox label span {
+    text-transform: none;
+    font-weight: normal;
+}
+
+.mobile_delivery .statusMessages { font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px; margin-top: 20px; }
+
+.mobile_delivery .errorText { margin: 10px 0px 0px 0px; }
+.mobile_delivery .errorText div { margin: 10px 0px 0px 0px; }
+.mobile_delivery .statusMessages .pending { color: #009900; margin-bottom: 5px; }
+.mobile_delivery .statusMessages .errorText { margin-bottom: 5px; }
+
+.mobile_delivery fieldset { margin-top: 20px; }
+
+
+/******** FLYOUTS ********/
+.amenities a { cursor: pointer; }
+
+#flyoutContainer { position: relative; z-index: 3; }
+
+#flyoutContent { background: url("../../../../images/commerce/redesign/movieDetailBox-bg.png") no-repeat scroll 0 0 transparent; height: auto; min-height: 50px; padding: 21px 20px 8px; position: relative; text-align: left; width: 222px; font-weight: normal; font-size: 11px; color: #666; }
+/*flyout middle position*/
+#flyoutBoxTail { background: url("../../../../images/commerce/redesign/movieDetailBox-bg.png") no-repeat scroll 0 bottom transparent; height: 25px; position: relative; width: 222px; }
+/* flyout left is coded into the flyout but we are changing this to the right-sided image*/
+#flyoutBoxTailLeft { background: url("../../../../images/global/movieDetailBox-bg-Right.png") no-repeat scroll 0 bottom transparent; height: 25px; position: relative; width: 222px; }
+/******** END FLYOUTS ********/
+
+/********Promo Codes********/
+.mesg { margin-bottom: 20px; }
+.singlelogin .fieldContainer,
+.promocodes .fieldContainer { width: 270px; }
+.sign-in { min-height: 188px; }
+.sign-up { min-height: 188px; }
+
+
+
+/*The selects on the promo page are auto-generated and don't have classes, so we have to override the 100% width declaration in foundation*/
+.field-content .form-stacked .fieldContainer,
+.field-content .fieldContainer select { width: auto; }
+
+/*Add spacing between inputs on promo survey page*/
+.promoSurveyBasic .fieldContainer,
+.promoSurvey .fieldContainer { margin-bottom: 20px; }
+
+/*limit width of fields in stacked form*/
+.field-content .promoSurvey .fieldContainer select { width: 350px; }
+
+.field-content .form-inline label { width: 115px; }
+
+.field-content .form-stacked label.stacked,
+.field-content .form-stacked table label { width: auto; }
+
+.field-content input[type="text"],
+.field-content input[type="password"] { width: 231px; }
+
+.field-content fieldset input.input_txt_zip,
+.field-content fieldset input.input_txt_state,
+.field-content fieldset input.input_txt_zip,
+.field-content fieldset input.input_txt_password { width: 100px; display: inline-block; }
+.field-content fieldset input.input_txt_phone { width: 45px; display: inline-block; }
+.field-content fieldset input.input_txt_phone_ext { width: 60px; display: inline-block; }
+
+.fieldContainer table { border-collapse: collapse; }
+
+.extraInfo { color: #929292; display: inline-block; font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 16px; text-transform: none; margin-bottom: 8px; }
+
+
+/**
+ * User: rachel melendez file creation 2013
+* Carolyn Pierce moved into Commerse during redesign, oct 2013
+ * SideRail of Checkout
+ */
+/********Side ********/
+
+.side ul { list-style: none; margin: 0; margin-top: 5%; padding: 0; font-size: 14px; }
+.side ul li { font-size: 14px; }
+.side ul.movie-specs { margin-top: 0px; }
+.side ul.movie-specs li { font-family: 'Times New Roman'; font-style: italic; font-size: 14px; }
+
+.movie-other-specs h2,
+.side h2 { font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 16px; text-transform: none; line-height: 18px; margin: 0; color: #4C4C4C; font-weight: 600; }
+/**//*.side h2 { font-family: "proxima-nova", Helvetica, Arial, sans-serif; font-size: 16px; text-transform: none; line-height: 17px; margin: 0; color: #4C4C4C; font-weight: 600; }*/
+    .movie-other-specs h2 { display:inline-block;}
+    .side .movie-other-specs h2#auditoriumInfo { font-weight:normal; font-size:14px;}
+
+.side h2#movieTime { display: inline-block; }
+.side h2#theaterName { clear:left; display: block;}
+.side ul.theater-specs { padding: 0; margin: 0; }
+.side ul.theater-specs li { display: inline; }
+/******** END COMMON ********/
+/******** MOVIE DETAIL ********/
+.side a#maplink { color:#4c4c4c;}
+.side a#maplink:hover, .side a#maplink:focus {color:#0286f2;}
+
+.side #lateNightShowtimeMesg {
+  color: #929292;
+  font-size: 12px;
+  margin-left: 101px;
+  margin-top: 6px;
+line-height:14px;
+}
+
+#moviePosterImage {
+  border: 1px solid #ccc;
+  width: 90px;
+}
+/**//*#moviePosterImage { width: 90px; }*/
+.moviePoster { display: inline-block; vertical-align: top; padding-top: 0px; float:left; margin:0px 10px 10px 0px; }
+/**//*.moviePoster { display: inline-block; vertical-align: top; padding-top: 0px; }*/
+#movieTicketSummary .moviePoster { width: 90px; }
+.movieInfo { }
+/**//*.movieInfo { width: 160px; display: inline-block; padding-left: 10px; }*/
+.purchaseInfo .movieInfo { /*width:163px;*/ width: auto; padding-left: 0px; }
+
+.side .movie-other-specs,
+.movie-other-specs { margin: 8px 0 0px 0; }
+/**//*.movie-other-specs { margin: 15px 0; }*/
+
+/**//*.theaterNotes { margin: 15px 0 0 0; }*/
+.side ul li.theaterNotes { margin: 8px 0 0 0; color: #929292; font-size: 12px; }
+.side h2#notesHeader {color: #929292;font-size: 12px;}
+.side #notesBody { line-height:14px; }
+/*.side #notesBody { }*/
+/*.side #notesHeader + #notesBody { }*/
+/*.side p a.help{margin:0;}*/
+.side .theaterlinks { margin: 0; }
+
+span.reserved { background: url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll -11px -96px transparent; display: inline-block; vertical-align: baseline; width: 12px; height: 11px; margin: 0 2px 0 5px; }
+
+.side .amenities { margin-top: 8px; clear:left; }
+/**//*.side .amenities { margin-top: 10px; }*/
+
+/******** END MOVIE DETAIL ********/
+
+/******** TICKET SUMMARY ********/
+#orderSummary { border: none;  position: relative; }
+#orderSummary p.chargedToCard { margin-top: 10px; margin-bottom: 0px; font-style: italic; }
+#orderSummary p.chargedToVme { margin-top: 10px; margin-bottom: 0px; font-style: italic; }
+#orderSummary p.chargedToPaypal { margin-top: 10px; margin-bottom: 0px; font-style: italic; }
+
+#orderSummary table { width: 100%; background: none; border: none; margin-bottom: 0px; }
+
+#orderSummary table .math,
+.discount-wrap { text-align: right; font-weight: bold; font-size: 16px; }
+.total-wrap { text-align: right; }
+#orderSummary table #purchaseTotal { display: inline-block; float: right; font-size: 16px; font-weight: bold; }
+#orderSummary table .heading td { padding: 15px 0 0 0; }
+#orderSummary table .pricing td { padding: 0 0px 5px 0px; vertical-align: top; }
+#orderSummary table .pricing td.price,
+#orderSummary table .pricing td.math { white-space:nowrap;}
+#orderSummary table .type.heading { text-transform: capitalize; /*width necessary to prevent wrapping of convenience fee and other charges in sidebar;*/ width: 116px; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #orderSummary table .type.heading { width: 117px; }
+}
+
+#orderSummary table .discountRow td { color: #21A407; }
+#orderSummary table .discountRow td a { color: #21A407; }
+#orderSummary table .discountRow #loyaltyDiscountTwoLabel { color: #222; }
+#orderSummary table td a:active,
+#orderSummary table a:focus {color: #929292;}
+#orderSummary table .discountRow.strikethrough td,
+#orderSummary table .discountRow.loyalty-strikethrough td { color: #929292; }
+#orderSummary table .discountRow.strikethrough td a,
+#orderSummary table .discountRow.loyalty-strikethrough td a { color: #929292; }
+
+#orderSummary table .multiply,
+#orderSummary table .qty,
+#orderSummary table .equals { /*width:1px;*/ width: auto; }
+.side .discount-wrap { white-space: nowrap; }
+#orderSummary table .totalRow td { /*border-top:1px solid #e8e8e8;*/ padding: 5px 0 0 0; }
+#orderSummary table .totalRow td.total-wrap { padding-right: 5px; }
+#serviceFeeWavierLabel { width: auto; color: #222; }
+table tr.serviceFeeWavierRow td { color: #21A407; }
+.side div.specialNote { color: #5E5E5E; margin: 0 22px; font-size: 11px; position: relative; left: 0px; }
+/**//*.side div.specialNote { color: #5E5E5E; margin: 0 22px; font-size: 11px; position: relative; left: -11px; }*/
+.side span.specialNote { color: #5E5E5E; position: relative; left: -7px; }
+/**//*.side span.specialNote { color: #5E5E5E; position: relative; left: -13px; }*/
+.side span.specialNote + .ticketTypeHeading { position: relative; left: -9px; }
+#orderSummary div.specialNote { margin: 15px 0 0px 0; }
+/**//*#orderSummary div.specialNote { margin: 15px 0; }*/
+#orderSummary table .amt,
+#orderSummary table .price { text-align: right; /*width needs to be auto so that the convenience fee doesn't wrap width: 100px;*/ }
+
+#tqpSection, #preTQPPage { }
+#tqpSection #IDRequiredMessage .specialNote { display:none;}
+#tqpSection #IDRequiredMessage.showMessage span.specialNote { display:inline-block;}
+#tqpSection #IDRequiredMessage.showMessage div.specialNote { display:block;}
+
+.ticketBoxoffice section.refundsExchanges { border-bottom:1px solid #ccc; margin-bottom: 20px; }
+
+#orderSummary div.linkToReturn { margin: 12px 0 0 1px; }
+
+/******** END TICKET SUMMARY ********/
+
+
+/******** TIMER ********/
+
+/* timer */
+
+
+#timer { display: block; margin: 0 6px 0px; min-height: 23px; text-align: center; }
+/**//*#timer { display: block; margin: 0 6px 12px; min-height: 35px; text-align: center; }*/
+#timer span { display: inline-block; }
+#timer .timerText { font-size: 13px; padding-right: 0px; text-align: left; float: left; padding-left: 0px; font-weight: normal; line-height: 24px; margin-left:20px; }
+/**//*#timer .timerText { font-size: 14px; padding-right: 0px; text-align: left; float: left; padding-left: 0px; font-weight: 600; line-height: 24px; }*/
+#timer .countdown { font-weight: normal; float: right; font-size: 28px; vertical-align: bottom; font-family: "alternate-gothic-no-1-d", "Futura Condensed", "Arial Narrow", Arial, sans-serif; line-height: 27px; margin-right:10px; }
+/**//*#timer .countdown { font-weight: normal; float: right; font-size: 38px; vertical-align: bottom; font-family: "alternate-gothic-no-1-d", "Futura Condensed", "Arial Narrow", Arial, sans-serif; line-height: 27px; }*/
+/******** END TIMER ********/
+
+
+
+/******** SEATPICKER ********/
+
+.side #selectedSeatIDs,
+.side #selectedSeatIDsLabel { color: #4C4C4C; font-family: "proxima-nova",Helvetica,Arial,sans-serif; font-size: 14px; font-weight: normal; line-height: 16px; margin: 0; text-transform: none; display: inline; }
+/**//*.side #selectedSeatIDsLabel { color: #4C4C4C; font-family: "proxima-nova",Helvetica,Arial,sans-serif; font-size: 16px; font-weight: 600; line-height: 17px; margin: 0; text-transform: none; display: inline; }*/
+.side .auditorium { margin: 8px 0 0 0; }
+/**//*.side .auditorium { margin: 20px 0 0 0; }*/
+/*.side .seats{font-weight:bold;font-size:16px;}*/
+/******** END SEATPICKER ********/
+
+
+
+/* -----------------------------------*/
+/* =Partners branding for pencil banner header      */
+/* -----------------------------------*/
+.partner #option_container { background-position: 50% 31px; }
+
+.partner_brand { border: 0 solid #FF0000; display: block; height: 30px; overflow: hidden; text-align:center; }
+
+.partner_brand a { color: #CCCCCC; display: block; font-size: 1.6em; font-weight: bold; height: 30px; line-height: 1.9em; margin: 0 auto; text-indent: -9000px;  }
+
+.partner_brand a img {
+  display: block;
+  margin: 0 auto;
+}
+/* zapit */
+#partner_brand_12 { background-color: #815b81; border-bottom: 1px solid #4e334e; }
+/* imax */
+#partner_brand_25 { background-color: #1f2d83; border-bottom: 1px solid #121948; }
+/* regal */
+#partner_brand_39 { background-color: #ee2e24; border-bottom: none; }
+/* movides.com */
+#partner_brand_53 { background: #ccc url(../../../../images/partners/mdc_bg.gif) repeat-x left top; border-bottom: 1px solid #888; }
+/* breden theaters */
+#partner_brand_74 { background-color: #7b7c80; border-bottom: 1px solid #222; }
+/* visa signature */
+#partner_brand_85 { background: #000 url(../../../../images/partners/visa_bg.png) repeat-x left top; }
+/* cinemark */
+#partner_brand_122 { background: #b2121c; }
+/* visa signature fandangobucks*/
+#partner_brand_123 { background: #c2c2c2 url(../../../../images/partners/visa_fb_bg.png) repeat-x left top; }
+/* visa signature bac */
+/*#partner_brand_201{ background: #000 url(../../../../images/partners/visa_bg.png) repeat-x left top; }*/
+#partner_brand_201{ display:none;}
+/* eventful*/
+#partner_brand_125 { background: #fff; }
+
+/* yahoo */
+#partner_brand_186 { background-color: #071f4b; border-bottom: 1px solid #071f4b; }
+
+/* blood */
+#partner_brand_194 { background-color: #970518; }
+
+/*overwrite positions - checkout page will need to be fixed later, since these are images we are just putting them on top the existing header*/
+.partnerbranding * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+
+/*body #siteContainer .partnerbranding #headerPurchase,
+body #siteContainer .partnerbranding #header_top_partnerbranding {
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}*/
+
+/* -----------------------------------*/
+/* Discounted Gift Card Pages      */
+/* -----------------------------------*/
+
+.howitworks ol { margin: 0 0 0 19px; list-style: decimal; }
+.howitworks ol li,
+.nextsteps ol li { padding: 0px 0px 10px 0px; }
+.howitworks ol li span,
+.nextsteps ol li span { display: block; float: left; font-weight: bold; padding: 0 10px 0 0; }
+
+.create_grid select { width: 60px; }
+.create_grid label { color: #4c4c4c; }
+.create_grid .form-stacked .fieldContainer { width: auto; margin-bottom: 15px; }
+.create_grid .form-stacked .fieldControls { width: 260px; margin-left: 15px; }
+.create_grid .form-stacked .fieldContainer p { margin: 3px 0px 5px 0px; }
+.create_grid .form-stacked .fieldContainer p.notes { font-size: 12px; }
+
+.fb_design_img { margin-top: 5px; border:1px solid #CCCCCC !important;}
+
+.ticketPriceTip span { font-weight: bold; text-transform: uppercase; }
+
+.valuePresentation table { width: 255px; border: none; border-collapse: collapse; margin-bottom: 0px; }
+.ordersummary .valuePresentation table,
+.review-payment .valuePresentation table,
+.create .valuePresentation table { width: 360px; }
+/*First page*/
+.create_grid .valuePresentation table { width: 260px; }
+.valuePresentation table tr { clear: both; display: block; padding: 3px 0 3px 0; }
+.valuePresentation table tr.totalsaved { font-weight: bold; border-top: 1px solid #ccc; display: block; }
+.valuePresentation table tr.totalsavedtop { border-bottom: 1px solid #ccc; border-top: none; }
+
+.valuePresentation table td { display: inline; }
+.valuePresentation table tr td:last-child { float: right; }
+
+
+.valuePresentation table tr.total td { padding: 15px 0 0; border-top: 1px solid #E5E5E5; }
+.valuePresentation table td span { display: block; padding-left: 30px; text-align: right; font-weight: bold; font-size: 16px; }
+/*.valuePresentation table td span.creditcard,
+.valuePresentation table td span.name  { width:200px;}*/
+.valuePresentation table td span.email { width: auto; }
+
+
+.valuePresentation label { line-height: normal; display: inline; margin:0;}
+
+.valuePresentation table tr.creditcardnumber  { padding-top: 30px; }
+
+/* Gift Card Checkout page*/
+.purchase .checkout .credit_noemail { background: transparent url(../../../../images/global/visa_cards.gif) no-repeat scroll left top; height: auto; padding: 34px 0 0 0; }
+p.checkoutFormSubHeadings { margin-bottom: 0px; }
+
+.guestCheckout .fieldContainer { width: auto; }
+.guestCheckout .fieldContainer p { margin-bottom: 5px; }
+.guestCheckout .fieldContainer .fieldControls { width: 260px; }
+
+.page_links { display: inline; float: right; top: 0; }
+
+.createPW { margin-top: 20px; }
+.input_chkbox { display: table; }
+
+.input_chkbox input[type="checkbox"] + label,
+.input_chkbox input[type="radio"] + label,
+.input_chkbox > label,
+.input_chkbox > input { display: table-cell; }
+.input_chkbox > label { padding-left: 10px; }
+
+/* CVV pages*/
+.purchase .credit_cvv {
+  background-color: #FFFFFF !important;
+  background-image: url("../../../../images/commerce/redesign/CVV_design.jpg");
+  background-position: 100% 72px !important;
+  background-repeat: no-repeat !important;
+  padding: 20px 273px 20px 20px;
+}
+
+/* Review*/
+.designPreview { width: 320px; display: inline-block; float: right; }
+p.billing,
+p.editpaymentinfo,
+p.editquantityinfo { margin-top: 10px; }
+
+
+
+
+/* TQP Offers overwrite for test and target tool*/
+
+.ticketBoxoffice #TqpOffer { background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CCCCCC; border-radius: 0; display: table;margin-top:0px; }
+#TqpOfferDetailsModal .offerImage,
+#TqpOffer .offerImage { display: table-cell; margin: 0 10px 0 0; padding: 0; vertical-align: middle; }
+
+#TqpOfferDetailsModal .offer, #TqpOffer .offer { display: table-cell; vertical-align: middle; width: 500px; }
+
+/*
+#TqpOfferDetailsModal h3.offerHeading,
+#TqpOffer h3.offerHeading { color: #4C4C4C; font-family: "proxima-nova",Helvetica,Arial,sans-serif; font-size: 15px !important; font-style: normal; font-weight: bold; line-height: normal; margin: 0 !important; text-transform: uppercase; display: inline; }
+*/
+.offers h3.vipHeading { color: #4C4C4C; font-family: "proxima-nova",Helvetica,Arial,sans-serif; font-size: 15px !important; font-style: normal; font-weight: bold; line-height: normal; margin: 0; text-transform: uppercase; display: inline; }
+
+span.img { display: block; float: left; height: 32px; position: relative; margin-left: 15px; text-indent: -9999px; vertical-align: middle; width: 200px; overflow: auto; -moz-background-origin: content-box; -webkit-background-origin: content-box; background-origin: content-box; -o-background-size: 320px auto; -moz-background-size: 320px auto; background-size: 320px auto; }
+/******** Join Fandango ********/
+.offerHeading span.img { background-image: url(../../../../images/commerce/shared/FD_VIP.svg); background-color: transparent !important; background-repeat: no-repeat; background-position: 0 0px; display: inline-block; float: none; height: 13px; width: 115px; margin:0 0 1px 0; -moz-background-size: 100%;  -webkit-background-size: 100%;  -o-background-size: 100%;  -ms-background-size: 100%; background-size: 100%;  -moz-background-origin: content-box;  -webkit-background-origin: content-box; -o-background-origin: content; -ms-background-origin: content;  background-origin: content-box;  }
+/* When part of the h2 tag after the user has signed in, the img is larger*/
+/*
+.offerHeading span.img{
+    height: 24px;
+    margin: 0;
+    width: 148px;
+}
+*/
+span.viplogo {}
+span.viplogo span { color: #F15922; }
+
+#TqpOfferDetailsModal p.offerDetail,
+#TqpOffer p.offerDetail { margin: 0; display: inline; }
+
+#TqpOfferDetailsModal { border-radius: 0; width: 490px !important; }
+
+#TqpOfferDetailsModal .offerTerms { margin-left: -100px; margin-top: 30px !important; }
+
+/* printathomeinfo.aspx*/
+
+.opentheaters tr.state th,
+.print_at_home tr.state th { text-transform: capitalize; text-align: left; }
+.opentheaters table thead th,
+.print_at_home table thead th { text-align: left; }
+
+
+/* -----------------------------------*/
+/* =Fandango mobile page              */
+/* -----------------------------------*/
+.mobile-steps h2 {
+  color: #EBEBEB;
+  float: left;
+  font-size: 40px;
+    line-height:40px;
+    margin-bottom:2px;
+}
+.mobile-steps h2 span {
+  color: #0286F2;
+  display: block;
+  font-size: 49px;
+  font-weight: bold;
+  line-height: 49px;
+}
+.mobile-steps h3{float:left; color:#ebebeb; clear:left; font-family:"proxima-nova",Helvetica,Arial,sans-serif; font-size:16px; text-transform:none;}
+
+.mobile-steps {  height: 350px; margin:0px; background: #fff url("../../../../images/commerce/redesign/mobile_steps_bg.png") no-repeat scroll 0 0; }
+.mobile-steps .intro {
+  margin-top: 113px;
+    margin-left:53px;
+    float:left;
+    width:390px;
+}
+.mobile-steps .steps_info {
+  float: right;
+  height: 350px;
+  margin-right: 12px;
+  margin-top: 12px;
+  width: 460px;
+}
+.mobileticket .steps_info ul.mobilesteps {
+  background: none repeat scroll 0 0 #FFFFFF;
+  display: block;
+  height: 101px;
+  margin: 0px 0px 12px 0;
+  position: relative;
+  text-align: center;
+  width: 460px;
+}
+
+
+
+.mobileticket .steps_info ul.mobilesteps li.img {
+  background: url("../../../../images/commerce/redesign/mobile_steps_sprite.png") no-repeat scroll 0 0 #FFFFFF;
+  height: 101px;
+  margin: 0 0 0 44px;
+  width: 129px;
+float:left;
+}
+
+.mobileticket .steps_info ul.mobilesteps li.heading {
+  float: left;
+  margin-top: 30px;
+  text-align: center;
+  width: 152px;
+}
+.mobileticket .steps_info ul.mobilesteps li.subtitle {
+  float: left;
+  margin-left: 0;
+  margin-top: 31px;
+  text-align: left;
+  width: 115px;
+}
+.mobileticket .steps_info ul.mobilesteps.step3 li.subtitle {
+  margin-top: 16px;
+}
+.mobileticket .steps_info h5 {
+  color: #0286f2;
+  font-family: "alternate-gothic-no-1-d","Futura Condensed","Arial Narrow",Arial,sans-serif;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+    line-height:40px;
+
+}
+.mobileticket .steps_info ul.mobilesteps.step1 li.img {
+  background-position: 50% -66px;
+}
+.mobileticket .steps_info ul.mobilesteps.step2 li.img {
+  background-position: 50% -185px;
+}
+.mobileticket .steps_info ul.mobilesteps.step3 li.img {
+  background-position: 50% -306px;
+}
+
+.mobile .steps_info ul.mobilesteps li.next {
+  background: url("../../../../images/commerce/redesign/mobile_steps_sprite.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  float: left;
+  height: 38px;
+  left: 50%;
+  position: absolute;
+  top: 90px;
+  width: 38px;
+  z-index: 99;
+}
+
+.opentheaters table { /*border:1px solid #000;*/ }
+.opentheaters tr.state {
+
+}
+.opentheaters th.state {
+  width: 220px;
+  text-align: left;
+    vertical-align:top;
+ padding-bottom: 20px;
+}
+.opentheaters td {vertical-align:top; }
+.opentheaters td.cityTheater{width:655px; padding-bottom: 20px; }
+.opentheaters td.city{width:220px;}
+
+/* -----------------------------------*/
+/* Screenings             */
+/* -----------------------------------*/
+
+.screeningInvitation { margin-bottom:20px;}
+.screeningMovieInfo { margin-bottom:20px; height: 230px;}
+.screenings .screeningMovieImage {
+  float: left;
+  height: 230px;
+  margin-right: 10px;
+  width: 155px;
+}
+.screenings .screeningMovieInfo h3,
+.screenings .screeningMovieInfo ul {
+  margin-left: 170px;
+}
+
+
+.screenings .attendForm .cardImage {
+  background: url("../../../../images/commerce/redesign/vbmSig_nspi_blu01_sm.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+  height: 37px;
+  padding: 0 0 0 75px;
+    margin-bottom:10px;
+    clear:both;
+}
+.form-stacked label.first6label {display: inline; }
+.form-stacked label.last4label {
+  display: inline;
+  margin-left: 72px;
+}
+
+.screenings .form-stacked p { margin-bottom:7px;}
+
+/* -----------------------------------*/
+/* Offers                   */
+/* -----------------------------------*/
+
+/* light box */
+.reveal-modal-bg { background: rgba(0, 0, 0, 0.8); }
+.reveal-modal { width: 620px; margin-left: -310px !important; padding: 0 !important; border-radius: 0px !important; border: none; }
+.offers-tab{line-height:19px;background-color:#9e54ac;background-image:url(../../../../images/commerce/shared/icon-gift-box-white.svg);background-repeat:no-repeat;background-position:0 0;color:#fff;display:inline-block;font-size:18px;font-style:italic;left:0;top:0;margin:-20px 0 0 -10px;padding:8px 15px 8px 10px;position:absolute;text-indent:24px;height:34px;background-size:15px 18px;-moz-background-size:15px 18px;-webkit-background-size:15px 18px;-o-background-size:15px 18px;-ms-background-size:15px 18px;background-origin:content-box;-moz-background-origin:content-box;-webkit-background-origin:content-box;-o-background-origin:content;-ms-background-origin:content}
+.modal-loyalty .offers-tab{
+    background-image: url(../../../../redesign/static/img/icon-vip-points-white.svg);
+    background-size: 35px 18px;
+    text-indent: 45px;
+}
+.offers-tab:after { border-bottom: 14px solid transparent; border-right: 10px solid #70307c; border-top: 0 solid #70307c; content: ""; display: inline; height: 0; left: 0; margin-left: 0; margin-top: 26px; position: absolute; width: 0; }
+
+.offers-tab .vip {font-style:normal; font-weight:bold; }
+.reveal-footer { background-color: #000; }
+.reveal-footer-content { background-color: #333333; color: #ececec; font-size: 18px; padding: 15px 10px; position: relative; width: auto; font-weight: bold; }
+.reveal-footer-content .wrap { width: 370px; }
+.reveal-footer-content .offer-title { display: table-cell; vertical-align: middle; }
+.reveal-sub-footer { background-color: #262626; color: #939393; font-size: 10px; line-height: 12px; margin: 0px; padding: 15px 10px; }
+.reveal-sub-footer .offer-membertitle {font-size: 15px;font-weight: bold;   padding-bottom: 15px ;color: #ececec; }
+.close-reveal-modal.blue-bg { background-color: #4aa7f5 !important; opacity: .7; color: #FFFFFF !important; font-family: "proxima-nova",Helvetica,Arial,sans-serif !important; font-size: 12px !important; font-weight: 700 !important; line-height: 16px !important; padding: 10px !important; right: 0 !important; text-align: center !important; text-transform: uppercase !important; top: 0 !important; width: 100px !important; border-radius: 0px !important; }
+.close-reveal-modal.blue-bg:hover { opacity: 1; }
+.close-x{background:url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll -97px -110px transparent;display:block;height:21px;margin-right:-21px;margin-top:-19px;text-indent:-999em;width:22px}
+/* change to use purple svg*/
+.offer-freegift { margin-top: 0px; background-image: url(../../../../images/commerce/shared/gift-icon.svg); background-color: transparent !important; background-repeat: no-repeat; background-position: 0px 0px; display: inline-block; height: 18px; margin-right: 8px; width: 35px; background-size: 100%; /* Old browsers */ -moz-background-size: 100%; /* FF3.6+ */ -webkit-background-size: 100%; /* Chrome,Safari4+ */ -o-background-size: 100%; /* Opera 11.10+ */ -ms-background-size: 100%; /* IE10+ */ background-origin: content-box; /* Old browsers */ -moz-background-origin: content-box; /* FF3.6+ */ -webkit-background-origin: content-box; /* Chrome,Safari4+ */ -o-background-origin: content; /* Opera 11.10+ */ -ms-background-origin: content; /* IE10+ */ }
+.offer-worryFree  { height: 29px; width: 55px; /*margin-top: -8px;*/ position: relative !important; z-index: 0; background-image: url(../../../../images/commerce/shared/WFT_New.svg); background-color: transparent!important; background-repeat: no-repeat; background-position: 0 0; -moz-background-size: 100%; -webkit-background-size: 100%; -o-background-size: 100%; -ms-background-size: 100%; background-size: 100%; -moz-background-origin: border-box; -webkit-background-origin: border-box; -o-background-origin: border-box; -ms-background-origin: border-box; background-origin: border-box; }
+.offers-bundle .right span { line-height: 20px; margin-top: 0; display: inline-block; }
+.offers-bundle .right span.offer-freegift { margin-top: 0px; }
+.offer-discount { background: url("../../../../images/commerce/redesign/redesign_sprite.png") no-repeat scroll -75px -88px #FFFFFF; display: inline-block; height: 18px; margin-right: 5px; width: 18px; margin-left:-2px; }
+.offer-subimage { position: absolute; right: 0; bottom: 0; }
+.cookiedPromoListItem {background: url("../../../../images/commerce/redesign/cookiedPromoIcon.png") no-repeat #FFFFFF;margin-left: 0 !important; margin-top: 5px; cursor: default !important; padding-left: 24px;}
+/*
+section.offers { }
+section.offers ul { margin-bottom: 10px; }
+*/
+#offersStackContainer h3.offerHeading {margin-bottom:10px; display:block; }
+
+.offers-bundle-desc { display: inline-block; width: 560px; }
+ul.offers-bundle li { padding-bottom: 20px; }
+ul.offers-bundle li:last-child { padding-bottom: 0px; }
+.offer-icon { float: left; position: absolute; }
+.offer-info, .cookiedPromoListItem { margin-left: 24px; width: 553px; display: block; line-height: normal; }
+.offer-loyalty { 
+    background-image: url(../../../../redesign/static/img/icon-vip-points.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 18px;
+    width: 35px;
+    margin-right: 8px;
+    margin-top: 4px;
+}
+.offer-info .disclaimer { line-height: normal; color: #929292; }
+.offer-info:after { clear: both; }
+.offer-info strong, .cookiedPromoListItem { display:/*block*/inline-block; color: #4aa7f6;   transition: all 0.3s linear 0s;}
+.offer-info strong:hover { color: #0286f2;}
+.worryFree strong {    margin-left: 5px;}
+
+.worryFree {
+	position:relative;
+	overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ticketBoxoffice .worryFree {
+	margin-bottom: 15px;
+}
+.worryFree .offer-info {
+	padding-top:8px;
+}
+
+li.notes, li.cookiedPromoListItem { clear: both; display: block; float: none; line-height: 19px; margin-bottom: 12px; cursor: pointer; color:#4c4c4c; position: relative; font-size:14px;}
+li.notes .offer-info { padding-top: 5px; margin-left: 44px; }
+/*li.notes:hover { color:#4c4c4c;}
+li.notes:hover a {  color:#0286f2;}*/
+.checkout .signInMessage { display:none; }
+
+
+ul.offers-bundle p.notes { line-height: 19px; width: 565px; margin-bottom: 0px; }
+ul.offers-bundle .code { background: none repeat scroll 0 0 #F3F3F3; border: 1px dashed #D5D5D5; padding: 2px 3px; }
+.offer-info > a { white-space: nowrap; float: right; padding-left:5px; }
+
+.worryFreeTicketsContainer { display:inline-block; margin-top:-10px; }
+.worryFreeTicketsContainer a { background-color: transparent; background-image:url(../../../../images/commerce/shared/WFT_New.svg); background-position: left 50%; background-repeat: no-repeat; background-size: contain; display: block; font-weight: bold; height:55px; line-height:16px; padding-left:100px; padding-top:12px; width:265px; }
+#lb_worryFreeTickets .lb_content { margin:20px 60px 25px 60px; }
+#lb_worryFreeTickets .lb_footer { background:#eee; border-top:1px solid #ccc; padding:15px 0; text-align:center; }
+#lb_worryFreeTickets h2 { font-family:'Times New Roman'; font-size:18px; font-style:italic; text-transform:none; text-align:center; }
+#lb_worryFreeTickets span.img { float:none; margin:0 auto 15px; width:401px; height:112px; background-image:url(../../../../images/commerce/shared/wft-badge-large.jpg); background-color:transparent !important; text-indent:-999em; background-repeat: no-repeat; background-position: 50% 50%;
+	background-size: contain; /* Old browsers */
+    -moz-background-size: contain; /* FF3.6+ */
+    -webkit-background-size: contain; /* Chrome,Safari4+ */
+    -o-background-size: contain; /* Opera 11.10+ */
+    -ms-background-size: contain; /* IE10+ */
+    background-origin: content-box; /* Old browsers */
+    -moz-background-origin: content-box; /* FF3.6+ */
+    -webkit-background-origin: content-box; /* Chrome,Safari4+ */
+    -o-background-origin: content; /* Opera 11.10+ */
+    -ms-background-origin: content; /* IE10+ */
+}
+#lb_worryFreeTickets ul { margin:-15px 59px 0;  line-height:16px; }
+#lb_worryFreeTickets ul li { border: medium none; color: #333; display: list-item; line-height: normal; text-indent:-18px; padding:10px 0 5px; line-height:16px; }
+#lb_worryFreeTickets li:before { content: "\2022   "; color: #f60;  font-size: 28px; padding-right: 1px; position: relative; top: 5px; right:0px; }
+
+/* -----------------------------------*/
+/* Join Overlay (very similar to offer overlay)                  */
+/* -----------------------------------*/
+#memberOverlay.modal-join {width:450px;}
+.reveal-header {background:#333;}
+.reveal-header h1 {color:#fff; padding:10px 0 6px 0; text-align:center;}
+
+.reveal-content {padding:25px 50px;}
+.reveal-content h2{text-align:center; line-height:26px; font-size:28px;}
+.reveal-content h4 {text-align:center; line-height:normal;}
+
+.reveal-content .panel-container {padding:30px 0px 0px;}
+.reveal-content .form-stacked .fieldContainer {width:305px; margin-bottom:15px;}
+
+.reveal-content span.fieldNote {font-style:italic;}
+.reveal-content a.close {text-align:center; display:block; margin-top:10px;}
+
+.reveal-content label {text-transform:none;}
+
+/* New 2 Column VIP Join Overlay */
+#VIPJoinOverlay.reveal-modal.modal-join{ margin-left: -400px !important; }
+#VIPJoinOverlay.modal-join { width: 800px; }
+#VIPJoinOverlay .reveal-content { padding: 0; }
+#VIPJoinOverlay .reveal-content .panel-container { width: 400px; display: table-cell; padding: 30px; vertical-align: top; }
+#VIPJoinOverlay .reveal-content .panel-container.right-panel { border-left: #ccc solid 1px; }
+#VIPJoinOverlay .reveal-footer { clear:both; width: 100%; padding: 20px; background: #EBEBEB; border-top: #ccc solid 1px; text-align: center; }
+#VIPJoinOverlay .cta {font-size:  18px; }
+#VIPJoinOverlay .reveal-content a.close { margin: 0; }
+#VIPJoinOverlay button{ background: none; border: medium none; border-radius: 0px; box-shadow: none; color: #FFFFFF; cursor: pointer; display: inline-block; font-family: "proxima-nova",Helvetica,Arial,sans-serif; font-weight: 600 !important; overflow: hidden; position: relative; -moz-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; margin: 0; }
+#VIPJoinOverlay button:focus,
+#VIPJoinOverlay button:hover{ background: none; color: #fff; padding: 15px;}
+#VIPJoinOverlay .vip-offer h2, .modal-join .vip-offer h4, .modal-join .vip-offer p{ text-align: left; }
+#VIPJoinOverlay .reveal-content .panel-container.vip-offer { padding-top: 35px; padding-left: 20px; }
+#VIPJoinOverlay .vip-offer .vip-offer-heading { margin-left: 20px; width: 320px; }
+#VIPJoinOverlay .vip-offer h2 { margin-bottom: 20px }
+#VIPJoinOverlay .legal { margin-top: 40px; font-size: 12px; line-height: 16px; }
+#VIPJoinOverlay .vip-offer h5 { font-weight: bold; color: #4c4c4c; }
+#VIPJoinOverlay .vip-text { font-weight: 900; }
+#VIPJoinOverlay .vip-text-color { color: #f15500; font-weight: 900; }
+#VIPJoinOverlay .vip-benefit .vip-benefit-heading {font-weight: 700; text-transform: uppercase; padding-top: 2px; margin-top: 20px; padding-left: 32px; height: 20px; }
+#VIPJoinOverlay .vip-benefit p { margin-left: 50px; margin-bottom: 0}
+#VIPJoinOverlay .vip-benefit.worry-free-ticket { margin-left: 2px; background: url(../../../../images/commerce/shared/WFT_New.svg) no-repeat; background-size: 88px; }
+#VIPJoinOverlay .vip-benefit.fastercheckout { margin-left: 10px; background: url(../../../../images/commerce/shared/icon-fastercheckout.svg) no-repeat; background-size: 35px; }
+#VIPJoinOverlay .vip-benefit.fastercheckout .vip-benefit-heading {margin-left: 12px;}
+#VIPJoinOverlay .vip-benefit.insiderperks { margin-left: 18px; background: url(../../../../images/commerce/shared/icon-insiderperks.svg) no-repeat; background-size: 26px; }
+#VIPJoinOverlay .vip-benefit.worry-free-ticket .vip-benefit-heading { padding-top: 20px; margin-top: 14px; padding-left: 88px; height: 40px; }
+#VIPJoinOverlay .vip-benefit.insiderperks .vip-benefit-heading { margin-left:3px;}
+#VIPJoinOverlay .vip-benefit.insiderperks p {margin-left: 34px;}
+#VIPJoinOverlay .vip-benefit.fastercheckout p {margin-left: 43px;}
+#VIPJoinOverlay .lblEmailAddress{ padding-top: 10px; display: block; font-size:16px; }
+#VIPJoinOverlay .errorText { display: none; }
+
+/* ---------------------------------------*/
+/* Misc   */
+/* ---------------------------------------*/
+
+#orderSummary td.amount { font-weight: bold; white-space:nowrap; }
+
+/* Ads */
+#header-wrapper .AdUnit { padding: 10px 0; }
+.AdUnit { text-align: center; }
+.mps-ad { margin: 0 auto; }
+.skyscraper { width: 160px; }
+
+/* Bug fix: Hide the search box and offers when imported from .com because they don't work */
+li.nav-showtimes-tickets .mega-menu .large-3,
+.brand-bar,
+.inline-items > li.global-search { display:none !important;}
+
+/* ---------------------------------------*/
+/* Convenience Fees, Flyouts   */
+/* ---------------------------------------*/
+
+#orderSummary div.convenienceFeeFlyout,
+#orderSummary div.flyout {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px #ccc solid;
+    right: -30px;
+    width: auto;
+    overflow: auto;
+    z-index: 99;
+    margin-top: 10px;
+}
+.loyaltyDiscountRow div.flyout {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px #ccc solid;
+    right: -30px;
+    width: auto;
+    overflow: auto;
+    z-index: 99;
+    margin-top: 10px;
+    padding: 10px 15px;
+}
+#orderSummary div.convenienceFeeFlyout table,
+#orderSummary div.flyout table {
+    padding: 10px 15px;
+}
+#orderSummary div.adjustedTicketsFlyout table.total td.footer {
+    white-space:normal;
+    font-weight:normal;
+    color:gray;
+    text-align:left;
+    font-size:12px;
+}
+#orderSummary div.flyout table.message td.footer {text-align: left; white-space:normal;color:gray;font-size:12px}
+#orderSummary div.flyout table.total,
+#orderSummary div.flyout table.message { border-top: 1px #ccc solid; }
+#orderSummary div.flyout table.total td { text-align: right; }
+#orderSummary div.flyout table.total td.heading {text-align: right; color:#797979; padding-bottom: 4px;}
+#orderSummary div.convenienceFeeFlyout table .heading,
+#orderSummary div.flyout table .heading,
+.loyaltyDiscountRow div.flyout table .heading { font-weight:bold;padding-bottom:5px; float: left;}
+
+#orderSummary div.convenienceFeeFlyout table  tr.close,
+#orderSummary div.flyout table tr.close,
+.loyaltyDiscountRow div.flyout table tr.close { position:absolute; top:0px; right:0px;}
+#orderSummary div.convenienceFeeFlyout table  .close td,
+#orderSummary div.flyout table .close td,
+.loyaltyDiscountRow div.flyout table .close td { text-align:right; padding:0; }
+#orderSummary div.convenienceFeeFlyout table  .close a,
+#orderSummary div.flyout table .close a,
+.loyaltyDiscountRow div.flyout table .close a {color: #333333; font-size:7px; padding:10px 5px 20px 20px; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;}
+
+#orderSummary div.convenienceFeeFlyout table  td,
+#orderSummary div.flyout table td {white-space:nowrap; padding:4px 0px; }
+#orderSummary div.convenienceFeeFlyout table  td.type,
+#orderSummary div.flyout table td.type { padding-right:20px; text-align: left;}
+#orderSummary div.convenienceFeeFlyout table  td.math,
+#orderSummary div.flyout table td.math { font-size:14px; text-align: right;}
+
+.discountValue { font-weight:bold; color: #4fae1e; }
+/* -----------------------------------*/
+/* Responsive Overrides: added to make purchase policy responsive */
+/* -----------------------------------*/
+
+body.responsive .commonContainer {
+  margin: 0 auto;
+  max-width: 91.429em;
+  width: 100%;
+}
+body.responsive #logo {margin-left:10px; }
+body.responsive #headerPurchase {border-bottom: 2px solid #f15500;box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.3);}
+body.responsive .noNav { padding-top:28px;}
+
+body.responsive h5 { font-weight:bold; color:#4c4c4c;padding-bottom: 5px;}
+
+.page-nav { display: inline-block; float: right; padding-top: 0px; height: 40px; }
+.page-nav ul { display: table; margin-bottom: 0; font-size: 14px;margin-top:10px; }
+.page-nav li { float: left; padding: 5px 0px; list-style-type: none; }
+.page-nav .current { color: #4c4c4c; }
+.page-nav .nav-link {text-decoration: none; padding: 0 11px; display: block; border-left: 1px solid #CCC; height: 18px; }
+.page-nav li:first-child a,
+.page-nav li:first-child span { border-left: 0; padding-left: 0; }
+.page-nav li.last a,
+.page-nav li.last span { padding-right: 0; }
+
+
+/*@media screen and (max-width: 768px) {*/
+@media screen and (max-width: 768px) {
+    body.responsive #logo a {
+        cursor: default;
+        pointer-events: none;
+    }
+    body.responsive .AdUnit,
+    body.responsive #footerContainer {
+        display: none;
+    }
+
+    @media screen and (max-width: 550px) {
+        .page-nav {
+            float: none;
+            height: auto;
+            min-height: 40px;
+        }
+    }
+}
+
+/* fix to hide broken help link on promo page*/
+.corporate .promo_help.cta {  display: none;}
+.corporate .mesg {  margin-bottom: 0;}
+
+/* fixes sentence at bottom or promo survey page*/
+.corporate .activating {
+  color: #929292;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+
+/* ---------------------------------------*/
+/* Returns   */
+/* ---------------------------------------*/
+
+#threatMetrixContainer { display: none; }
+
+.returnContainer .confirmationNo {font-size: 16px; font-weight: bold; text-align: center;}
+.returnContainer .main .confirmationNo { display: inline;  }
+.returnContainer .side .confirmationNo { display: block;}
+.returnContainer .module-cutout { text-align: left; }
+.returnContainer h4 { text-transform: none; margin-bottom: 15px; }
+.returnContainer .buttonContainer .notes { padding-top: 24px; margin-bottom: 0px; }
+.returnContainer .buttonContainer .spinner { float: right; left: -5px; top: 8px; height: 23px; width: 23px }
+
+.returnOptions { }
+.returnOptions label { font-weight: bold; color: #4c4c4c; font-size: 15px; }
+.returnOptions p { margin-left: 20px; }
+.returnOptions span.fieldNote { margin-top: 0px; }
+.returnOptions .errorText i { margin-left: -25px; }
+
+.completeReturn p { clear: both; padding: 20px 0 0 0; margin: 0px; }
+
+.valuePresentation table tr.returnTotal { display: block; font-weight: bold; padding-top: 15px; }
+.valuePresentation table tr.returnTotal td { font-size: 16px; }
+.valuePresentation table td.returnItemAmt { display: block; font-size: 16px; font-weight: bold; padding-left: 30px; text-align: right; }
+
+.returnItemDescription { font-size: 14px; font-style: italic; color: #929292; margin-top: 5px; }
+.returnCardTotal {  margin-left: 10px;}
+.returnNotes { margin-bottom: 5px; margin-top: 40px; }
+
+#returnExchange { margin-bottom: 30px; }
+
+#backLink {
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 10px;
+    width: 30px;
+    height: 42px;
+    text-indent: -999em;
+}
+#backLink a { display:none; }
+#backLink a.headerBackLink { display: block; width: 25%; height: 41px; position: absolute; color: #fff; }
+#backLink a.headerBackLink:before { border-bottom: 10px solid rgba(0, 0, 0, 0); border-left: 10px solid#f00; border-top: 10px solid rgba(0, 0, 0, 0); border-right: 10px solid #f00; border: 6px solid#333; top: 40%; content: ""; display: block; position: absolute; left: 10px; width: 0; -webkit-box-shadow: 2px 2px 0 2px #f60; box-shadow: 2px 2px 0 2px #f60; -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -ms-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); pointer-events: none; z-index: 1; }
+
+#logo.inlineWithBackLink {
+    margin-left: 30px;
+}
+
+/* ---------------------------------------*/
+/* Join lightbox                          */
+/* ---------------------------------------*/
+p.successText { display:none; color:#4f8a10; background:url(../../../../images/express/green-check.png) no-repeat 0 0 transparent; padding-left:20px; }
+.reveal-modal .createAccountBtn { width:305px; }
+
+/* ---------------------------------------*/
+/* Update Password lightbox               */
+/* ---------------------------------------*/
+
+  #lb_password_update {
+        width: 405px;
+    }
+
+    #lb_password_update h1 {
+        font-size: 22px;
+        line-height: 20px;
+    }
+    #lb_password_update h2 {
+		background-color:transparent;
+        background-image:url(../../../../images/commerce/shared/lockIcon.svg);
+		background-position:right top;
+		background-repeat:no-repeat;
+		display:block;
+		padding:0 17px 0 0;
+		line-height:35px;
+		background-size: 19px auto; /* Old browsers */
+		-moz-background-size: 19px auto; /* FF3.6+ */
+		-webkit-background-size: 19px auto; /* Chrome,Safari4+ */
+		-o-background-size: 19px auto; /* Opera 11.10+ */
+		-ms-background-size: 19px auto; /* IE10+ */
+		background-origin: content-box; /* Old browsers */
+		-moz-background-origin: content-box; /* FF3.6+ */
+		-webkit-background-origin: content-box; /* Chrome,Safari4+ */
+		-o-background-origin: content; /* Opera 11.10+ */
+		-ms-background-origin: content; /* IE10+ */
+	}
+
+    #lb_password_update h4 {
+        margin: 10px 0 20px 0;
+    }
+
+    #lb_password_update input, #lb_password_update button {
+        margin: 5px 0;
+	background: none;
+	padding: 14px 17px 11px;
+    }
+
+    #lb_password_update p {
+        font-style: italic;
+        font-size: 12px;
+    }
+
+    #lb_password_update label {
+        text-align: left;
+    }
+
+    #lb_password_update .panel-container {
+        padding: 30px 50px;
+    }
+
+    #lb_password_update button {
+        border-radius: 0px;
+    }
+
+    #lb_password_update .checkoutGuest {
+        text-transform: capitalize;
+    }
+
+    #lb_password_update .form-stacked #updatePasswordError.errorText {
+        text-align: left;
+    }
+
+    .successText {
+	color: #21A407;
+    }
+
+    /* Async Checkout */
+    #lb_asyncCheckout {
+        width: 350px;
+        margin-left: -175px !important;
+        top: 260px;
+    }
+    
+    #lb_asyncCheckout .close-x {
+        display: none;
+    }
+
+    #lb_asyncCheckout .lb_content {
+        padding: 20px;
+    }
+
+    #lb_asyncCheckout .lb_content button {
+        display: none;
+    }
+
+    #lb_asyncCheckout .lb_content p {
+        font-size: 16px;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    
+    }
+    #lb_asyncCheckout.failure {
+        width: 350px;
+    } 
+
+    #lb_asyncCheckout.failure .lb_content {
+        background: url(../../../../images/commerce/shared/FailedOrder@2x.png) no-repeat;
+        background-repeat: no-repeat;
+        background-size: 100px;
+        background-position: center 60px;
+    }
+    
+    #lb_asyncCheckout.failure .lb_content p {
+        font-size: 16px;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 181px;
+        margin-bottom: 20px;
+    }
+    
+    #lb_asyncCheckout.failure button {
+        clear: both;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    #lb_asyncCheckout .pageProgress {
+        background: #fff;
+        border: 0 none;
+        height: 55px;
+        margin: 0 auto;
+        opacity: 1;
+        padding: 20px 30px;
+        position: relative;
+        width: 100px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        z-index: 991;
+    }
+
+    #lb_asyncCheckout.failure .pageProgress {
+        display: none;
+    }
+
+    #lb_asyncCheckout .progress_block {
+        background-color: #ffffff;
+        border: 0;
+        float: left;
+        height: 40px;
+        margin-left: 5px;
+        width: 10px;
+        opacity: 0.1;
+        -moz-animation-name: bounceG;
+        -moz-animation-duration: 1.3s;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-direction: linear;
+        -moz-transform: scale(0.7);
+        -webkit-animation-name: bounceG;
+        -webkit-animation-duration: 1.3s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-direction: linear;
+        -webkit-transform: scale(0.7);
+        -ms-animation-name: bounceG;
+        -ms-animation-duration: 1.3s;
+        -ms-animation-iteration-count: infinite;
+        -ms-animation-direction: linear;
+        -ms-transform: scale(0.7);
+        -o-animation-name: bounceG;
+        -o-animation-duration: 1.3s;
+        -o-animation-iteration-count: infinite;
+        -o-animation-direction: linear;
+        -o-transform: scale(0.7);
+        animation-name: bounceG;
+        animation-duration: 1.3s;
+        animation-iteration-count: infinite;
+        animation-direction: linear;
+        transform: scale(0.7);
+    }
+    
+    #lb_asyncCheckout .pageProgress.inverted > .progress_block {
+        background-color: #999ea3;
+    }
+    
+    #lb_asyncCheckout .progress_block {
+        height: 30px;
+        width: 7px;
+        margin-left: 4px;
+        background-color: #ffffff;
+    }
+    
+    #lb_asyncCheckout .block1 {
+        -moz-animation-delay: 0.39s;
+        -webkit-animation-delay: 0.39s;
+        -ms-animation-delay: 0.39s;
+        -o-animation-delay: 0.39s;
+        animation-delay: 0.39s;
+    }
+    
+    #lb_asyncCheckout .block2 {
+        -moz-animation-delay: 0.52s;
+        -webkit-animation-delay: 0.52s;
+        -ms-animation-delay: 0.52s;
+        -o-animation-delay: 0.52s;
+        animation-delay: 0.52s;
+    }
+    
+    #lb_asyncCheckout .block3 {
+        -moz-animation-delay: 0.65s;
+        -webkit-animation-delay: 0.65s;
+        -ms-animation-delay: 0.65s;
+        -o-animation-delay: 0.65s;
+        animation-delay: 0.65s;
+    }
+    
+    @-moz-keyframes bounceG {
+        0% {
+            -moz-transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            -moz-transform: scale(0.7);
+            opacity: 0.1;
+        }
+    }
+    
+    @-webkit-keyframes bounceG {
+        0% {
+            -webkit-transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            -webkit-transform: scale(0.7);
+            opacity: 0.1;
+        }
+    }
+    
+    @-ms-keyframes bounceG {
+        0% {
+            -ms-transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            -ms-transform: scale(0.7);
+            opacity: 0.1;
+        }
+    }
+    
+    @-o-keyframes bounceG {
+        0% {
+            -o-transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            -o-transform: scale(0.7);
+            opacity: 0.1;
+        }
+    }
+    
+    @keyframes bounceG {
+        0% {
+            -moz-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            -moz-transform: scale(0.7);
+            -ms-transform: scale(0.7);
+            -o-transform: scale(0.7);
+            -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+            opacity: 0.1;
+        }
+    }
+    
+
+/* Refunds and Exchanges popup  */
+
+.wft-modal-splash-wrapper {
+  width: 82%;
+  margin: 0 auto;
+  min-height: 71px;
+  background-position: 73px 6px;
+  background-size: 15%;
+  background-repeat: no-repeat;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI0IDI0OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uc3Qwe2ZpbGw6I0YzNzQyMTt9LnN0MXtmaWxsOiNGRkZGRkY7fS5zdDJ7ZmlsbDpub25lO3N0cm9rZTojRjM3NDIxO3N0cm9rZS1taXRlcmxpbWl0OjEwO30uc3Qze2NsaXAtcGF0aDp1cmwoI1NWR0lEXzJfKTt9LnN0NHtjbGlwLXBhdGg6dXJsKCNTVkdJRF80Xyk7ZmlsbDojRjQ3NDIxO30uc3Q1e2NsaXAtcGF0aDp1cmwoI1NWR0lEXzZfKTt9LnN0NntjbGlwLXBhdGg6dXJsKCNTVkdJRF84Xyk7ZmlsbDojRjQ3NDIxO308L3N0eWxlPjxnPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTIsMC43IDEzLjIsLTAuMSAxNC4yLDAuOSAxNS41LDAuNCAxNi4zLDEuNSAxNy43LDEuMyAxOC4zLDIuNiAxOS43LDIuNiAyMCw0IDIxLjQsNC4zIDIxLjQsNS43IDIyLjcsNi4zIDIyLjUsNy42IDIzLjYsOC40IDIzLjEsOS43IDI0LDEwLjggMjMuMywxMS45IDI0LDEzLjEgMjMuMSwxNC4xIDIzLjYsMTUuNCAyMi41LDE2LjMgMjIuNywxNy42IDIxLjQsMTguMiAyMS40LDE5LjYgMjAsMTkuOSAxOS43LDIxLjMgMTguMywyMS4zIDE3LjcsMjIuNiAxNi4zLDIyLjQgMTUuNSwyMy41IDE0LjIsMjMgMTMuMiwyMy45IDEyLDIzLjIgMTAuOCwyMy45IDkuOCwyMyA4LjUsMjMuNSA3LjcsMjIuNCA2LjMsMjIuNiA1LjgsMjEuMyA0LjQsMjEuMyA0LDE5LjkgMi43LDE5LjYgMi42LDE4LjIgMS40LDE3LjYgMS42LDE2LjMgMC41LDE1LjQgMSwxNC4xIDAsMTMuMSAwLjcsMTEuOSAwLDEwLjggMSw5LjcgMC41LDguNCAxLjYsNy42IDEuNCw2LjMgMi42LDUuNyAyLjcsNC4zIDQsNCA0LjQsMi42IDUuOCwyLjYgNi4zLDEuMyA3LjcsMS41IDguNSwwLjQgOS44LDAuOSAxMC44LC0wLjEgIi8+PGNpcmNsZSBjbGFzcz0ic3QxIiBjeD0iMTIiIGN5PSIxMS45IiByPSI5LjUiLz48Y2lyY2xlIGNsYXNzPSJzdDIiIGN4PSIxMiIgY3k9IjExLjkiIHI9IjguNCIvPjxnPjxnPjxkZWZzPjxwb2x5Z29uIGlkPSJTVkdJRF8xXyIgcG9pbnRzPSIxNC45LDguOCA4LDEwLjcgOS4yLDE1LjEgMTYuMSwxMy4yICIvPjwvZGVmcz48Y2xpcFBhdGggaWQ9IlNWR0lEXzJfIj48dXNlIHhsaW5rOmhyZWY9IiNTVkdJRF8xXyIgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlOyIvPjwvY2xpcFBhdGg+PGcgY2xhc3M9InN0MyI+PGRlZnM+PHJlY3QgaWQ9IlNWR0lEXzNfIiB4PSItMjczLjUiIHk9Ii0xNTciIHdpZHRoPSI0NzguMSIgaGVpZ2h0PSIyNjIuOSIvPjwvZGVmcz48Y2xpcFBhdGggaWQ9IlNWR0lEXzRfIj48dXNlIHhsaW5rOmhyZWY9IiNTVkdJRF8zXyIgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlOyIvPjwvY2xpcFBhdGg+PHJlY3QgeD0iNi41IiB5PSI3LjMiIGNsYXNzPSJzdDQiIHdpZHRoPSIxMS4xIiBoZWlnaHQ9IjkuMyIvPjwvZz48L2c+PGc+PGRlZnM+PHBhdGggaWQ9IlNWR0lEXzVfIiBkPSJNMTcuMSw5LjRsLTAuNi0yLjFMNS43LDEwLjFsMC42LDIuMWMwLjYtMC4yLDEuMywwLjIsMS40LDAuOGMwLjIsMC42LTAuMiwxLjMtMC44LDEuNGwwLjYsMi4ybDEwLjgtMi45bC0wLjYtMi4yYy0wLjYsMC4yLTEuMy0wLjItMS40LTAuOEMxNi4yLDEwLjIsMTYuNSw5LjUsMTcuMSw5LjR6IE0xNi41LDEzLjVsLTcuNSwybC0xLjMtNWw3LjUtMkwxNi41LDEzLjV6Ii8+PC9kZWZzPjxjbGlwUGF0aCBpZD0iU1ZHSURfNl8iPjx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzVfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+PC9jbGlwUGF0aD48ZyBjbGFzcz0ic3Q1Ij48ZGVmcz48cmVjdCBpZD0iU1ZHSURfN18iIHg9Ii0yNzMuNSIgeT0iLTE1NyIgd2lkdGg9IjQ3OC4xIiBoZWlnaHQ9IjI2Mi45Ii8+PC9kZWZzPjxjbGlwUGF0aCBpZD0iU1ZHSURfOF8iPjx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzdfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+PC9jbGlwUGF0aD48cmVjdCB4PSI0LjIiIHk9IjUuNyIgY2xhc3M9InN0NiIgd2lkdGg9IjE1LjYiIGhlaWdodD0iMTIuNCIvPjwvZz48L2c+PC9nPjwvZz48L3N2Zz4=);
+
+}
+
+.wft-modal-headline {
+  text-align: right;
+  font-size: 28px;
+  font-family: 'alternate-gothic-no-1-d';
+  text-transform: uppercase;
+  line-height: 77px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.wft-modal-headline span {
+  border: 1px solid #ff7900;
+  border-left: none;
+  padding: 3px 35px 0 38px;
+  margin-right: 0px;
+}
+
+.lb_content p {
+  width: 85%;
+  text-align: left;
+  margin: 0 0 15px 41px;
+}
+
+/*VPR Info Page Styles */
+
+.get-vpr #ticket-left {
+	background: blue;
+    background-image: url("../../../../images/commerce/shared/getVPRphone.png");
+    display: inline-block;
+    margin-right: 13px;
+    height: 428px;
+    width: 199px;
+    margin-bottom: 0px;
+    float: left;
+    text-indent: -999em;
+    border-radius: 29px;
+    padding: 19px;
+    border: none;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.get-vpr #ticket-right {
+	width: 370px;
+    padding-top: 58px;
+    margin-left: 30px;
+	}
+
+.get-vpr h5 {
+	color: #000;
+	text-transform: none;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.get-vpr h3 {
+	margin-left: 30px;
+	}
+
+.get-vpr span.fastest {
+	font-style: italic;
+	margin-bottom: 10px;
+	}
+
+	.get-vpr #ticket-right .vpr-block {
+	display: block;
+	width: 100%;
+	clear: both;
+	margin-bottom: 20px;
+	}
+
+.get-vpr #ticket-right div.vpr-left {
+	width: 50px;
+	display: block;
+	float: left;
+	height: 50px;
+}
+
+.get-vpr #ticket-right div.vpr-right {
+	display: block;
+	float: left;
+	width: 300px;
+	}
+.get-vpr .row {
+    padding-left: 40px;
+}
+
+.vpr-left h2 {
+	border: 1px solid black;
+    border-radius: 29px;
+    width: 30px;
+    height: 30px;
+    padding-left: 9px;
+    padding-top: 6px;
+    margin: 0px;
+}
+
+.get-vpr .app-store {
+	display: inline-block;
+	margin-top: 20px;
+	width: 135px;
+	height: 40px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	}
+
+.get-vpr .app-store.apple {
+	background-image: url("../../../../images/commerce/mobile/Download_on_the_App_Store_Badge_US-UK_135x40.svg");
+	margin-right: 10px;
+}
+
+.get-vpr .app-store.android {
+	background-image: url("../../../../images/commerce/mobile/en_app_rgb_wo_60.png");
+}
+
+.get-vpr #ticket-right .vpr-block:before,
+.get-vpr #ticket-right .vpr-block:after {
+  content:"";
+  display:table;
+}
+.get-vpr #ticket-right .vpr-block:after {
+  clear:both;
+}
+
+
+.mobile_delivery #chkMobileAlert {
+	display:none;
+}
+
+.newShowtime{
+    margin-top: 10px;
+}
+
+.main .newShowtime{
+    float:right;
+}
+
+.newShowtimeContainer {
+    text-align: right;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px 0 20px;
+}
+
+.ticketBoxoffice section.offers{
+    margin-top: 25px;
+    padding-top:25px;
+    border-top: 1px solid #ccc;
+}
+
+/* Loyalty VIP+ */
+
+.loyalty-conf-msg-cont {
+    margin-top:20px;
+}
+.loyalty-conf-msg {
+    display: inline-block;
+    background-image: url(../../../../redesign/static/img/icon-vip-points.svg);
+    background-size: 35px 18px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    margin:0;
+    padding-left:44px;
+}
+.returnOptions .loyalty-msg-choose {
+    color:rgba(144,144,144, 1); 
+    margin:0 0 20px;
+    font-size:12px;
+}
+.returnContainer .loyalty-msg-refund-summary {
+    color:rgba(144,144,144, 1);
+    margin:20px 0 10px;
+}
+.returnContainer .loyalty-msg-refund-complete {
+    color:rgba(144,144,144, 1);
+    margin:20px 0 0;
+}
+.returnContainer .loyalty-msg-exchange-summary {
+    color:rgba(144,144,144, 1);
+    margin:20px 0 0;
+}
