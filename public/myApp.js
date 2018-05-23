@@ -34,7 +34,6 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ui.bootstrap', 'a
                 controller: 'ProjectionController',
                 templateUrl: '/js/app/controllers/admin/projection/view.html',
                 title: 'Прожекции'
-
             })
             .when('/projections/add', {
                 controller: 'ProjectionController',

@@ -38,6 +38,11 @@ app.config(function ($routeProvider) {
             templateUrl: '/js/app/controllers/projections/projections.html',
             title: 'Прожекции'
         })
+        .when('/projections/book/:kinoId/:zalaID/:movie/:time', {
+            controller: 'BookProjectionController',
+            templateUrl: '/js/app/controllers/projections/book.html',
+            title: 'Резервирай'
+        })
         .when('/login', {
             controller: 'LoginController',
             templateUrl: '/js/app/controllers/authentication/login.html',

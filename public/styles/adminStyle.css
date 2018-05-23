@@ -1085,10 +1085,12 @@ table> thead{
 .error-message{
   color:red;
 }
-.error-message1{
+.error-message1,
+.error-message2{
   width: 100%;
   display: -webkit-box;
 }
+
 .daterangepicker{
   width: 40%;
 }

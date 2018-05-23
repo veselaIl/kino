@@ -42,15 +42,15 @@ myApp.controller('AddMovieController', function($scope, fileReader, MovieService
         return true;
     }
    
-    $scope.$on("fileProgress", function(e, progress) {
+    $scope.$on("fileProgress", function (e, progress) {
         $scope.progress = progress.loaded / progress.total;
     });   
 
     // ADD MOVIE
-    $scope.addMovie = function($event, invalid){
+    $scope.addMovie = function ($event, invalid){
         $event.preventDefault();
 
-        if(!invalid){
+        if (!invalid){
             $scope.movie.premierDate = $scope.dt.toLocaleDateString();
             console.log($scope);
             MovieService.addMovie($scope.movie);

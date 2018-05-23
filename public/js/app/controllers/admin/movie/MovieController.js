@@ -1,9 +1,27 @@
 myApp.controller('MovieController', function($scope, $routeParams, MovieService){
     $scope.movies = [];
     $scope.movie = {};
-
+    var indexes = [];
+    $scope.genres = [
+        "Комедия",
+        "Екшън",
+        "Драма",
+        "Анимация",
+        "Криминален",
+        "Романтичен",
+        "Фентъзи",
+        "Мюзикал",
+        "Трилър",
+        "Ужаси",
+        "Биографичен",
+        "Исторически",
+        "Научно-популярен",
+        "Технологичен",
+        "Документален"
+    ];
+    
     MovieService.getMovies()
-        .then(function(movies){
+        .then(function (movies){
             // console.log('then', movies);
             $scope.movies = movies;
             $scope.movie = movies.find(movie => movie.movieID === +$routeParams.id);
@@ -13,29 +31,12 @@ myApp.controller('MovieController', function($scope, $routeParams, MovieService)
         .catch(function(err){
             console.log(err);
         })
-        var indexes = [];
-        $scope.genres = [
-            "Комедия",
-            "Екшън",
-            "Драма",
-            "Анимация",
-            "Криминален",
-            "Романтичен",
-            "Фентъзи",
-            "Мюзикал",
-            "Трилър",
-            "Ужаси",
-            "Биографичен",
-            "Исторически",
-            "Научно-популярен",
-            "Технологичен",
-            "Документален"
-        ];
-        $scope.checkSelected = function(){
-            if($scope.movie.genres === 0){
-                return false;
-            }
-            return true;
-        }    
-       console.log($scope);
+
+    $scope.checkSelected = function(){
+        if($scope.movie.genres === 0){
+            return false;
+        }
+        return true;
+    }    
+    console.log($scope);
 })
