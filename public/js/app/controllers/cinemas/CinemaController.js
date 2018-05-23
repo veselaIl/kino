@@ -11,7 +11,7 @@ app.controller('CinemaController', function ($scope, $rootScope, $routeParams, C
         })
 
     //Get current Cinema Page
-    CinemaService.getCinema($routeParams.kinoID)
+    CinemaService.getCinema($routeParams.id)
         .then(function (cinema){
             $scope.cinema = cinema;
             $scope.$apply();

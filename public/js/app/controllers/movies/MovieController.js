@@ -2,15 +2,14 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService) 
     $scope.title = "Филми";
     $scope.movies = [];
     $scope.movie = {};
-    //$scope.movie.genre = [];
     $scope.actor = {};
     var errors = [];
 
     //Get all movies 
     MovieService.getMovies()
-        .then(function (movies){
-            $scope.movies = movies;
+        .then(function (movies){            
             console.log('Movie Controller: movies', movies);
+            $scope.movies = movies;
             $scope.$apply();
         })
         .catch(function (err){

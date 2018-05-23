@@ -339,7 +339,7 @@ table{
 
 .title{
   margin-top: 13px;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bolder;
 }
 .title>a{
@@ -417,6 +417,7 @@ table{
 .marks{
   margin-top: 5px;
   padding-left: 5px;
+  font-size: 12px;
 }
 .marks>span{
   color: red;
@@ -639,8 +640,11 @@ table{
 
 /*STYLES FOR BUY TICKET PAGE*/
 /*PARRAGRAPHS - KINO NAME, ADDRESS, PHONENUMBER*/
-.container-kino-info{
-  padding-top: 20px;
+.col-md-3>.container-kino-info{
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-left: 20px;
+  background: linear-gradient(to right, rgba(114, 28, 36, 0.9) 22%, rgba(114, 28, 36, 0.7) 60%, rgba(114, 28, 36, 0.3) 100%);
 }
 .cinema-attr:first-child{
   font-size: 19px;
@@ -651,7 +655,7 @@ table{
   margin: 0;
   font-size: 14px;
   font-weight: bold;
-  color: white;
+  color: black;
 }
 .cinema-attr:last-child{
   margin-top: 8px;
@@ -685,8 +689,7 @@ table{
   font-style: italic;
   background-color: rgba(65, 64, 64, 0.8);
   padding: 20px 0 8px 40px;
-  border: 1px solid rgb(49, 1, 49);
-  border-bottom-left-radius: 6px;
+  /* border-bottom-left-radius: 6px; */
   border-bottom-right-radius: 6px;
 }
 /*BOKING TICKET PAGE*/
@@ -724,7 +727,7 @@ table{
   font-size: 15px;
   font-weight: bold;
   text-align: right;
-  color: white;
+  color: black;
   margin: 0px;
   padding: 6px 10px 8px 0;
   -webkit-box-sizing: border-box;
@@ -738,6 +741,38 @@ table{
   padding: 6px 0 8px;
   border-bottom: 1px solid #414141;
   color: white;
+}
+.date{
+  font-size: 16px;
+  color: black;
+}
+.times-block{
+  border: 1px solid #212529;
+  padding-top: 2px;
+  color: black;
+  height: 60px;
+}
+.times-block>a{
+  text-align: center;
+  color: black;
+  text-decoration: none;
+}
+.times-block:hover{
+  border: 1px solid #717172c2;
+}
+.proj-time{
+  margin-top: 5px;
+}
+.taglist.type {
+  padding: 0 .2em 0 0;
+  color: #f7941e;
+}
+.text-small{
+  letter-spacing: .02em;
+}
+.meta-info{
+  font-size: 12px;
+  font-weight: bold;
 }
 /*Table for ticket choise*/
 .ticket-choose-row{
@@ -753,7 +788,7 @@ table{
   display: block;
   font-size: 16px;
   font-weight: bold;
-  padding: 12px 0 7px 20px;
+  padding: 8px 0 6px 20px;
 }
 .table .td-price{
   font-size: 16px;
@@ -765,6 +800,7 @@ table{
 .table .td-quantity{
   font-size: 16px;
   text-align: center;
+  padding-top: 10px;
 }
 /*rounded corners for choose ticket table*/
 .table>thead>tr>th{
@@ -775,8 +811,17 @@ table{
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
   border-top: none;
 }
+.booking-table{
+  border: none;
+}
+.booking-table>tr{
+  border: none;
+}
+.table-body .booking-table{
+  border: none;
+}
 .booking-table .table-row th{
-  background-color: rgb(85, 1, 85);
+  background-color:#721c24;
   padding: 10px 0 8px 20px;  
 }
 .table-row th{
@@ -788,9 +833,9 @@ table{
 .table-row th:last-child{
   border-top-right-radius: 6px;
 }
-.table>tbody>tr>th:first-child{
+/* .table>tbody>tr>th:first-child{
   border-bottom-left-radius: 6px;
-}
+} */
 .booking-table>thead>tr>th{
   color: white;
 }
@@ -891,10 +936,15 @@ table{
 }
 .forward-btn{
   float: right;
-  background: rgb(85, 1, 85);
+  background-color: rgba(114, 28, 36, 0.6);
+  border: 1px solid rgb(114, 28, 36);
   line-height: 30px;
   border: 0px;
   min-width: 100px;
+}
+.forward-btn{
+  background-color: rgba(114, 28, 36);
+  border: 1px solid rgb(53, 13, 17);
 }
 .fwrd-txt{
   color: #fff;
@@ -938,10 +988,10 @@ main{
   width: 70%;
 }
 .col-u3 .sidebar-nav{
-  width: 252px;
+  width: 256px;
   padding: 20px 0;
   margin: 28px 0 0;
-  background: linear-gradient(to right, rgba(85, 1, 85, 0.9) 0%, rgba(85, 1, 85, 0.7) 50%, rgba(85, 1, 85, 0.3) 100%);
+  background: linear-gradient(to right, rgba(114, 28, 36, 0.9) 22%, rgba(114, 28, 36, 0.7) 60%, rgba(114, 28, 36, 0.3) 100%);
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -960,7 +1010,7 @@ main{
 }
 .navbar-default .side-nav-custom>.active>a,
 .navbar-default-user .side-nav-custom>.active>a:hover{
-  background: rgb(85, 1, 85);
+  background: rgb(114, 28, 36);
   border-top: 1px solid rgb(53, 1, 53);
   border-bottom: 1px solid rgb(53, 1, 53);
   border-left: 1px solid rgb(53, 1, 53);
@@ -984,7 +1034,7 @@ main{
   width: 28px;
 }
 .img-bkgr{
-  background: rgb(125, 8, 125);
+  background: rgb(114, 28, 36);
   position: relative;
   z-index: 1;
   display: table-cell;
@@ -1044,10 +1094,13 @@ main{
   width: 728px;
   min-height: 414px;
   padding: 28px 38px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(49, 48, 48);
 }
-.purple-u{  
-  border: 2px solid  rgb(85, 1, 85);
+.active{
+  background: rgba(49, 48, 48);
+}
+.redline-u{  
+  border: 2px solid  rgb(114, 28, 36);
   margin-top: 0;
 }
 .form-user label{
@@ -1075,6 +1128,12 @@ main{
   color: whitesmoke;
   transition: -webkit-transform 0.5s, transform 0.3s, color 0.3s;
 }
+.col-md-3 .thumbnail{
+  width: 150px;
+}
+.col-md-3 .movie-title{
+  font-size: 14px;
+}
 /*Styling reservation/buy/canceled tickets page*/
 .table .thumb-sm img{
   width: 85px;
@@ -1084,28 +1143,32 @@ main{
 .auth-title{
   text-align: center;
   color: white;
-  background-color: rgba(85, 1, 85, 0.8);
-  border: rgb(85, 1, 85);
-  border-radius: 5px;
+  background-color: rgba(114, 28, 36, 0.7);
+  border: 1px solid #721c24;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 12px 0;
   margin-bottom: 15px;
   font-size: 24px;
+}
+.card-title{
+  padding: 0, 0, 20px, 0;
 }
 .form-control{
   padding: 10px;
   font-size: 14px;
 }
 .card{
-  background-color: rgba(0, 0, 0, .5);
-  border: 1px solid rgba(0, 0, 0, .65);
+  background-color: rgba(33, 37, 41, 1);
+  border: 1px solid black;
 }
-.purple.p-sm{
-  border: 1px solid rgb(85, 1, 85);
+.red-line.p-sm{
+  border: 1px solid rgb(114, 28, 36);
   margin-top: 8px;
 }
 button.btn.forward-btn-lg{
-  background-color: rgba(85, 1, 85, 0.6);
-  border: 1px solid rgb(85, 1, 85);
+  background-color: rgba(114, 28, 36, 0.6);
+  border: 1px solid rgb(114, 28, 36);
   padding: 6px 100px;
   color: white;
   margin-left: 80px;
@@ -1114,20 +1177,20 @@ button.btn.forward-btn-lg{
 a.btn.forward-btn-lg.btn-small{
   display: block;
   text-decoration: none;
-  background-color: rgba(85, 1, 85, 0.6);
-  border: 1px solid rgb(85, 1, 85);
+  background-color: rgba(114, 28, 36, 0.6);
+  border: 1px solid rgb(114, 28, 36);
   font-size: 12px;
   width: 50%;
   margin: 0 auto;
   color: white;
 }
 a.btn.forward-btn-lg.btn-small:hover{
-  background-color: rgb(85, 1, 85);
-  border: 1px solid rgb(36, 1, 36);
+  background-color: rgb(114, 28, 36);
+  border: 1px solid rgb(51, 13, 17);
 }
 button.btn.forward-btn-lg:hover{
-  background-color: rgb(85, 1, 85);
-  border: 1px solid rgb(36, 1, 36);
+  background-color: rgb(114, 28, 36);
+  border: 1px solid rgb(51, 13, 17);
 }
 .or{
   display: block;
@@ -1146,10 +1209,13 @@ button.btn.forward-btn-lg:hover{
 ng-message{
   color:red;
 }
-.messages >div{
+div.messages{
   color:red;
 }
-
+.error{
+  font-size: 12px;
+  color:red;
+}
 /*DATE PICKER*/
 div.date-picker {
   background-color: #221e1e;

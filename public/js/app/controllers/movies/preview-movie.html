@@ -1,4 +1,7 @@
 <!--Movie info--> 
+<div class="container-fluid">
+    <iframe width="560" height="315" ng-src="{{url}}" frameborder="0" allowfullscreen></iframe>
+</div>
 <div ng-controller="MovieController" class="container-main">
         <section class="dark collapse in first last">
             <div ng-if="movie._id" class="container container-info">
@@ -82,13 +85,16 @@
                 
                 <!--Buttons favourites and buy ticket-->
                 <div ng-controller="UserController" class="row">
-                    <div class="col-md-6">
-                        <a href="#" ng-if="!isInFavourites" ng-click="addToFavourites($event)" class="button fixedPosition favourites no-animate"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Добави в любими</span></a>
-                        <a href="#" ng-if="isInFavourites" ng-click="addToFavourites($event)" class="button fixedPosition favourites no-animate"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Премахни от любими</span></a>
+                    <div ng-controller="CollapseController">
+                        <div ng-if="userChecked && $root.user" class="col-md-6">
+                            <a href="#" ng-if="!isInFavourites" ng-click="addToFavourites($event)" class="button fixedPosition favourites no-animate"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Добави в любими</span></a>
+                            <a href="#" ng-if="isInFavourites" ng-click="addToFavourites($event)" class="button fixedPosition favourites no-animate"><span class="txt"><i class="fa fa-heart" aria-hidden="true"></i>Премахни от любими</span></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#"  class="button fixedPosition favourites"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <a href="#"  class="button fixedPosition favourites"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a>
-                    </div>
+                    
                 </div>
             </div>
         </section>

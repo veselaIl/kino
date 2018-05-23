@@ -13,7 +13,7 @@ app.config(function ($routeProvider) {
             templateUrl: '/js/app/controllers/cinemas/cinemas.html',
             title: 'Кина'
         })
-        .when('/cinemas/view-cinema/:kinoID', {
+        .when('/cinemas/view-cinema/:id', {
             controller: 'CinemaController',
             templateUrl: '/js/app/controllers/cinemas/view-cinema.html',
             title: 'Кина'
@@ -71,23 +71,42 @@ app.config(function ($routeProvider) {
             templateUrl: '/js/app/controllers/user/favourites.html',
             title: 'Моят профил'
         })
-        // .when('/profile/newsletter', {
-        //     controller: 'UserController',
-        //     templateUrl: '/js/app/controllers/user/newsletter.html',
-        //     title: 'Моят профил'
-        // })
-        // .when('/profile/orders', {
-        //     controller: 'UserController',
-        //     templateUrl: '/js/app/controllers/user/orders.html',
-        //     title: 'Моят профил'
-        // })
+        .when('/profile/newsletter', {
+            controller: 'UserController',
+            templateUrl: '/js/app/controllers/user/newsletter.html',
+            title: 'Моят профил'
+        })
+        .when('/profile/orders', {
+            controller: 'UserController',
+            templateUrl: '/js/app/controllers/user/orders.html',
+            title: 'Моят профил'
+        })
         .when('/movies/preview-movie/', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/preview-movie.html'
+        })
+        .when('/booking-ticket/:id', {
+            controller: 'BookingController',
+            templateUrl: '/js/app/controllers/booking/booking-ticket.html'
+        })
+        .when('/booking-ticket/:id/ticket-type', {
+            controller: 'BookingController',
+            templateUrl: '/js/app/controllers/booking/ticket-type.html'
+        })
+        .when('/booking-ticket/:id/oreder-final', {
+            controller: 'BookingController',
+            templateUrl: '/js/app/controllers/booking/ticket-order-final.html'
         })
         .otherwise({
             controller: 'NFCtrl',
             templateUrl: '/js/app/controllers/404/view.html'
         });
     
+});
+
+app.config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      'self',
+      '*://www.youtube.com/**'
+    ]);
 });

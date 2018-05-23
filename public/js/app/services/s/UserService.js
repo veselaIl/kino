@@ -13,11 +13,13 @@ app.factory('UserService', function ($http){
         });
     }
 
-    function showUserInfo(){
+    function showUserInfo(user){
         return new Promise(function (resolve, reject){
             $http.get('/profile', { user: user })
                 .then(function (response) {
-                    resolve(response.data);
+                    console.log('User Service showUserInfo: ', user);
+                    console.log('User Service showUserInfo: ', response.data);
+                    resolve(response.data.user);
                 })
                 .catch(function (err){
                     reject(err);
@@ -53,13 +55,16 @@ app.factory('UserService', function ($http){
         });
     }
 
-    function getFavourites(user){
+    function getFavourites(){
         return new Promise(function (resolve, reject){
-            $http.get('/profile/favourites', {user : user})
+            $http.get('/profile/favourites')
                 .then(function (response){
                     console.log('User Service getFavourites: ', response);
-                    resolve(response.data);
+                    resolve(response.data.movies);
                 })
+                .catch(function (err){
+                    reject(err);
+                });
         });
     }
 

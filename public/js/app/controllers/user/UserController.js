@@ -1,24 +1,10 @@
-app.controller('UserController', function ($scope, $routeParams, $rootScope, $location, UserService){
-    var errors = [], 
-        sending = false;
-
-    $scope.user = {};
-    //init user for changing password
-    $scope.passUser = {
-        oldPassword: '',
-        newPassword: '',
-        confirmNewPassword: ''
-    };
-    $scope.newPassUser = angular.copy($scope.passUser);
-    //$scope.user.firstName = user.firstName;
-    
+app.controller('UserController', function ($scope, $routeParams, $rootScope, $location, UserService, MovieService){
     //check if user is logged, if user has favourites and if current moivie is in favourites
     $scope.isInFavourites = $rootScope.user
             && $rootScope.user.favourites
             && $rootScope.user.favourites.indexOf($routeParams.id) !== -1;
-    // console.log('$routeParams.movieID', $routeParams.movieID);
-    // console.log('$routeParams.id', $routeParams.id);
 
+    //adding movie to users favourites
     $scope.addToFavourites = function($event){
         $event.preventDefault();
         console.log('addToFavourites');
@@ -51,20 +37,25 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
         }
     }
 
-    //console.log('$rootScope.user:', $rootScope.user);
-
-    //Show user info
+    //Show user's first and last names
     $scope.profile = function ($event){
         $event.preventDefault();
 
         if(!$rootScope.user){
             $location.path('/login');
+            console.log('No $rootScope.user');
         } else {
-            UserService.showUserInfo($scope.user)
+            console.log('$rootScope.user', $rootScope.user);
+            UserService.showUserInfo()
                 .then(function (data){
-                    $scope.user = data;
+                    // $scope.firstName = data.firstName;
+                    // $scope.lastName = data.lastName;
+                    // $scope.email = data.email;
+                    $scope.user.firstName = data.firstName;
+                    $scope.user.lastName = data.lastName;
+                    $scope.user.email = data.email;
                     console.log('$scope.user = data;', data);
-                    $location.path('/profile');
+                    // $location.path('/profile');
                     $scope.$apply();
                 })
                 .catch(function (err){
@@ -80,8 +71,8 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
 
         if(!$rootScope.user){
             $location.path('/login');
-        } else {
-            UserService.changeUserInfo($scope.newPassUser)
+        } else {                        //$scope.newPassUser
+            UserService.changeUserInfo($scope.user)
             .then(function (data){
                 $rootScope.user = data;
                 $scope.$apply();
@@ -92,14 +83,15 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
         }        
     }
 
+    //Change user password 
     $scope.changePassword = function ($event){
         $event.preventDefault();
 
         if(!$rootScope.user){
             $location.path('/login');
         } else {
-            console.log('$scope.newPassUser', $scope.newPassUser);
-            UserService.changePassword($scope.newPassUser)
+            console.log('$scope.newPassUser', $scope.user);
+            UserService.changePassword($scope.user)
                 .then(function (data){
                     $rootScope.user = data;
                     $scope.$apply();
@@ -110,20 +102,40 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
         }
     }
 
-    $scope.movies = [];
-
+    //Get User favourites page
     if(!$rootScope.user){
         $location.path('/login');
     } else {
-        UserService.getFavourites($scope.user)
+        UserService.getFavourites()
             .then(function (data){
                 //$rootScope.user = data;
-                $scope.movies = data;
-                console.log('getFavourites', data);
+                $scope.user.favourites = data;
+                console.log('UserController getFavourites $scope.movies', $scope.movies);
                 $scope.$apply();
             })
             .catch(function (err){
                 errors.push(err);
             });
-    }
+    }    
+
+    //Active menu item in user profile menu
+    $scope.isActive = function (viewLocation) {
+        var active = (viewLocation === $location.path());
+        return active;
+    };
+
+   
+   var errors = [], 
+       sending = false;
+    
+    $scope.user = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        favourites: [],
+        reservations: [],
+        oldPassword: '',
+        newPassword: '',
+        confirmNewPassword: ''
+    };
 })
