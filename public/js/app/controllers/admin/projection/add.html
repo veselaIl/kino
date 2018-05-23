@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1" class='form-label'> Зала *</label>
                         <select name='zala' class="form-control" ng-model="projection.zalaID" id="exampleFormControlSelect1" required>
-                            <option ng-repeat="zala in kino.zali"> {{ zala.zalaID }}</option>
+                            <option ng-repeat="zala in kino.zali">{{zala.zalaID}}</option>
                         </select>
                         <div ng-messages="form.zala.$error" ng-show="form.zala.$invalid && form.zala.$touched">
                             <ng-message when="required"> Това поле е задължително</ng-message>
@@ -49,6 +49,7 @@
                         </div>
                         <!-- <input class='date-range' type="text" name="daterange"  value="05/01/2018 - 01/15/2018" /> -->
                     </div>
+                    <span class='error-message2'>{{ message2 }}</span>                        
                     <div class="form-group projectionAdd"  ng-repeat="date in projectionDates track by $index">
                         <span class="projectionDate">{{ date.format('MMM Do YYYY') }}</span>
                         <label class="projectionDate-label">Тип на прожекция</label>
