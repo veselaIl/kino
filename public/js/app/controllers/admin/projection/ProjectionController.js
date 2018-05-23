@@ -170,7 +170,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
         //find choosen cinema
         var cinema = $scope.cinemas.find(item => item.kinoID == $scope.projection.kinoID);
 
-        //get index of zala to make a copy of seats.
+        //get index of choosen zala to make a copy
         var zalaSpace = cinema.zali.findIndex(zala => zala.zalaID == $scope.projection.zalaID);
         current = {
           type: $scope.types.model[index],
@@ -181,7 +181,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
           movie: $scope.projection.movie
         }
         final.push(current);
-        // console.log(final, 'final');
+        console.log(final, 'final');
       });
     })
 

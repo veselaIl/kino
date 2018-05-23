@@ -4,7 +4,7 @@ app.factory('CinemaService', function ($http){
 
     function getCinemas(){
         return new Promise(function (resolve, reject){
-            $http.get('/cinemas')
+            $http.get('/api/cinemas')
                 .then(function (response){
                     console.log('CinemaService All Cinemas Response: ', response);
                     cinemas = response.data;

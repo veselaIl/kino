@@ -3,7 +3,7 @@ var router = express.Router();
 var mongodb = require('mongodb');
 
 //GET ALL Cinemas
-router.get('/cinemas', function (req, res){
+router.get('/api/cinemas', function (req, res){
     req.db
         .get('kino').find()
         .then(function (cinemas){
