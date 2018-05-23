@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var mongodb = require('mongodb');
 
 router.get('/projections', function (req, res){
     //GET all projections
+<<<<<<< HEAD
     req.db.get('projection').find()
         .then(function (projections){            
             if(projections.length){
@@ -18,9 +18,49 @@ router.get('/projections', function (req, res){
                 // //req.db.get('movies').findOne({ _id: projections.movieID})
                 // res.json(projections);
                 res.json({ projections : projections})
+=======
+    req.db.get('projection').aggregate([
+        {
+            $lookup: {
+                from: "kino", 
+                localField: "kinoId", 
+                foreignField: "_id", 
+                as: "kino" 
+            }
+        },
+        {
+            $lookup: {
+                from: "movies", 
+                localField: "movieID", 
+                foreignField: "_id", 
+                as: "movie" 
+            }
+        },
+        {
+            $unwind: "$kino"
+        },
+        {
+            $unwind: "$movie"
+        },
+        {
+            $project: {
+                _id: 1,
+                type: 1,
+                time: 1,
+                movie: 1,
+                kino: 1
+            }
+        }
+    ])
+        .then(function (projections){     
+            if(projections.length) {
+                console.log('Projections: ' , projections);
+                res.json(projections);
+>>>>>>> 1c50d283cdc42a73e12bbb787d2c6677c1164354
             } else {
                 res.sendStatus(404);
             }
+            
         })
 });
 router.get('/projections/movies/', function (req, res){

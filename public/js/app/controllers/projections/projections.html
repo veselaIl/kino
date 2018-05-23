@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div ng-controller="ProjectionController" class="container-movies">    
     <!-- <div class="days">
         <ul class="week">
@@ -160,3 +161,75 @@
             </div> <                -->
 </div>
 
+=======
+<!-- <div ng-controller="ProjectionController" class="container-main">
+    <div class="movie-list">
+        <div ng-if="projections.length" ng-repeat="projection in projections" class="movie-list-item">
+            <div class="col-sm">
+                <h3 class="title-sm">{{projection.kino.name}}</h3>
+            </div>
+            <div class="row">   
+                <div class="col-md-3">
+                    <a href="">
+                        <img class="movie-image" width="100px" ng-src="{{projection.movie.image}}">
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <a href="">
+                        <h3 class="movie-title">{{projection.movie.name}}</h3>
+                    </a>
+                    <p class="movie-description">
+                        {{projection.time}}
+                    </p>
+                <div class="movielist-meta-container">
+                    <div>
+                        Режисьор: <span>{{projection.movie.director.name}}</span>
+                    </div>
+                    <span>
+                        Актьори: 
+                    </span>                        
+                    <span ng-repeat="actor in projection.movie.actors">{{actor.name}}</span>
+                    <div>
+                        Продължителност: <span>{{projection.movie.duration}} мин.</span>
+                    </div> 
+                </div>     
+            </div>        
+        </div>
+    </div>
+</div> -->
+<div ng-controller="ProjectionController" class="container-main">
+        <div class="movie-list">
+            <div ng-if="projections.length" ng-repeat="projection in projections" class="movie-list-item">
+                <div class="col-sm">
+                    <h3 class="title-sm">{{projection.kino.name}}</h3>
+                </div>
+                <div class="row">   
+                    <div class="col-md-3">
+                        <a href="">
+                            <img class="movie-image" width="100px" ng-src="{{projection.movie.image}}">
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <a href="">
+                            <h3 class="movie-title">{{projection.movie.name}}</h3>
+                        </a>
+                        <p class="movie-description">
+                            {{projection.time}}
+                        </p>
+                    <div class="movielist-meta-container">
+                        <div>
+                            Режисьор: <span>{{projection.movie.director.name}}</span>
+                        </div>
+                        <span>
+                            Актьори: 
+                        </span>                        
+                        <span ng-repeat="actor in projection.movie.actors">{{actor.name}}</span>
+                        <div>
+                            Продължителност: <span>{{projection.movie.duration}} мин.</span>
+                        </div> 
+                    </div>     
+                </div>        
+            </div>
+        </div>
+    </div>
+>>>>>>> 1c50d283cdc42a73e12bbb787d2c6677c1164354

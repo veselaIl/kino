@@ -1,6 +1,6 @@
 <!--USER PROFILE-->
 <!--Get PERSONAL INFORMATION-->
-<div class="container-main">
+<div ng-controller="UserController" ng-if="$root.user"  class="container-main">
     <!--Navbar side vertical menu-->
     <div class="row user-row">
         <div class="col-sm-3 col-u3">
@@ -16,21 +16,14 @@
                     <!-- <span class="visible-xs navbar-brand"></span> -->
                     <!-- </div>-->
                     <div class="profile-menu">
-                    <ul class="nav flex-column side-nav-custom">
-                        <li class="nav-item active">
-                            <a href="#!/profile">
-                                <span class="img-bkgr">
-                                    <img class="img-icon" src="/images/icons/user.png">
-                                </span>
-                            <span class="txt">Персонална информация</span>
-                            </a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#!/profile/change-password"><span class="img-bkgr"><img class="img-icon" src="/images/icons/pass.png"></span><span class="txt">Промяна на парола</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!/profile/favourites"><span class="img-bkgr"><img class="img-icon" src="/images/icons/heart.png"></span><span class="txt">Моите филми</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!/profile/newsletter"><span class="img-bkgr"><img class="img-icon" src="/images/icons/email.png"></span><span class="txt">Абонирай се за нашия е-бюлетин</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!/profile/orders"><span class="img-bkgr"><img class="img-icon" src="/images/icons/history.png"></span><span class="txt">История на резервациите и закупените билети</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!/logout"><span class="img-bkgr"><img class="img-icon" src="/images/icons/logout.png"></span><span class="txt">Изход</span></a></li>
-                    </ul>
+                        <ul class="nav flex-column side-nav-custom">
+                            <li class="nav-item active"><a href="/#!/profile"><span class="img-bkgr"><img class="img-icon" src="/images/icons/user.png"></span><span class="txt">Персонална информация</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#!/profile/change-password"><span class="img-bkgr"><img class="img-icon" src="/images/icons/pass.png"></span><span class="txt">Промяна на парола</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#!/profile/favourites"><span class="img-bkgr"><img class="img-icon" src="/images/icons/heart.png"></span><span class="txt">Моите филми</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#!/profile/newsletter"><span class="img-bkgr"><img class="img-icon" src="/images/icons/email.png"></span><span class="txt">Абонирай се за нашия е-бюлетин</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#!/profile/orders"><span class="img-bkgr"><img class="img-icon" src="/images/icons/history.png"></span><span class="txt">История на резервациите и закупените билети</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#!/logout"><span class="img-bkgr"><img class="img-icon" src="/images/icons/logout.png"></span><span class="txt">Изход</span></a></li>
+                        </ul>
                     </div><!--/.nav-collapse-->
                 </div>
             </div>
@@ -39,31 +32,31 @@
         <div class="col-sm-9 col-u9">
             <!--Get Personal information page-->
                 <div class="container-wrap">
-                    <form ng-submit="personalInfo($event)" class="form-user">
+                    <form ng-submit="changeUserInfo($event)" class="form-user" action="" method="POST">
                         <h2>
                             Персонална информация
                         </h2>
                         <hr class="purple purple-u">
                         <div class="form-group">
                             <label for="firstName">Име</label>
-                            <input ng-model="user.firstName" type="text" class="form-control" id="firstName" aria-describedby="nameHelp" placeholder="Име">
+                            <input ng-model="user.firstName" type="text" class="form-control" id="firstName" aria-describedby="nameHelp" placeholder="">
                             <small id="nameHelp" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
                             <label for="lastName">Фамилия</label>
-                            <input ng-model="user.lastName" type="text" class="form-control" id="lastName" aria-describedby="lastHelp" placeholder="Фамилия">
+                            <input ng-model="user.lastName" type="text" class="form-control" id="lastName" aria-describedby="lastHelp" placeholder="">
                             <small id="lastHelp" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Електронна поща</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email" disabled>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" disabled>
                             <small id="emailHelp" class="form-text text-muted"></small>
                         </div>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Запиши ме за бюлетин.</label>
                         </div>
-                        <button type="submit" class="btn btn-primary button forward-btn">Запиши</button>
+                        <button class="btn btn-primary button forward-btn">Запиши</button>
                     </form>
                 </div>
             <!--End of Personal information page-->

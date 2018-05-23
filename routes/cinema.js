@@ -18,9 +18,9 @@ router.get('/cinemas', function (req, res){
 
 //GET current cinema
 router.get('/cinemas/view-cinema/:kinoID', function (req, res){
-    console.log('+req.params.kinoID', +req.params.kinoID);
-    console.log('Request body', req.body);
-    console.log('DB Kino collection: ', req.db.get('kino').findOne({ kinoID: +req.params.kinoID }));
+    // console.log('+req.params.kinoID', +req.params.kinoID);
+    // console.log('Request body', req.body);
+    // console.log('DB Kino collection: ', req.db.get('kino').findOne({ kinoID: +req.params.kinoID }));
     req.db   
         .get('kino').findOne({ _id: req.params.kinoID})
         .then(function (cinema){

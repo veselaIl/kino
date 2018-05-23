@@ -32,6 +32,7 @@ router.post('/register', function(req, res){
     } else {
         //проверка дали вече не съществува потребител с този email
         var usersCollection = req.db.get('users');
+        //console.log('usersCollection',  req.db.get('users'));
         usersCollection.findOne({ email : req.body.user.email })
             .then(function(user){
                 if (user){

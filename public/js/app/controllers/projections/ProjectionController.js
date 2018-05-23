@@ -1,5 +1,6 @@
 app.controller('ProjectionController', ['$scope', 'ProjectionService', 'CinemaService', function($scope, ProjectionService, CinemaService){
     $scope.projections = [];
+<<<<<<< HEAD
     $scope.today = moment(new Date(),'DD-MM-YYYY');
     $scope.week = [];    
     $scope.setActive = function(day){
@@ -52,9 +53,28 @@ app.controller('ProjectionController', ['$scope', 'ProjectionService', 'CinemaSe
     CinemaService.getCinemas()
         .then(function (cinemas){
             $scope.cinemas = cinemas.cinemas;
+=======
+    $scope.movie = {};
+    $scope.kino = {};
+
+    //Get all projections
+    ProjectionService.getProjections()
+        .then(function (projections){
+            $scope.projections = projections;
+            $scope.movie = projections.movie;
+            $scope.kino = projections.kino;
+            console.log('Projections: ', projections);
+>>>>>>> 1c50d283cdc42a73e12bbb787d2c6677c1164354
             $scope.$apply();
             console.log(cinemas);
         })
+<<<<<<< HEAD
     console.log($scope);
     moment.locale("bg");
+=======
+        .catch(function (err){
+            console.log(err);
+        });
+
+>>>>>>> 1c50d283cdc42a73e12bbb787d2c6677c1164354
 }])
