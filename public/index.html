@@ -27,6 +27,7 @@
     <script src="/js/app/controllers/authentication/LoginController.js"></script>
     <script src="/js/app/controllers/authentication/RegisterController.js"></script>
     <script src="/js/app/controllers/user/UserController.js"></script>
+    <script src="/js/app/controllers/booking/BookingController.js"></script>
     <script src="/js/app/controllers/CollapseController.js"></script>
     <script src="/js/app/controllers/404/NFCtrl.js"></script>
     <script src="/js/app/services/s/RegisterService.js"></script>
@@ -35,6 +36,7 @@
     <script src="/js/app/services/s/MovieService.js"></script>
     <script src="/js/app/services/s/CinemaService.js"></script>
     <script src="/js/app/services/s/ProjectionService.js"></script>
+    <script src="/js/app/services/s/BookingService.js"></script>
   </head>
   <body>
       
@@ -50,73 +52,6 @@
     <!--Google Maps API-->
     <!-- <script src="node_modules/angular-ui-map/src/ui-map.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script> -->
-    <script type="text/javascript">
-      showHideDateScrollerArrows = function () {
-                var total,
-                    scrollerWidth;
     
-                //get the total width of the dates
-                total = $('ul.slidee').width();
-    
-                //get the width of the date scroller
-                scrollerWidth = $('#date-scroller').width();
-    
-                //check if arrows need to be shown
-                if (scrollerWidth > total) {
-                    //no arrows need to be shown
-                    $('#next, #prev').hide();
-                } else {
-                    //make sure arrows are shown
-                    $('#next, #prev').show();
-                }
-            },
-            reloadDatePicker = function () {
-                sly.reload();
-    
-                showHideDateScrollerArrows();
-            },
-            updateDateScroller = function () {
-                var slidee = $('#date-scroller ul.slidee'),
-                    dates = [],
-                    dateMoment,
-                    datesList = '',
-                    temp,
-                    list,
-                    i;
-    
-                //reset the scroller content
-                sly.activate(0);
-                slidee.html('');
-    
-                //get list that the user is displaying.
-                temp = $('#order-by').val();
-    
-                if (temp === 'session-times') {
-                    list = movieDataBySessionTimes;
-                } else if (temp === 'release-date') {
-                    list = movieDataByReleaseDate;
-                } else {
-                    list = movieData;
-                }
-    
-                Object.keys(list).forEach(function (i) {
-                    dates.push(i);
-                });
-    
-                //sort the dates
-                dates.sort();
-    
-                for (i = 0; i < dates.length; i += 1) {
-                    dateMoment = moment(dates[i]);
-                    temp = '<li ' + ((i === 0)? 'class="active"' : '') +
-                            '><a data-date="' + dates[i] + '" href="#">' + dateMoment.locale(lang.locale).format('ddd') + ' <span class="date">' + dateMoment.locale(lang.locale).format('DD') + '</span>' + dateMoment.locale(lang.locale).format('MMMM') + '</a></li>';
-                    datesList += temp;
-                }
-    
-                slidee.html(datesList);
-    
-                reloadDatePicker();
-            }
-    </script>
   </body>
 </html>

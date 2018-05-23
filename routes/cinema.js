@@ -17,12 +17,12 @@ router.get('/cinemas', function (req, res){
 })
 
 //GET current cinema
-router.get('/cinemas/view-cinema/:kinoID', function (req, res){
+router.get('/cinemas/view-cinema/:id', function (req, res){
     // console.log('+req.params.kinoID', +req.params.kinoID);
     // console.log('Request body', req.body);
     // console.log('DB Kino collection: ', req.db.get('kino').findOne({ kinoID: +req.params.kinoID }));
     req.db   
-        .get('kino').findOne({ _id: req.params.kinoID})
+        .get('kino').findOne({ _id: req.params.id})
         .then(function (cinema){
             if(cinema){
                 console.log('Response JSON: ', res.json);
