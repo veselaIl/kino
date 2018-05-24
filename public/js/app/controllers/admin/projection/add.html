@@ -12,6 +12,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1" class='form-label'> Кино *</label>
                         <select class="form-control" name="select" ng-model="projection.kinoID" id="exampleFormControlSelect1" required>
+                            <option value="" selected='selected'>Избери кино </option>                            
                             <option ng-repeat="cinema in cinemas" value="{{ cinema.kinoID}}">{{ cinema.name }}</option>
                         </select>
                         <div ng-messages="form.select.$error" ng-show="form.select.$invalid && form.select.$touched">
@@ -21,6 +22,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1" class='form-label'> Зала *</label>
                         <select name='zala' class="form-control" ng-model="projection.zalaID" id="exampleFormControlSelect1" required>
+                            <option value="" selected='selected'>Избери зала </option>
                             <option ng-repeat="zala in kino.zali">{{zala.zalaID}}</option>
                         </select>
                         <div ng-messages="form.zala.$error" ng-show="form.zala.$invalid && form.zala.$touched">
@@ -32,7 +34,7 @@
                         <input class='list' name='list' ng-blur="validate(projection.movie)" list="testList" type="" ng-model="projection.movie"
                             required />
                         <datalist id="testList">
-                            <option ng-repeat="movie in movies" value="{{ movie.name}} "></option>
+                            <option ng-repeat="movie in movies" value="{{movie.name}}"></option>
                         </datalist>
                         <div ng-messages="form.list.$error" ng-show="form.list.$invalid && form.list.$touched">
                             <ng-message when="required"> Това поле е задължително</ng-message>
@@ -41,6 +43,13 @@
                         <!-- <select class="form-control" ng-model="projection.movieID" id="exampleFormControlSelect1">
                             <option ng-repeat="movie in movies" value="{{ movie.movieID }}">{{ movie.name }}</option>
                         </select> -->
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Избери тип на филм</label>
+                        <select class="form-control movieType" ng-model="projection.movieType">
+                            <option value="" selected='selected'>Избери тип </option>
+                            <option ng-repeat="type in movieTypes">{{type}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Избери дата/и</label>

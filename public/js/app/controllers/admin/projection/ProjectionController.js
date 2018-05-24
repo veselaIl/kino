@@ -1,4 +1,3 @@
-
 myApp.controller('ProjectionController', function ($scope, $document, $routeParams, ProjectionService, MovieService, CinemaService) {
 
   $scope.cinemas = [];
@@ -39,10 +38,16 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     '18:15',
     '21:00'
   ]
+  $scope.movieTypes = [
+    '2D',
+    '3D',
+    'IMAX',
+    '4DX'
+  ]
+
   $scope.filterCondition = {
     value: '1'
   }
-
   $scope.types.config = $scope.types.availableOptions[0].value;
 
   // Get all projections
@@ -56,19 +61,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     .catch(function (err) {
       console.log(err);
     })
-
-  ProjectionService.getProjects()
-    .then(function (projects) {
-      $scope.$apply(function () {
-        $scope.allProjections = projects;
-        $scope.allProjections.sort((a, b) => a.time - b.time);
-        $scope.allProjections.forEach(function (projection) {
-          return projection.time = moment(new Date(projection.time * 1000)).format('MMMM Do YYYY HH:mm');
-        });
-        $scope.allProjections = $scope.allProjections.filter(projection => projection.time > moment().format('MMMM Do YYYY HH:mm'));
-      })
-    });
-
+  
   //Get All movies  
   MovieService.getMovies()
     .then(function (movies) {
@@ -78,6 +71,21 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     .catch(function (err) {
       console.log(err);
     })
+
+  ProjectionService.getProjects()
+    .then(function (projects) {
+      $scope.$apply(function () {
+        $scope.allProjections = projects;
+        $scope.allProjections.sort((a, b) => a.time - b.time);
+        $scope.allProjections.forEach(function (projection) {
+          var film = $scope.movies.find(movie => movie.movieID === projection.movieID);
+          projection.movieName = film.name;
+          return projection.time = moment(new Date (projection.time * 1000)).format('DD MMMM YYYY / HH:mm');
+        });
+        $scope.allProjections = $scope.allProjections.filter(projection => projection.time > moment().format('DD MMMM YYYY / HH:mm'));
+        $scope.filteredProjections = $scope.allProjections;
+      })
+    });
 
   //get Cinemas
   CinemaService.getCinemas()
@@ -92,7 +100,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
   //get projection 
   ProjectionService.getProjection($routeParams.id)
     .then(function (projection) {
-      projection.projection.time = moment(new Date(projection.projection.time * 1000)).format('MMMM Do YYYY HH:mm');
+      projection.projection.time = moment(new Date(projection.projection.time * 1000)).format('DD MMMM YYYY HH:mm');
       $scope.projectionDetails = projection.projection;
       $scope.$apply();
 
@@ -122,12 +130,11 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
       console.log(err);
     })
 
-
   function isBeetween(currentStart, currentEnd, start, end) {
     return currentStart >= start && currentEnd <= end
   }
-
   $scope.$watch('projection.kinoID', function (newValue, oldValue) {
+    console.log(newValue)
     $scope.kino = $scope.cinemas.find(cinema => cinema.kinoID == newValue);
   });
 
@@ -168,8 +175,8 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     projects.forEach(function (el, index) {
       list[index].forEach(function (item) {
         //find choosen cinema
+        var movie = $scope.movies.find(movie => movie.name === $scope.projection.movie);
         var cinema = $scope.cinemas.find(item => item.kinoID == $scope.projection.kinoID);
-
         //get index of choosen zala to make a copy
         var zalaSpace = cinema.zali.findIndex(zala => zala.zalaID == $scope.projection.zalaID);
         current = {
@@ -177,8 +184,9 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
           time: new Date(el + ' ' + $scope.hours[parseInt(item)]).getTime() / 1000,
           mesta: cinema.zali[zalaSpace].space.slice(),
           zalaID: $scope.projection.zalaID,
-          kinoId: $scope.projection.kinoID,
-          movie: $scope.projection.movie
+          kinoID: $scope.projection.kinoID,
+          movieID: movie.movieID,
+          movieType: $scope.projection.movieType
         }
         final.push(current);
         console.log(final, 'final');
@@ -195,10 +203,9 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
             project.forEach(function (element) {
               if(element.zalaID !== projection.zalaID){
                 if (element.time !== projection.time ) {
-                    console.log(newProjections, 'NOVI PROJEKCII');
                     newProjections.push(element);
                 } else {
-                  errors.push(moment(new Date(projection.time * 1000)).format('MMMM Do HH:mm'));
+                  errors.push(moment(new Date(projection.time * 1000)).format('DD MMMM HH:mm'));
                 }
               }else{
 
@@ -221,11 +228,11 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
           ProjectionService.addProjections(newProjections).then(function (response) {
             window.location.href = '/admin.html#!/projections';
           });
-
         }
       }
     }
   }
+  
   $scope.$watch('projectionDates', function (newValue, oldValue) {
     if (newValue) {
       console.log('my array changed, new size : ' + newValue.length);
@@ -234,9 +241,17 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     }
   }, true);
 
-  $scope.selected = function () {
-    console.log($scope.initTypeValue)
-  }
+  $scope.$watch(['cinemaValue','projection.zalaID'], function (newValue, oldValue) {
+    // $scope.filteredProjections = $scope.allProjections.filter(projection => projection.kinoID == newValue);
+    // $scope.kino = $scope.cinemas.find(cinema => cinema.kinoID == newValue);
+    console.log(newValues);
+    // $scope.filteredProjections = $scope.filter.filter(projection => projection.zalaID == newValue);
+
+    if(!newValues){
+      $scope.filteredProjections = $scope.allProjections;
+    }
+  });
+  
   console.log($scope);
   $scope.daysAllowed = [moment().date]
 })

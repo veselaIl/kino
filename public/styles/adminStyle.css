@@ -833,7 +833,6 @@ span.s1 {
 }
 .projection-h4{
   padding: 6px 10px;
-
 }
 /*My hum... body.. yeah.. */
 /* body {
@@ -970,41 +969,81 @@ img.left {
 
 /* PROJECTION DETAILS END */ 
 /* PROJECTION START*/
+.projectionsPerPage{
+  margin-top: 5px;
+  text-align: right;
+  display: inline-block;
+}
+.itemsPerPage{
+  margin-top: 10px;
+}
+.itemsPerPage h3{
+  display: inline-block;
+  color: #525252;
+  font-weight: bold;
+}
+.cinema-group{
+  padding-top: 25px
+}
+.select-cinema-group{
+  display:inline-block;
+  margin: 0 15px ;
+}
+.select-cinema-group>label{
+  font-size: 16px;
+}
+.select-cinema{
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid grey  
+}
+.projectionsPage{
+  border: none;
+  background-color: white;
+  border-bottom: 1px solid grey;
+}
+.projections-per-page{
+  display: inline-block;
+  text-align: right;
+  padding-top: 22px;
+  border: none;
+}
 .next td{
   background-color: #4b4b4c;
   color: white;
-  font-size:16px;
+  font-size: 16px;
 }
 .first-table{
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 .chooseHours{
   border-bottom: 2px solid #aa3022;
 }
-.projectionsPerPage{
-  margin-top:5px;
-  /* display:inline-block; */
+.head-table{
+  font-size: 16px;
 }
 table> thead{
   background-color: #b30c0c;
   color:white;
 }
 .tableHeader{
-  display:block;
+  display: block;
 }
-.currentTime{
-  width: 100%;
-  font-size: 16px;
-  color: #b30c0c;
-  padding: 5px 0;
-  margin-right: 58%;
+.buttonView{
+  text-align: right;
+}
+.textMessage{
+  text-indent: -99999px
+}
+.buttonView a:first-of-type:hover .textMessage{
+ display:block;
 }
 .headerInfo{
-  margin:0;
+  margin: 0;
 }
 .projectionDate{
   display: block;
-  width:15%;
+  width: 15%;
   text-align: center;
   padding: 5px 10px;
   background-color: #5264f3;
