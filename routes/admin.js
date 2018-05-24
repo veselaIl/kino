@@ -91,7 +91,8 @@ router.get('/api/cinema/projections/:id', function(req, res){
 router.get('/api/projections/', function(req, res) {  
   req.db.get('projection').find()
     .then(function(data){
-      res.json(Array.isArray(data) ? data : [])})
+      res.json(Array.isArray(data) ? data : [])
+    })
     .catch(function(err){
       console.log('catch', err);
       res.status(err.status || 500);

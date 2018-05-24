@@ -67,6 +67,17 @@ myApp.factory('ProjectionService', function($http,) {
                         reject(err);
                     })
             })
+        },
+        deleteProjection: function(id){
+            return new Promise(function (resolve, reject){
+                $http.post('/api/projections/delete/' + id )
+                    .then(function (response){
+                        resolve();
+                    })
+                    .catch(function (err){
+                        reject(err);
+                    })
+            })
         }
     }
 })
