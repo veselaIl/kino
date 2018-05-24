@@ -8,9 +8,12 @@
   "dependencies": {
     "angular": "^1.6.9",
     "angular-animate": "^1.6.9",
+    "angular-aria": "^1.7.0",
+    "angular-material": "^1.1.9",
     "angular-route": "^1.6.9",
     "angular-touch": "^1.6.9",
     "angular-ui-bootstrap": "^2.5.6",
+    "angular-ui-bootstrap-datetimepicker": "^2.5.0",
     "angular-ui-map": "^0.5.0",
     "angular-utils-pagination": "^0.11.1",
     "bootstrap": "^4.1.1",

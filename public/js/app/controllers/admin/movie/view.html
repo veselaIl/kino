@@ -6,17 +6,21 @@
     <div class="container-movie">
         <div class="cards" ng-if="movies.length">
             <a ng-repeat="movie in movies" class="card" href='#!movies/edit/{{movie.movieID}}'>
-                <span class="tooltiptext">Редактирай</span>
                 <span class="card-header" style="background-image: url('{{ movie.image }}')"style=" width:300px;">
                     <span class="card-title">
                         <h3>{{ movie.name }}</h3>
                     </span>
                 </span>
-                <span class="card-summary">
-                    {{ movie.description }}
-                </span>
+                <div class="card-summary">
+                    <span class="summary"><b>Директор:</b> {{ movie.director.name }}</span>
+                    <span class="summary"><b>Актьор:</b> {{ movie.actors[0].name}}</span>
+                    <span><b>Жанр:</b></span>
+                    <span ng-repeat="ganre in movie.genre track by $index">{{ ganre}} </span>
+                    <span class="summary"><b>Времетраене:</b> {{movie.duration}} минути</span>
+                </div>
+                
                 <span class="card-meta">
-                    Premier {{ movie.premierDate }}
+                    Премиера {{ movie.premierDate | date : ('dd MMMM') }}
                 </span>
             </a>
         </div>

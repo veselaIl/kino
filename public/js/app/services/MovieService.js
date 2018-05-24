@@ -21,9 +21,10 @@ myApp.factory('MovieService', function($http, $routeParams) {
         },
         getMovie: function (id){
             return new Promise(function (resolve, reject){     
-                $http.get('/api/movies/edit/' + id)
+                $http.get('/api/movies/movie/' + id)
                     .then(function (response){
                         console.log(response);
+                        resolve(response.data)
                     })
                     .catch(function (err){
                         console.log(err);
@@ -69,17 +70,17 @@ myApp.factory('MovieService', function($http, $routeParams) {
                     })
             })
         },
-        getMovie: function (id){
-            return new Promise(function (resolve, response){
-                $http.get('/admin/movies/edit/'+movie.id)
-                    .then(function (response){
-                        movie = response.data;
-                        resolve();
-                    })
-                    .catch(function (err){
-                      console.log(err);
-                    })
-            })
-        }
+        // getMovie: function (id){
+        //     return new Promise(function (resolve, response){
+        //         $http.get('/admin/movies/edit/'+ movie.id)
+        //             .then(function (response){
+        //                 movie = response.data;
+        //                 resolve();
+        //             })
+        //             .catch(function (err){
+        //               console.log(err);
+        //             })
+        //     })
+        // }
     }
 });

@@ -1,16 +1,13 @@
-<div class="content-projection" ng-controller="ProjectionController">
-    <div class="fond"> <h4 class="projection-h4">Кино {{ projectionCinema.name }}</h4><span class="s1"> {{ movie.name}} </span>
+<div class="content-projection" ng-controller="ProjectionController" ng-if="movie.name">
+    <div class="fond">
+        <span class="s1"> {{ movie.name}}</span>
+        <h4 class="projection-h4">Кино {{ projectionCinema.name }} | Зала {{ projectionDetails.zalaID }} | {{ projectionDetails.time }}</h4>
+    </div>
     <div class="cardDetails">
         <div class="thumbnail"><img class="left" src="{{ movie.image }}"/></div>
         <div class="right-projection">
-        <h1 class="projection-h1">  Зала {{ projectionDetails.zalaID }} {{ projectionDetails.time }}</h1>
-        <div class="author"><img src="{{ movie.director.img }}"/>
-            <h2 class="projection-h2">{{ movie.director.name }}</h2>
-        </div>
-        <div class="separator"></div>
-        <p class="projection-p">{{ movie.description }}</p>
-        </div>
-        <div class="row-seat">
+        <h1 class="projection-h1">  </h1>
+            <div class="row-seat">
                 <div class='seat-map'>
                     <table>
                     <tr class="seats" ng-repeat="row in projectionCinema.zali[0].space track by $index">
@@ -20,10 +17,35 @@
                         </td>
                     </tr>
                     </table>
-            </div>
+                </div>
+            </div>   
         <div class="premier-date">
-            <h5 class="projection-h5">Цена</h5>
-            <h6 class="projection-h6">{{ prices[projectionDetails.type - 1]}}лв.</h6>
+            <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+                <thead>            
+                    <tr class='head-table'>
+                        <th st-sort="time">Информация </th>                
+                        <th st-sort="type">Филм</th>
+                        <th>Тип</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="projection in filteredProjections | itemsPerPage: pageSize | orderBy: 'time' track by $index " current-page="currentPage">
+                        <td>
+                            <h5> Дата/час {{projection.time}}</h5>
+                            <span>{{ projection.mesta }}</span>
+                        </td>
+                        <td>{{ projection.movieName }}</td>
+                        <td>{{ types.availableOptions[projection.type - 1].name }}</td>
+                        <td class="buttonView"><a href="#!/projections/{{projection._id}}"class="btn btn-sm btn-danger">
+                            <i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a  class="btn btn-sm btn-danger" mwl-confirm  title ="{{vm.titleBox}}" message="{{vm.message}}"
+                                on-confirm ="vm.onConfirm(projection)" confirm-text = '{{vm.confirmText}}' cancel-text = "{{vm.cancelText}}"> 
+                                <i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
       
     </div>

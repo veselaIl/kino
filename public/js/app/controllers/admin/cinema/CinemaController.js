@@ -28,4 +28,24 @@ myApp.controller('CinemaController', function($scope, CinemaService, ProjectionS
         .catch(function (err){
             console.log(err);
         })
+    
+        $scope.vm = {};
+        $scope.vm.titleBox="Изтриване на зала"
+        $scope.vm.message = "Сигурен ли сте? ";
+        $scope.vm.confirmText = "Да <i class='glyphicon glyphicon-ok'></i> ";
+        $scope.vm.cancelText = "Не <i class='glyphicon glyphicon-remove'></i>";
+        $scope.vm.onConfirm = function(zala, kinoID){
+          console.log(zala);
+          console.log($scope);
+        CinemaService.removeZala(zala.zalaID, kinoID)
+          .then(function(response){
+            if(response.status === 200){
+              var index = $scope.cinemas.findIndex(cinema => cinema.kinoID === kinoID);
+              var zalaIndex = $scope.cinemas[index].zali.findIndex(item => item.zalaID === zala.zalaID);
+              $scope.cinemas[index].zali.splice(zalaIndex, 1);
+              $scope.$apply();
+              console.log($scope.filteredProjections);
+            }
+          })
+        }    
 })
