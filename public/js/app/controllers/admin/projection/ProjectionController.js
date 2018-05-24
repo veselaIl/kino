@@ -129,15 +129,17 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     .catch(function (err) {
       console.log(err);
     })
-
+  
   function isBeetween(currentStart, currentEnd, start, end) {
     return currentStart >= start && currentEnd <= end
   }
+  // ADD PROJECTION WATCHER FOR CINEMA 
   $scope.$watch('projection.kinoID', function (newValue, oldValue) {
     console.log(newValue)
     $scope.kino = $scope.cinemas.find(cinema => cinema.kinoID == newValue);
   });
-
+  
+  // ADD Projections validation
   $scope.validate = function (input) {
     var movieNames = $scope.movies.map(movie => movie.name);
     if (movieNames.indexOf(input) === -1) {
@@ -146,7 +148,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
       $scope.message = '';
     }
   }
-  //Добави прожекция
+  //ADD PROJECTION
   $scope.addProjection = function ($event, invalid) {
     $event.preventDefault();
     var projects = $scope.projects.map(project => moment(project).format('MM DD YYYY')),
@@ -195,44 +197,15 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
 
     $scope.projection.projections = final;
     if (!invalid) {
-      var newProjections = [],
-        errors = [];
-      final.forEach(function (projection) {
-        if ($scope.kino.projections.length > 0) {
-          $scope.kino.projections.forEach(function (project) {
-            project.forEach(function (element) {
-              if(element.zalaID !== projection.zalaID){
-                if (element.time !== projection.time ) {
-                    newProjections.push(element);
-                } else {
-                  errors.push(moment(new Date(projection.time * 1000)).format('DD MMMM HH:mm'));
-                }
-              }else{
-
-              }  
-            })
-          });
-        } else {
-          newProjections.push(projection);
-        }
-      });
-      if (errors.length) {
-        $scope.message = 'Залата е заета за тази дата/час ';
-        errors.forEach(function (error) {
-          $scope.message += error + ' ';
-        })
-        errors.length = 0;
-      } else {
-        if (newProjections.length) {
-          CinemaService.addProjections(newProjections, $scope.kino);
-          ProjectionService.addProjections(newProjections).then(function (response) {
-            window.location.href = '/admin.html#!/projections';
-          });
-        }
-      }
+      // newProjections.push(project);
+      CinemaService.addProjections(final, $scope.kino);
+      ProjectionService.addProjections(final).then(function (response) {
+        window.location.href = '/admin.html#!/projections';
+      })
     }
   }
   
+  // Projection Dates to be added
   $scope.$watch('projectionDates', function (newValue, oldValue) {
     if (newValue) {
       console.log('my array changed, new size : ' + newValue.length);
@@ -241,17 +214,51 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     }
   }, true);
 
-  $scope.$watch(['cinemaValue','projection.zalaID'], function (newValue, oldValue) {
-    // $scope.filteredProjections = $scope.allProjections.filter(projection => projection.kinoID == newValue);
-    // $scope.kino = $scope.cinemas.find(cinema => cinema.kinoID == newValue);
-    console.log(newValues);
-    // $scope.filteredProjections = $scope.filter.filter(projection => projection.zalaID == newValue);
-
-    if(!newValues){
+  //Filter projections
+  $scope.$watch('cinemaValue', function (newValue, oldValue) {
+    if($scope.allProjections){
+      $scope.filteredProjections = $scope.allProjections.filter(projection => projection.kinoID == newValue);
+    }
+    $scope.kino = $scope.cinemas.find(cinema => cinema.kinoID == newValue);
+    // console.log(newValue);
+    if(!newValue){
       $scope.filteredProjections = $scope.allProjections;
     }
+    $scope.$watch('projection.zalaID', function (newValue, oldValue) {
+      var filter = $scope.filteredProjections;
+      console.log(newValue);
+      if($scope.filteredProjections){
+        $scope.filteredProjections = $scope.filter.filter(projection => projection.zalaID == newValue);
+      }// console.log(filter);
+      // $scope.filteredProjections = filter;
+    });
   });
   
+
+    $scope.vm = {};
+    $scope.vm.titleBox="Изтриване на прожекция"
+    $scope.vm.message = "Сигурен ли сте? ";
+    $scope.vm.confirmText = "Да <i class='glyphicon glyphicon-ok'></i> ";
+    $scope.vm.cancelText = "Не <i class='glyphicon glyphicon-remove'></i>";
+    $scope.vm.onConfirm = function(projection){
+      console.log(projection);
+    ProjectionService.removeProjection(projection._id)
+      .then(function(response){
+        if(response.status === 200){
+          var index = $scope.filteredProjections.findIndex(element => element._id === projection._id);
+          console.log($scope.filteredProjections);
+          $scope.filteredProjections.splice(index, 1);
+          $scope.$apply();
+          console.log($scope.filteredProjections);
+        }
+      })
+    }
+    // confirm('Сигурен ли сте, че искате да изтиете прожекция', projection.movie - projection.time)
+  
+ 
+  
+  
+ 
   console.log($scope);
   $scope.daysAllowed = [moment().date]
 })

@@ -100,7 +100,7 @@ router.get('/api/projections/', function(req, res) {
     })
 });
 /* GET projections cinemas page. */
-router.get('/api/projects/', function(req, res) {  
+router.get('/api/projects/', function (req, res) {  
   req.db.get('projection').find()
     .then(function(data){
       res.json(Array.isArray(data) ? data : [])})
@@ -111,7 +111,7 @@ router.get('/api/projects/', function(req, res) {
     })
 });
 /* GET PROJECTION */
-router.get('/api/projections/:id', function(req, res){
+router.get('/api/projections/:id', function (req, res){
   req.db.get('projection').find({ _id : new ObjectId(req.params.id)})
     .then(function(data){
       projection = data[0] || []
@@ -120,6 +120,17 @@ router.get('/api/projections/:id', function(req, res){
     .catch(function(err){
       res.status(err.status || 500);
       res.send();
+    })
+})
+//delete projection
+router.post('/api/projections/delete/:id', function (req, res){
+  console.log(req.params);
+  req.db.get('projection').remove({ _id : ObjectId(req.params.id)})
+    .then(function (data){
+        res.json({ data : data });
+    })
+    .catch(function (err){
+      req.status(err.status || 405)
     })
 })
 // /* ADD PROJECTION TO CINEMA */
