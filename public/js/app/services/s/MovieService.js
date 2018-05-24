@@ -4,7 +4,7 @@ app.factory('MovieService', function($http){
     
     function getMovies (){
         return new Promise(function (resolve, reject){
-            $http.get('/movies')
+            $http.get('/api/movies')
                 .then(function (response) {
                     console.log('MovieService Response: ', response);
                     movies = response.data;
@@ -20,11 +20,11 @@ app.factory('MovieService', function($http){
     function getMovie(id){
         //console.log('MovieID: ', id);
         return new Promise(function (resolve, reject){
-            $http.get('/movies/preview-movie/' + id)
+            $http.get('/api/movies/preview-movie/' + id)
                 .then(function (response){
-                    console.log('MovieService2 response: ', response);
+                    console.log('MovieService response: ', response);
                     movie = response.data.movie;
-                    console.log('MovieService2 getMovie: ', movie);
+                    console.log('MovieService getMovie: ', movie);
                     resolve(movie);
                 })
                 .catch(function (err){

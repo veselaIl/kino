@@ -19,13 +19,13 @@
                         <!-- </div>-->
                         <div ng-controller="CollapseController" class="profile-menu">
                             <ul class="nav flex-column side-nav-custom">
-                                <li ng-class="{ active: isActive('/profile') }" class="nav-item"><a class="nav-link" href="/#!/profile"><span class="img-bkgr"><img class="img-icon" src="/images/icons/user.png"></span><span class="txt">Персонална информация</span></a></li>
-                                <li ng-class="{ active: isActive('/profile/change-password') }" class="nav-item"><a class="nav-link" href="/#!/profile/change-password"><span class="img-bkgr"><img class="img-icon" src="/images/icons/pass.png"></span><span class="txt">Промяна на парола</span></a></li>
-                                <li ng-class="{ active: isActive('/profile/favourites') }" class="nav-item"><a class="nav-link" href="/#!/profile/favourites"><span class="img-bkgr"><img class="img-icon" src="/images/icons/heart.png"></span><span class="txt">Моите филми</span></a></li>
-                                <li ng-class="{ active: isActive('/profile/newsletter') }" class="nav-item"><a class="nav-link" href="/#!/profile/newsletter"><span class="img-bkgr"><img class="img-icon" src="/images/icons/email.png"></span><span class="txt">Абонирай се за нашия е-бюлетин</span></a></li>
-                                <li ng-class="{ active: isActive('/profile/orders') }" class="nav-item"><a class="nav-link" href="/#!/profile/orders"><span class="img-bkgr"><img class="img-icon" src="/images/icons/history.png"></span><span class="txt">История на резервациите и закупените билети</span></a></li>
+                                <li ng-class="{ active: isActive('/profile') }" class="nav-item"><a class="nav-link" href="/profile"><span class="img-bkgr"><img class="img-icon" src="/images/icons/user.png"></span><span class="txt">Персонална информация</span></a></li>
+                                <li ng-class="{ active: isActive('/profile/change-password') }" class="nav-item"><a class="nav-link" href="/profile/change-password"><span class="img-bkgr"><img class="img-icon" src="/images/icons/pass.png"></span><span class="txt">Промяна на парола</span></a></li>
+                                <li ng-class="{ active: isActive('/profile/favourites') }" class="nav-item"><a class="nav-link" href="/profile/favourites"><span class="img-bkgr"><img class="img-icon" src="/images/icons/heart.png"></span><span class="txt">Моите филми</span></a></li>
+                                <li ng-class="{ active: isActive('/profile/newsletter') }" class="nav-item"><a class="nav-link" href="/profile/newsletter"><span class="img-bkgr"><img class="img-icon" src="/images/icons/email.png"></span><span class="txt">Абонирай се за нашия е-бюлетин</span></a></li>
+                                <li ng-class="{ active: isActive('/profile/orders') }" class="nav-item"><a class="nav-link" href="/profile/orders"><span class="img-bkgr"><img class="img-icon" src="/images/icons/history.png"></span><span class="txt">История на резервациите и закупените билети</span></a></li>
                                 <li ng-if="userChecked && $root.user" ng-class="{ active: isActive('/logout') }" class="nav-item">
-                                    <a ng-click="logout($event)" class="nav-link" href="/#!/logout">
+                                    <a ng-click="logout($event)" class="nav-link" href="/logout">
                                         <span class="img-bkgr"><img class="img-icon" src="/images/icons/logout.png"></span>
                                         <span class="txt">Изход</span>
                                     </a>

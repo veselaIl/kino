@@ -42,7 +42,7 @@
                 <ul>
                     <li class="projection-times" ng-repeat="item in movies[movie.name] | orderBy: 'timestamp'">
                        <div >
-                            <a href="#!/projections/book/{{item.kinoId}}/{{item.zalaID}}/{{item.movie}}/{{item.time}}" 
+                            <a href="/projections/book/{{item.kinoId}}/{{item.zalaID}}/{{item.movie}}/{{item.time}}" 
                             class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (item.time * 1000 | date: 'dd-MM')"
                             ng-model="item.time">{{item.time * 1000 | date: 'HH:mm'}}</a>
                             <!-- <a>{{activeDay.toDate() | date:'dd-MM'}}</a> -->

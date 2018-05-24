@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/logout', function (req, res){
+router.get('/api/logout', function (req, res){
     console.log('logout ');
 
     if (req.session.user) {

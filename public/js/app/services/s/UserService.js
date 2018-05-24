@@ -3,7 +3,7 @@ app.factory('UserService', function ($http){
 
     function addToFavourites(id){
         return new Promise(function (resolve, reject){
-            $http.post('/user/favourites/' + id)
+            $http.post('/api/user/favourites/' + id)
                 .then(function (response){
                     resolve(response.data);
                 })
@@ -15,7 +15,7 @@ app.factory('UserService', function ($http){
 
     function showUserInfo(user){
         return new Promise(function (resolve, reject){
-            $http.get('/profile', { user: user })
+            $http.get('/api/profile', { user: user })
                 .then(function (response) {
                     console.log('User Service showUserInfo: ', user);
                     console.log('User Service showUserInfo: ', response.data);
@@ -30,7 +30,7 @@ app.factory('UserService', function ($http){
     function changeUserInfo(user){
         console.log('UserService changeUserInfo: ', user);
         return new Promise(function (resolve, reject){
-            $http.post('/profile', { user: user })
+            $http.post('/api/profile', { user: user })
                 .then(function (response){
                     console.log("changeUserInfo", response);
                     resolve(response.data);
@@ -44,7 +44,7 @@ app.factory('UserService', function ($http){
     function changePassword(user){
         console.log('UserService changePassword: ', user);
         return new Promise(function (resolve, reject){
-            $http.post('/profile/change-password', { user: user })
+            $http.post('/api/profile/change-password', { user: user })
                 .then(function(response){
                     console.log("changePassword", response);
                     resolve(response.data);
@@ -57,7 +57,7 @@ app.factory('UserService', function ($http){
 
     function getFavourites(){
         return new Promise(function (resolve, reject){
-            $http.get('/profile/favourites')
+            $http.get('/api/profile/favourites')
                 .then(function (response){
                     console.log('User Service getFavourites: ', response);
                     resolve(response.data.movies);

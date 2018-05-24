@@ -106,7 +106,7 @@
 }
 .date-picker__date-day {
   font-size: 44px;
-  line-height: 34px;
+  line-height: 65px;
 }
 .date-picker__date.active .date-picker__date-weekday {
   color: #fff;

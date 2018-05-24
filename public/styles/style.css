@@ -265,8 +265,8 @@ a {
 }
 .cinema-title{
   text-align: center;
-  background-color: rgba(114, 28, 36, 0.8);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0, 0.8);
+  border: 1px solid rgb(241, 85, 0);
   border-radius: 6px;
   padding: 8px 0 0 0;
 }
@@ -290,7 +290,7 @@ a {
 }
 .thumbnail-md:hover{
   -webkit-box-shadow: 0 8px 12px 0 rgba(253, 253, 253, 0.26), 0 4px 12px 0 rgba(12, 11, 12, 0.25);
-  box-shadow: 0 8px 12px 0 rgba(255, 212, 204, 0.26), 0 4px 12px 0 rgba(253, 41, 13, 0.25);
+  box-shadow: 0 8px 12px 0 rgba(255, 212, 204, 0.26), 0 4px 12px 0 rgba(252, 223, 207, 0.25);
 }
 /*Zooming img
  .tmb-zoom{
@@ -431,13 +431,13 @@ table{
   font-size: 0.8rem; }
 
 .form-elegant .z-depth-1a {
-  -webkit-box-shadow: 0 2px 5px 0 rgba(255, 55, 228, 0.26), 0 4px 12px 0 rgba(245, 13, 253, 0.25);
-  box-shadow: 0 2px 5px 0 rgba(255, 55, 228, 0.26), 0 4px 12px 0 rgba(245, 13, 253, 0.25); }
+  -webkit-box-shadow: 0 2px 5px 0 rgba(241, 85, 0, 0.26), 0 4px 12px 0 rgba(252, 223, 207, 0.25);
+  box-shadow: 0 2px 5px 0 rgba(241, 85, 0, 0.26), 0 4px 12px 0 rgba(252, 223, 207, 0.25); }
 
 .form-elegant .z-depth-1-half,
 .form-elegant .btn:hover {
-  -webkit-box-shadow: 0 5px 11px 0 rgba(247, 15, 216, 0.28), 0 4px 15px 0 rgba(202, 9, 176, 0.15);
-  box-shadow: 0 5px 11px 0 rgba(247, 15, 216, 0.28), 0 4px 15px 0 rgba(202, 9, 176, 0.15); }
+  -webkit-box-shadow: 0 5px 11px 0 rgba(241, 85, 0, 0.28), 0 4px 15px 0 rgba(252, 223, 207, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(241, 85, 0, 0.28), 0 4px 15px 0 rgba(252, 223, 207, 0.15); }
 
 .form-elegant .modal-header {
   border-bottom: none; }
@@ -582,7 +582,7 @@ table{
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  background: rgba(114, 28, 36, 0.6);
+  background: rgba(241, 85, 0, 0.6);
   font-size: 14px;
   line-height: 30px;
   padding: 6px 30px;
@@ -592,7 +592,7 @@ table{
   color: #fff;
   overflow: hidden;
   text-decoration: none;
-  border: 1px solid rgb(114, 28, 36);
+  border: 1px solid rgb(241, 85, 0);
   text-transform: uppercase;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -631,8 +631,8 @@ table{
   text-transform: uppercase;
 }
 .button:hover{
-  background-color: rgba(114, 28, 36, 0.8);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0, 0.8);
+  border: 1px solid rgb(241, 85, 0);
   border-radius: 3px;
 }
 /*END OF PAGE MOVIEW PREVIEW MORE INFO*/
@@ -644,7 +644,7 @@ table{
   margin-top: 20px;
   padding-top: 10px;
   padding-left: 20px;
-  background: linear-gradient(to right, rgba(114, 28, 36, 0.9) 22%, rgba(114, 28, 36, 0.7) 60%, rgba(114, 28, 36, 0.3) 100%);
+  background: linear-gradient(to right, rgba(241, 85, 0, 0.9) 22%, rgba(241, 85, 0, 0.7) 60%, rgba(241, 85, 0, 0.3) 100%);
 }
 .cinema-attr:first-child{
   font-size: 19px;
@@ -821,7 +821,7 @@ table{
   border: none;
 }
 .booking-table .table-row th{
-  background-color:#721c24;
+  background-color:rgb(241, 85, 0);
   padding: 10px 0 8px 20px;  
 }
 .table-row th{
@@ -936,15 +936,15 @@ table{
 }
 .forward-btn{
   float: right;
-  background-color: rgba(114, 28, 36, 0.6);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0, 0.6);
+  border: 1px solid rgb(241, 85, 0);
   line-height: 30px;
   border: 0px;
   min-width: 100px;
 }
 .forward-btn{
-  background-color: rgba(114, 28, 36);
-  border: 1px solid rgb(53, 13, 17);
+  background-color: rgba(241, 85, 0);
+  border: 1px solid rgb(114, 41, 1);
 }
 .fwrd-txt{
   color: #fff;
@@ -991,7 +991,7 @@ main{
   width: 256px;
   padding: 20px 0;
   margin: 28px 0 0;
-  background: linear-gradient(to right, rgba(114, 28, 36, 0.9) 22%, rgba(114, 28, 36, 0.7) 60%, rgba(114, 28, 36, 0.3) 100%);
+  background: linear-gradient(to right, rgba(241, 85, 0, 0.9) 22%, rgba(241, 85, 0, 0.7) 60%, rgba(241, 85, 0, 0.3) 100%);
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -1010,10 +1010,10 @@ main{
 }
 .navbar-default .side-nav-custom>.active>a,
 .navbar-default-user .side-nav-custom>.active>a:hover{
-  background: rgb(114, 28, 36);
-  border-top: 1px solid rgb(53, 1, 53);
-  border-bottom: 1px solid rgb(53, 1, 53);
-  border-left: 1px solid rgb(53, 1, 53);
+  background: rgb(241, 85, 0);
+  border-top: 1px solid rgb(163, 59, 3);
+  border-bottom: 1px solid rgb(163, 59, 3);
+  border-left: 1px solid rgb(163, 59, 3);
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
 }
@@ -1034,7 +1034,7 @@ main{
   width: 28px;
 }
 .img-bkgr{
-  background: rgb(114, 28, 36);
+  background: rgb(241, 85, 0);
   position: relative;
   z-index: 1;
   display: table-cell;
@@ -1100,7 +1100,7 @@ main{
   background: rgba(49, 48, 48);
 }
 .redline-u{  
-  border: 2px solid  rgb(114, 28, 36);
+  border: 2px solid  rgb(241, 85, 0);
   margin-top: 0;
 }
 .form-user label{
@@ -1143,8 +1143,8 @@ main{
 .auth-title{
   text-align: center;
   color: white;
-  background-color: rgba(114, 28, 36, 0.7);
-  border: 1px solid #721c24;
+  background-color: rgba(241, 85, 0, 0.7);
+  border: 1px solid rgba(156, 57, 4, 0.993);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   padding: 12px 0;
@@ -1163,12 +1163,12 @@ main{
   border: 1px solid black;
 }
 .red-line.p-sm{
-  border: 1px solid rgb(114, 28, 36);
+  border: 1px solid rgb(241, 85, 0);
   margin-top: 8px;
 }
 button.btn.forward-btn-lg{
-  background-color: rgba(114, 28, 36, 0.6);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0, 0.6);
+  border: 1px solid rgb(241, 85, 0);
   padding: 6px 100px;
   color: white;
   margin-left: 80px;
@@ -1177,20 +1177,20 @@ button.btn.forward-btn-lg{
 a.btn.forward-btn-lg.btn-small{
   display: block;
   text-decoration: none;
-  background-color: rgba(114, 28, 36, 0.6);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0, 0.6);
+  border: 1px solid rgb(241, 85, 0);
   font-size: 12px;
   width: 50%;
   margin: 0 auto;
   color: white;
 }
 a.btn.forward-btn-lg.btn-small:hover{
-  background-color: rgb(114, 28, 36);
-  border: 1px solid rgb(51, 13, 17);
+  background-color: rgb(241, 85, 0);
+  border: 1px solid rgb(107, 38, 1);
 }
 button.btn.forward-btn-lg:hover{
-  background-color: rgb(114, 28, 36);
-  border: 1px solid rgb(51, 13, 17);
+  background-color: rgb(241, 85, 0);
+  border: 1px solid rgb(107, 38, 1);
 }
 .or{
   display: block;
@@ -1440,7 +1440,7 @@ div.date-picker div.dates #movieCalendar {
 /*end movie-list-item*/
 /*new navbar color*/
 .bg-light-blue{
-  background-color: #721c24;
+  background-color: rgba(49, 48, 48);
 }
 .navbar-dark{
   color: white;
@@ -1463,7 +1463,7 @@ div.date-picker div.dates #movieCalendar {
   color: black;
 }
 .red-line{
-  border: 2px solid  #721c24;
+  border: 2px solid  rgb(241, 85, 0);
   margin: 0 0 10px 0;
 }
 .center-block{
@@ -1482,22 +1482,22 @@ div.date-picker div.dates #movieCalendar {
   margin-top:  40px;
 }
 .btn-red{
-  background-color: rgba(114, 28, 36, 0.8);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0, 0.8);
+  border: 1px solid rgb(241, 85, 0);
 }
 .btn:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(241, 85, 0, 0.25);
 }
 .form-group>input:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
-  border: #721c24;
+  box-shadow: 0 0 0 0.2rem rgba(241, 85, 0, 0.25);
+  border: rgb(241, 85, 0);
 }
 .form-group>textarea:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
-  border: #721c24;
+  box-shadow: 0 0 0 0.2rem rgba(241, 85, 0, 0.25);
+  border: rgb(241, 85, 0);
 }
 /*END OF STYLES FOR CINEMAS PAGE*/
 
@@ -1508,11 +1508,11 @@ div.date-picker div.dates #movieCalendar {
 }
 .thumbnail-sm:hover{
   outline: 10px;
-  box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(241, 85, 0, 0.25);
 }
 .title-sm{
   text-align: center;
-  color: rgb(114, 28, 36);
+  color: rgb(241, 85, 0);
   font-size: 18px;
   margin-bottom: 8px;
 }
@@ -1529,8 +1529,8 @@ div.date-picker div.dates #movieCalendar {
   text-decoration: none;
 }
 .reserve-ticket{
-  background-color: rgba(114, 28, 36, 0.8);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0, 0.8);
+  border: 1px solid rgb(241, 85, 0);
   border-radius: 25px;
   width: 80%;
   margin-top: 5px;
@@ -1540,8 +1540,8 @@ div.date-picker div.dates #movieCalendar {
   color: white;
 }
 .reserve-ticket:hover{
-  background-color: rgba(114, 28, 36);
-  border: 1px solid rgb(114, 28, 36);
+  background-color: rgba(241, 85, 0);
+  border: 1px solid rgb(241, 85, 0);
   border-radius: 25px;
 }
 .button .sm-btn{
@@ -1563,7 +1563,7 @@ div.date-picker div.dates #movieCalendar {
   text-decoration: none;
 }
 .col-md-9>a:hover{
-  text-shadow: -2px 2px 6px rgba(114, 28, 36);
+  text-shadow: -2px 2px 6px rgba(241, 85, 0);
 }
 .col-md-9 .movie-title:hover{
   font-size: 26px;

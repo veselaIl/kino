@@ -4,9 +4,9 @@ app.factory('RegisterService', function($http){
         console.log('RegisterService', user);
 
         return new Promise(function (resolve, reject) {
-            $http.post('/register', {user : user})
+            $http.post('/api/register', {user : user})
                 .then(function (response){
-                    console.log('From Register Service response: ', response.data);
+                    //console.log('From Register Service response: ', response.data);
                     resolve(response.data);
                 })
                 .catch(function(err){

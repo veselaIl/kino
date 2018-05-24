@@ -12,7 +12,7 @@ var sha1 = require('sha1');
 // })
 
 //GET User personal info
-router.get('/profile', function (req, res){
+router.get('/api/profile', function (req, res){
     // console.log("req.body", req.body);
     if(!req.session.user){
         res.sendStatus(401);        
@@ -35,7 +35,7 @@ router.get('/profile', function (req, res){
 });
 
 //- change user first and/or last name
-router.post('/profile', function (req, res){
+router.post('/api/profile', function (req, res){
     if(!req.session.user){
         res.sendStatus(401);
     } else {
@@ -61,7 +61,7 @@ router.post('/profile', function (req, res){
 });
 
 //change password
-router.post('/profile/change-password', function(req, res){
+router.post('/api/profile/change-password', function(req, res){
     if(!req.session.user){
         res.sendStatus(401);
     } else {
@@ -95,7 +95,7 @@ router.post('/profile/change-password', function(req, res){
 });
 
 //User favourites add favourites
-router.post('/user/favourites/:id', function (req, res){
+router.post('/api/user/favourites/:id', function (req, res){
     if(!req.session.user){
         res.sendStatus(401);
     } else {
@@ -128,7 +128,7 @@ router.post('/user/favourites/:id', function (req, res){
 });
 
 //Get user FAVOURITES
-router.get('/profile/favourites', function (req, res){
+router.get('/api/profile/favourites', function (req, res){
     if(!req.session.user){
         res.sendStatus(401);
     } else {

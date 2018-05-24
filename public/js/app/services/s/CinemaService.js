@@ -4,7 +4,7 @@ app.factory('CinemaService', function ($http){
 
     function getCinemas(){
         return new Promise(function (resolve, reject){
-            $http.get('/cinemas')
+            $http.get('/api/cinemas')
                 .then(function (response){
                     console.log('CinemaService All Cinemas Response: ', response);
                     cinemas = response.data;
@@ -19,7 +19,7 @@ app.factory('CinemaService', function ($http){
     function getCinema(id){
         //console.log('CinemaService getCinema(id): ', id);
         return new Promise(function (resolve, reject){
-            $http.get('/cinemas/view-cinema/' + id)
+            $http.get('/api/cinemas/view-cinema/' + id)
             .then(function (response){
                 console.log('CinemaService Response ', response);
                 console.log('CinemaService ResponseData ', response.data);
