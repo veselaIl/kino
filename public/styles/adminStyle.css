@@ -260,6 +260,7 @@ li {
 }
 .bs-example{
   margin:0;
+  margin-top: 40px;
 }
 .panel-default>.panel-heading{
   background-image:none;
@@ -283,7 +284,8 @@ li {
 .card-add{
   width:14em;
   padding:10px;
-  margin-bottom:10px;
+  /* margin-bottom:10px; */
+  margin: 20px 0 10px 10px;
 }
 .card-add-subtitle, 
 .card-add-text{
@@ -359,22 +361,20 @@ li {
 .card .edit-card{
   display:none;
 }
-
-
 .card:hover .edit-card{
   display:block;
   overflow:hidden;
   z-index:4;
 }
-
 .btn-remove{
   margin-top: 5px;
   width: 100%;
   border-radius: 2px;
   padding: 5px;
-  background-color: rgba(223, 224, 220, 0.85);
+  background-color: rgba(164, 167, 166,0.7);
   color: white;
   font-weight: bold;
+  text-transform: uppercase;
 }
 @media (max-width: 700px) {
   .card {
@@ -516,7 +516,7 @@ li {
   margin: auto;
   width: 80%;
   background: #fff;
-  /* margin-top: -3em; */
+  margin-top: 1em;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 1em;
@@ -645,7 +645,7 @@ li {
   margin: auto;
   width: 80%;
   background: #fff;
-  /* margin-top: -3em; */
+  margin-top: 1em;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 0.8em;
@@ -681,7 +681,7 @@ ng-message{
   margin: auto;
   width: 80%;
   background: #fff;
-  /* margin-top: -3em; */
+  margin-top: 1em;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 0.8em;
@@ -1218,7 +1218,7 @@ table> thead{
     margin: auto;
     width: 90%;
     background: #fff;
-    /* margin-top: -3em; */
+    margin-top: 1em;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 1em;
@@ -1245,6 +1245,7 @@ table> thead{
     height: 100%;
     bottom:0;
     margin:auto;
+    margin-top: 1em;
     /* top:100px; */
   }
   .seat-map h2{
@@ -1261,8 +1262,8 @@ table> thead{
     margin: auto;
     width: 90%;
     background: #fff;
-    margin-top:-100px;
     margin-bottom:20px;
+    margin-top:1em;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 1em;

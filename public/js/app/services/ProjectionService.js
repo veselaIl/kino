@@ -5,7 +5,7 @@ myApp.factory('ProjectionService', function($http,) {
     return {
         getProjections: function() {
             return new Promise(function (resolve, reject) {
-                $http.get('/api/projections')
+                $http.get('/admin/api/projections')
                     .then(function (response) {
                         console.log(response);
                         projections = response.data;                        
@@ -18,7 +18,7 @@ myApp.factory('ProjectionService', function($http,) {
         },
         getProjects: function(){
             return new Promise(function (resolve, reject){
-                $http.get('/api/projects')
+                $http.get('/admin/api/projects')
                     .then(function (response){
                         projects = response.data;
                         resolve(projects);
@@ -30,7 +30,7 @@ myApp.factory('ProjectionService', function($http,) {
         },
         addProjection: function (projection){
             return new Promise(function (resolve, reject){
-                $http.post('/api/projection/add', { projection : projection})
+                $http.post('/admin/api/projection/add', { projection : projection})
                     .then(function (response){
                         console.log(response);
                         projection = response.data;
@@ -43,7 +43,7 @@ myApp.factory('ProjectionService', function($http,) {
         },
         addProjections: function (projections){
             return new Promise(function (resolve, reject){
-                $http.post('/api/projections/add', { projections : projections})
+                $http.post('/admin/api/projections/add', { projections : projections})
                     .then(function (response){
                         console.log(response);
                         projections = response.data;
@@ -57,7 +57,7 @@ myApp.factory('ProjectionService', function($http,) {
         getProjection : function (id){
             return new Promise(function (resolve, reject){
                 console.log(id);
-                $http.get('/api/projections/' + id  )
+                $http.get('/admin/api/projections/' + id  )
                     .then(function (response){
                         console.log(response)
                         projection = response.data;
@@ -71,7 +71,7 @@ myApp.factory('ProjectionService', function($http,) {
         removeProjection: function(id){
             return new Promise(function (resolve, reject){
                 console.log(id, 'PROJECTION TO DELETE ')
-                $http.post('/api/projections/delete/' + id )
+                $http.post('/admin/api/projections/delete/' + id )
                     .then(function (response){
                         console.log(response, 'DELETE PROJECTION RESPONSE')
                         resolve(response);

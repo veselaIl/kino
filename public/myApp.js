@@ -15,6 +15,11 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngSanitize', 'ui.
                 templateUrl: '/js/app/controllers/admin/cinema/add.html',
                 title: 'Добави кино'
             })
+            .when('/cinema/:id/add/zala', {
+                controller: 'CinemaController',
+                templateUrl: '/js/app/controllers/admin/cinema/zala.html',
+                title: 'Добави зала'
+            })
             .when('/movies', {
                 controller: 'MovieController',
                 templateUrl: '/js/app/controllers/admin/movie/view.html',
