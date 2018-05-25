@@ -2,27 +2,45 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/api/projections', function (req, res){
+
     console.log('/api/projections', req.query.date);
     //GET all projections
-    var startDate = new Date(req.query.date || undefined);
-    var endDate = req.query.date ? startDate : null;
+
+    var findObj = {},
+        findFields = { sort: { time: 1 } };
+
+    var startDate = new Date(+req.query.date || undefined);
+
     // set time
     startDate.setHours(0);
     startDate.setMinutes(0);
     startDate.setSeconds(0);
     startDate.setMilliseconds(0);
-    if (endDate) {
-        endDate.setHours(23);
-        endDate.setMinutes(59);
-        endDate.setSeconds(59);
-        endDate.setMilliseconds(999);
+
+    console.log(startDate);
+    console.log(startDate.getTime());
+    console.log(startDate.getTime()/1000);
+    console.log(parseInt(startDate.getTime()/1000));
+    var findObj = {
+        time : {
+            $gte : parseInt(startDate.getTime()/1000)
+        }
+    };
+    
+    if (req.query.date) {
+        var endDate = startDate;
+        if (endDate) {
+            endDate.setHours(24);
+
+            findObj.time.$lt = parseInt(endDate.getTime()/1000)
+        }
     }
-    var findObj = {};
-    req.db.get('projection').find(findObj, {
-        
-    })
+
+    console.log('find', findObj, findFields);
+
+    req.db.get('projection').find(findObj, findFields)
         .then(function (projections) {
-            console.log('projections', projections.length);
+            console.log('projections', projections.length, projections);
             if (projections.length) {
                 var result = {
                     projections: projections
@@ -53,26 +71,5 @@ router.get('/api/projections', function (req, res){
         });
 });
 
-// router.get('/api/movies-projections', function (req, res){
-//     //console.log('projections.js', req.query);
-
-//     // get the movies ids from the movieID param and convert them to numbers
-//     var movies = req.query.movieID ? req.query.movieID.split(',').map(m => +m) : [];
-//     console.log('movies', movies);
-//     var findObject = movies.length ? { movieID : { $in : movies }} : {};
-
-//     req.db.get('movies').find(findObject, { sort: { time: -1 } } )
-        
-//         .then(function (movies){
-            
-//             console.log('movies', movies.length);
-//             if (movies.length){
-//                 //console.log("projectios.js : ", movies);
-//                 res.json({ movies : movies});
-//             } else {
-//                 res.sendStatus(404);
-//             }
-//         })
-// })
 
 module.exports = router;

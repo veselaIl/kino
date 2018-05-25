@@ -1,39 +1,12 @@
 app.controller('ProjectionController', ['$scope', 'ProjectionService', 'CinemaService', function($scope, ProjectionService, CinemaService){
     
-    function groupBy(xs, key) {
-        return xs.reduce(function(rv, x) {
-            (rv[x[key]] = rv[x[key]] || []).push(x);
-            return rv;
-        }, []);
-    };
-
     function showProjections(date) {
         ProjectionService.getProjections(date)
         .then(function (data) {
             console.log('data', data);
             $scope.projections = Array.isArray(data.projections) ? data.projections : [];
             $scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
-            // $scope.movie = getMovieById(movieID);
-            // console.log('$scope.movie', $scope.movie);
             $scope.$apply();
-            
-            //$scope.movies = groupBy($scope.projections, 'movieID');
-            /*movies = [];
-            data.forEach(p => {
-                if (movies.indexOf(p.movieID) === -1) {
-                    movies.push(p.movieID);
-                }
-            });
-            console.log('movies', movies);
-            ProjectionService.getMoviesByID(arr)
-                .then(function (response){
-                    console.log("Projection Controller movieDetails", response);
-                    $scope.movieDetails = response;
-                    $scope.$apply();
-                });
-                */
-            //console.log(typeof $scope.movies[movie.movieID], 'FИЛМИ');
-
         })
         .catch(function (err){
             console.log(err);
@@ -52,13 +25,10 @@ app.controller('ProjectionController', ['$scope', 'ProjectionService', 'CinemaSe
         console.log('setActive ' + day, day);
         console.log();
         $scope.activeDay = day;
-        console.log($scope.activeDay);
+        console.log('$scope.activeDay', $scope.activeDay);
         showProjections(day.toDate());
     }
-    
-    // function getMovieById(id){
-    //     return filter($scope.movie, {_id: movieID}, true)[0];
-    // }
+
     //Get all projections
     console.log('projections getProjections');
     showProjections($scope.activeDay.toDate());
