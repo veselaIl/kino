@@ -34,4 +34,6 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService) 
             errors.push(err);
        })
 
+       
+
 })

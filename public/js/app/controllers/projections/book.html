@@ -1,282 +1,294 @@
 <div id="container" class="commonContainer">
-        <div class="row">
-             <div id="heading" class="main">
-                    <h1 class="section-header inline" >Checkout</h1> 
-                    <ul class="breadcrumb">
-                        <li class="tickets complete"><i class="icon"></i>Tickets</li> 
-                        <li class="payment "><i class="icon"></i>Payment</li> 
-                        <li class="confirmation "><i class="icon"></i>Confirmation</li> 
-                    </ul>
-            </div>
+    <div class="row">
+        <div id="heading" class="main">
+            <h1 class="section-header inline">Checkout</h1>
+            <ul class="breadcrumb">
+                <li class="tickets complete">
+                    <i class="icon"></i>Tickets</li>
+                <li class="payment ">
+                    <i class="icon"></i>Payment</li>
+                <li class="confirmation ">
+                    <i class="icon"></i>Confirmation</li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="main">
-                <div class="module-standard">
-            <div id="params">
-                <input name="RowCountHidden" type="hidden" id="RowCountHidden" value="213677796" />
-                <input name="MovieDetailIdHidden" type="hidden" id="MovieDetailIdHidden" value="208966" />
-                <input name="TmsIdHidden" type="hidden" id="TmsIdHidden" value="AANAZ" />
-                <input name="ShowDateHidden" type="hidden" id="ShowDateHidden" value="5/23/2018 7:00:00 PM" />
-                <input name="ShowTimeHidden" type="hidden" id="ShowTimeHidden" />
-                <input name="ShowTimeListHidden" type="hidden" id="ShowTimeListHidden" />
-            </div>
-             
-            
+    </div>
+    <div class="row">
+        <div class="main">
+            <div class="module-standard">
+                <div id="params">
+                    <input name="RowCountHidden" type="hidden" id="RowCountHidden" value="213677796" />
+                    <input name="MovieDetailIdHidden" type="hidden" id="MovieDetailIdHidden" value="208966" />
+                    <input name="TmsIdHidden" type="hidden" id="TmsIdHidden" value="AANAZ" />
+                    <input name="ShowDateHidden" type="hidden" id="ShowDateHidden" value="5/23/2018 7:00:00 PM" />
+                    <input name="ShowTimeHidden" type="hidden" id="ShowTimeHidden" />
+                    <input name="ShowTimeListHidden" type="hidden" id="ShowTimeListHidden" />
+                </div>
                 <section class="newShowtimeContainer">
                     <a>Select new showtime</a>
                 </section>
-            
-             
-            
-            
 
-            
+                <section>
+                    <div id="tqpSection" class="showtime">
+                        <h2 class="header-secondary">HOW MANY TICKETS?</h2>
+                        <span id="IDRequiredMessage">
+                            <table class="section quantityTable">
 
-        <section >
-                            
-                <div id="tqpSection"  class="showtime">
-                    <h2 class="header-secondary">HOW MANY TICKETS?</h2>
+                                <tbody class="ticketTypeTable" ID="0000000001">
+                                    <tr>
+                                        <th class="ticketType">
+                                            <input type="hidden" name="AreaRepeater$ctl00$TicketRepeater$ctl00$TicketCode" id="AreaRepeater_TicketRepeater_0_TicketCode_0"
+                                                value="0055" />
+                                            <input type="hidden" name="AreaRepeater$ctl00$TicketRepeater$ctl00$TicketCategory" id="AreaRepeater_TicketRepeater_0_TicketCategory_0"
+                                                value="General" />
+                                            <input type="hidden" name="pricecode" value="0055">
+                                            <input type="hidden" name="pricedesc" value="Fathom General Admission">
+                                            <input type="hidden" name="price" value="13.5000"> Fathom General Admission
+                                            <input type="hidden" name="quantityControlName" id="quantityControlName" value='AreaRepeater_TicketRepeater_0_quantityddl_0'
+                                            />
+                                            <input type="hidden" name="itemTotalControlName" id="itemTotalControlName" value="AreaRepeater_TicketRepeater_0_ItemTotal_0">
+                                        </th>
+                                        <td class="numberofTickets">
+                                            <select name="AreaRepeater$ctl00$TicketRepeater$ctl00$quantityddl" id="AreaRepeater_TicketRepeater_0_quantityddl_0" tabindex="1"
+                                                class="qtyDropDown" name="quantityddl" onchange="javascript: adjustTickets(10,1);ticketTotal(this);">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </td>
+                                        <td class="timesX">x</td>
+                                        <td class="pricePerTicket">$13.50</td>
+                                        <td class="equals">=</td>
+                                        <td class="rowTotal">
+                                            <input name="AreaRepeater$ctl00$TicketRepeater$ctl00$ItemTotal" type="text" id="AreaRepeater_TicketRepeater_0_ItemTotal_0"
+                                                style="border:0px" class="sub" size="8" readonly="readonly" tabindex="-1" value="$0.00"
+                                            />
+                                        </td>
+                                    </tr>
 
-                    
-                   
-                    <span id="IDRequiredMessage">
-                        <table class="section quantityTable">
-                            
-                                <tbody class="ticketTypeTable" ID="0000000001">    
-                                        
-                                        
-                                        
-                                    
-                                        
-                                                <tr>
-                                                    <th class="ticketType">
-                                                        <input type="hidden" name="AreaRepeater$ctl00$TicketRepeater$ctl00$TicketCode" id="AreaRepeater_TicketRepeater_0_TicketCode_0" value="0055" />
-                                        <input type="hidden" name="AreaRepeater$ctl00$TicketRepeater$ctl00$TicketCategory" id="AreaRepeater_TicketRepeater_0_TicketCategory_0" value="General" />
-                                                        <input type="hidden" name="pricecode" value="0055">
-                                                        <input type="hidden" name="pricedesc" value="Fathom General Admission">
-                                                        <input type="hidden" name="price" value="13.5000">
-                                                        
-                                                        Fathom General Admission
-                                                        <input type="hidden" name="quantityControlName" id="quantityControlName" value='AreaRepeater_TicketRepeater_0_quantityddl_0'/>
-                                                        <input type="hidden" name="itemTotalControlName" id="itemTotalControlName" value="AreaRepeater_TicketRepeater_0_ItemTotal_0" >
-                                                    </th>
-                                                    <td class="numberofTickets">
-                                                        <select name="AreaRepeater$ctl00$TicketRepeater$ctl00$quantityddl" id="AreaRepeater_TicketRepeater_0_quantityddl_0" tabindex="1" class="qtyDropDown" name="quantityddl" onchange="javascript: adjustTickets(10,1);ticketTotal(this);">
-<option value="0">0</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
+                                </tbody>
+                            </table>
+                        </span>
 
-</select>
-                                                        
-                                                    </td>
-                                                    <td class="timesX">x</td>
-                                                    <td class="pricePerTicket">$13.50</td>
-                                                    <td class="equals">=</td>
-                                                    <td class="rowTotal"><input name="AreaRepeater$ctl00$TicketRepeater$ctl00$ItemTotal" type="text" id="AreaRepeater_TicketRepeater_0_ItemTotal_0" style="border:0px" class="sub" size="8" readonly="readonly" tabindex="-1" value="$0.00" /></td>
-                                                </tr>
-                                            
-                                    </tbody>
-                                
-                        </table>
-                        
-                    </span>
-                    
-                    
-                    <input type="hidden" name="inputTotal" id="inputTotal" value="$0.00"/>
-                    <input type="hidden" name="pricecode" value="^"/>
-                    <input type="hidden" name="pricedesc" value="N/A"/>
-                    <input type="hidden" name="price" value="100"/>
-                    <input type="hidden" name="quantity" value="0"/>
-                    <input type="hidden" name="inputSubtotal" value="0"/>
-                    <input type="hidden" name="loewsreserved" value="0"/>
-                    <input type="hidden" name="areacode" value=""/>
-                    <input type="hidden" name="quantityControlName" value=""/>
-                    <input type="hidden" name="itemTotalControlName" id="itemTotalControlName" value=""/>		
-                    <input type="hidden" name="surcharge" value="0"/>
-                    <input type="hidden" name="fee" value="1.5000"/>
-                    <input type="hidden" name="isMac" value="False"/>
-                    <input type="hidden" name="arraysize" value="0"/>
-                    <input type="hidden" name="isNetscape6" value="False"/>
-                    <input type="hidden" name="isIE" value="False"/>
-                    <input type="hidden" name="isNetscape7" value="False"/>
+                        <input type="hidden" name="inputTotal" id="inputTotal" value="$0.00" />
+                        <input type="hidden" name="pricecode" value="^" />
+                        <input type="hidden" name="pricedesc" value="N/A" />
+                        <input type="hidden" name="price" value="100" />
+                        <input type="hidden" name="quantity" value="0" />
+                        <input type="hidden" name="inputSubtotal" value="0" />
+                        <input type="hidden" name="loewsreserved" value="0" />
+                        <input type="hidden" name="areacode" value="" />
+                        <input type="hidden" name="quantityControlName" value="" />
+                        <input type="hidden" name="itemTotalControlName" id="itemTotalControlName" value="" />
+                        <input type="hidden" name="surcharge" value="0" />
+                        <input type="hidden" name="fee" value="1.5000" />
+                        <input type="hidden" name="isMac" value="False" />
+                        <input type="hidden" name="arraysize" value="0" />
+                        <input type="hidden" name="isNetscape6" value="False" />
+                        <input type="hidden" name="isIE" value="False" />
+                        <input type="hidden" name="isNetscape7" value="False" />
+                    </div>
+
+                </section>
+
+                <div class="buttonContainer">
+                    <button onclick="__doPostBack('NewCustomerCheckoutButton','')" id="NewCustomerCheckoutButton" type="button" class="button primary medium">Buy Tickets</button>
                 </div>
-                            
-        </section>
-                    
 
-
-        
-            <div class="buttonContainer">
-                <button onclick="__doPostBack('NewCustomerCheckoutButton','')" id="NewCustomerCheckoutButton" type="button" class="button primary medium">Buy Tickets</button>                 
-            </div>
-        
-            
                 <section class="offers">
-                
+                    <h3 class="offerHeading">For Fandango VIPs</h3>
+                    <ul class="offerList">
+                        <li class="cookiedPromoListItem"></li>
+                    </ul>
+                    <div id="offersStackContainer">
+                        <ul class="offerList">
+                            <li class="notes" data-reveal-id="tc_287" data-is-loyalty="true" data-offer-type="sitewide">
+                                <div class='inactive remove'></div>
+                                <span class="offer-icon offer-loyalty"></span>
+                                <span class="offer-info">
+                                    <strong>EARN 150 VIP+ POINTS</strong> per ticket. More points = more movies on us.
 
+                                    <span class="disclaimer"> </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
 
-<h3 class="offerHeading">For Fandango VIPs</h3>
-<ul class="offerList">
-<li class="cookiedPromoListItem"></li>
-</ul>
-<div id="offersStackContainer" >
+                    <div id='tc_287' class="reveal-modal modal-offer modal-loyalty" data-reveal>
 
-<ul class="offerList">
+                        <div>
 
+                            <a href="#" class="close-reveal-modal">
+                                <span class="close-x">X</span>
+                            </a>
+                            <img style="width:620px;" alt="EARN 150 VIP+ POINTS" src="https://images.fandango.com/r1.0.658//images/offers/287/1/DesktopCheckoutLoyaltyDetailPage_banner_031418_lg.jpg">
+                            <div class="offers-tab">SPECIAL OFFER</div>
 
-        
-        <li class="notes" data-reveal-id="tc_287" data-is-loyalty="true" data-offer-type="sitewide">
-            <div class='inactive remove'></div>
-            <span class="offer-icon offer-loyalty"></span> 
-            <span class="offer-info">
-                <strong>EARN 150 VIP+ POINTS</strong> per ticket. More points = more movies on us.
-                
-                <span class="disclaimer"> </span>
-            </span>
-        </li>
-    
-    
-</ul>
-</div>
+                        </div>
+                        <div class="reveal-footer">
 
+                            <div class="reveal-footer-content">
+                                <div class="offer-title">This summer, rack up 150 VIP+ Points for every ticket you buy. 600 VIP+ Points unlocks a
+                                    $6 reward: stream movies on FandangoNOW, get discounts on Fandango tickets or movie gear
+                                    on FanShop!</div>
+                            </div>
+                            <div class="reveal-sub-footer">
 
+                                <div class="offer-membertitle">Not a member? Join during checkout &mdash; It's free!</div>
 
-    <div id='tc_287' class="reveal-modal modal-offer modal-loyalty" data-reveal>
-                        
-        <div>
-            
-            <a href="#" class="close-reveal-modal"><span class="close-x">X</span></a>
-            <img style="width:620px;" alt="EARN 150 VIP+ POINTS" src="https://images.fandango.com/r1.0.658//images/offers/287/1/DesktopCheckoutLoyaltyDetailPage_banner_031418_lg.jpg"  />
-            
-            
-                <div class="offers-tab">SPECIAL OFFER</div>
-            
-        </div>
-        <div class="reveal-footer">
+                                Must buy movie tickets through your Fandango VIP account to earn points. At least some of the purchase must be paid using
+                                a credit or debit card, PayPal, credit in your Fandango VIP account from a prior exchanged
+                                purchase, or a Fandango (or Fandango-eligible theater) gift card. Tickets must be for movie
+                                with showtime starting before 11:59 p.m. PT August 31, 2018. When you receive 600 VIP+ Points,
+                                you will receive a $6 Discount Award which you will need to convert into a Discount Promo
+                                Code for use on a qualifying purchase on Fandango, FandangoNOW or Fandango FanShop. Discount
+                                Promo Code expires 14 days after Discount Award is posted to your Fandango VIP account. Discount
+                                Promo Code cannot be combined with any other offer, promo code or discount, and cannot be
+                                used to purchase a gift card or toward shipping and handling. Any unused balance will automatically
+                                expire. Fandango may modify or cancel this offer at any time and without notice. This offer
+                                is subject to the VIP+ Program Terms at https://www.fandango.com/policies/vip-plus-program-terms
+                                and Fandango’s Terms and Policies and Privacy Policy at www.fandango.com/Terms-and-Policies.
 
-            <div class="reveal-footer-content">
-                <div class="offer-title">This summer, rack up 150 VIP+ Points for every ticket you buy. 600 VIP+ Points unlocks a $6 reward: stream movies on FandangoNOW, get discounts on Fandango tickets or movie gear on FanShop!</div>
-            </div>
-            <div class="reveal-sub-footer">
-            
-                <div class="offer-membertitle">Not a member? Join during checkout &mdash; It's free!</div>
-            
-                Must buy movie tickets through your Fandango VIP account to earn points.  At least some of the purchase must be paid using a credit or debit card, PayPal, credit in your Fandango VIP account from a prior exchanged purchase, or a Fandango (or Fandango-eligible theater) gift card.  Tickets must be for movie with showtime starting before 11:59 p.m. PT August 31, 2018.  When you receive 600 VIP+ Points, you will receive a $6 Discount Award which you will need to convert into a Discount Promo Code for use on a qualifying purchase on Fandango, FandangoNOW or Fandango FanShop.  Discount Promo Code expires 14 days after Discount Award is posted to your Fandango VIP account. Discount Promo Code cannot be combined with any other offer, promo code or discount, and cannot be used to purchase a gift card or toward shipping and handling.  Any unused balance will automatically expire.  Fandango may modify or cancel this offer at any time and without notice. This offer is subject to the VIP+ Program Terms at https://www.fandango.com/policies/vip-plus-program-terms and Fandango’s Terms and Policies and Privacy Policy at www.fandango.com/Terms-and-Policies.
-                 
-            </div>
-        </div>
-    </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </section>
-            
-        
-        </div>   
-            </div><!--end main-->
-        <div class="side">                   
-            
 
-<div class="module-standard module-timer">  
-<div id="timer"><span class="timerText">Time to complete your order: </span><span class="countdown" id="countdownTimer"></span></div>
-</div>
-<div class="module-standard">  
-<div id="movieTicketSummary"> 
 
-<div class="message note remove"></div>
-
-<div class="moviePoster">
-    <img id="moviePosterImage" alt="" src="https://images.fandango.com/r1.0.658/ImageRenderer/180/272/redesign/static/img/default_poster_128x190.png/208966/images/masterrepository/fandango/208966/porcorosso_250x375_r2.jpg" />
-</div>
-<div class="movieInfo"> 
-    <ul class="movie-specs">
-        <li class="title"><h3 id="movieTitle">Porco Rosso – Studio Ghibli Fest 2018</h3></li>
-        <li class="info"><span id="ratingInfo" class="emptyCheck">PG</span><span id="ratingSeparator" class="separator emptyCheck">, </span><span class="emptyCheck" id="runtimeInfo">1 hr 45 min</span></li>
-    </ul>
-
-    <ul class="movie-other-specs">
-        <li><h2 id="movieDate">Wednesday, May 23 </h2></li>
-        <li>
-            <h2 id = "movieTime">7:00 PM</h2>
-            <span class=""></span>                
-            <div class="emptyCheck" id="lateNightShowtimeMesg"></div>
-            
-            <p  class="newShowtime">
-                <a href="ticketboxoffice.aspx?mid=208966&tid=AANAZ">Select new showtime</a>
-            </p>
-            
-            <div class="amenities">
-                
-                    <a class="amenityPopup" id="0" title="" data-amenityPopupData="Vouchers and coupons for free or discounted admission cannot be used for this showing. Refer to your pass for details.">No passes</a>  
-                    
-                     | <a class="amenityPopup" id="1" title="" data-amenityPopupData="This film is dubbed in English.">English Dubbed</a>  
-                    
-                     | <a class="amenityPopup" id="2" title="" data-amenityPopupData="A varied range of live and recorded entertainment excluding traditional films, such as sport, opera, musicals, ballet, music, one-off TV specials, current affairs, comedy and religious services.">Alternative Content</a>  
-                    
             </div>
-                   
-        </li>
-        
-    </ul>
-
-    <ul class="movie-other-specs">
-        <li><h2 id="theaterName">Regal Hollywood 24 @ North I-85</h2></li>
-        <li id="theaterAddress"><a id="maplink" href="http://www.fandango.com/maps/drivingdirections.aspx?category=ticketboxoffice_secure&label=Regal Hollywood 24 @ North I-85&icontitles=yes&streetaddress=&zip=&iconid=213&level=8&state=&height=295&country=CA&city=&tid=AANAZ&mouse_mode=center&width=400" target="_blank"  class="emptyCheck">3265 NE Expressway Access Rd<br />Chamblee, GA 30341</a> </li>
-
-        <li class="auditorium"><h2 id="auditoriumInfo" class="emptyCheck">Auditorium 10</h2></li>
-        
-        
-
-        
-        <li class="theaterNotes">
-            <h2 class="emptyCheck" id="notesHeader"></h2>
-            <div class="emptyCheck" id="notesBody"></div>
-        </li>
-        <li class="agePolicy emptyCheck"><a href="http://tickets.fandango.com/AgePolicy.aspx?chainID=229&tid=AANAZ" onclick="customPopup('http://tickets.fandango.com/AgePolicy.aspx?chainID=229&tid=AANAZ', 'Fandango - Age Policy',400,295);return false;">Regal Age Policy</a></li>
-    </ul>
-</div>
-</div>
-</div>                  
-            <div class="module-standard module-cutout">  
-                <p><a class="help helplink" href="javascript:customPopup('http://www.fandango.com/help?category=generalquestions&question=1','Help',1200,875);return false;" onclick="customPopup('http://www.fandango.com/help?category=generalquestions&question=1','Help',1200,875);return false;">Need Help With Checkout?</a></p>                
+        </div>
+        <!--end main-->
+        <div class="side">
+            <div class="module-standard module-timer">
+                <div id="timer">
+                    <span class="timerText">Time to complete your order: </span>
+                    <span class="countdown" id="countdownTimer"></span>
+                </div>
             </div>
-        </div> 
+            <div class="module-standard">
+                <div id="movieTicketSummary">
+
+                    <div class="message note remove"></div>
+
+                    <div class="moviePoster">
+                        <img id="moviePosterImage" alt="" src="https://images.fandango.com/r1.0.658/ImageRenderer/180/272/redesign/static/img/default_poster_128x190.png/208966/images/masterrepository/fandango/208966/porcorosso_250x375_r2.jpg"
+                        />
+                    </div>
+                    <div class="movieInfo">
+                        <ul class="movie-specs">
+                            <li class="title">
+                                <h3 id="movieTitle">Porco Rosso – Studio Ghibli Fest 2018</h3>
+                            </li>
+                            <li class="info">
+                                <span id="ratingInfo" class="emptyCheck">PG</span>
+                                <span id="ratingSeparator" class="separator emptyCheck">, </span>
+                                <span class="emptyCheck" id="runtimeInfo">1 hr 45 min</span>
+                            </li>
+                        </ul>
+
+                        <ul class="movie-other-specs">
+                            <li>
+                                <h2 id="movieDate">Wednesday, May 23 </h2>
+                            </li>
+                            <li>
+                                <h2 id="movieTime">7:00 PM</h2>
+                                <span class=""></span>
+                                <div class="emptyCheck" id="lateNightShowtimeMesg"></div>
+
+                                <p class="newShowtime">
+                                    <a href="ticketboxoffice.aspx?mid=208966&tid=AANAZ">Select new showtime</a>
+                                </p>
+
+                                <div class="amenities">
+
+                                    <a class="amenityPopup" id="0" title="" data-amenityPopupData="Vouchers and coupons for free or discounted admission cannot be used for this showing. Refer to your pass for details.">No passes</a>
+
+                                    |
+                                    <a class="amenityPopup" id="1" title="" data-amenityPopupData="This film is dubbed in English.">English Dubbed</a>
+
+                                    |
+                                    <a class="amenityPopup" id="2" title="" data-amenityPopupData="A varied range of live and recorded entertainment excluding traditional films, such as sport, opera, musicals, ballet, music, one-off TV specials, current affairs, comedy and religious services.">Alternative Content</a>
+
+                                </div>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="movie-other-specs">
+                            <li>
+                                <h2 id="theaterName">Regal Hollywood 24 @ North I-85</h2>
+                            </li>
+                            <li id="theaterAddress">
+                                <a id="maplink" href="http://www.fandango.com/maps/drivingdirections.aspx?category=ticketboxoffice_secure&label=Regal Hollywood 24 @ North I-85&icontitles=yes&streetaddress=&zip=&iconid=213&level=8&state=&height=295&country=CA&city=&tid=AANAZ&mouse_mode=center&width=400"
+                                    target="_blank" class="emptyCheck">3265 NE Expressway Access Rd
+                                    <br />Chamblee, GA 30341</a>
+                            </li>
+
+                            <li class="auditorium">
+                                <h2 id="auditoriumInfo" class="emptyCheck">Auditorium 10</h2>
+                            </li>
+                            <li class="theaterNotes">
+                                <h2 class="emptyCheck" id="notesHeader"></h2>
+                                <div class="emptyCheck" id="notesBody"></div>
+                            </li>
+                            <li class="agePolicy emptyCheck">
+                                <a href="http://tickets.fandango.com/AgePolicy.aspx?chainID=229&tid=AANAZ" onclick="customPopup('http://tickets.fandango.com/AgePolicy.aspx?chainID=229&tid=AANAZ', 'Fandango - Age Policy',400,295);return false;">Regal Age Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="module-standard module-cutout">
+                <p>
+                    <a class="help helplink" href="javascript:customPopup('http://www.fandango.com/help?category=generalquestions&question=1','Help',1200,875);return false;"
+                        onclick="customPopup('http://www.fandango.com/help?category=generalquestions&question=1','Help',1200,875);return false;">Need Help With Checkout?</a>
+                </p>
+            </div>
+        </div>
     </div>
-    </div><!-- end container-->
+</div>
+<!-- end container-->
 
-    
+
 <!-- Facebook Script-->
 
 
 <div id="footerContainer">
-<div id="footer" class="commonContainer">
-    <div id="contents">         
-        <p> 
-            <a onclick="defaultPopup('http://www.fandango.com/privacypolicy.aspx');return false;" class="purchaseFooterLink" href="http://www.fandango.com/privacypolicy.aspx"> Your Privacy Rights - Privacy Policy</a> |                  
-            <a onclick="defaultPopup('http://www.fandango.com/terms-and-policies');return false;" class="purchaseFooterLink" href="http://www.fandango.com/terms-and-policies">Terms and Policies</a> | 
-            <a onclick="defaultPopup('http://www.fandango.com/movie-ticket-policy');return false;" class="purchaseFooterLink" href="http://www.fandango.com/movie-ticket-policy">Movie Ticket Policy</a> | 
-            <a href="#" data-reveal-id="lb_worryFreeTickets">Refunds and Exchanges</a>
-        </p>    
-        
-        <p>
-        Copyright &copy; 2018 Fandango. All rights reserved.  Fandango Media, LLC. 12200 W. Olympic Blvd, Suite 400, Los Angeles, CA 90064
-        </p>
+    <div id="footer" class="commonContainer">
+        <div id="contents">
+            <p>
+                <a onclick="defaultPopup('http://www.fandango.com/privacypolicy.aspx');return false;" class="purchaseFooterLink" href="http://www.fandango.com/privacypolicy.aspx">
+                Your Privacy Rights - Privacy Policy</a> |
+                <a onclick="defaultPopup('http://www.fandango.com/terms-and-policies');return false;" class="purchaseFooterLink" href="http://www.fandango.com/terms-and-policies">Terms and Policies</a> |
+                <a onclick="defaultPopup('http://www.fandango.com/movie-ticket-policy');return false;" class="purchaseFooterLink" href="http://www.fandango.com/movie-ticket-policy">Movie Ticket Policy</a> |
+                <a href="#" data-reveal-id="lb_worryFreeTickets">Refunds and Exchanges</a>
+            </p>
+
+            <p>
+                Copyright &copy; 2018 Fandango. All rights reserved. Fandango Media, LLC. 12200 W. Olympic Blvd, Suite 400, Los Angeles,
+                CA 90064
+            </p>
+        </div>
     </div>
-</div>
 </div>
 
 <div id="lb_worryFreeTickets" class="reveal-modal" data-reveal data-dismissmodalclass="close">
-<div class="reveal-header">                
-    <a class="close-reveal-modal" href="#"><span class="close-x">X</span></a>
-</div>
-<!-- <div class="lb_content">
+    <div class="reveal-header">
+        <a class="close-reveal-modal" href="#">
+            <span class="close-x">X</span>
+        </a>
+    </div>
+    <!-- <div class="lb_content">
     <div class="wft-modal-splash-wrapper">
         <div class="wft-modal-headline"><span>Refunds &amp; Exchanges</span></div>
     </div>
@@ -296,4 +308,3 @@
 <div class="nbcuPixels" id="nbcuPixels">
 
 </div>
-
