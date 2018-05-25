@@ -1,8 +1,7 @@
-myApp.controller('AddMovieController', function($scope, fileReader, MovieService){
+myApp.controller('AddMovieController', function($scope,  $location, MovieService){
     $scope.title='Филми';
     $scope.newMovie = {};
     $scope.movie = {};
-    $scope.movie.actors = [];
     $scope.genreList = {};
     $scope.imageSrc = '';
     
@@ -42,22 +41,32 @@ myApp.controller('AddMovieController', function($scope, fileReader, MovieService
         return true;
     }
    
-    $scope.$on("fileProgress", function (e, progress) {
-        $scope.progress = progress.loaded / progress.total;
-    });   
-
-    // ADD MOVIE
-    $scope.addMovie = function ($event, invalid){
-        $event.preventDefault();
-
-        if (!invalid){
-            $scope.movie.premierDate = $scope.dt.toLocaleDateString();
-            console.log($scope);
-            MovieService.addMovie($scope.movie);
-            window.location.href='/admin.html#!/movies'
+    $scope.fileNameChanged = function (ele) {
+        console.log(ele.files[0]);
+        if(ele.file[0]){
+            $scope.movie.image = ele.files[0].name;
+            $scope.$apply();
         }
     }
 
+    $scope.fileNameChanged1 = function (ele) {
+        console.log(ele.files[0]);
+        if(ele.files[0]){
+            $scope.movie.largeImage = ele.files[0].name;
+            $scope.$apply();
+        }
+    }
+
+     // ADD MOVIE
+     $scope.addMovie = function ($event, invalid){
+        $event.preventDefault();
+
+        if (!invalid){
+            console.log($scope);
+            MovieService.addMovie($scope.movie);
+            location.path='#!/movies'
+        }
+    }
    // console.log($scope.action);
         
 })

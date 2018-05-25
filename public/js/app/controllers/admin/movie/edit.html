@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                <h2>Добави филм</h2>
+                <h2>Редактирай филм</h2>
             </div>
         </div>
         <div class='container-fluid addMovie'>
@@ -53,57 +53,49 @@
                                     <ng-message when="required"> Това поле е задължително</ng-message>
                                 </div>
                         </div>
-                        
-                        <!--Material textarea-->
-                        <div class="form-group" style="padding-top:70px">
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-0 col-md-6 col-md-offset-0 right">        
+                        <div class="form-group">
                             <label class='form-label' for="description">Описание *</label>
                             <textarea type="text" id="description" ng-model="movie.description" name="description" class="md-textarea form-control" rows="3" required></textarea>
                             <div ng-messages="form.description.$error" ng-show="form.description.$invalid && form.description.$touched">
                                 <ng-message when="required"> Това поле е задължително</ng-message>
                             </div> 
                         </div>                                           
-                    </div>
-                    <div class="col-sm-3 col-sm-offset-0 col-md-6 col-md-offset-0 right">        
                         <div class="form-group director">
-                            <div class='col-xs-6'>
-                                <label class="form-label" for="director">Директор *</label>
-                                <input type="text" class="form-control" id="director" ng-model="movie.director.name" name="director" placeholder="Име на директор" tabindex="1" required>
-                                <div ng-messages="form.director.$error" ng-show="form.director.$invalid && form.director.$touched">
-                                    <ng-message when="required"> Това поле е задължително</ng-message>
-                                </div> 
-                            </div>                               
-                            <div id="hide" class='col-xs-6'>
-                                <label class="form-label" for="exampleFormControlFile1">Снимка на директор 
-                                <!-- <input type="file" class="form-control-file" ng-model="movie.director.image" style="padding-bottom:30px" name="directorImage" value='{{ director.img }}' id="exampleFormControlFile1"> -->
-                                <input type="file" ng-file-select="onFileSelect($files)" accept="image/*" ng-model="movie.director.img" >
-                                </label>
-                                <span ng-file-select="onFileSelect($files)" class="btn btn-primary btn-lg" role="button">Test</span>
-
-                            </div>
+                            <label class="form-label" for="director">Директор *</label>
+                            <input type="text" class="form-control" id="director" ng-model="movie.directorName" name="director" placeholder="Име на директор" tabindex="1" required>
+                            <div ng-messages="form.director.$error" ng-show="form.director.$invalid && form.director.$touched">
+                                <ng-message when="required"> Това поле е задължително</ng-message>
+                            </div> 
                         </div>                                
                         <div class="form-group">
-                            <label class="form-label" style="padding-top:50px" for="actor1">Актьор 1*</label>
-                            <input type="text" class="form-control" id="actor1" ng-model="movie.actors[0].name" name="actor"  placeholder="Актьор 1" tabindex="1" required>
-                            <div ng-messages="form.actor.$error" ng-show="form.actor.$invalid && form.actor.$touched">
+                            <label class="form-label" for="actor1">Актьори *</label>
+                            <input type="text" class="form-control" id="actor1" ng-model="movie.actors" name="actor"  placeholder="Актьори" tabindex="1" required>
+                            <div ng-messages="form.actors.$error" ng-show="form.actors.$invalid && form.actors.$touched">
                                 <ng-message when="required"> Това поле е задължително</ng-message>
                             </div>
-                        </div>                            
-                        <div class="form-group">
-                            <label class="form-label" for="actor2">Актьор 2</label>
-                            <input type="text" class="form-control" id="actor2" name="actors" ng-model="movie.actors[1].name" placeholder="Актьор 2" tabindex="1">
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="actor3">Актьор 3</label>
-                            <input type="text" class="form-control" id="actor3" name="actors" ng-model="movie.actors[2].name" placeholder="Актьор 3" tabindex="1">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="image">Качете постер *</label>
-                            <input type="file" class='form-control' ng-file-select="onFileSelect($files)" ng-model="movie.image" name='image' required>
+                            <input type="file" id="file1" accept="image/*" ng-model="movie.image" single onchange="angular.element(this).scope().fileNameChanged(this)">
+                            <!-- <input type="file" class='form-control' ng-file-select="onFileSelect($files)" ng-model="movie.image" name='image' required> -->
+                            <button class="upload-file-button btn btn-primary" ng-click="uploadFile($files)">Качете постер *</button>
+                            <span ng-if="movie.image">{{movie.image}}</span>
                             <div ng-messages="form.image.$error" ng-show="form.image.$invalid && form.image.$touched">
                                 <ng-message when="required"> Това поле е задължително</ng-message>
                             </div>
                             <!-- <input type="file" class="form-control" id="image" ng-model="movie.image" name="image" placeholder="Качете снимка" tabindex="1"> -->
                         </div>
+                        <div class="form-group">
+                            <input type="file" id="file2" accept="image/*" ng-model="movie.largeImage" onchange="angular.element(this).scope().fileNameChanged1(this)">
+                            <!-- <input type="file" class='form-control' ng-file-select="onFileSelect($files)" ng-model="movie.image" name='image' required> -->
+                            <button class="upload-file-button btn btn-primary" single ng-click="uploadFile1($files)">Качете снимка *</button>
+                            <span ng-if="movie.largeImage">{{movie.largeImage}}</span>
+                            <div ng-messages="form.largeImage.$error" ng-show="form.largeImage.$invalid && form.largeImage.$touched">
+                                <ng-message when="required"> Това поле е задължително</ng-message>
+                            </div>
+                            <!-- <input type="file" class="form-control" id="image" ng-model="movie.image" name="image" placeholder="Качете снимка" tabindex="1"> -->
+                        </div>     
                         <div class="form-group">
                             <label class="form-label" for="trailer">Линк към трейлър *</label>
                             <input type="text" class="form-control" id="trailer" name="trailer" ng-model="movie.trailer" placeholder="Трейлър" tabindex="1" required>
@@ -128,8 +120,13 @@
                             </div>                      
                         </div>
                     </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-add" ng-click="submitted=true">Запази</button>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <button type="submit" class="btn btn-add" ng-click="submitted=true">Запази</button>
+                        </div>  
+                        <div class="col-xs-6">
+                            <button type="submit" class="btn btn-add" ng-click="submitted=true">Запази</button>
+                        </div>  
                     </div>
                     <div ng-show="submitted && form.$invalid" class="alert alert-danger">
                         <div ng-show="form.name.$error.required"> Име е задължително</div>

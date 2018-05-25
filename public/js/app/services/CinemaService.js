@@ -18,7 +18,7 @@ myApp.factory('CinemaService', function($http) {
         },
         getCinema: function (projection){
             return new Promise(function (resolve, reject){
-                $http.get('/api/cinema/'+ projection.kinoId+ '/' + projection.zalaID )
+                $http.get('/api/cinema/'+ projection.kinoID + '/' + projection.zalaID )
                     .then(function (response){
                         cinema = response.data;
                         resolve(cinema);
@@ -72,5 +72,17 @@ myApp.factory('CinemaService', function($http) {
                     })
             })
         },
+        removeZala: function(zalaID, kinoID){
+            return new Promise(function (resolve, reject){
+                $http.post('/api/cinema/zala/delete/' + kinoID + '/' + zalaID )
+                    .then(function (response){
+                        console.log(response, 'DELETE ZALA RESPONSE')
+                        resolve(response);
+                    })
+                    .catch(function (err){
+                        reject(err);
+                    })
+            })
+        }
     }
 });

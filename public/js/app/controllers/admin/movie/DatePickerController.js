@@ -1,4 +1,4 @@
-myApp.controller('DatePickerController', function($scope){
+myApp.controller('DatePickerController', function($scope, $rootScope){
     //DaTEpicker
     $scope.popup = {
         opened: false
@@ -41,24 +41,26 @@ myApp.controller('DatePickerController', function($scope){
         
         $scope.setDate = function(year, month, day) {
             $scope.dt = new Date(year, month, day);
+            // $rootScope.premierDate = $scope.dt;
+            $scope.$apply();
         };
     
         $scope.format = 'dd-MMMM-yyyy';
         
-        var tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        var afterTomorrow = new Date();
-        afterTomorrow.setDate(tomorrow.getDate() + 1);
-        $scope.events = [
-        {
-            date: tomorrow,
-            status: 'full'
-        },
-        {
-            date: afterTomorrow,
-            status: 'partially'
-        }
-        ];
+        // var tomorrow = new Date();
+        // tomorrow.setDate(tomorrow.getDate() + 1);
+        // var afterTomorrow = new Date();
+        // afterTomorrow.setDate(tomorrow.getDate() + 1);
+        // $scope.events = [
+        // {
+        //     date: tomorrow,
+        //     status: 'full'
+        // },
+        // {
+        //     date: afterTomorrow,
+        //     status: 'partially'
+        // }
+        // ];
     
         function getDayClass(data) {
         var date = data.date,

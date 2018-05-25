@@ -100,16 +100,18 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
   //get projection 
   ProjectionService.getProjection($routeParams.id)
     .then(function (projection) {
+      console.log(projection);
       projection.projection.time = moment(new Date(projection.projection.time * 1000)).format('DD MMMM YYYY HH:mm');
       $scope.projectionDetails = projection.projection;
       $scope.$apply();
-
+      console.log($scope.projectionDetails, 'PROJECTION DETAILS');
       //get movies by names
-      MovieService.getMovieByName($scope.projectionDetails.movie)
+      MovieService.getMovie($scope.projectionDetails.movieID)
         .then(function (data) {
+          // console.log(data, 'MOVIE');
           $scope.movie = data.movie;
           $scope.$apply();
-          console.log($scope.movie, 'film');
+          console.log($scope.movie, 'MOVIEE');
         })
         .catch(function (err) {
           console.log(err);
@@ -253,12 +255,6 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
         }
       })
     }
-    // confirm('Сигурен ли сте, че искате да изтиете прожекция', projection.movie - projection.time)
   
- 
-  
-  
- 
-  console.log($scope);
   $scope.daysAllowed = [moment().date]
 })

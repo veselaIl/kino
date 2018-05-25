@@ -1,7 +1,8 @@
 var express = require('express');
 var ObjectId = require('mongodb').ObjectId; 
 var router = express.Router();
-
+var fs = require('fs');
+var path = require('path');
 
 /********* CINEMA *********** */
 /* GET admin cinemas page. */
@@ -114,6 +115,7 @@ router.get('/api/projects/', function (req, res) {
 router.get('/api/projections/:id', function (req, res){
   req.db.get('projection').find({ _id : new ObjectId(req.params.id)})
     .then(function(data){
+      console.log(data)
       projection = data[0] || []
       res.json({projection : projection});
     })
@@ -223,6 +225,19 @@ router.post('/api/projections/add', function(req, res){
 //   })
 // })
 
+router.post('/api/cinema/zala/delete/:kinoID/:zalaID', function (req, res){
+  console.log(req.params);
+  //remove({ _id : ObjectId(req.params.id)})
+  req.db.get('cinema').update({ 'kinoID' : +req.params.kinoID }, { '$pull' : { 'zalaID' : +req.params.zalaID }}) 
+    .then(function (data){
+      console.log(data);
+      res.json({ data : data });
+    })
+    .catch(function (err){
+      req.status(err.status || 405)
+    })
+})
+
 
 /*****END CINEMA ******** */
 
@@ -301,9 +316,10 @@ router.post('/api/movies/add',function(req, res){
           description: req.body.movie.description,
           duration: +req.body.movie.duration,
           genre: req.body.movie.genres,
-          image: req.body.movie.image ,
+          image: '/images/movies/' + req.body.movie.image,
+          largeImage: '/images/movies/' + req.body.movie.largeImage,
           trailer : req.body.movie.trailer,
-          director : req.body.movie.director,
+          directorName : req.body.movie.directorName,
           actors : req.body.movie.actors,
           premierDate: req.body.movie.premieDate,
           dublaj : !req.body.movie.dublaj
@@ -326,14 +342,31 @@ router.post('/api/movies/add',function(req, res){
   });
 })
 
-/* GET MOVIE TO EDIT */
-router.get('/api/movies/edit/:id', function(req, res){
+// /* GET MOVIE TO EDIT */
+// router.get('/api/movies/edit/:id', function(req, res){
+//   var movie;
+//   console.log(req.params);
+//   req.db.get('movies').find({ movieID : +req.params.movieID })
+//     .then(function(data){
+//       movie = data[0] || {};    
+//       res.json('Movie', movie)
+//     })    
+// })
+
+router.get('/api/movies/movie/:id', function(req, res){
   var movie;
-  req.db.get('movies').find({ movieID : +req.params.movieID })
-    .then(function(data){
-      movie = data[0] || {};    
-      res.json('Movie', movie)
-    })    
+  req.db.get('movies').find({ movieID : +req.params.id })
+    .then(function (data){
+      console.log(data);
+      movie = data[0] || {};
+      res.json({ movie : movie });
+    })
+    .catch(function(err) {
+      console.log('catch', err);
+      res.status(err.status || 500);
+      res.send();
+    });
+
 })
 
 /* GET MOVIE BY NAME */
