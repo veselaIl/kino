@@ -1,65 +1,66 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngSanitize', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'mwl.confirm', 'multipleDatePicker'])
-    .config(function($routeProvider) {
+    .config(function($routeProvider, $locationProvider) {
+        $locationProvider.html5Mode(true);
         $routeProvider
-            .when('/', {
+            .when('/admin', {
                 controller: 'AdminController',
                 templateUrl: '/js/app/controllers/admin/board/view.html',
                 title: 'Админ'
             })
-            .when('/cinema', {
+            .when('/admin/cinema', {
                 controller: 'CinemaController',
                 templateUrl: '/js/app/controllers/admin/cinema/view.html'
             })
-            .when('/cinema/add',{
+            .when('/admin/cinema/add',{
                 controller: 'AddCinemaController',
                 templateUrl: '/js/app/controllers/admin/cinema/add.html',
                 title: 'Добави кино'
             })
-            .when('/cinema/:id/add/zala', {
+            .when('/admin/cinema/:id/add/zala', {
                 controller: 'CinemaController',
                 templateUrl: '/js/app/controllers/admin/cinema/zala.html',
                 title: 'Добави зала'
             })
-            .when('/movies', {
+            .when('/admin/movies', {
                 controller: 'MovieController',
                 templateUrl: '/js/app/controllers/admin/movie/view.html',
                 title: 'Филми'
             })
-            .when('/movies/add',{
+            .when('/admin/movies/add',{
                 controller: 'AddMovieController',
                 templateUrl: '/js/app/controllers/admin/movie/add.html',
                 title: 'Добави филм'
             })
-            .when('/movies/edit/:id',{
+            .when('/admin/movies/edit/:id',{
                 controller: 'MovieController',
                 templateUrl:'/js/app/controllers/admin/movie/edit.html',
                 title:'Редактирай'
             })
-            .when('/projections', {
+            .when('/admin/projections', {
                 controller: 'ProjectionController',
                 templateUrl: '/js/app/controllers/admin/projection/view.html',
                 title: 'Прожекции'
             })
-            .when('/projections/add', {
+            .when('/admin/projections/add', {
                 controller: 'ProjectionController',
                 templateUrl: "/js/app/controllers/admin/projection/add.html",
                 title: 'Добави прожекция'
             })
-            .when('/projections/:id',{
+            .when('/admin/projections/:id',{
                 controller: 'ProjectionController',
                 templateUrl: "/js/app/controllers/admin/projection/details.html",
                 title: 'Прожекция Детайли'
             })
-            .when('/users', {
+            .when('/admin/users', {
                 controller: 'UserController',
                 templateUrl: '/js/app/controllers/admin/users/view.html',
                 title: 'Потребители'
             })
-            .when('/admin/cinema/:id', {
+            .when('/cinema/:id', {
                 controller: 'ProductController',
                 templateUrl: '/js/app/controllers/product/view.html',
                 title: 'Кино'
-            })
+            }) 
             .otherwise({
                 controller: 'NotFoundController',
                 templateUrl: '/js/app/controllers/404/view.html',

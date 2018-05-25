@@ -1,4 +1,4 @@
-myApp.controller('ProjectionController', function ($scope, $document, $routeParams, ProjectionService, MovieService, CinemaService) {
+myApp.controller('ProjectionController', function ($scope, $document, $location, $routeParams, ProjectionService, MovieService, CinemaService) {
 
   $scope.cinemas = [];
   $scope.movies = [];
@@ -25,11 +25,6 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
       { value: '3', name: 'Премиерен' }
     ]
   };
-  // $scope.types = [
-  //   { value : '1', name : 'Стандартен'},
-  //   { value : '2', name : 'Промоционален'},
-  //   { value : '3', name : 'Премиерен'}
-  // ]
 
   $scope.hours = [
     '10:00',
@@ -38,6 +33,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     '18:15',
     '21:00'
   ]
+
   $scope.movieTypes = [
     '2D',
     '3D',
@@ -50,43 +46,38 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
   }
   $scope.types.config = $scope.types.availableOptions[0].value;
 
-  // // Get all projections
-  // ProjectionService.getProjections()
-  //   .then(function (projections) {
-  //     console.log('then', projections);
-  //     $scope.$apply(function () {
-  //       $scope.projections = projections;
-  //     });
-  //   })
-  //   .catch(function (err) {
-  //     console.log(err);
-  //   })
-  
-  //Get All movies  
-  MovieService.getMovies()
-    .then(function (movies) {
-      $scope.movies = movies;
-      $scope.$apply();
+  // Get all projections
+  ProjectionService.getProjections()
+    .then(function (projections) {
+      console.log('then', projections);
+      $scope.$apply(function () {
+        $scope.projections = projections;
+      });
     })
     .catch(function (err) {
       console.log(err);
     })
+  
+  // //Get All movies  
+  // MovieService.getMovies()
+  //   .then(function (movies) {
+  //     $scope.movies = movies;
+  //     $scope.$apply();
+  //   })
+  //   .catch(function (err) {
+  //     console.log(err);
+  //   })
 
-  ProjectionService.getProjects()
-    .then(function (projects) {
-      $scope.$apply(function () {
-        $scope.allProjections = projects;
-        $scope.allProjections.sort((a, b) => a.time - b.time);
-        $scope.allProjections.forEach(function (projection) {
-          var film = $scope.movies.find(movie => movie.movieID === projection.movieID);
-          projection.movieName = film.name;
-          return projection.time = moment(new Date (projection.time * 1000)).format('DD MMMM YYYY / HH:mm');
-        });
-        $scope.allProjections = $scope.allProjections.filter(projection => projection.time > moment().format('DD MMMM YYYY / HH:mm'));
-        $scope.filteredProjections = $scope.allProjections;
-      })
-    });
-
+  //   $scope.allProjections = $scope.projections;
+  //   $scope.allProjections.sort((a, b) => a.time - b.time);
+  //   $scope.allProjections.forEach(function (projection) {
+  //     var film = $scope.movies.find(movie => movie.movieID === projection.movieID);
+  //     projection.movieName = film.name;
+  //     return projection.time = moment(new Date (projection.time * 1000)).format('DD MMMM YYYY / HH:mm');
+  //   });
+  //   $scope.allProjections = $scope.allProjections.filter(projection => projection.time > moment().format('DD MMMM YYYY / HH:mm'));
+  //   $scope.filteredProjections = $scope.allProjections;
+   
   //get Cinemas
   CinemaService.getCinemas()
     .then(function (cinemas) {
@@ -202,7 +193,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
       // newProjections.push(project);
       CinemaService.addProjections(final, $scope.kino);
       ProjectionService.addProjections(final).then(function (response) {
-        window.location.href = '/admin.html#!/projections';
+        $location.path('/admin/projections');
       })
     }
   }

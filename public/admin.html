@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
+    <base href="/">
   <head>
     <title>{{title}}</title>
     <!-- STYLES -->
-    
+  
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -66,37 +67,37 @@
     <header class='main-nav'>
     <ul>
         <li>
-            <a href='#!/'>
+            <a href='/admin'>
                 <i class='fa fa-tachometer'></i>
                 <span>Панел</span>
             </a> 
         </li>
         <li>
-            <a href='#!/projections'>
+            <a href='/admin/projections'>
                 <i class='fa fa-video-camera'></i>
                 <span>Прожекции</span>
             </a>
         </li>
         <li>
-            <a href='#!/cinema'>
+            <a href='/admin/cinema'>
                 <i class='fa fa-desktop'></i>
                 <span>Кина</span>
             </a>
         </li>
         <li>
-            <a href='#!/movies'>
+            <a href='/admin/movies'>
                 <i class='fa fa-film'></i>
                 <span>Филми</span> 
             </a>  
         </li>
         <li>
-            <a href='#!/users'>
+            <a href='/admin/users'>
                 <i class='fa fa-users'></i>
                 <span>Потребители</span>
             </a>
         </li>
-        <li>
-            <a href='#!/logout'>
+        <li ng-controller="AdminController">
+            <a href='/admin/logout' ng-click="logout($event)">
                 <i class='fa fa-sign-out'></i>
                 <span>Изход</span>
             </a>

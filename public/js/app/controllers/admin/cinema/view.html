@@ -2,7 +2,7 @@
   <div class='cinema'>
     <div class='add-movie'>
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
-      <a href='#!/cinema/add'>Добави кино</a>
+      <a href='/admin/cinema/add'>Добави кино</a>
     </div>
     <div class="row" ng-repeat="cinema in cinemas track by $index" >
       <div class="col-md-12 projection-view">
@@ -22,87 +22,85 @@
               <span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
             <div class=" col-md-12 panel-collapse collapse" id='my-collapse-element{{$index}}'>
-                <!-- <div class="container projects">
-                  <div class="projects-inner">
-                    <header class="projects-header">
-                      <div class="title">Ongoing Projections Kино {{ cinema.name }}</div>
-                      <a href='#!/projections/add'>
-                        <span class="glyphicon glyphicon-plus"></span>
-                      </a>
-                    </header>
-                    <table class="projects-table">
-                    <thead>
-                      <tr>
-                        <th>Зала</th>
-                        <th>Филм</th>
-                        <th>Дата/ час</th>
-                        <th>Статус</th>
-                      </tr>
-                    </thead>
-                      <tr ng-repeat="projection in projections | filter: { kinodID : projection.kinoId }">
-                        <td>
-                          <p>{{ projection.zalaID }}</p>
-                        </td>
-                        <td >
-                          <p>{{  projection.movie }}</p>
-                        </td>
-                        <td>
-                          <p>{{  projection.time }}</p>
-                        </td>
-                        <td class="status"><span class="status-text status-orange">In progress</span>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </div> -->
-                <div class="container projects"style="margin-top:20px" ng-if="cinemas[$index].zali.length">
-                    <div class="projects-inner">
-                      <header class="projects-header">
-                        <div class="title">Зали в {{ cinema.name }}</div>
-                        <a class="zala-add" title="Добави зала" href='#!/cinema/{{cinema.kinoID}}/add/zala'>
-                          <span class="glyphicon glyphicon-plus"></span>
-                        </a>
-                      </header>
-                      <table class="projects-table">
-                      <thead>
-                        <tr>
-                          <th>Зала</th>
-                          <th>Реда</th>
-                          <th colspan='2'>Места</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="zala in cinema.zali ">
-                          <td>
-                            <p>Зала {{ zala.zalaID }}</p>
-                          </td>
-                          <td>
-                            <p>{{ zala.space.length}}</p>
-                            <!-- <p class="danger-text">Overdue</p> -->
-                          </td>
-                          <td class="member">
-                            <div class="member-info">
-                              <p>{{ zala.capacity }}</p>
-                            </div>
-                          </td>
-                          <td class="buttonView"><a title="Редактирай" href="#!/cinema/view/{{zala.zalaID}}"class="btn btn-sm btn-danger">
-                            <i class="glyphicon glyphicon-edit"></i></a>
-                            <a title="Изтрий" class="btn btn-sm btn-danger" mwl-confirm  title ="{{vm.titleBox}}" message="{{vm.message}}"
-                                on-confirm ="vm.onConfirm(zala, cinema.kinoID)" confirm-text = '{{vm.confirmText}}' cancel-text = "{{vm.cancelText}}"> 
-                                <i class="glyphicon glyphicon-trash"></i></a>
-                          </td>
-                        </tr>
-                      </tbody>
-                      </table>
-                    </div>
-                  </div>  
-                  <div class="delete-cinema-btn">
-                    <a class="btn btn-danger"  mwl-confirm  title ="{{cm.titleBox}}" message="{{cm.message}}"
-                    on-confirm ="cm.onConfirm(cinema.kinoID)" confirm-text = '{{cm.confirmText}}' cancel-text = "{{cm.cancelText}}">Изтрий</a>
-                  </div>
+                <div class="projects-inner">
+                  <header class="projects-header">
+                    <div class="title">Ongoing Projections Kино {{ cinema.name }}</div>
+                    <a href='/admin/projections/add'>
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                  </header>
+                  <table class="projects-table">
+                  <thead>
+                    <tr>
+                      <th>Зала</th>
+                      <th>Филм</th>
+                      <th>Дата/ час</th>
+                      <th>Статус</th>
+                    </tr>
+                  </thead>
+                    <tr ng-repeat="projection in projections | filter: { kinodID : projection.kinoId }">
+                      <td>
+                        <p>{{ projection.zalaID }}</p>
+                      </td>
+                      <td >
+                        <p>{{  projection.movie }}</p>
+                      </td>
+                      <td>
+                        <p>{{  projection.time }}</p>
+                      </td>
+                      <td class="status"><span class="status-text status-orange">In progress</span>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
-            </a>
+            </div>
+            <div class="container projects"style="margin-top:20px" ng-if="cinemas[$index].zali.length">
+                <div class="projects-inner">
+                  <header class="projects-header">
+                    <div class="title">Зали в {{ cinema.name }}</div>
+                    <a class="zala-add" title="Добави зала" href='/admin/cinema/{{cinema.kinoID}}/add/zala'>
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                  </header>
+                  <table class="projects-table">
+                  <thead>
+                    <tr>
+                      <th>Зала</th>
+                      <th>Реда</th>
+                      <th colspan='2'>Места</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="zala in cinema.zali ">
+                      <td>
+                        <p>Зала {{ zala.zalaID }}</p>
+                      </td>
+                      <td>
+                        <p>{{ zala.space.length}}</p>
+                        <!-- <p class="danger-text">Overdue</p> -->
+                      </td>
+                      <td class="member">
+                        <div class="member-info">
+                          <p>{{ zala.capacity }}</p>
+                        </div>
+                      </td>
+                      <td class="buttonView"><a title="Редактирай" href="/admin/cinema/view/{{zala.zalaID}}"class="btn btn-sm btn-danger">
+                        <i class="glyphicon glyphicon-edit"></i></a>
+                        <a title="Изтрий" class="btn btn-sm btn-danger" mwl-confirm  title ="{{vm.titleBox}}" message="{{vm.message}}"
+                            on-confirm ="vm.onConfirm(zala, cinema.kinoID)" confirm-text = '{{vm.confirmText}}' cancel-text = "{{vm.cancelText}}"> 
+                            <i class="glyphicon glyphicon-trash"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                  </table>
+                </div>
+              </div>  
+              <div class="delete-cinema-btn">
+                <a class="btn btn-danger"  mwl-confirm  title ="{{cm.titleBox}}" message="{{cm.message}}"
+                on-confirm ="cm.onConfirm(cinema.kinoID)" confirm-text = '{{cm.confirmText}}' cancel-text = "{{cm.cancelText}}">Изтрий</a>
+              </div>
           </div>
+            <!-- </a> -->
         </div>
       </div>
     </div>

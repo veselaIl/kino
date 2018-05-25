@@ -52,15 +52,6 @@ db.then(function() {
 app.use(registerRouters);
 app.use(loginRouters);
 
-//check for login
-// app.use(function(req, res, next){
-//   if(!req.session.user){
-//     res.sendStatus(401);
-//   } else {
-//     next();
-//   }
-// });
-
 fs.readdirSync(path.join(__dirname, 'routes'))
   .forEach(file => {
     console.log(file);
@@ -69,6 +60,24 @@ fs.readdirSync(path.join(__dirname, 'routes'))
       app.use(require('./routes/' + filename));
     //}
   });
+
+//check for login
+// app.use(function(req, res, next){
+//   if(!req.session.user){
+//     res.sendStatus(401);
+//   } else {
+//     next();
+//   }
+// });
+  
+app.all('/admin', (req, res) => {
+  console.log(req.session)
+  if(req.session.user && req.session.user.isAdmin){
+    res.sendFile('public/admin.html', {
+      root: __dirname
+    });
+  }
+});
 
 app.all('/*', (req, res) => {
   res.sendFile('public/index.html', {

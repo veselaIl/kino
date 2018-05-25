@@ -128,5 +128,20 @@ router.post('/admin/api/cinema/delete/:kinoID/:zalaID', function (req, res){
       }) 
   })
 
+//ADMIN USER
+router.get('/admin/logout', function (req, res){
+  console.log(req.session);
+  if (req.session.user) {
+      req.session.destroy(function (err) {
+          console.log('destroy', err);
+          res.clearCookie('connect.sid');
+          res.sendStatus(err ? 500 : 200);
+      });
+  } else {
+      res.sendStatus(401);
+  }
+});
+
+
 module.exports = router;
   

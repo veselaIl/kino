@@ -1,4 +1,4 @@
-<div class="content-projection" ng-controller="ProjectionController" ng-if="movie.name">
+<div class="content-projection" ng-if="movie.name">
     <div class="fond">
         <span class="s1"> {{ movie.name}}</span>
         <h4 class="projection-h4">Кино {{ projectionCinema.name }} | Зала {{ projectionDetails.zalaID }} | {{ projectionDetails.time }}</h4>
@@ -37,7 +37,7 @@
                         </td>
                         <td>{{ projection.movieName }}</td>
                         <td>{{ types.availableOptions[projection.type - 1].name }}</td>
-                        <td class="buttonView"><a href="#!/projections/{{projection._id}}"class="btn btn-sm btn-danger">
+                        <td class="buttonView"><a href="/admin/projections/{{projection._id}}"class="btn btn-sm btn-danger">
                             <i class="glyphicon glyphicon-eye-open"></i></a>
                             <a  class="btn btn-sm btn-danger" mwl-confirm  title ="{{vm.titleBox}}" message="{{vm.message}}"
                                 on-confirm ="vm.onConfirm(projection)" confirm-text = '{{vm.confirmText}}' cancel-text = "{{vm.cancelText}}"> 

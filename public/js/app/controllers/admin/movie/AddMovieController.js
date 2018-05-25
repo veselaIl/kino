@@ -53,7 +53,7 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
         if (!invalid){
             console.log($scope);
             MovieService.addMovie($scope.movie);
-            $location.path('movies');
+            $location.path('/admin/movies');
         }
     }
    // console.log($scope.action);

@@ -48,7 +48,7 @@ myApp.controller('MovieController', function($scope, $routeParams, $location,  M
     $scope.delete = function (movieID){
         if(movieID){
             MovieService.removeMovie(movieID);
-            $location.path('/movies');
+            $location.path('/admin/movies');
         }
     }
     console.log($scope);
