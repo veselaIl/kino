@@ -16,10 +16,11 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService) 
             errors.push(err);
         })
 
-    console.log('$routeParams.id', $routeParams.id);
+    console.log('$routeParams.id', $routeParams);
     MovieService.getMovie($routeParams.id)
        .then(function (movie){
             $scope.movie = movie;
+            console.log('$scope.movie', $scope.movie);
             // console.log("Genre: ", movie.genre);
             // $scope.movie.genre = movie.genre;
             console.log('Actors:', movie.actors);
@@ -32,5 +33,7 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService) 
        .catch(function (err){
             errors.push(err);
        })
+
+       
 
 })

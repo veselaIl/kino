@@ -1,4 +1,4 @@
-<div ng-controller="ProjectionController" class="container-movies">    
+<div class="container-movies">    
     <div class="date-picker__wrap days">
         <section class="date-picker carousel js-movie-calendar carousel-style-strip">
             <ul class="carousel-items week">
@@ -12,7 +12,7 @@
             </ul>
         </section>
     </div>
-    <div class="container-card" ng-repeat="movie in movieDetails">
+    <div ng-if="movieDetails" class="container-card" ng-repeat="movie in movieDetails">
         <div class="card-media" >
           <!-- media container -->
           <div class="card-media-object-container">
@@ -40,9 +40,9 @@
             </p>
             <div>
                 <ul>
-                    <li class="projection-times" ng-repeat="item in movies[movie.name] | orderBy: 'timestamp'">
+                    <li class="projection-times" ng-repeat="item in projections[movie.name] | orderBy: 'timestamp'">
                        <div >
-                            <a href="#!/projections/book/{{item.kinoId}}/{{item.zalaID}}/{{item.movie}}/{{item.time}}" 
+                            <a href="/projections/book/{{item.kinoId}}/{{item.zalaID}}/{{item.movieID}}/{{item.time}}" 
                             class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (item.time * 1000 | date: 'dd-MM')"
                             ng-model="item.time">{{item.time * 1000 | date: 'HH:mm'}}</a>
                             <!-- <a>{{activeDay.toDate() | date:'dd-MM'}}</a> -->
@@ -64,4 +64,5 @@
           </div>
         </div>
       </div>
- </div>
+</div>
+

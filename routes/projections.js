@@ -1,79 +1,78 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/projections', function (req, res){
+router.get('/api/projections', function (req, res){
+    console.log('/api/projections', req.query.date);
     //GET all projections
-    req.db.get('projection').find()
-        .then(function (projections){            
-            if(projections.length){
-                //Get movieID from projections
-                // console.log('All Projections: ', projections);
-                // var moviesID = [];
-                // projections.forEach(p => {
-                //     moviesID.push(p.movieID);
-                // });
-                // console.log('MoviesID: ', moviesID);
-                // req.db.get('movies').find()
-                // //req.db.get('movies').findOne({ _id: projections.movieID})
-                // res.json(projections);
-                res.json({ projections : projections})
+    var startDate = new Date(req.query.date || undefined);
+    var endDate = req.query.date ? startDate : null;
+    // set time
+    startDate.setHours(0);
+    startDate.setMinutes(0);
+    startDate.setSeconds(0);
+    startDate.setMilliseconds(0);
+    if (endDate) {
+        endDate.setHours(23);
+        endDate.setMinutes(59);
+        endDate.setSeconds(59);
+        endDate.setMilliseconds(999);
+    }
+    var findObj = {};
+    req.db.get('projection').find(findObj, {
+        
+    })
+        .then(function (projections) {
+            console.log('projections', projections.length);
+            if (projections.length) {
+                var result = {
+                    projections: projections
+                }
+                movies = [];
+                projections.forEach(p => {
+                    if (movies.indexOf(p.movieID) === -1) {
+                        movies.push(p.movieID);
+                    }
+                });
+                console.log('movies', movies);
+
+                req.db.get('movies').find({ movieID: { $in : movies } })
+                    .then(function (movies) {
+                        console.log('movies', movies.length);
+                        if (movies.length){
+                            //console.log("projectios.js : ", movies);
+                            result['movies'] = movies;
+
+                            res.json(result);
+                        } else {
+                            res.sendStatus(404);
+                        }
+                    });
             } else {
                 res.sendStatus(404);
             }
-            
-        })
+        });
 });
-router.get('/projections/movies/', function (req, res){
-    console.log(req);
-    req.db.get('movies').find({ name : { $in : req.query.movie }})
-        .then(function (movies){
-            if (movies.length){
-                res.json({ movies : movies});
-            } else {
-                res.sendStatus(404);
-            }
-        })
-})
+
+// router.get('/api/movies-projections', function (req, res){
+//     //console.log('projections.js', req.query);
+
+//     // get the movies ids from the movieID param and convert them to numbers
+//     var movies = req.query.movieID ? req.query.movieID.split(',').map(m => +m) : [];
+//     console.log('movies', movies);
+//     var findObject = movies.length ? { movieID : { $in : movies }} : {};
+
+//     req.db.get('movies').find(findObject, { sort: { time: -1 } } )
+        
+//         .then(function (movies){
+            
+//             console.log('movies', movies.length);
+//             if (movies.length){
+//                 //console.log("projectios.js : ", movies);
+//                 res.json({ movies : movies});
+//             } else {
+//                 res.sendStatus(404);
+//             }
+//         })
+// })
 
 module.exports = router;
-
-
-/*
-req.db.get('projection').aggregate([
-        {
-            $lookup: {
-                from: "kino", 
-                localField: "kinoId", 
-                foreignField: "_id", 
-                as: "kino" 
-            }
-        },
-        {
-            $lookup: {
-                from: "movies", 
-                localField: "movieID", 
-                foreignField: "_id", 
-                as: "movie" 
-            }
-        },
-        {
-            $unwind: "$kino"
-        },
-        {
-            $unwind: "$movie"
-        },
-        {
-            $project: {
-                _id: 1,
-                type: 1,
-                time: 1,
-                movie: 1,
-                kino: 1
-            }
-        }
-    ])
-        .then(function (projections){     
-            if(projections.length) {
-                console.log('Projections: ' , projections);
-                res.json(projections);
-                */

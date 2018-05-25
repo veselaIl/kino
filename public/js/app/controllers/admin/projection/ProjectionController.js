@@ -50,17 +50,17 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
   }
   $scope.types.config = $scope.types.availableOptions[0].value;
 
-  // Get all projections
-  ProjectionService.getProjections()
-    .then(function (projections) {
-      console.log('then', projections);
-      $scope.$apply(function () {
-        $scope.projections = projections;
-      });
-    })
-    .catch(function (err) {
-      console.log(err);
-    })
+  // // Get all projections
+  // ProjectionService.getProjections()
+  //   .then(function (projections) {
+  //     console.log('then', projections);
+  //     $scope.$apply(function () {
+  //       $scope.projections = projections;
+  //     });
+  //   })
+  //   .catch(function (err) {
+  //     console.log(err);
+  //   })
   
   //Get All movies  
   MovieService.getMovies()
@@ -239,7 +239,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
 
     $scope.vm = {};
     $scope.vm.titleBox="Изтриване на прожекция"
-    $scope.vm.message = "Сигурен ли сте? ";
+    $scope.vm.message = "Сигурни ли сте? ";
     $scope.vm.confirmText = "Да <i class='glyphicon glyphicon-ok'></i> ";
     $scope.vm.cancelText = "Не <i class='glyphicon glyphicon-remove'></i>";
     $scope.vm.onConfirm = function(projection){

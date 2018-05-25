@@ -3,7 +3,7 @@ var router = express.Router();
 var mongodb = require('mongodb');
 
 //GET ALL movies
-router.get('/movies', function (req, res){
+router.get('/api/movies', function (req, res){
     console.log('movies.js', req.db.get('movies').find());
     req.db.get('movies').find()
         .then(function (movies){
@@ -19,11 +19,12 @@ router.get('/movies', function (req, res){
 });
 
 //GET current movie
-router.get('/movies/preview-movie/:id', function(req, res){
-    req.db.get('movies').find({ _id: new mongodb.ObjectId(req.params.id) })
+router.get('/api/movies/preview-movie/:id', function(req, res){
+    req.db.get('movies').find({ movieID: +req.params.id })
         .then(function(movies){
             if(movies){
                 var movie = movies[0] || {};
+                console.log('movie:', movie);
                 res.json({ movie: movie });
             } else {
                 res.sendStatus(404);

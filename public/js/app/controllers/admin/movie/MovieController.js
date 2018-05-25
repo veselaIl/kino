@@ -1,7 +1,8 @@
-myApp.controller('MovieController', function($scope, $routeParams, MovieService){
+myApp.controller('MovieController', function($scope, $routeParams, $location,  MovieService){
     $scope.movies = [];
     $scope.movie = {};
     var indexes = [];
+    
     $scope.genres = [
         "Комедия",
         "Екшън",
@@ -38,5 +39,17 @@ myApp.controller('MovieController', function($scope, $routeParams, MovieService)
         }
         return true;
     }    
+
+    $scope.editMovie = function (event, invalid){
+        event.preventDefault();
+     
+    }
+
+    $scope.delete = function (movieID){
+        if(movieID){
+            MovieService.removeMovie(movieID);
+            $location.path('/movies');
+        }
+    }
     console.log($scope);
 })

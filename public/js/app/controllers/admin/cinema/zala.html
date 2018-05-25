@@ -1,0 +1,43 @@
+<div class='content'>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">  
+                <h2> Добави зала към кино</h2>
+            </div>
+        </div>
+        <form class="myForm" name="myForm" ng-submit="addZala($event, myForm)" action='' method="POST" novalidate >
+            <div class="form-group">
+                <label class="form-label" for='rows'> Редове </label>
+                <input type='number' class='form-control' id='rows' name='rows' ng-model='numRows'required min='1' max='20' placeholder="Въведете редове"> 
+                <div ng-messages="myForm.rows.$error" ng-show="myForm.rows.$touched && myForm.rows.$invalid">
+                    <ng-message when="required">Това поле е задължително</ng-message>
+                    <ng-message when="min">Редовете трябва да са поне 1</ng-message>
+                    <ng-message when="max">Редовете трябва да са не повече от 20</ng-message>
+                </div>
+            </div>
+            <div class='form-group'ng-repeat="row in rows track by $index" ng-if="numRows > 0">
+                <label class='form-label' for='seats'> Ред {{ $index+1 }}  Места</label>
+                <input type='number' class='form-control' ng-model="rows[$index]"  id='seats' name='seats' placeholder="Въведете места" min='1' max='20' required>
+                <div ng-messages="myForm.seats.$error" ng-show="myForm.seats.$touched && myForm.seats.$invalid">
+                    <ng-message when="required">Това поле е задължително</ng-message>
+                    <ng-message when="min">Местата трябва да са поне 1</ng-message>
+                    <ng-message when="max">Местата трябва да са не повече от 20</ng-message>
+                </div>
+            </div>
+            <!-- <div class='' style="display:none;">
+                <input type="submit"   />
+            </div> -->
+            <div class="text-center">
+                <button class="btn btn-add" ng-click="submitted=true" type="submit"> Добави</button>
+            </div>
+        </form>
+    </div>
+    <div ng-show="submitted && myForm.$invalid" class="alert alert-danger">
+            <div ng-show="myForm.rows.$error.required"> Редовете са задължителни </div>
+    </div>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+        Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
+    </small>
+
+
+</div>

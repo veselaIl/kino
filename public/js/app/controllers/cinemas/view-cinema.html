@@ -1,7 +1,26 @@
-<div ng-controller="CinemaController" class="container-main">
+<div class="container-main">
     <div class="container">
         <div class="col-md-12 cinema-title">
             <h3>{{cinema.name}}</h3>
+            <div class="row cinema-head">
+                <div class="col col-sm col-md-4">
+                    <a href="/cinemas/view-cinema/{{ cinema._id }}">
+                        <h3 class="cinema-header btn-cinema-header"><span>За киното</span></h3>
+                    </a>
+                </div>
+                <div class="col col-sm col-md-4">
+                    <a href="/cinemas/view-cinema/projections">
+                        <h3 class="cinema-header btn-cinema-header"><span>Филми</span></h3>
+                    </a>
+                    
+                </div>
+                <div class="col col-sm col-md-4">
+                    <a href="/cinemas/view-cinema/business">
+                            <h3 class="cinema-header btn-cinema-header"><span>Бизнес</span></h3>
+                    </a>
+                    
+                </div>
+            </div>
         </div>
         <div class="row cinema-description">
             <div class="col-md-7">
@@ -10,44 +29,64 @@
                 <p>Описание на залите</p>
             </div>
             <div class="col-md-5">
-                <!-- <h4>Паркинг</h4>
+                <h4>Паркинг</h4>
                 <hr class="red-line">
-                <p>Открит, платен паркинг. Паркингът е неохраняем!Безплатен престой от четири часа за зрителите и клиентите на ресторантите в киното. Паркинг талонът се валидира на касите на киното.</p> -->
-                <h4>Връзка с нас:</h4>
+                <p>Открит, платен паркинг. Паркингът е неохраняем!Безплатен престой от четири часа за зрителите и клиентите на ресторантите в киното. Паркинг талонът се валидира на касите на киното.</p>                
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-12 col-md-7 cinema-description">
+                <h4>Нашите ресторанти</h4>
                 <hr class="red-line">
-                <p>{{cinema.phoneNumber}}</p>
+                <p>Hapy Bar and Grill</p>
+                <img class="restaurant" src="/images/cinemas/happy.jpg">
+                <p>Burger King</p>
+                <img class="restaurant" src="/images/cinemas/burgerking.jpg">
+            </div>
+            <div class="col col-sm-12 col-md-5 cinema-description">
+                <h4>Щанд за пуканки</h4>
+                <hr class="red-line">
+                <p>Всеки филм е по-вкусен с топли пуканки и напитка.</p>
+                <img class="popcorns" src="/images/cinemas/popcorns.png">                
             </div>
         </div>
     </div>
     <div class="container">          
         <div class="row cinema-description">
-        <div class="col-md-7">
-            <h4>Къде да ни намерите:</h4>
-            <hr class="red-line">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47071.29005196179!2d27.445454530307607!3d42.49249595907471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a694c37813c18b%3A0x901f4a077fc5e205!2z0YPQuy4g4oCe0JrQvdGP0Lcg0JDQu9C10LrRgdCw0L3QtNGK0YAg0JHQsNGC0LXQvdCx0LXRgNCz4oCcIDI4LCA4MDAwINCR0YPRgNCz0LDRgSDQptC10L3RgtGK0YAsINCR0YPRgNCz0LDRgQ!5e0!3m2!1sbg!2sbg!4v1526118061506" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-           
-            <!--iframe tria city center-->
-            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2941.7673748937837!2d27.468583315297387!3d42.49649793446724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a694bf0be41de3%3A0xd0ecc67a37961b2f!2z0KLRgNC40LAg0KHQuNGC0Lgg0KbQtdC90YLRitGA!5e0!3m2!1sbg!2sbg!4v1526118308739" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-        </div>
-        <div class="col-md-5">
-            <form class="contants-form">
-            <div class="form-group">
-                <input type="text" class="form-control" name="" value="" placeholder="Вашето име">
+            <div class="col-md-7">
+                <h4>Къде да ни намерите:</h4>
+                <hr class="red-line">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47071.29005196179!2d27.445454530307607!3d42.49249595907471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a694c37813c18b%3A0x901f4a077fc5e205!2z0YPQuy4g4oCe0JrQvdGP0Lcg0JDQu9C10LrRgdCw0L3QtNGK0YAg0JHQsNGC0LXQvdCx0LXRgNCz4oCcIDI4LCA4MDAwINCR0YPRgNCz0LDRgSDQptC10L3RgtGK0YAsINCR0YPRgNCz0LDRgQ!5e0!3m2!1sbg!2sbg!4v1526118061506" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+            
+                <!--iframe tria city center-->
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2941.7673748937837!2d27.468583315297387!3d42.49649793446724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a694bf0be41de3%3A0xd0ecc67a37961b2f!2z0KLRgNC40LAg0KHQuNGC0Lgg0KbQtdC90YLRitGA!5e0!3m2!1sbg!2sbg!4v1526118308739" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> -->
             </div>
-            <div class="form-group">
-                <input type="email" class="form-control" name="" value="" placeholder="Вашият e-mail">
+            <div class="col-md-5">
+                <div class="cinema-description">
+                    <h4>Връзка с нас:<span><i class="fa fa-phone" aria-hidden="true"></i> {{cinema.phoneNumber}}</span></h4>
+                    <hr class="red-line">
+                    
+                </div>                
+                <form class="contants-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="" value="" placeholder="Вашето име">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="" value="" placeholder="Вашият e-mail">
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" name="" value="" placeholder="Телефонен номер">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="" rows="3" placeholder="Съобщение"></textarea>
+                </div>
+                <button class="button btn" type="submit" name="button">
+                    <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Изпрати</span>
+                </button>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="tel" class="form-control" name="" value="" placeholder="Телефонен номер">
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" name="" rows="3" placeholder="Съобщение"></textarea>
-            </div>
-            <button class="btn btn-success" type="submit" name="button">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Изпрати
-            </button>
-            </form>
-        </div>
         </div>
     </div>
     

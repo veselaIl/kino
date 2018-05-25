@@ -6,24 +6,54 @@
                 </div>
             </div>
             <div class='container-fluid addMovie'>
-                <form id="contact-form" class="form" name="form" ng-submit="addCinema($event)" action='' method="POST" novalidate>
+                <form id="contact-form" class="form" name="form" ng-submit="addCinema($event, form)" action='' method="POST" novalidate>
                     <div class="row">
-                            <md-input-container flex="50">
+                        <md-input-container flex="50">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Име *</label>
+                                <input type="text" class="form-control" ng-model="cinema.name" id="name" name="name" placeholder="Въведете име" tabindex="1" required>
+                                <div ng-messages="form.name.$error" ng-show="form.name.$invalid && form.name.$touched">
+                                    <ng-message when="required">Това поле е задължително</ng-message>
+                                </div>
+                            </div>
+                        </md-input-container>   
                         <div class="form-group">
-                            <label class="form-label" for="name">Име *</label>
-                            <input type="text" class="form-control" ng-model="cinema.name" id="name" name="name" placeholder="Въведете име" tabindex="1" required>
-                            <div ng-messages="form.name.$error" ng-show="form.name.$invalid && form.name.$touched">
+                            <label class="form-label" for="address"> Адрес *</label>
+                            <input type="text" class="form-control" id='address' ng-model="cinema.address"  name="address" placeholder="Въведете адрес" tabindex="2" required >
+                            <div ng-messages="form.address.$error"  ng-show="form.address.$touched && form.address.$invalid">
                                 <ng-message when="required">Това поле е задължително</ng-message>
                             </div>
                         </div>
-                    </md-input-container>               
                         <div class="form-group">
-                            <label class="form-label" for="address"> Адрес *</label>
-                            <input type="text" class="form-control" id='address' ng-model="cinema.address"  name="address" placeholder="Въведете адрес" tabindex="2" ng-required="true" >
-                            <div ng-messages="form.address.$error"  ng-show="form.address.$touched && form.address.$invalid">
-                                <div ng-message="required">Това поле е задължително</div>
+                            <label class="form-label" for="address"> Телефонен номер </label>
+                            <input type="text" class="form-control" id='phone' ng-model="cinema.phoneNumber"  name="phone" placeholder="Въведете номер" tabindex="2">
+                        </div>
+                        <div class="form-group">
+                            <input type="file" id="file" name="file" accept="image/*" single onchange="angular.element(this).scope().fileNameChanged(this)" >
+                            <!-- <input type="file" class='form-control' ng-file-select="onFileSelect($files)" ng-model="movie.image" name='image' required> -->
+                            <button class="upload-file-button btn btn-primary" ng-click="uploadFile($files)" >Качете снимка </button>
+                            <span ng-if="cinema.image">{{cinema.image}}</span>
+                            <div ng-messages="form.file.$error" ng-show="form.file.$invalid && form.file.$touched">
+                                <ng-message when="required"> Това поле е задължително</ng-message>
+                            </div>
+                                <!-- <input type="file" class="form-control" id="image" ng-model="movie.image" name="image" placeholder="Качете снимка" tabindex="1"> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="address"> Koординати *</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id='lon' ng-model="cinema.coordinates.lon"  name="lon" placeholder="Въведете географска дължина" tabindex="2" required>
+                                <div ng-messages="form.lon.$error"  ng-show="form.lon.$touched && form.lon.$invalid">
+                                    <ng-message when="required">Това поле е задължително</ng-message>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id='lan' ng-model="cinema.coordinates.lan"  name="lan" placeholder="Въведете географска ширина" tabindex="2" required>
+                                <div ng-messages="form.lan.$error"  ng-show="form.lan.$touched && form.lan.$invalid">
+                                    <ng-message when="required">Това поле е задължително</ng-message>
+                                </div>
                             </div>
                         </div>
+                       
                         <div ng-if="spaces.length"> 
                             <div class="card-add col-xs-6" ng-repeat="zala in spaces track by $index"  >
                                 <div class="card-body">
@@ -59,8 +89,8 @@
                                                     <input type='number' class='form-control' ng-model="rows[$index]"  id='seats' name='seats' placeholder="Въведете места" min='1' max='20' required>
                                                     <div ng-messages="myForm.seats.$error" ng-show="myForm.seats.$touched && myForm.seats.$invalid">
                                                         <div ng-message="required">Това поле е задължително</div>
-                                                        <div ng-message="min">Редовете трябва да са поне 1</div>
-                                                        <div ng-message="max">Редовете трябва да са не повече от 20</div>
+                                                        <div ng-message="min">Местата трябва да са поне 1</div>
+                                                        <div ng-message="max">Местата трябва да са не повече от 20</div>
                                                     </div>
                                                 </div>
                                                 <div class='' style="display:none;">
@@ -76,16 +106,22 @@
                             </div>
                         </div>               
                     </div>
-                        <div class="text-center">
-                            <button class="btn btn-add" ng-disabled="disabled" >Запази</button>
-                        </div>
+                    <div class="text-center"> 
+                        <button class="btn btn-add" ng-click="submitted=true" type="submit" >Запази</button>
                     </div>
                 </form>            
             </div>
         </div>
+        <div ng-show="submitted && form.$invalid" class="alert alert-danger" ng-if="form.$error">
+            <div ng-show="form.name.$error.required"> Име е задължително</div>
+            <div ng-show="form.address.$error.required"> Aдрес е задължителен</div>
+            <div ng-show="form.lon.$error.required"> Географска дължина е задължителна</div>
+            <div ng-show="form.lan.$error.required"> Географска ширина е задължителна</div>                
+        </div>
         <small id="passwordHelpBlock" class="form-text text-muted">
             Всички полета отбелязани със * са задължителни. Моля, попълнете данните коректно.
         </small>
+
     </div>
     <script>
         $(document).ready(function(){

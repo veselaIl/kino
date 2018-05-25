@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            background: black;
+            margin: 0;
+            padding: 0;
+        }
+        .items {
+            margin: 20px;
+        }
+        .item {
+            color: white;
+            cursor: pointer;
+        }
+        .item input {
+            display: none;
+        }
+        .item * {
+            padding: 10px;
+            border: 3px solid #eecc88;
+        }
+        .item *:hover {
+            border-color: #aa8833;
+        }
+        .item input:checked + * {
+            border-color: #9955ff;
+        }
+        .item input:checked + *:hover {
+            border-color: #5500ff;
+        }
+        .screen {
+            margin: 30px 0;
+            position: relative;
+        }
+        .screen img {
+            width: 100%;
+            display: block;
+        }
+        .screen .bottom-grad {
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 90%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 90%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+        }
+    </style>
+</head>
+<body>
+    <div class="items">
+        <label class="item"><input type="checkbox" ng-model><span class="item-name">Item name</span></label>
+    </div>
+    <div class="screen">
+        <img src="https://www.myvue.com/-/media/images/film%20and%20events/april%202018/solo-hero-d.jpg?sc=.99">
+        <div class="bottom-grad"></div>
+    </div>
+</body>
+</html>

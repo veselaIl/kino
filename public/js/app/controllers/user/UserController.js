@@ -7,7 +7,7 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
     //adding movie to users favourites
     $scope.addToFavourites = function($event){
         $event.preventDefault();
-        console.log('addToFavourites');
+        //console.log('addToFavourites');
         //check if user send again request to the server, if it is - !sending stop request over again
         if(!sending){
             sending = true;

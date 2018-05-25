@@ -4,17 +4,6 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
     $scope.movie = {};
     $scope.genreList = {};
     $scope.imageSrc = '';
-    
-
-    // MovieService.getMovies()
-    //     .then(function(movies){
-    //         console.log('then', movies);
-    //         $scope.movies = movies;
-    //         $scope.$apply();
-    //     })
-    //     .catch(function(err){
-    //         console.log(err);
-    //     })
 
     $scope.genres = [
         "Комедия",
@@ -64,7 +53,7 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
         if (!invalid){
             console.log($scope);
             MovieService.addMovie($scope.movie);
-            location.path='#!/movies'
+            $location.path('movies');
         }
     }
    // console.log($scope.action);

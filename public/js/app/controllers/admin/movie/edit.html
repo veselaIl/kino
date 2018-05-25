@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class='container-fluid addMovie'>
-            <form id="contact-form" class="form" name='form' ng-submit="addMovie($event,form.$invalid)" action='' method="POST" novalidate>
+            <form id="contact-form" class="form" name='form' ng-submit="editMovie($event,form.$invalid)" action='' method="POST" novalidate>
                 <div class="row">
                     <div class="col-sm-6 col-md-6 left">
                         <div class="form-group">
@@ -122,24 +122,23 @@
                     </div>
                     <div class="col-xs-12">
                         <div class="col-xs-6">
-                            <button type="submit" class="btn btn-add" ng-click="submitted=true">Запази</button>
+                            <button type="submit" class="btn btn-add" ng-click="delete(movie.movieID)">Изтрий</button>
                         </div>  
                         <div class="col-xs-6">
                             <button type="submit" class="btn btn-add" ng-click="submitted=true">Запази</button>
                         </div>  
                     </div>
-                    <div ng-show="submitted && form.$invalid" class="alert alert-danger">
-                        <div ng-show="form.name.$error.required"> Име е задължително</div>
-                        <div ng-show="form.duration.$error.required"> Времетраене е задължително</div>
-                        <div ng-show="form.description.$error.required"> Описание е задължително</div>
-                        <div ng-show="form.director.$error.required"> Директор е задължителен</div>
-                        <div ng-show="form.actor.$error.required"> Актьор е задължителен</div>
-                        <div ng-show="form.image.$error.required"> Постер е задължителен</div>
-                        <div ng-show="form.dublaj.$error.required"> Дублиран е задължително</div>
-
-                    </div>
                 </div>
             </form>            
+        </div>
+        <div ng-show="submitted && form.$invalid" class="alert alert-danger" ng-if="form.$error.length">
+            <div ng-show="form.name.$error.required"> Име е задължително</div>
+            <div ng-show="form.duration.$error.required"> Времетраене е задължително</div>
+            <div ng-show="form.description.$error.required"> Описание е задължително</div>
+            <div ng-show="form.director.$error.required"> Директор е задължителен</div>
+            <div ng-show="form.actor.$error.required"> Актьор е задължителен</div>
+            <div ng-show="form.image.$error.required"> Постер е задължителен</div>
+            <div ng-show="form.dublaj.$error.required"> Дублиран е задължително</div>
         </div>
     </div>
     <small id="passwordHelpBlock" class="form-text text-muted">

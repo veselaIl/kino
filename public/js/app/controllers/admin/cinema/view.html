@@ -59,7 +59,7 @@
                     <div class="projects-inner">
                       <header class="projects-header">
                         <div class="title">Зали в {{ cinema.name }}</div>
-                        <a class="zala-add" title="Добави зала" href='/cinema/projection/add/{{cinema.kinoID}}'>
+                        <a class="zala-add" title="Добави зала" href='#!/cinema/{{cinema.kinoID}}/add/zala'>
                           <span class="glyphicon glyphicon-plus"></span>
                         </a>
                       </header>
@@ -97,7 +97,8 @@
                     </div>
                   </div>  
                   <div class="delete-cinema-btn">
-                    <a class="btn btn-danger">Изтрий</a>
+                    <a class="btn btn-danger"  mwl-confirm  title ="{{cm.titleBox}}" message="{{cm.message}}"
+                    on-confirm ="cm.onConfirm(cinema.kinoID)" confirm-text = '{{cm.confirmText}}' cancel-text = "{{cm.cancelText}}">Изтрий</a>
                   </div>
                 </div>
             </a>

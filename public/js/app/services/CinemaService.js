@@ -18,7 +18,7 @@ myApp.factory('CinemaService', function($http) {
         },
         getCinema: function (projection){
             return new Promise(function (resolve, reject){
-                $http.get('/api/cinema/'+ projection.kinoID + '/' + projection.zalaID )
+                $http.get('/admin/api/cinema/'+ projection.kinoID + '/' + projection.zalaID )
                     .then(function (response){
                         cinema = response.data;
                         resolve(cinema);
@@ -30,7 +30,7 @@ myApp.factory('CinemaService', function($http) {
         },
         addCinema: function (cinema){
             return new Promise(function (resolve, reject) {
-                $http.post('/api/cinema/add', { cinema: cinema })
+                $http.post('/admin/api/cinema/add', { cinema: cinema })
                     .then(function(response) {
                         // necessery actions before the resolve
                         cinema.kinoID = response.data.id;
@@ -47,7 +47,7 @@ myApp.factory('CinemaService', function($http) {
         getProjections: function (id){
             console.log(id + 'Id na kino');
             return new Promise(function (resolve, reject){
-                $http.get('/api/cinema/projections/'+id)
+                $http.get('/admin/api/cinema/projections/'+id)
                     .then(function (response){
                         console.log(response);
                         cinema = response.data.cinema;
@@ -61,7 +61,7 @@ myApp.factory('CinemaService', function($http) {
         addProjections: function (projections, cinema){
             console.log(cinema, 'cinema');
             return new Promise(function (resolve, reject){
-                $http.post('/api/projections/add/'+ cinema.kinoID , { projections : projections})
+                $http.post('/admin/api/projections/add/'+ cinema.kinoID , { projections : projections})
                     .then(function (response){
                         console.log(response);
                         projections = response.data;
@@ -74,7 +74,7 @@ myApp.factory('CinemaService', function($http) {
         },
         removeZala: function(zalaID, kinoID){
             return new Promise(function (resolve, reject){
-                $http.post('/api/cinema/zala/delete/' + kinoID + '/' + zalaID )
+                $http.post('/admin/api/cinema/delete/' + kinoID + '/' + zalaID )
                     .then(function (response){
                         console.log(response, 'DELETE ZALA RESPONSE')
                         resolve(response);
@@ -82,6 +82,28 @@ myApp.factory('CinemaService', function($http) {
                     .catch(function (err){
                         reject(err);
                     })
+            })
+        },
+        removeCinema: function (kinoID){
+            return new Promise(function (resolve, reject){
+                $http.post('/admin/api/cinema/delete/' + kinoID)
+                    .then(function (response){
+                        resolve(response);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    })
+            })
+        },
+        addZala : function (zala, kinoID){
+            return new Promise(function (resolve, reject){
+                $http.post('/admin/api/cinema/zala/add/' + kinoID, { zala : zala })
+                .then(function (response){
+                    resolve(response);
+                })
+                .catch(function (err){
+                    reject(err);
+                })
             })
         }
     }

@@ -3,7 +3,7 @@ var router = express.Router();
 var sha1 = require('sha1');
 
 //Login user
-router.post('/login', function (req, res){
+router.post('/api/login', function (req, res){
     console.log('login ', req.body);
 
     if (req.session.user) {

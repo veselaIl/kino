@@ -12,15 +12,15 @@ function validateEmail(email) {
 }
 
 //GET if user is logged
-router.get('/profile', function (res, req){
-    if(req.session.user){
-        res.json(req.session.user);
-    } else {
-        res.sendStatus(401);
-    }
-});
+// router.get('/api/profile', function (res, req){
+//     if(req.session.user){
+//         res.json(req.session.user);
+//     } else {
+//         res.sendStatus(401);
+//     }
+// });
 
-router.post('/register', function(req, res){
+router.post('/api/register', function(req, res){
     console.log('Session', req.session);
     console.log(req.body.user);
     if (req.session.user
