@@ -55,7 +55,7 @@ app.config(function ($routeProvider, $locationProvider) {
             title: 'Регистрация'
         })        
         .when('/logout', {
-            controller: 'LogoutController'
+            controller: 'CollapseController'
         })
         .when('/profile', {
             controller: 'UserController',
