@@ -7,9 +7,9 @@ router.get('/api/projections', function (req, res){
     //GET all projections
 
     var findObj = {},
-        findSearch = {};
+        findFields = { sort: { time: 1 } };
 
-    var startDate = new Date(req.query.date || undefined);
+    var startDate = new Date(+req.query.date || undefined);
 
     // set time
     startDate.setHours(0);
@@ -17,7 +17,11 @@ router.get('/api/projections', function (req, res){
     startDate.setSeconds(0);
     startDate.setMilliseconds(0);
 
-    var findSearch = {
+    console.log(startDate);
+    console.log(startDate.getTime());
+    console.log(startDate.getTime()/1000);
+    console.log(parseInt(startDate.getTime()/1000));
+    var findObj = {
         time : {
             $gte : parseInt(startDate.getTime()/1000)
         }
@@ -28,15 +32,15 @@ router.get('/api/projections', function (req, res){
         if (endDate) {
             endDate.setHours(24);
 
-            findSearch.time.$lt = parseInt(endDate.getTime()/1000)
+            findObj.time.$lt = parseInt(endDate.getTime()/1000)
         }
     }
 
-    console.log('find', findObj, findSearch);
+    console.log('find', findObj, findFields);
 
-    req.db.get('projection').find(findObj, findSearch)
+    req.db.get('projection').find(findObj, findFields)
         .then(function (projections) {
-            console.log('projections', projections.length);
+            console.log('projections', projections.length, projections);
             if (projections.length) {
                 var result = {
                     projections: projections
