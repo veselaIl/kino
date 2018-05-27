@@ -57,6 +57,7 @@
     <script src="/js/app/services/CinemaService.js"></script>    
     <script src="/js/app/services/MovieService.js"></script>
     <script src="/js/app/services/ProjectionService.js"></script>
+    <script src="/js/app/services/UserService.js"></script>
 
     <!-- STYLE -->
     <link rel='stylesheet' href='/styles/adminStyle.css' />
@@ -66,12 +67,6 @@
   <body>
     <header class='main-nav'>
     <ul>
-        <li>
-            <a href='/admin'>
-                <i class='fa fa-tachometer'></i>
-                <span>Панел</span>
-            </a> 
-        </li>
         <li>
             <a href='/admin/projections'>
                 <i class='fa fa-video-camera'></i>
@@ -95,6 +90,12 @@
                 <i class='fa fa-users'></i>
                 <span>Потребители</span>
             </a>
+        </li>
+        <li>
+            <a href='/admin/messages'>
+                <i class='fa fa-tachometer'></i>
+                <span>Съобщения</span>
+            </a> 
         </li>
         <li ng-controller="AdminController">
             <a href='/admin/logout' ng-click="logout($event)">

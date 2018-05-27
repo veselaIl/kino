@@ -2,7 +2,7 @@ myApp.controller('MovieController', function($scope, $routeParams, $location,  M
     $scope.movies = [];
     $scope.movie = {};
     var indexes = [];
-    
+    var genreIndexes = [];
     $scope.genres = [
         "Комедия",
         "Екшън",
@@ -39,17 +39,62 @@ myApp.controller('MovieController', function($scope, $routeParams, $location,  M
         }
         return true;
     }    
+    
+    $scope.fileNameChanged = function (ele) {
+        console.log(ele.files[0]);
+        if(ele.file[0]){
+            $scope.movie.image = ele.files[0].name;
+            $scope.$apply();
+        }
+    }
+
+    $scope.fileNameChanged1 = function (ele) {
+        console.log(ele.files[0]);
+        if(ele.files[0]){
+            $scope.movie.largeImage = ele.files[0].name;
+            $scope.$apply();
+        }
+    }
 
     $scope.editMovie = function (event, invalid){
         event.preventDefault();
-     
+        // $scope.movie.genres.forEach(function (genre) {
+        //     if (genre === false && $scope.movie.genre.indexOf(genre) === 1){
+        //        var index = $scope.movie.genre.findIndex(item => item === genre);
+        //        $scope.movie.genre.splice( index, 1);
+        //     } else if (genre === true){
+
+        //     }
+
+            
+        // });
+        // if (!invalid){
+          console.log($scope);
+        //   MovieService.editMovie($scope.movie);
+        //   $location.path('/admin/movies');
+        // }
+    }
+    
+    $scope.checkSelected = function(){
+        if($scope.movie.genres === 0){
+            return false;
+        }
+        return true;
     }
 
-    $scope.delete = function (movieID){
+    //POP-UP delete projection
+    $scope.vm = {};
+    $scope.vm.titleBox="Изтриване на филм"
+    $scope.vm.message = `Сигурни ли сте, че искате да изтриете този филм? Изтривайки 
+                        филма ще изтриете и всички прожекции свързани с него`;
+    $scope.vm.confirmText = "Да <i class='glyphicon glyphicon-ok'></i> ";
+    $scope.vm.cancelText = "Не <i class='glyphicon glyphicon-remove'></i>";
+    //delet movie and all projections to this movie    
+    $scope.vm.onConfirm = function(movieID){
+        console.log(movieID);
         if(movieID){
             MovieService.removeMovie(movieID);
             $location.path('/admin/movies');
         }
     }
-    console.log($scope);
 })

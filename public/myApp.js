@@ -3,13 +3,14 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngSanitize', 'ui.
         $locationProvider.html5Mode(true);
         $routeProvider
             .when('/admin', {
-                controller: 'AdminController',
-                templateUrl: '/js/app/controllers/admin/board/view.html',
+                controller: 'CinemaController',
+                templateUrl: '/js/app/controllers/admin/cinema/view.html',
                 title: 'Админ'
             })
             .when('/admin/cinema', {
                 controller: 'CinemaController',
-                templateUrl: '/js/app/controllers/admin/cinema/view.html'
+                templateUrl: '/js/app/controllers/admin/cinema/view.html',
+                title: 'Кина'
             })
             .when('/admin/cinema/add',{
                 controller: 'AddCinemaController',
@@ -20,6 +21,11 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngSanitize', 'ui.
                 controller: 'CinemaController',
                 templateUrl: '/js/app/controllers/admin/cinema/zala.html',
                 title: 'Добави зала'
+            })
+            .when('/admin/cinema/edit/:kinoID/:zalaID', {
+                controller: 'CinemaController',
+                templateUrl: '/js/app/controllers/admin/cinema/editZala.html',
+                title: 'Редактирай зала'
             })
             .when('/admin/movies', {
                 controller: 'MovieController',
@@ -56,11 +62,11 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngSanitize', 'ui.
                 templateUrl: '/js/app/controllers/admin/users/view.html',
                 title: 'Потребители'
             })
-            .when('/cinema/:id', {
-                controller: 'ProductController',
-                templateUrl: '/js/app/controllers/product/view.html',
-                title: 'Кино'
-            }) 
+            .when('/admin/messages',{
+                controller: 'AdminController',
+                templateUrl: 'js/app/controllers/admin/board/view.html',
+                title: 'Съобщения'
+            })
             .otherwise({
                 controller: 'NotFoundController',
                 templateUrl: '/js/app/controllers/404/view.html',

@@ -2,7 +2,8 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
     $scope.title='Филми';
     $scope.newMovie = {};
     $scope.movie = {};
-    $scope.genreList = {};
+    var filter = [];
+    $scope.genreList =[];
     $scope.imageSrc = '';
 
     $scope.genres = [
@@ -22,6 +23,12 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
         "Технологичен",
         "Документален"
     ];
+    
+    $scope.suitable = [ 
+        { value : '1', name:'12+'},
+        { value: '2', name:'16+'},
+        { value: '3', name: 'Без ограничения'}
+    ]
     
     $scope.checkSelected = function(){
         if($scope.movie.genres === 0){
@@ -49,9 +56,14 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
      // ADD MOVIE
      $scope.addMovie = function ($event, invalid){
         $event.preventDefault();
-
         if (!invalid){
-            console.log($scope);
+            $scope.genreList.forEach(function (genre, index){
+                if (genre === true){
+                    filter.push($scope.genres[index]);
+                }
+            });    
+            $scope.movie.genre = filter;
+            console.log($scope.movie, 'MOVIE BEFORE ADD')
             MovieService.addMovie($scope.movie);
             $location.path('/admin/movies');
         }

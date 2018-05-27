@@ -5,7 +5,7 @@ myApp.factory('CinemaService', function($http) {
     return {
         getCinemas: function() {
             return new Promise(function (resolve, reject) {
-                $http.get('/admin/cinema')
+                $http.get('/admin/api/cinema')
                     .then(function(response) {
                         // necessery actions before the resolve
                         cinemas = response.data;
@@ -57,20 +57,21 @@ myApp.factory('CinemaService', function($http) {
                         reject(err);
                     })  
             })
-        },
-        addProjections: function (projections, cinema){
-            console.log(cinema, 'cinema');
-            return new Promise(function (resolve, reject){
-                $http.post('/admin/api/projections/add/'+ cinema.kinoID , { projections : projections})
-                    .then(function (response){
-                        console.log(response);
-                        projections = response.data;
-                        resolve(projections);
-                    })
-                    .catch(function (err){
-                        reject(err);
-                    })
-            })
+        // },
+        // addProjections: function (projections, cinema){
+        //     console.log(projections, 'PROJECTIONS');
+        //     return new Promise(function (resolve, reject){
+        //         $http.post('/admin/api/projections/add/'+ cinema.kinoID , { projections : projections})
+        //             .then(function (response){
+        //                 console.log(response);
+        //                 projections = response.data;
+        //                 resolve(projections);
+        //             })
+        //             .catch(function (err){
+        //                 reject(err);
+        //             })
+        //     })
+        // }
         },
         removeZala: function(zalaID, kinoID){
             return new Promise(function (resolve, reject){
@@ -99,12 +100,25 @@ myApp.factory('CinemaService', function($http) {
             return new Promise(function (resolve, reject){
                 $http.post('/admin/api/cinema/zala/add/' + kinoID, { zala : zala })
                 .then(function (response){
-                    resolve(response);
+                    resolve();
                 })
                 .catch(function (err){
                     reject(err);
                 })
             })
-        }
+        },
+        editZala: function (zala, kinoID){
+            return new Promise(function (resolve, reject){
+                console.log(kinoID, 'kinoID')
+                $http.post('/admin/api/cinema/zala/edit/' + kinoID, { zala : zala})
+                    .then(function (response){
+                       editMovie = response.data;
+                       resolve();
+                    })
+                    .catch(function (err){
+                        console.log(err);
+                    })
+            })
+        },
     }
 });
