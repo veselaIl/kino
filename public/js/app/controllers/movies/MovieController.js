@@ -1,4 +1,4 @@
-app.controller('MovieController', function ($scope, $routeParams, MovieService) {
+app.controller('MovieController', function ($scope, $routeParams, MovieService, ProjectionService) {
     $scope.title = "Филми";
     $scope.movies = [];
     $scope.movie = {};
@@ -17,6 +17,45 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService) 
         })
 
     console.log('$routeParams.id', $routeParams);
+
+    function showMovieProjections(id, date) {
+        ProjectionService.getMovieProjections(id, date)
+            .then(function (data) {
+                console.log('showMovieProjections data', data);
+                $scope.projections = Array.isArray(data.projections) ? data.projections : [];
+                $scope.movieDetails = data.movie ? data.movie : {};
+                //$scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
+                $scope.cinemas = Array.isArray(data.cinemas) ? data.cinemas : [];
+                //$scope.movieProjections = Array.isArray(data.times) ? data.times : [];
+                $scope.$apply();
+            })
+            .catch(function (err){
+                console.log(err);
+            });
+    }
+
+    $scope.projections = [];
+    $scope.today = moment(new Date(),'DD-MM-YYYY');
+    $scope.week = [];
+    for (var i = 0; i < 7; i++){
+        $scope.week.push(moment().add(i,'days'));
+    }
+    $scope.activeDay = $scope.week[0];
+    console.log('activeDay ' + $scope.activeDay, $scope.activeDay);
+    $scope.setActive = function(day){
+        console.log('setActive ' + day, day);
+        console.log();
+        $scope.activeDay = day;
+        console.log('$scope.activeDay', $scope.activeDay);
+        showMovieProjections($routeParams.id, day.toDate());
+    }
+
+    console.log('projections getProjections');
+    showMovieProjections($routeParams.id, $scope.activeDay.toDate());
+  
+    moment.locale("bg");
+
+    //Get current movie info
     MovieService.getMovie($routeParams.id)
        .then(function (movie){
             $scope.movie = movie;

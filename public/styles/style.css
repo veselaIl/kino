@@ -798,201 +798,27 @@ table{
 .cinema-attr:last-child{
   margin-top: 8px;
 }
-/*choise to reservation or buy ticket*/
-.tickets-txt{
-  color: white;
-}
-.res-row{
-  margin-bottom: 5px;
-}
-.table-heading{
-  background-color: rgb(85, 1, 85);
-  padding: 10px 0 8px 20px;
-  border: 1px solid rgb(49, 1, 49);
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
-.reservation{
-  color: white;
-  font-size: 18px;
-}
-.reservation span{
-  padding-left: 8px;
-}
-.table-heading:hover{
-  background-color: rgb(85, 1, 85, 0.7);
-}
-.table-body{
-  color: white;
-  font-style: italic;
-  background-color: rgba(65, 64, 64, 0.8);
-  padding: 20px 0 8px 40px;
-  /* border-bottom-left-radius: 6px; */
-  border-bottom-right-radius: 6px;
-}
+
 /*BOKING TICKET PAGE*/
 /*Table with info for PROJECTION - CINEMA, DATE, HOUR AND HALL FOR PROJECTIONS MOVIE*/
-.bkg-form{
-  clear: both;
-  display: flex;
-  flex-direction: row;
-}
-.moviePlot{
-  /* display: flex;
-  flex-direction: row; */
-  position: relative;
-  z-index: 1;
-  float: left;
-  width: 30%;
-  font-size: 14px;
-  line-height: 20px;
-  margin-right: 20px;
-  padding: 20px 23px 0px 20px;
-  border: 1px solid #707070;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.moviePlot .bkg-title + .bkg-attr {
-  width: 152px;
-}
-.moviePlot .bkg-title{
-  float: left;
-  width: 90px;
-  font-size: 15px;
-  font-weight: bold;
-  text-align: right;
-  color: black;
-  margin: 0px;
-  padding: 6px 10px 8px 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.moviePlot .bkg-attr{
-  float: right;
-  text-align: left;
-  width: 100%;
-  padding: 6px 0 8px;
-  border-bottom: 1px solid #414141;
-  color: white;
-}
-.date{
-  font-size: 16px;
-  color: black;
-}
-.times-block{
-  border: 1px solid #212529;
-  padding-top: 2px;
-  color: black;
-  height: 60px;
-}
-.times-block>a{
-  text-align: center;
-  color: black;
-  text-decoration: none;
-}
-.times-block:hover{
-  border: 1px solid #717172c2;
-}
-.proj-time{
-  margin-top: 5px;
-}
-.taglist.type {
-  padding: 0 .2em 0 0;
-  color: #f7941e;
-}
-.text-small{
-  letter-spacing: .02em;
-}
-.meta-info{
-  font-size: 12px;
-  font-weight: bold;
-}
+
 /*Table for ticket choise*/
-.ticket-choose-row{
-  margin-left: 20px;
-  width: 70%;
-}
 .ch-title{
   font-size: 28px;
   color: white;
-  margin-top: 10px;
+  margin: 0;
 }
-.table .th-title{
-  display: block;
-  font-size: 16px;
+.col-md-6,.col-md-4>.bkg-title{
+  color: #929292;
   font-weight: bold;
-  padding: 8px 0 6px 20px;
 }
-.table .td-price{
-  font-size: 16px;
-  padding: 10px 0 7px 20px;
+.booking .red-line{
+  margin: 20px 0;
 }
-.table .crow, table .cplace{
-  text-align: center;
-}
-.table .td-quantity{
-  font-size: 16px;
-  text-align: center;
-  padding-top: 10px;
-}
-/*rounded corners for choose ticket table*/
-.table>thead>tr>th{
-  border-bottom:  none;
-  font-size: 14px;
-  padding: 4px;
-}
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-  border-top: none;
-}
-.booking-table{
-  border: none;
-}
-.booking-table>tr{
-  border: none;
-}
-.table-body .booking-table{
-  border: none;
-}
-.booking-table .table-row th{
-  background-color:rgb(241, 85, 0);
-  padding: 10px 0 8px 20px;  
-}
-.table-row th{
-  border: #414141;
-}
-.table-row th:first-child{
-  border-top-left-radius: 6px;
-}
-.table-row th:last-child{
-  border-top-right-radius: 6px;
-}
-/* .table>tbody>tr>th:first-child{
-  border-bottom-left-radius: 6px;
-} */
-.booking-table>thead>tr>th{
+.col-md-6,.col-md-4 .bkg-attr{
   color: white;
-}
-.booking-table>tbody>tr>th{
-  color: white;
-}
-.booking-table>tbody>tr>td{
-  color: white;
-}
-.booking-table>tbody>tr>td .th-title{
-  padding-bottom: 0;
-}
-.bookingTable .stenikSpinner {
-  margin: -5px 0;
 }
 /*INPUT FOR TICKET QUANTITY*/
-.table .quantity{
-  padding-bottom: 10px;
-}
 .spinner {
   width: 125px;
   display: inline-block;
@@ -1055,7 +881,6 @@ table{
   font-size: 12px;
   font-style: italic;
   color: white;
-  width: 40%;
 }
 .total{
   margin-top: 6px;
@@ -1722,15 +1547,13 @@ div.date-picker div.dates #movieCalendar {
   text-shadow: 0 0 3px #fff;
 }
 .title-sm{
-  text-align: center;
   color: rgb(241, 85, 0);
   font-size: 18px;
   margin-bottom: 8px;
 }
 .premiere{
-  text-align: center;
   font-size: 14px;
-  color: #554c4c;
+  color: #929292;
 }
 /*Reserve-Buy ticket button*/
 .movie-content{
@@ -1792,24 +1615,84 @@ div.date-picker div.dates #movieCalendar {
 }
 
 /*Preview movie page container with image and trailer*/
+.projection-times>a{
+  text-decoration: none;
+}
 .items {
   margin: 20px;
 }
-.item {
+.btn-item {
   color: white;
   cursor: pointer;
 }
-.item input {
+.button-item{
+  display: inline-block;
+  border-top: none;
+  border-bottom: none;
+  outline: 0;
+  padding: 1.125em 1.9em;
+  margin-bottom: 0;
+  position: relative;
+  box-sizing: border-box;
+  color: #fff;
+  background: 0 0;
+  font-family: roboto_condensedregular;
+  font-size: 16px;
+  line-height: 1;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: .2em;
+  white-space: nowrap;
+  cursor: pointer;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  text-align: center;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  transition: color .2s,box-shadow .2s,text-shadow .2s;
+  letter-spacing: .15em;
+}
+.button-item:hover{
+  box-shadow: 0 0 50px 0 rgba(247,149,30,.35), 0 0 20px 0 rgba(247,149,30,.3) inset;
+  text-shadow: 0 0 10px white;
+}
+.button-item.btn-item{
+  background-image: linear-gradient(to right, #b74d1c 0%, #eec42a 100%);
+  box-sizing: border-box;
+  color: transparent;
+  display: block;
+  height: 70px;
+  letter-spacing: 1px;
+  margin: 0 auto;
+  padding: 2px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 150px;
+  z-index: 2;
+}
+
+.btn-item span {
+	align-items: center;
+  background: rgba(0, 0, 0, 1);
+  color: white;
+  padding: 0;
+	display: flex;
+	justify-content: center;
+	height: 100%;
+	transition: background .5s ease;
+  width: 100%;
+  text-decoration: none;
+}
+.btn-item:hover span {
+	background:  black;
+}
+.button-item.btn-item input {
   display: none;
 }
-.item * {
-  padding: 10px;
-  border: 3px solid #eecc88;
-}
-.item *:hover {
-  border-color: #aa8833;
-}
-.item input:checked + * {
+.button-item.btn-item input:checked + * {
   border-color: #9955ff;
 }
 .item input:checked + *:hover {
@@ -1973,4 +1856,9 @@ footer.footer{
 }
 .borders-bottom{
   border-bottom: 0.5px solid #171a1c;
+}
+
+/*Porojections booking*/
+.projection-info{
+  color: #929292;
 }

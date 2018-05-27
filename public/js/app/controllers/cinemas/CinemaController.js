@@ -27,16 +27,15 @@ app.controller('CinemaController', function ($scope, $rootScope, $routeParams, C
                 console.log('showCinemaProjections data', data);
                 $scope.projections = Array.isArray(data.projections) ? data.projections : [];
                 $scope.cinemaDetails = data.cinema ? data.cinema : {};
-                //$scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
                 $scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
-                //$scope.movieProjections = Array.isArray(data.times) ? data.times : [];
                 $scope.$apply();
             })
             .catch(function (err){
                 console.log(err);
             });
     }
-
+    $scope.cinemas = [];
+    $scope.cinema = {};
     $scope.projections = [];
     $scope.today = moment(new Date(),'DD-MM-YYYY');
     $scope.week = [];
@@ -53,18 +52,9 @@ app.controller('CinemaController', function ($scope, $rootScope, $routeParams, C
         showCinemaProjections($routeParams.id, day.toDate());
     }
 
-    //Get all projections
     console.log('projections getProjections');
     showCinemaProjections($routeParams.id, $scope.activeDay.toDate());
-    
-    // CinemaService.getCinemas()
-    //     .then(function (cinemas){
-    //         $scope.cinemas = cinemas.cinemas;
-    //         $scope.$apply();
-    //         console.log(cinemas);
-    //     })
-    // console.log($scope);
+  
     moment.locale("bg");
-    $scope.cinemas = [];
-    $scope.cinema = {};
+    
 });

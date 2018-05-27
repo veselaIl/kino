@@ -50,16 +50,16 @@
                         <div>
                             <ul>
                                     <!-- ng-repeat="time in movieProjections.times | orderBy: 'timestamp'" -->
-                                <li class="projection-times" >
-                                    <div >
-                                        <a href="/projections/book/{{kinoID}}/{{zalaID}}/{{movieID}}/{{time}}" 
-                                        class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
-                                            <div class="items">
-                                                <label class="item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
-                                            </div>
-                                        </a>
-                                        
-                                    </div>
+                                <li class="projection-times " ng-repeat="projection in projections | filter : movie.movieID" >                                    
+                                    <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
+                                        ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
+                                        <div class="items">
+                                            <label class="button-item btn-item">                                            
+                                                <input type="checkbox">                                                    
+                                                <span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span>                                                    
+                                            </label>
+                                        </div>
+                                    </a>                                        
                                 </li>
                             </ul>
                         </div>
