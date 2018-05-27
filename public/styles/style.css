@@ -1655,6 +1655,9 @@ div.date-picker div.dates #movieCalendar {
 .col-md-4>a{
   text-decoration: none;
 }
+.cinema-head{
+  margin: 0 auto;
+}
 .cinema-header{
   background-image: linear-gradient(to right, #b74d1c 0%, #eec42a 100%);
   border-radius: 5px;
