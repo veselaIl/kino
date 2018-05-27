@@ -1,4 +1,4 @@
-myApp.controller('CinemaController', function($scope, $routeParams,  CinemaService, ProjectionService){
+myApp.controller('CinemaController', function($scope, $routeParams, $location, CinemaService, ProjectionService){
     $scope.title='Кина';
     $scope.newMovie = {};
     $scope.cinemas = [];
@@ -6,28 +6,30 @@ myApp.controller('CinemaController', function($scope, $routeParams,  CinemaServi
     //get cinemas
     CinemaService.getCinemas()
         .then(function (cinemas){
-            console.log('then', cinemas);
             $scope.cinemas = cinemas;
+            console.log($routeParams.kinoID,'params')
+            if($routeParams.kinoID){
+                console.log($routeParams);
+                $scope.cinema = cinemas.find(cinema => cinema.kinoID === +$routeParams.kinoID);
+                console.log($scope.cinema);
+                $scope.zala = $scope.cinema.zali.find(zala => zala.zalaID === +$routeParams.zalaID);
+            }
+                    // console.log($scope.zala);
+                                    // .find(zala => zalaID === +$routeParams.zalaID);
             $scope.$apply();
         })
         .catch(function (err){
             console.log(err);
         })
-
     //get projections
-    ProjectionService.getProjections()
-        .then(function (projections){
-            $scope.projections = projections;
-            $scope.projections.sort((a, b) => a.time - b.time);
-            $scope.projections.forEach(function (projection) {
-              return projection.time = moment(new Date(projection.time * 1000)).format('MMMM Do YYYY HH:mm');
-            });
-            console.log(projections, 'data');
-            $scope.$apply();
-        })
-        .catch(function (err){
-            console.log(err);
-        })
+    // ProjectionService.getProjections()
+    //     .then(function (projections){
+    //         $scope.projections = projections;
+    //         $scope.$apply();
+    //     })
+    //     .catch(function (err){
+    //         console.log(err);
+    //     })
     
         $scope.vm = {};
         $scope.vm.titleBox="Изтриване на зала"
@@ -75,7 +77,6 @@ myApp.controller('CinemaController', function($scope, $routeParams,  CinemaServi
 
         $scope.addZala = function(event, form){
             event.preventDefault();
-            console.log(form.$invalid);
             if(!form.$invalid){
                 var mesta = 0;
                 $scope.rows.forEach(element => {
@@ -86,7 +87,22 @@ myApp.controller('CinemaController', function($scope, $routeParams,  CinemaServi
                     space : $scope.rows
                 }
                 CinemaService.addZala($scope.zala, $routeParams.id);
+                $location.path('/admin/cinema');
 
+            }
+        } 
+        $scope.editZala = function(event, form){
+            event.preventDefault();
+            if(!form.$invalid){
+                var mesta = 0;
+                $scope.zala.space.forEach(element => mesta += element);
+                $scope.zala = {
+                    capacity : mesta,
+                    zalaID : $scope.zala.zalaID,
+                    space : $scope.zala.space
+                }
+                CinemaService.editZala($scope.zala, $routeParams.kinoID)
+                $location.path('/admin/cinema');
             }
         }
 })

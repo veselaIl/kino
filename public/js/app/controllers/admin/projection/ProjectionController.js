@@ -1,19 +1,17 @@
-myApp.controller('ProjectionController', function ($scope, $document, $routeParams, ProjectionService, MovieService, CinemaService) {
+myApp.controller('ProjectionController', function ($scope, $document, $location, $routeParams, ProjectionService, MovieService, CinemaService) {
 
   $scope.cinemas = [];
   $scope.movies = [];
   $scope.kino = {};
-  $scope.check = [];
-  $scope.type = [];
-  $scope.time = [];
   $scope.hourList = [];
   $scope.projection = {};
-  $scope.projectionDate = [];
+  $scope.projection.projections = [];
+  // $scope.projection = {};;
   $scope.today = moment();
   $scope.pageSize = 10;
   $scope.currentPage = 1;
   $scope.prices = [12, 8, 15];
-
+  $scope.projects = [];
   $scope.getNumber = function (num) {
     return new Array(num);
   }
@@ -25,11 +23,6 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
       { value: '3', name: 'Премиерен' }
     ]
   };
-  // $scope.types = [
-  //   { value : '1', name : 'Стандартен'},
-  //   { value : '2', name : 'Промоционален'},
-  //   { value : '3', name : 'Премиерен'}
-  // ]
 
   $scope.hours = [
     '10:00',
@@ -38,6 +31,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     '18:15',
     '21:00'
   ]
+
   $scope.movieTypes = [
     '2D',
     '3D',
@@ -50,43 +44,22 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
   }
   $scope.types.config = $scope.types.availableOptions[0].value;
 
-  // // Get all projections
-  // ProjectionService.getProjections()
-  //   .then(function (projections) {
-  //     console.log('then', projections);
-  //     $scope.$apply(function () {
-  //       $scope.projections = projections;
-  //     });
-  //   })
-  //   .catch(function (err) {
-  //     console.log(err);
-  //   })
-  
-  //Get All movies  
-  MovieService.getMovies()
-    .then(function (movies) {
-      $scope.movies = movies;
-      $scope.$apply();
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }  
+  // Get all projections
+  ProjectionService.getProjections()
+    .then(function (projections) {
+      console.log('then', projections);
+      $scope.$apply(function () {
+        $scope.projections = projections;
+        $scope.projects = $scope.projections.projections;
+      });
     })
     .catch(function (err) {
       console.log(err);
     })
-
-  ProjectionService.getProjects()
-    .then(function (projects) {
-      $scope.$apply(function () {
-        $scope.allProjections = projects;
-        $scope.allProjections.sort((a, b) => a.time - b.time);
-        $scope.allProjections.forEach(function (projection) {
-          var film = $scope.movies.find(movie => movie.movieID === projection.movieID);
-          projection.movieName = film.name;
-          return projection.time = moment(new Date (projection.time * 1000)).format('DD MMMM YYYY / HH:mm');
-        });
-        $scope.allProjections = $scope.allProjections.filter(projection => projection.time > moment().format('DD MMMM YYYY / HH:mm'));
-        $scope.filteredProjections = $scope.allProjections;
-      })
-    });
-
+  
   //get Cinemas
   CinemaService.getCinemas()
     .then(function (cinemas) {
@@ -96,48 +69,28 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
     .catch(function (err) {
       console.log(err);
     })
-
+  //get movies
+  MovieService.getMovies()
+    .then(function (movies){
+      $scope.movies = movies;
+      $scope.$apply();
+    })
   //get projection 
-  ProjectionService.getProjection($routeParams.id)
+  if($routeParams.id){
+    ProjectionService.getProjection($routeParams.id)
     .then(function (projection) {
       console.log(projection);
-      projection.projection.time = moment(new Date(projection.projection.time * 1000)).format('DD MMMM YYYY HH:mm');
-      $scope.projectionDetails = projection.projection;
+      $scope.projection = projection;
       $scope.$apply();
-      console.log($scope.projectionDetails, 'PROJECTION DETAILS');
-      //get movies by names
-      MovieService.getMovie($scope.projectionDetails.movieID)
-        .then(function (data) {
-          // console.log(data, 'MOVIE');
-          $scope.movie = data.movie;
-          $scope.$apply();
-          console.log($scope.movie, 'MOVIEE');
-        })
-        .catch(function (err) {
-          console.log(err);
-        })
-
-      //get cinema
-      CinemaService.getCinema($scope.projectionDetails)
-        .then(function (data) {
-          $scope.projectionCinema = data.cinema;
-          $scope.$apply();
-          console.log($scope.projectionCinema, 'kino');
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
     })
-    .catch(function (err) {
-      console.log(err);
-    })
+  }
+ 
   
   function isBeetween(currentStart, currentEnd, start, end) {
     return currentStart >= start && currentEnd <= end
   }
   // ADD PROJECTION WATCHER FOR CINEMA 
   $scope.$watch('projection.kinoID', function (newValue, oldValue) {
-    console.log(newValue)
     $scope.kino = $scope.cinemas.find(cinema => cinema.kinoID == newValue);
   });
   
@@ -153,16 +106,9 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
   //ADD PROJECTION
   $scope.addProjection = function ($event, invalid) {
     $event.preventDefault();
-    var projects = $scope.projects.map(project => moment(project).format('MM DD YYYY')),
-      list = [],
-      hour = [],
-      times = [],
-      cinemaProjections = $scope.projections.filter(projection => projection.kinoID === +$scope.projection.kinoID &&
-        projection.zalaID === +$scope.projection.zalaID),
-      current = {},
-      final = [],
-      time;
-
+    var list = [],
+        hour = [],
+        current = {};
     $scope.hourList.forEach(function (element) {
       for (var propName in element) {
         if (element.hasOwnProperty(propName)) {
@@ -175,36 +121,29 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
       list.push(hour);
       hour = [];
     });
-
-    projects.forEach(function (el, index) {
+    $scope.projects.forEach(function (el, index) {
       list[index].forEach(function (item) {
-        //find choosen cinema
         var movie = $scope.movies.find(movie => movie.name === $scope.projection.movie);
         var cinema = $scope.cinemas.find(item => item.kinoID == $scope.projection.kinoID);
         //get index of choosen zala to make a copy
         var zalaSpace = cinema.zali.findIndex(zala => zala.zalaID == $scope.projection.zalaID);
         current = {
           type: $scope.types.model[index],
-          time: new Date(el + ' ' + $scope.hours[parseInt(item)]).getTime() / 1000,
+          time: new Date(moment(el).format('MM DD YYYY') + ' ' + $scope.hours[+item]).getTime() / 1000,
           mesta: cinema.zali[zalaSpace].space.slice(),
           zalaID: $scope.projection.zalaID,
           kinoID: $scope.projection.kinoID,
           movieID: movie.movieID,
           movieType: $scope.projection.movieType
         }
-        final.push(current);
-        console.log(final, 'final');
+        $scope.projection.projections.push(current);
       });
     })
-
-    $scope.projection.projections = final;
     if (!invalid) {
-      // newProjections.push(project);
-      CinemaService.addProjections(final, $scope.kino);
-      ProjectionService.addProjections(final).then(function (response) {
-        window.location.href = '/admin.html#!/projections';
-      })
+      ProjectionService.addProjections($scope.projection.projections)
+      $location.path('/admin/projections');
     }
+
   }
   
   // Projection Dates to be added
@@ -215,46 +154,35 @@ myApp.controller('ProjectionController', function ($scope, $document, $routePara
       $scope.projects = $scope.projectionDates.map(item => item._d);
     }
   }, true);
-
   //Filter projections
   $scope.$watch('cinemaValue', function (newValue, oldValue) {
-    if($scope.allProjections){
-      $scope.filteredProjections = $scope.allProjections.filter(projection => projection.kinoID == newValue);
+    var project;
+    if ($scope.projections) {
+      // console.log('CINEMAS', $scope.cinemas)
+      if(newValue){
+        $scope.projects = $scope.projections.projections.filter(projection => projection.kinoID == $scope.cinemas[newValue].kinoID);
+      } else {
+        $scope.projects = $scope.projections.projections;
+      }
     }
-    $scope.kino = $scope.cinemas.find(cinema => cinema.kinoID == newValue);
-    // console.log(newValue);
-    if(!newValue){
-      $scope.filteredProjections = $scope.allProjections;
-    }
-    $scope.$watch('projection.zalaID', function (newValue, oldValue) {
-      var filter = $scope.filteredProjections;
-      console.log(newValue);
-      if($scope.filteredProjections){
-        $scope.filteredProjections = $scope.filter.filter(projection => projection.zalaID == newValue);
-      }// console.log(filter);
-      // $scope.filteredProjections = filter;
-    });
   });
-  
-
-    $scope.vm = {};
-    $scope.vm.titleBox="Изтриване на прожекция"
-    $scope.vm.message = "Сигурни ли сте? ";
-    $scope.vm.confirmText = "Да <i class='glyphicon glyphicon-ok'></i> ";
-    $scope.vm.cancelText = "Не <i class='glyphicon glyphicon-remove'></i>";
-    $scope.vm.onConfirm = function(projection){
-      console.log(projection);
+ 
+  //POP-UP delete projection
+  $scope.vm = {};
+  $scope.vm.titleBox="Изтриване на прожекция"
+  $scope.vm.message = "Сигурни ли сте? ";
+  $scope.vm.confirmText = "Да <i class='glyphicon glyphicon-ok'></i> ";
+  $scope.vm.cancelText = "Не <i class='glyphicon glyphicon-remove'></i>";
+  $scope.vm.onConfirm = function(projection){
     ProjectionService.removeProjection(projection._id)
       .then(function(response){
         if(response.status === 200){
-          var index = $scope.filteredProjections.findIndex(element => element._id === projection._id);
-          console.log($scope.filteredProjections);
-          $scope.filteredProjections.splice(index, 1);
+          var index = $scope.projections.projections.findIndex(element => element._id === projection._id);
+          $scope.projections.projections.splice(index, 1);
           $scope.$apply();
-          console.log($scope.filteredProjections);
         }
       })
     }
-  
+
   $scope.daysAllowed = [moment().date]
 })

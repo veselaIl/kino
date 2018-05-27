@@ -34,7 +34,6 @@ app.controller('RegisterController', function ($scope, $location, $rootScope, Re
             
         }
         
-        //тук сменяш window.location При успешен вход
     }
 
 })

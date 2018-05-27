@@ -2,7 +2,7 @@
   <div class='cinema'>
     <div class='add-movie'>
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
-      <a href='#!/cinema/add'>Добави кино</a>
+      <a href='/admin/cinema/add'>Добави кино</a>
     </div>
     <div class="row" ng-repeat="cinema in cinemas track by $index" >
       <div class="col-md-12 projection-view">
@@ -54,12 +54,12 @@
                       </tr>
                     </table>
                   </div>
-                </div> -->
+                </div> -->               
                 <div class="container projects"style="margin-top:20px" ng-if="cinemas[$index].zali.length">
                     <div class="projects-inner">
                       <header class="projects-header">
                         <div class="title">Зали в {{ cinema.name }}</div>
-                        <a class="zala-add" title="Добави зала" href='#!/cinema/{{cinema.kinoID}}/add/zala'>
+                        <a class="zala-add" title="Добави зала" href='/admin/cinema/{{cinema.kinoID}}/add/zala'>
                           <span class="glyphicon glyphicon-plus"></span>
                         </a>
                       </header>
@@ -85,7 +85,7 @@
                               <p>{{ zala.capacity }}</p>
                             </div>
                           </td>
-                          <td class="buttonView"><a title="Редактирай" href="#!/cinema/view/{{zala.zalaID}}"class="btn btn-sm btn-danger">
+                          <td class="buttonView"><a title="Редактирай" href="/admin/cinema/edit/{{cinema.kinoID}}/{{zala.zalaID}}"class="btn btn-sm btn-danger">
                             <i class="glyphicon glyphicon-edit"></i></a>
                             <a title="Изтрий" class="btn btn-sm btn-danger" mwl-confirm  title ="{{vm.titleBox}}" message="{{vm.message}}"
                                 on-confirm ="vm.onConfirm(zala, cinema.kinoID)" confirm-text = '{{vm.confirmText}}' cancel-text = "{{vm.cancelText}}"> 
@@ -95,7 +95,12 @@
                       </tbody>
                       </table>
                     </div>
-                  </div>  
+                  </div> 
+                  <div class="delete-cinema-btn">
+                      <a class="zala-add btn btn-danger" ng-if="cinemas[$index].zali.length < 1" title="Добави зала" href='/admin/cinema/{{cinema.kinoID}}/add/zala'>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </a>
+                  </div> 
                   <div class="delete-cinema-btn">
                     <a class="btn btn-danger"  mwl-confirm  title ="{{cm.titleBox}}" message="{{cm.message}}"
                     on-confirm ="cm.onConfirm(cinema.kinoID)" confirm-text = '{{cm.confirmText}}' cancel-text = "{{cm.cancelText}}">Изтрий</a>

@@ -1,17 +1,17 @@
-<div class="content-projection" ng-controller="ProjectionController" ng-if="movie.name">
+<div class="content-projection" >
     <div class="fond">
-        <span class="s1"> {{ movie.name}}</span>
-        <h4 class="projection-h4">Кино {{ projectionCinema.name }} | Зала {{ projectionDetails.zalaID }} | {{ projectionDetails.time }}</h4>
+        <span class="s1"> {{ projection.movie.name}}</span>
+        <h4 class="projection-h4">Кино {{ projection.cinema.name }} | Зала {{ projection.projection.zalaID }} | {{ projection.projection.time  * 1000 | date:'dd MMMM yyyy | HH:mm' }}</h4>
     </div>
     <div class="cardDetails">
-        <div class="thumbnail"><img class="left" src="{{ movie.image }}"/></div>
+        <div class="thumbnail"><img class="left" src="{{ projection.movie.image }}"/></div>
         <div class="right-projection">
         <h1 class="projection-h1">  </h1>
             <div class="row-seat">
                 <div class='seat-map'>
                     <table>
-                    <tr class="seats" ng-repeat="row in projectionCinema.zali[0].space track by $index">
-                        <td class='seat' ng-repeat='i in getNumber(row) track by $index' >
+                    <tr class="seats" ng-repeat="row in projection.cinema.zali | filter : {zalaID : projection.projection.zalaID} track by $index">
+                        <td class='seat' ng-repeat='i in getNumber(row.space) track by $index' >
                         <img class='img-table' src='/images/seat.gif'>
                         <span class='text-table'>{{$index+1}}</span>
                         </td>
@@ -32,12 +32,12 @@
                 <tbody>
                     <tr dir-paginate="projection in filteredProjections | itemsPerPage: pageSize | orderBy: 'time' track by $index " current-page="currentPage">
                         <td>
-                            <h5> Дата/час {{projection.time}}</h5>
-                            <span>{{ projection.mesta }}</span>
+                            <h5> Дата/час {{projection.projection.time  * 1000 | date:'dd MMMM yyyy | HH:mm' }}</h5>
+                            <span>{{ projection.projection.mesta }}</span>
                         </td>
                         <td>{{ projection.movieName }}</td>
                         <td>{{ types.availableOptions[projection.type - 1].name }}</td>
-                        <td class="buttonView"><a href="#!/projections/{{projection._id}}"class="btn btn-sm btn-danger">
+                        <td class="buttonView"><a href="/admin/projections/{{projection._id}}"class="btn btn-sm btn-danger">
                             <i class="glyphicon glyphicon-eye-open"></i></a>
                             <a  class="btn btn-sm btn-danger" mwl-confirm  title ="{{vm.titleBox}}" message="{{vm.message}}"
                                 on-confirm ="vm.onConfirm(projection)" confirm-text = '{{vm.confirmText}}' cancel-text = "{{vm.cancelText}}"> 

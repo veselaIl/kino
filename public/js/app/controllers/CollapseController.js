@@ -20,9 +20,10 @@ app.controller('CollapseController', function ($scope, $rootScope, $http, $sessi
 
     $scope.logout = function ($event){
         $event.preventDefault();
-
-        $http.get('/logout')
+        $http.get('/api/logout')
             .then(function (response){
+                console.log($rootScope);
+                console.log(response);
                 $rootScope.user = null;
                 $sessionStorage.$reset();
                 $location.path('/');

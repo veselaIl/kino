@@ -5,11 +5,13 @@ var sha1 = require('sha1');
 //Login user
 router.post('/api/login', function (req, res){
     console.log('login ', req.body);
-
+    console.log(req.session);
+    
     if (req.session.user) {
         res.sendStatus(400);
     } else {
         var usersCollection = req.db.get('users');
+        console.log(sha1(req.body.email + req.body.password));
         usersCollection.findOne({
             email: req.body.email,
             password: sha1(req.body.email + req.body.password)

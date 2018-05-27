@@ -31,20 +31,20 @@ myApp.factory('MovieService', function($http, $routeParams) {
                     })
             })
         },
-        getMovieByName : function (name){
-            return new Promise(function (resolve, reject){
-                console.log(name);
-                $http.get('/admin/api/movie/'+ name)
-                    .then(function (response){
-                        console.log(response, 'movie');
-                        movie = response.data;
-                        resolve(movie);
-                    })
-                    .catch(function (err){
-                        reject(err);
-                    })
-            })
-        },
+        // getMovieByName : function (name){
+        //     return new Promise(function (resolve, reject){
+        //         console.log(name);
+        //         $http.get('/admin/api/movie/'+ name)
+        //             .then(function (response){
+        //                 console.log(response, 'movie');
+        //                 movie = response.data;
+        //                 resolve(movie);
+        //             })
+        //             .catch(function (err){
+        //                 reject(err);
+        //             })
+        //     })
+        // },
         editMovie: function (movie){
             return new Promise(function (resolve, reject){
                 $http.patch('/admin/api/movies/edit/'+ movie.id, { data : movie})
@@ -70,8 +70,18 @@ myApp.factory('MovieService', function($http, $routeParams) {
                     })
             })
         },
+        editMovie: function (movie){
+            return new Promise(function (resolve, response){
+                $http.post('/admin/api/movies/edit', { movie : movie})
+                   .then(function (response){
+                       movie.id = response.data.id;
+                       resolve();
+                   })
+            })
+        },
         removeMovie: function (id){
             return new Promise(function (resolve, response){
+                console.log('id', id);
                 $http.post('/admin/api/movie/remove/' + id)
                     .then(function (response){
                         resolve(response.data);

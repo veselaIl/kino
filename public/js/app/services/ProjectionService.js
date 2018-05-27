@@ -1,4 +1,4 @@
-myApp.factory('ProjectionService', function($http,) {
+myApp.factory('ProjectionService', function($http) {
     var editMovie = {},
         projections = [];
         
@@ -59,7 +59,6 @@ myApp.factory('ProjectionService', function($http,) {
                 console.log(id);
                 $http.get('/admin/api/projections/' + id  )
                     .then(function (response){
-                        console.log(response)
                         projection = response.data;
                         resolve(projection);
                     })

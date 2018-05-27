@@ -57,7 +57,7 @@ myApp.controller('AddCinemaController', function($scope, $location, CinemaServic
                 $scope.cinema.coordinates.lan =  $scope.cinema.coordinates.lan.trim();
                 console.log($scope.cinema);
                 CinemaService.addCinema($scope.cinema);
-                $location.path('cinema');
+                $location.path('/admin/cinema');
             }
         }
         
