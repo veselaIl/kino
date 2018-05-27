@@ -1093,6 +1093,9 @@ main{
 .table .thumb-sm img{
   width: 85px;
 }
+.table td, .table th{
+  border-top: none;
+}
 /*END OF USER PROFILE PAGE*/
 /*LOGIN REGISTER*/
 .auth-title{
