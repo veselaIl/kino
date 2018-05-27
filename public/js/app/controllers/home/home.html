@@ -1,0 +1,21 @@
+<div class="container-main">
+    <div ng-if="movies.length" class="row">
+        <div ng-repeat="movie in movies" class="col col-sm-12 col-md-6 col-lg-3 movie-content">
+            <a href="/movies/preview-movie/{{ movie.movieID }}">
+                <img class="thumbnail-sm" ng-src="{{ movie.image }}">
+                <h3 class="title-sm">{{ movie.name }}</h3>
+                <div class="premiere">Премиера: {{ movie.premierDate }} | {{ movie.duration }}</div>
+                <!-- <div class="button reserve-ticket center-block">
+                    <a href="/booking-ticket/{{ movie.movieID }}">
+                        <div class="sm-btn">Резервирай</div>
+                    </a>
+                </div>
+                <div class="button reserve-ticket center-block">
+                    <a href="/booking-ticket/{{ movie.movieID }}">
+                        <div class="sm-btn">Купи</div>
+                    </a>
+                </div> -->
+            </a>
+        </div>
+    </div>
+</div>
