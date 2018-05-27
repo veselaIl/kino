@@ -1,0 +1,45 @@
+<!--BUY TICKET PAGE-->
+<div ng-controller="UserController" ng-if="$root.user" class="container-main">
+        <!--Simple carousel for projections dates-->
+        
+        <!--End of Simple carousel for projections dates-->
+        <!--PROGECTION PAGE - DATES AND HOURS TABLE-->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="container-kino-info">
+                    <p class="cinema-attr cinema-name">{{ cinema.name }}</p>
+                    <p class="cinema-attr">{{ cinema.city }}</p>
+                    <p class="cinema-attr">{{ cinema.address }}</p>
+                    <p class="cinema-attr">{{ cinema.phoneNumber }}</p>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="custom-td">
+                    <h1 class="title"><a href="/movies/preview-movie/{{ movie._id }}">{{ movie.name }}</a></h1>
+                    <p class="description">{{ movie.description }}</p>
+                    <div class="movielist-meta-container">
+                        <p class="text-small">
+                            <span ng-if="movie.actors" class="meta-info">Актьори:</span> <span ng-repeat="actor in movie.actors" class="cast-info">{{ actor.name }}</span>
+                        </p>
+                        <p class="text-small">
+                            <span class="meta-info">Продължителност: </span><span class="cast-info">{{ movie.duration }} мин.</span>
+                        </p>
+                    </div>
+                    <hr class="red-line">
+                    <div class="date"><h4>projection date</h4></div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="times-block">
+                                <a href="/booking-ticket/:id/ticket-type">
+                                    <div class="proj-time">9:45</div>
+                                    <div class="taglist text-small type">2D</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="marks"><span>*</span> За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр</p>
+                </div>
+            </div>  
+        </div>
+        <!--END OF PROGECTION PAGE - DATES AND HOURS TABLE-->
+    </div>
