@@ -16,7 +16,6 @@ app.factory('MovieService', function($http){
                 });
         });
     };
-
     function getMovie(id){
         //console.log('MovieID: ', id);
         return new Promise(function (resolve, reject){
@@ -34,7 +33,7 @@ app.factory('MovieService', function($http){
     }
 
     return{
-        getMovies: getMovies,
-        getMovie: getMovie
+        getMovies: getMovies
+        //getMovie: getMovie
     }
 })

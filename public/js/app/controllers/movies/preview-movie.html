@@ -1,6 +1,5 @@
 <!--Movie info--> 
-<div class="container">
-    <div class="container-main">
+<div class="container">    
         <div youtube-modal="youtube-link" ng-controller="YouTubeController">
             <div>
                 <a href="{{ movie.trailer }}" class="youtube-link" target="_blank" title="{{ movie.name }}">
@@ -10,8 +9,7 @@
                     </div>
                 </a>
             </div>
-        </div>
-    </div>
+        </div>    
     <div class="row">
         <div class="col col-sm col-md col-lg">
             <div class="gradient-dark">
@@ -41,7 +39,6 @@
                         </div>
                         <hr class="red-line">
                         <!--Movie Poster and Description-->
-                        <!-- ng-controller="UserController" -->
                         <div ng-controller="UserController"  class="row">
                             <div class="col col-sm-12 col-md-3">
                                 <img class="movie-poster center-block" ng-src="/images/movies/{{ movie.image }}">
@@ -52,7 +49,6 @@
                                 </p>
                             </div>
                             <div ng-controller="CollapseController">
-                                <!--   -->
                                 <div ng-if="userChecked && $root.user" class="col col-sm-1 col-md-2 favourites">
                                     <a href="#" title="Добави в любими" ng-if="!isInFavourites" ng-click="addToFavourites($event)"><span><i class="fa fa-heart-o" style="font-size:36px;"></i></span></a>
                                     <a href="#" title="Премахни от любими" ng-if="isInFavourites" ng-click="addToFavourites($event)"><span><i class="fa fa-heart-o" style="font-size:36px;outline: 10px;color: rgba(247,149,30,.38);text-shadow: 0 0 18px rgba(247,149,30,.8);"></i></span></a>
