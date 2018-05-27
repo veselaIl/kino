@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <input type="file" id="file2" accept="image/*" onchange="angular.element(this).scope().fileNameChanged1(this)">
                             <!-- <input type="file" class='form-control' ng-file-select="onFileSelect($files)" ng-model="movie.image" name='image' required> -->
-                            <button class="upload-file-button btn btn-primary" single ng-click="uploadFile1($files)">Качете снимка *</button>
+                            <button class="upload-file-button btn btn-primary" single ng-click="uploadFile1($file)">Качете снимка *</button>
                             <span ng-if="movie.largeImage">{{movie.largeImage}}</span>
                             <div ng-messages="form.largeImage.$error" ng-show="form.largeImage.$invalid && form.largeImage.$touched">
                                 <ng-message when="required"> Това поле е задължително</ng-message>

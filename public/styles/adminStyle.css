@@ -61,6 +61,11 @@ body {
 .form-group.director>div{
   padding-left:0;
 }
+/* BOARD START */
+.title-board {
+  margin-top:20px;
+}
+/* BOARD END */
 /* TABLE CINEMA */
 .projects {
   background-color:#35342f;

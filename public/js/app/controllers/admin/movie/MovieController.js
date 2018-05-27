@@ -23,7 +23,7 @@ myApp.controller('MovieController', function($scope, $routeParams, $location,  M
     
     MovieService.getMovies()
         .then(function (movies){
-            // console.log('then', movies);
+            console.log(movies, 'movies');
             $scope.movies = movies;
             $scope.movie = movies.find(movie => movie.movieID === +$routeParams.id);
             $scope.$apply();

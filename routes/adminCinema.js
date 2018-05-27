@@ -128,8 +128,9 @@ router.post('/admin/api/cinema/delete/:kinoID/:zalaID', function (req, res){
 
 //edit zala
 router.post('/admin/api/cinema/zala/edit/:kinoID', function (req, res){
-  req.db.get('kino').findOneAndUpdate({ kinoID : +req.params.kinoID},{ $set: { zali : { zala : req.body.zala}}})
+  req.db.get('kino').update({ kinoID : +req.params.kinoID, "zali.zalaID" : +req.body.zala.zalaID},{ $set: { "zali.$" : req.body.zala}})
     .then(function (data){
+      console.log(data);
       if (data){
         res.json({ text: 'You successfully edited zala'})
       } else {
