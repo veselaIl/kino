@@ -8,7 +8,7 @@
         <div ng-if="cinemas.length" class="row">        
             <div ng-repeat="cinema in cinemas" class="col col-sm col-md-6">
                 <div class="cinema-container">
-                    <a href="/cinemas/view-cinema/{{ cinema._id }}">
+                    <a href="/cinemas/view-cinema/{{ cinema.kinoID }}">
                         <div class="tmb-zoom center-block">
                             <div class="img-zoom center-block">
                                 <img class="thumbnail-md" ng-src="{{ cinema.image }}">

@@ -541,8 +541,10 @@ main{
   margin-top: 0;
   line-height: 46px;
 }
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+.table.table-movie>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
   padding: 4px;
+  padding-top: 0;
+  padding-bottom: 2px;
 }
 .flex-container{
   display: flex;
@@ -594,7 +596,7 @@ main{
 }
 .description{
   font-size: 13px;
-  color: #554c4c;
+  color: #929292;
 }
 /*<!--Table with info for Director, Actors etc.-->*/
 table{
@@ -1587,7 +1589,7 @@ div.date-picker div.dates #movieCalendar {
 /*STYLES FOR CINEMAS PAGE*/
 .address{
   font-size: 14px;
-  color: #554c4c;
+  color: #929292;
   text-align: center;
 }
 .page-title{
@@ -1896,4 +1898,76 @@ footer.footer{
   color: rgba(220,106,26,0.7);
   font-weight: bold;
   padding-left: 20px;
+}
+
+/*PROJECTIONS*/
+.movie-poster.poster-shadow{
+  box-shadow: 0 0 60px 1px rgba(100,100,100, 0.9);
+  padding-left: 0;
+}
+.projection-movie{
+  background: rgba(10, 10, 10, 0.9);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.cinema-info{
+  padding-left: 20px;
+  text-align: left;
+}
+.cinema-info .title{
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  margin-bottom: 8px;
+}
+.cinema-info .address{
+  text-align: left;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+.poster-projection{
+  margin-left: 0;
+}
+.movie-meta{
+  color: white;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.meta-data{
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+  padding-right: 40px;
+  letter-spacing: .01em
+}
+.data-response{
+  color: #929292;
+  font-size: 13px;
+}
+.movie-info .flex-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.movie-info .title{
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+.span-favourites{
+  flex: row;
+}
+.movie-info .description{
+  padding-right: 20px;
+  text-align: justify;
+}
+.borders-top{
+  border-top: 1px solid #929292;
+}
+.borders-bottom{
+  border-bottom: 0.5px solid #171a1c;
 }

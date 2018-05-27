@@ -20,6 +20,25 @@ app.factory('ProjectionService', function ($http){
         })
     };
 
+    //get all projections of current cinema
+    function getCinemaProjections(id, date) {
+        console.log('ProjectionService', date);
+        var dateParam = '';
+        if (date) {
+            dateParam += '?date=' + date.getTime();
+            console.log('ProjectionService dateParam', dateParam);
+        }
+        return new Promise(function (resolve, reject) {
+            $http.get('/api/cinemas/' + id + '/projections' + dateParam)
+                .then(function (response){
+                    console.log('ProjectionService ResponseData:', response);
+                    resolve(response.data);
+                })
+                .catch(function (err){
+                    reject(err);
+                })
+        })
+    };
     // function getMoviesByID(movieID){
     //     return new Promise(function (resolve, reject){
     //         $http.get('/api/movies-projections?movieID=' + movieID)
@@ -36,7 +55,8 @@ app.factory('ProjectionService', function ($http){
 
 
     return {
-        getProjections: getProjections
+        getProjections: getProjections,
+        getCinemaProjections: getCinemaProjections
         //getMoviesByID : getMoviesByID
     }
 })

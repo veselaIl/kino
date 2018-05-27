@@ -34,6 +34,11 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/js/app/controllers/movies/preview-movie.html',
             title: 'Филми'
         })
+        .when('/cinemas/:id/projections', {
+            controller: 'CinemaController',
+            templateUrl: '/js/app/controllers/cinemas/cinema-projections.html',
+            title: 'Прожекции'
+        })
         .when('/projections', {
             controller: 'ProjectionController',
             templateUrl: '/js/app/controllers/projections/projections.html',

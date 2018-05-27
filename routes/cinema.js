@@ -22,7 +22,7 @@ router.get('/api/cinemas/view-cinema/:id', function (req, res){
     // console.log('Request body', req.body);
     // console.log('DB Kino collection: ', req.db.get('kino').findOne({ kinoID: +req.params.kinoID }));
     req.db   
-        .get('kino').findOne({ _id: req.params.id})
+        .get('kino').findOne({ kinoID : +req.params.id})
         .then(function (cinema){
             if(cinema){
                 console.log('Response JSON: ', res.json);
