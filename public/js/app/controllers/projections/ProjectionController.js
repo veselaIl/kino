@@ -3,12 +3,13 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
     function showProjections(date) {
         ProjectionService.getProjections(date)
             .then(function (data) {
-                console.log('showProjections data', data);
+                // console.log('showProjections data', data);
                 $scope.projections = Array.isArray(data.projections) ? data.projections : [];
                 $scope.cinemaDetails = Array.isArray(data.cinemas) ? data.cinemas : [];
                 //$scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
                 $scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
                 //$scope.movieProjections = Array.isArray(data.times) ? data.times : [];
+                console.log($scope.projections, 'projections')
                 $scope.$apply();
             })
             .catch(function (err){
@@ -19,11 +20,12 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
     function showCinemaProjections(id, date) {
         ProjectionService.getCinemaProjections(id, date)
             .then(function (data) {
-                console.log('showCinemaProjections data', data);
+                // console.log('showCinemaProjections data', data);
                 $scope.projections = Array.isArray(data.projections) ? data.projections : [];
                 $scope.cinemaDetails = data.cinema ? data.cinema : {};
                 //$scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
                 $scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
+                console.log($scope.projections, 'by ID DATE');
                 //$scope.movieProjections = Array.isArray(data.times) ? data.times : [];
                 $scope.$apply();
             })
@@ -32,7 +34,7 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
             });
     }
 
-    $scope.projections = [];
+    // $scope.projections = [];
     $scope.today = moment(new Date(),'DD-MM-YYYY');
     $scope.week = [];
     for (var i = 0; i < 7; i++){

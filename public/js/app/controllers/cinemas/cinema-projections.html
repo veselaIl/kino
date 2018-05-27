@@ -13,7 +13,7 @@
             </section>
         </div>
         <div ng-if="cinemaDetails">
-            <section ng-if="movieDetails" ng-repeat="movie in movieDetails">
+            <section ng-if="movieDetails" ng-repeat="movie in movieDetails track by $index">
                 <div class="row projection-movie borders-top">
                     <div  class="col col-sm col-md-4" >
                         <div class="">
@@ -50,7 +50,7 @@
                         <div>
                             <ul>
                                     <!-- ng-repeat="time in movieProjections.times | orderBy: 'timestamp'" -->
-                                <li class="projection-times" >
+                                <li class="projection-times" ng-repeat="projection in projections | filter : myFilter" >
                                     <div >
                                         <a href="/projections/book/{{kinoID}}/{{zalaID}}/{{movieID}}/{{time}}" 
                                         class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        

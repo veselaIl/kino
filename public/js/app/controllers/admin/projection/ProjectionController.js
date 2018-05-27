@@ -124,15 +124,22 @@ myApp.controller('ProjectionController', function ($scope, $document, $location,
     $scope.projects.forEach(function (el, index) {
       list[index].forEach(function (item) {
         var movie = $scope.movies.find(movie => movie.name === $scope.projection.movie);
-        var cinema = $scope.cinemas.find(item => item.kinoID == $scope.projection.kinoID);
         //get index of choosen zala to make a copy
-        var zalaSpace = cinema.zali.findIndex(zala => zala.zalaID == $scope.projection.zalaID);
+        var zalaSpace = $scope.kino.zali.findIndex(zala => zala.zalaID == +$scope.projection.zalaID);
+        var zala = $scope.kino.zali[zalaSpace].space.slice();
+        zala.forEach(function (item, index){
+          var row = [];
+          for ( var i = 0; i < item; i++){
+            row.push(0);
+          }         
+          zala[index] = row;
+        }) 
         current = {
           type: $scope.types.model[index],
           time: new Date(moment(el).format('MM DD YYYY') + ' ' + $scope.hours[+item]).getTime() / 1000,
-          mesta: cinema.zali[zalaSpace].space.slice(),
-          zalaID: $scope.projection.zalaID,
-          kinoID: $scope.projection.kinoID,
+          mesta: zala,
+          zalaID: +$scope.projection.zalaID,
+          kinoID: +$scope.projection.kinoID,
           movieID: movie.movieID,
           movieType: $scope.projection.movieType
         }
@@ -143,9 +150,11 @@ myApp.controller('ProjectionController', function ($scope, $document, $location,
       ProjectionService.addProjections($scope.projection.projections)
       $location.path('/admin/projections');
     }
-
+     
   }
-  
+        
+    
+
   // Projection Dates to be added
   $scope.$watch('projectionDates', function (newValue, oldValue) {
     if (newValue) {

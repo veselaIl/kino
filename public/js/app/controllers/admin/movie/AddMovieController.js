@@ -38,24 +38,20 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
     }
    
     $scope.fileNameChanged = function (ele) {
-        console.log(ele.files[0]);
-        if(ele.file[0]){
-            $scope.movie.image = ele.files[0].name;
-            $scope.$apply();
-        }
+        $scope.movie.largeImage = ele.files[0].name;
+        $scope.$apply();
     }
 
     $scope.fileNameChanged1 = function (ele) {
-        console.log(ele.files[0]);
-        if(ele.files[0]){
-            $scope.movie.largeImage = ele.files[0].name;
-            $scope.$apply();
-        }
+        $scope.movie.image = ele.files[0].name;
+        $scope.$apply();
+        
     }
 
      // ADD MOVIE
      $scope.addMovie = function ($event, invalid){
         $event.preventDefault();
+        console.log($scope.genreList);
         if (!invalid){
             $scope.genreList.forEach(function (genre, index){
                 if (genre === true){
@@ -63,6 +59,7 @@ myApp.controller('AddMovieController', function($scope,  $location, MovieService
                 }
             });    
             $scope.movie.genre = filter;
+            filter = [];
             console.log($scope.movie, 'MOVIE BEFORE ADD')
             MovieService.addMovie($scope.movie);
             $location.path('/admin/movies');

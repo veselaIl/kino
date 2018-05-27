@@ -24,7 +24,7 @@ router.post('/admin/api/movies/add',function(req, res){
   var moviesDB = req.db.get('movies');
   moviesDB.find({},{sort: { movieID: -1}, limit : 1})
   .then( function(item){
-    console.log(req.body);
+    console.log(item);
     if (req.body) {
       movie = {
         movieID : ++item[0].movieID,
