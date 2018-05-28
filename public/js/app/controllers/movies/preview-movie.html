@@ -157,6 +157,36 @@
                                 </li>
                             </ul>
                         </div>
+
+    <div ng-if="cinemas" ng-repeat="cinema in cinemas track by $index">
+        <section ng-if="movieDetails">
+            <div class="row projection-movie borders-top">
+                <div class="col col-sm col-md-3">
+                    <div class="cinema-info">
+                        <p class="title">{{ cinema.name }}</p>
+                        <p class="address">{{ cinema.address }}</p>
+                        <p class="address">{{ cinema.phoneNumber }}</p>
+                    </div>            
+                </div>                    
+                <div class="col col-sm col-md-9">
+                    <p class="book-message"><i class="fa fa-ticket" aria-hidden="true">
+                        </i> Изберете час, за да запазите билет.
+                    </p>
+                    <div>
+                        <ul>
+
+                            <li class="projection-times" ng-repeat="time in projections track by $index| filter : {$:movieID}:projection.movieID}" >
+                                <div >
+                                    <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
+                                    class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
+                                        <div class="items">
+                                            <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
+                                        </div>
+                                    </a>                                        
+                                </div>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>    
             </section>

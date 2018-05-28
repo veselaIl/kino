@@ -1,0 +1,164 @@
+/* open */
+.container-movies{
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5%;
+    font-family: 'Roboto';
+}
+.announcement {
+    clear: both;
+    overflow-y: hidden;
+    max-height: 0;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition: all .5s ease-in-out;
+  }
+  /* closed */
+.announcement.open {
+    max-height: 100%;
+}
+/*   
+  h1, h2, p {
+    margin: 0;
+  }   */
+.announcement {
+    display: block;
+    padding: 0rem;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+}
+.cinema-filter {    
+    padding-left: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e28219cf;
+}
+.announcement h4{
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #e28219cf;
+}
+.announcement-title {
+    color: #FACA66;
+    font-family: "Merriweather", serif;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 0.1rem;
+}
+.announcement-subtitle {
+    color: #F7A541;
+    font-family: "Sanchez", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.date {
+    color: rgba(244, 244, 244, 0.5);
+    font-family: "Merriweather", serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 2.3rem;
+}
+
+.announcement-description {
+    color: #fff;
+    font-family: "Sanchez", sans-serif;
+    font-size: 1.0rem;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.button-collapse {
+    float: right;
+    background: transparent;
+    margin-left: -50%;
+    border: 0;
+    color: #ffffff96;
+    outline: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    padding: .875rem;
+}
+.button.collapse:hover {
+    background-color: #f34734;
+}
+.filter{
+    margin-top:15%;
+}
+.button-home input{
+    display: none;
+}
+.button-home{
+    padding: 10px 20px; 
+    color:#ffffff91;
+    border: 2px solid;
+    margin-right: 20px;
+    border-radius : 4px;   
+}
+.button-home:hover{
+    /* box-shadow :2px 0px 7px; */
+    border-color: #ab8540;
+    -moz-box-shadow: 0 0 5px  #ab8540;
+    -webkit-box-shadow: 0 0 5px  #ab8540;
+    box-shadow: 0 0 10px  #ab8540;
+    color: white;
+    font-weight: bold;
+}
+.button-type{
+    width: 80px;
+}
+.button-type input{
+    display: none;
+}
+.types-filter{
+    display: inline-block;
+    
+}
+.type-filter{
+    text-align: center;
+    padding-left: 0;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e28219cf;
+}
+.type-filter h4{
+    margin-bottom: 15px;
+    text-align: left;
+}
+.type-items{
+    display: inline-block;
+    color: white;
+}
+.type-items:hover{
+    /* box-shadow :2px 0px 7px; */
+    font-weight: bold;
+    color:orange;  
+}
+.cinema-name{
+    display: inline-block;
+    text-align: center;
+    width: 130px;
+}
+.cinema-items{
+    width: 200px;
+}
+.cine{
+    width: 250px;
+}
+.cinemaName{
+    width:170px;
+}
+.movies{
+    clear: both;
+}
+
+.input:checked{
+    background-color: orange;
+}
+.activeCinema{
+    color: white;
+    background-color: rgba(255, 130, 22, 0.9);
+}
+.carousel-inner {
+    height: 500px;
+}
