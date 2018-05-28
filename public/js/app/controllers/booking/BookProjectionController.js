@@ -6,7 +6,33 @@ app.controller('BookProjectionController', ['$scope', '$rootScope', 'BookingServ
         $scope.activeDay = day;
         console.log($scope.activeDay);
     }
-
+    $scope.counter = 0;
+    $scope.priceReduced = 8;
+    $scope.priceRegular = 12;
+    $scope.priceStudent = 10;
+    $scope.totalPrice = 0;
+    $scope.decrement = function(){
+        if($scope.counter > 0){
+            $scope.counter--;
+            switch($scope.price){
+                case $scope.priceReduced : $scope.totalPrice -= $scope.priceReduced;
+                case $scope.priceRegular : $scope.totalPrice -= $scope.priceRegular;
+                case $scope.priceStudent : $scope.totalPrice -= $scope.priceStudent;
+                default: $scope.TotalPrice = 0;
+            }
+        }
+    }
+    $scope.increment = function(){
+        if($scope.counter < 6){
+            $scope.counter++;
+            switch(price){
+                case $scope.priceReduced : $scope.totalPrice += $scope.priceReduced;
+                case $scope.priceRegular : $scope.totalPrice += $scope.priceRegular;
+                case $scope.priceStudent : $scope.totalPrice += $scope.priceStudent;
+                default: $scope.TotalPrice = 0;
+            }
+        }
+    }
     console.log('$routeParams', $routeParams);
     function showBookingPage(kinoID, zalaID, movieID, time){
         BookingService.getBookingTicket(kinoID, zalaID, movieID, time)
