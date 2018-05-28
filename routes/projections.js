@@ -190,8 +190,8 @@ router.get('/api/cinemas/:id/projections', function (req, res){
 })
 
 //Get all projections for current movie and show all movie projections in all cinemas
-router.get('/api/movies/:id/projections', function (req, res){
-    console.log('/api/movies/:id/projections',req.params.id, req.query.date);
+router.get('/api/movies/preview-movie/:id/projections', function (req, res){
+    console.log('/api/movies/preview-movie/:id/projections',req.params.id, req.query.date);
     //GET all projections
 
     var findObj = {},
@@ -235,7 +235,7 @@ router.get('/api/movies/:id/projections', function (req, res){
                 var result = {
                     projections: projections
                 }  
-                req.db.get('movies').find({ movieID: +req.params.id })
+                req.db.get('movies').findOne({ movieID: +req.params.id })
                     .then(function (movie){
                         console.log('movie', movie);
                         if(movie){

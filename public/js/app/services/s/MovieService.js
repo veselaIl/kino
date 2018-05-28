@@ -1,6 +1,6 @@
 app.factory('MovieService', function($http){
-    var movies = [],
-        movie = {};
+    var movies = []
+        //movie = {};
     
     function getMovies (){
         return new Promise(function (resolve, reject){
@@ -16,25 +16,24 @@ app.factory('MovieService', function($http){
                 });
         });
     };
-
-    function getMovie(id){
-        //console.log('MovieID: ', id);
-        return new Promise(function (resolve, reject){
-            $http.get('/api/movies/preview-movie/' + id)
-                .then(function (response){
-                    console.log('MovieService response: ', response);
-                    movie = response.data.movie;
-                    console.log('MovieService getMovie: ', movie);
-                    resolve(movie);
-                })
-                .catch(function (err){
-                    reject(err);
-                })
-        })
-    }
+    // function getMovie(id){
+    //     //console.log('MovieID: ', id);
+    //     return new Promise(function (resolve, reject){
+    //         $http.get('/api/movies/preview-movie/' + id)
+    //             .then(function (response){
+    //                 console.log('MovieService response: ', response);
+    //                 movie = response.data.movie;
+    //                 console.log('MovieService getMovie: ', movie);
+    //                 resolve(movie);
+    //             })
+    //             .catch(function (err){
+    //                 reject(err);
+    //             })
+    //     })
+    // }
 
     return{
-        getMovies: getMovies,
-        getMovie: getMovie
+        getMovies: getMovies
+        //getMovie: getMovie
     }
 })

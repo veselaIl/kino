@@ -24,12 +24,12 @@ app.config(function ($routeProvider, $locationProvider) {
         //     templateUrl:'/js/app/controllers/halls/halls.html',
         //     title: 'Зали'
         // })
-        .when('/movies', {
-            controller: 'MovieController',
-            templateUrl: '/js/app/controllers/movies/movies.html',
-            title: 'Филми'
-        })
-        .when('/movies/preview-movie/:id', {
+        // .when('/movies', {
+        //     controller: 'MovieController',
+        //     templateUrl: '/js/app/controllers/movies/movies.html',
+        //     title: 'Филми'
+        // })
+        .when('/movies/preview-movie/:id/projections', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/preview-movie.html',
             title: 'Филми'

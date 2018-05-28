@@ -3,7 +3,7 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
     //Get all movies 
     MovieService.getMovies()
         .then(function (movies){            
-            console.log('Movie Controller: movies', movies);
+            console.log('Home Controller: movies', movies);
             $scope.movies = movies;
             $scope.filter = $scope.movies;   
             $scope.$apply();
@@ -13,6 +13,7 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
         })
        
     console.log('$routeParams.id', $routeParams);
+<<<<<<< HEAD
     //Get current movie
     MovieService.getMovie($routeParams.id)
        .then(function (movie){
@@ -39,10 +40,12 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
         }
     })   
     $scope.selectedCinemas = [];
+=======
+       
+>>>>>>> 340e0ab4a99d1ae31cd662bba84029bdc50ba197
     $scope.title = "Филми";
     $scope.movies = [];
     $scope.movie = {};
-    $scope.actor = {};
     var errors = [];
 
     $scope.genres = [

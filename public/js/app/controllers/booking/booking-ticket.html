@@ -54,62 +54,64 @@
                 </div>     
                 <div class="col col-sm-12 col-md-6 col-lg-6">
                     <h1 class="ch-title">Избор на билет:</h1>
-                    <div class="row">
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-title">Вид</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-title">Цена</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-title">Количество</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-title">Намален</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-attr">7.90лв</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="spinner">
-                                <span class="spinnerHandle minus">-</span>
-                                    <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="0" name="" readonly="readonly">
-                                <span class="spinnerHandle plus">+</span>
+                    <form action="" method="POST">
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-title">Вид</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-title">Цена</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-title">Количество</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-title">Редовен</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-attr">10.00лв</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="spinner">
-                                <span class="spinnerHandle minus">-</span>
-                                    <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="0" name="" readonly="readonly">
-                                <span class="spinnerHandle plus">+</span>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-title">Намален</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-attr">{{ priceReduced }} лв.</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="spinner">                                
+                                    <span ng-click="decrement()" class="spinnerHandle minus">-</span>
+                                        <input ng-init="counter = 0" type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ counter }}" name="" readonly="readonly">
+                                    <span ng-click="increment()" class="spinnerHandle plus">+</span>                                
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-title">Студентски</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="bkg-attr">8.90лв</div>
-                        </div>
-                        <div class="col col-sm-4 col-md-4 col-lg-4">
-                            <div class="spinner">
-                                <span class="spinnerHandle minus">-</span>
-                                    <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="0" name="" readonly="readonly">
-                                <span class="spinnerHandle plus">+</span>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-title">Редовен</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-attr">{{ priceRegular }} лв.</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="spinner">
+                                    <span ng-click="decrement()" class="spinnerHandle minus">-</span>
+                                        <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
+                                    <span ng-click="increment()" class="spinnerHandle plus">+</span>        
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-title">Студентски</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="bkg-attr">{{ priceStudent }} лв.</div>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <div class="spinner">
+                                    <span ng-click="decrement()" class="spinnerHandle minus">-</span>
+                                        <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
+                                    <span ng-click="increment()" class="spinnerHandle plus">+</span>        
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="booking">
                         <hr class="red-line">
                         <div class="note">
@@ -121,7 +123,7 @@
                                 <p>Тотал:</p>
                             </div>
                             <div class="value">
-                                <p>0.00лв</p>
+                                <p>{{ totalPrice | currency:''}} лв</p>
                             </div>
                         </div>       
                     </div>

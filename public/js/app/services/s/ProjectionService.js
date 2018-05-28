@@ -49,7 +49,7 @@ app.factory('ProjectionService', function ($http){
             console.log('ProjectionService dateParam', dateParam);
         }
         return new Promise(function (resolve, reject) {
-            $http.get('/api/movies/' + id + '/projections' + dateParam)
+            $http.get('/api/movies/preview-movie/'+ id + '/projections' + dateParam)
                 .then(function (response){
                     console.log('ProjectionService ResponseData:', response);
                     resolve(response.data);
