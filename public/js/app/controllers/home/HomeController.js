@@ -13,25 +13,24 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
         })
        
     console.log('$routeParams.id', $routeParams);
-<<<<<<< HEAD
     //Get current movie
-    MovieService.getMovie($routeParams.id)
-       .then(function (movie){
-            $scope.movie = movie;
-            console.log('$scope.movie', $scope.movie);
-            // console.log("Genre: ", movie.genre);
-            // $scope.movie.genre = movie.genre;
-            console.log('Actors:', movie.actors);
+    // MovieService.getMovie($routeParams.id)
+    //    .then(function (movie){
+    //         $scope.movie = movie;
+    //         console.log('$scope.movie', $scope.movie);
+    //         // console.log("Genre: ", movie.genre);
+    //         // $scope.movie.genre = movie.genre;
+    //         console.log('Actors:', movie.actors);
             
-            // $scope.actor = movie.actors.forEach(a => {
-            //     console.log("Actor: ", a.name);
-            //     return a.name;
-            // });
-            $scope.$apply();
-       })
-       .catch(function (err){
-            errors.push(err);
-       })
+    //         // $scope.actor = movie.actors.forEach(a => {
+    //         //     console.log("Actor: ", a.name);
+    //         //     return a.name;
+    //         // });
+    //         $scope.$apply();
+    //    })
+    //    .catch(function (err){
+    //         errors.push(err);
+    //    })
     CinemaService.getCinemas()
     .then(function (cinemas){
         if (cinemas){
@@ -40,9 +39,6 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
         }
     })   
     $scope.selectedCinemas = [];
-=======
-       
->>>>>>> 340e0ab4a99d1ae31cd662bba84029bdc50ba197
     $scope.title = "Филми";
     $scope.movies = [];
     $scope.movie = {};

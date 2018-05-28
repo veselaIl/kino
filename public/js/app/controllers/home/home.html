@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <!--Carousel Wrapper-->
 <!-- <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
@@ -52,18 +51,6 @@
                                 <span class="cinemaName cinema-name">{{cinema.name}}</span>
                             </label>
                         </div>
-=======
-<div class="container-main">
-    <div ng-if="movies.length" class="row">
-        <div ng-repeat="movie in movies track by $index" class="col col-sm-12 col-md-6 col-lg-3 movie-content">
-            <a href="/movies/preview-movie/{{ movie.movieID }}/projections">
-                <img class="thumbnail-sm" ng-src="/images/movies/{{ movie.image }}">
-                <h3 class="title-sm">{{ movie.name }}</h3>
-                <div class="premiere">Премиера: {{ movie.premierDate }} | {{ movie.duration }}</div>
-                <!-- <div class="button reserve-ticket center-block">
-                    <a href="/booking-ticket/{{ movie.movieID }}">
-                        <div class="sm-btn">Резервирай</div>
->>>>>>> 340e0ab4a99d1ae31cd662bba84029bdc50ba197
                     </a>
                 </li>
             </ul> --> 
@@ -97,7 +84,7 @@
     </div>
     <div ng-if="movies.length" class="row movies">        
         <div ng-if="filter.length" ng-repeat="movie in filter track by $index" class="col col-lg-3 col-md-4 col-sm-6 col-xs-8 movie-content">
-            <a href="/movies/preview-movie/{{ movie.movieID }}">
+            <a href="/movies/preview-movie/{{ movie.movieID }}/projections">
                 <img class="thumbnail-sm" ng-src="/images/movies/{{ movie.image }}">
                 <h3 class="title-sm">{{ movie.name }}</h3>
                 <div class="premiere">Премиера: {{ movie.premierDate | date : 'dd MMMM yyyy'}} | {{ movie.duration }} минути</div>

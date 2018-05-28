@@ -57,11 +57,7 @@
                     <div>
                         <ul>
                                 <!-- ng-repeat="time in movieProjections.times | orderBy: 'timestamp'" -->
-<<<<<<< HEAD
                             <li class="projection-times" ng-repeat="projection in projections track by $index" >
-=======
-                            <li class="projection-times" ng-repeat="projection in projections | filter:{ movieID: projection.movieID }:true" >
->>>>>>> 340e0ab4a99d1ae31cd662bba84029bdc50ba197
                                 <div >
                                     <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
                                      ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        

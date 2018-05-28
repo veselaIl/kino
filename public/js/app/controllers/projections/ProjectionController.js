@@ -28,7 +28,7 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
         console.log('setActive ' + day, day);
         console.log();
         $scope.activeDay = day;
-        console.log('$scope.activeDay', $scope.activeDay);
+        console.log('$scope.activeDay', $scope.activeDay.getTime());
         showProjections(day.toDate());
     }
 
