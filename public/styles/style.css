@@ -295,6 +295,8 @@ a {
   margin-top: 15px;
   margin-bottom: 8px;
   border: none;
+  -webkit-box-shadow: 0 0 50px 0 rgba(247,149,30,.35), 0 0 20px 0 rgba(247,149,30,.3) inset;
+  box-shadow: 0 0 50px 0 rgba(247,149,30,.35), 0 0 20px 0 rgba(247,149,30,.3) inset;
 }
 .thumbnail-md{
   width: 320px;
@@ -1826,8 +1828,7 @@ footer.footer{
 .meta-data{
   font-size: 14px;
   font-weight: bold;
-  margin-right: 10px;
-  padding-right: 40px;
+  padding-right: 20px;
   letter-spacing: .01em
 }
 .data-response{

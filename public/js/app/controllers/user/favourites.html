@@ -43,10 +43,10 @@
                         <hr class="red-line redline-u">
                         <div class="row">
                             <div ng-repeat="favourite in user.favourites" class="col-md-3">
-                                <!-- <div class="box"> -->
-                                    <img class="thumbnail" ng-src="{{ favourite.image }}">
+                                <a href="/movies/preview-movie/{{ movie.movieID }}">
+                                    <img class="thumbnail" ng-src="/images/movies/{{ favourite.image }}">
                                     <div class="movie-title">{{ favourite.name }}</div>
-                                <!-- </div> -->
+                                </a>                                    
                             </div>
                         </div>
                     </div>

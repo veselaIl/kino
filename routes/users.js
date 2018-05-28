@@ -104,13 +104,13 @@ router.post('/api/user/favourites/:id', function (req, res){
                 if(!user){
                     res.sendStatus(401);
                 } else {
-                    var index = user.favourites.indexOf(req.params.id);
+                    var index = user.favourites.indexOf(+req.params.id);
                     console.log('INDEX: ', index);
                     console.log('Favourites', user.favourites);
                     if(index !== -1){
                         user.favourites.splice(index, 1);
                     } else {
-                        user.favourites.push(req.params.id);
+                        user.favourites.push(+req.params.id);
                     }
 
                     req.db.get('users').findOneAndUpdate({ _id: req.session.user._id}, {$set: {favourites: user.favourites}})
@@ -138,7 +138,7 @@ router.get('/api/profile/favourites', function (req, res){
                     res.sendStatus(404);
                 } else {
                     console.log("favourites: ", user.favourites);
-                    req.db.get('movies').find({ _id: { $in: user.favourites }})
+                    req.db.get('movies').find({ movieID: { $in: user.favourites }})
                         .then(function (movies){
                             console.log("movies: ", movies);
                             res.json({ movies: movies });
