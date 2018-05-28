@@ -1,21 +1,94 @@
-<div class="container-main">
-    <div ng-if="movies.length" class="row">
-        <div ng-repeat="movie in movies" class="col col-sm-12 col-md-6 col-lg-3 movie-content">
-            <a href="/movies/preview-movie/{{ movie.movieID }}">
-                <img class="thumbnail-sm" ng-src="{{ movie.image }}">
-                <h3 class="title-sm">{{ movie.name }}</h3>
-                <div class="premiere">Премиера: {{ movie.premierDate }} | {{ movie.duration }}</div>
-                <!-- <div class="button reserve-ticket center-block">
-                    <a href="/booking-ticket/{{ movie.movieID }}">
-                        <div class="sm-btn">Резервирай</div>
-                    </a>
-                </div>
-                <div class="button reserve-ticket center-block">
-                    <a href="/booking-ticket/{{ movie.movieID }}">
-                        <div class="sm-btn">Купи</div>
-                    </a>
-                </div> -->
-            </a>
+
+<!--Carousel Wrapper-->
+<!-- <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#video-carousel-example" data-slide-to="0" class="active"></li>
+            <li data-target="#video-carousel-example" data-slide-to="1"></li>
+            <li data-target="#video-carousel-example" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <video class="video-fluid" autoplay loop>
+                    <source src="movies[0].trailer" type="video/mp4" />
+                </video>
+            </div>
+            <div class="carousel-item">
+                <video class="video-fluid" autoplay loop>
+                    <source src="movies[4].trailer" type="video/mp4" />
+                </video>
+            </div>
+            <div class="carousel-item">
+                <video class="video-fluid" autoplay loop>
+                    <source src="movies[5].trailer" type="video/mp4" />
+                </video>
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#video-carousel-example" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#video-carousel-example" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div> -->
+                            
+              
+<div class="container-movies " >
+    
+    <div class="filter ">          
+        <button class="button-collapse" onclick="document.getElementById('announcement-wrapper').classList.toggle('open');"><i class="fa fa-filter"></i>
+            Филтър</button>
+        <div class="announcement" id="announcement-wrapper">
+            <!-- <ul class="cinema-filter"> 
+                <h4> Филтрирай по кино</h4>
+                <li class="projection-times cinema-label" ng-repeat="cinema in cinemas track by $index" >
+                    <a name="cinemaFilter" >                                        
+                        <div class="cinema-items cine" ng-click="toggleCinema(cinema.kinoID, $event, $index)" >
+                            <label class="button-home btn-home  cine{{$index}}" >
+                                <!-- ng-init='checkStatus=false' -->
+                                <!-- <input type="checkbox" value="{{cinema.kinoID}}" ng-checked="isSelected(cinema)" >
+                                <span class="cinemaName cinema-name">{{cinema.name}}</span>
+                            </label>
+                        </div>
+                    </a>
+                </li>
+            </ul> --> 
+            <ul class="cinema-filter">
+                <h4> По жанр</h4>
+                <li class="projection-times" ng-repeat="genre in genres.slice(0,10)">
+                    <a>                                        
+                        <div class="cinema-items" ng-click="toggleCinema(genre, $event, $index)">
+                            <label class="button-home btn-home cine{{$index}}">
+                                <input type="checkbox" ng-model="checked">
+                                <span class="cinema-name">{{::genre}}</span>
+                            </label>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="type-filter">
+              <h4>По тип</h4>
+              <li class="types-filter" ng-repeat="type in movieTypes track by $index">
+                    <a>                                        
+                        <div class="type-items" ng-click="toggleType(type, $event, $index)">
+                            <label class="button-type btn-type type{{$index}}">
+                                <input type="radio" ng-model="checked">
+                                <span class="type-name">{{::type}}</span>
+                            </label>
+                        </div>
+                    </a>
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-if="movies.length" class="row movies">        
+        <div ng-if="filter.length" ng-repeat="movie in filter track by $index" class="col col-lg-3 col-md-4 col-sm-6 col-xs-8 movie-content">
+            <a href="/movies/preview-movie/{{ movie.movieID }}">
+                <img class="thumbnail-sm" ng-src="/images/movies/{{ movie.image }}">
+                <h3 class="title-sm">{{ movie.name }}</h3>
+                <div class="premiere">Премиера: {{ movie.premierDate | date : 'dd MMMM yyyy'}} | {{ movie.duration }} минути</div>
+            </a>
+        </div> 
     </div>
 </div>

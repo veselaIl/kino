@@ -1,6 +1,6 @@
 <!--Movie info--> 
 <div class="container">
-    <div class="container">
+    <div class="container-main">
         <div youtube-modal="youtube-link" ng-controller="YouTubeController">
             <div>
                 <a href="{{ movie.trailer }}" class="youtube-link" target="_blank" title="{{ movie.name }}">
@@ -44,7 +44,7 @@
                         <!-- ng-controller="UserController" -->
                         <div ng-controller="UserController"  class="row">
                             <div class="col col-sm-12 col-md-3">
-                                <img class="movie-poster center-block" ng-src="{{ movie.image }}">
+                                <img class="movie-poster center-block" ng-src="/images/movies/{{ movie.image }}">
                             </div>
                             <div class="col col-sm-12 col-md-6">
                                 <p class="description">
@@ -74,14 +74,14 @@
                                             <tr>
                                             <th scope="row"></th>
                                                 <td ng-if="movie.actors.length">АКТЬОРИ</td>
-                                                <td ng-repeat="actor in movie.actors">
-                                                    <span>{{ actor.join(', ') }}</span>
+                                                <td>
+                                                    <span>{{ movie.actors }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                             <th scope="row"></th>
                                             <td>РЕЖИСЬОР:</td>
-                                            <td>{{ movie.director.name }}</td>
+                                            <td>{{ movie.directorName }}</td>
                                             </tr>
                                             <tr>
                                             <th scope="row"></th>
@@ -119,101 +119,49 @@
         </div>
     </div>
 
-<div class="container-main">
-        <div class="date-picker__wrap days">
-            <section class="date-picker carousel js-movie-calendar carousel-style-strip">
-                <ul class="carousel-items week">
-                    <li class="week-day date-picker__date" ng-class="{ active: activeDay === day }" ng-repeat="day in week">
-                        <a href class="date-picker__link" ng-click="setActive(day)">
-                            <span class="date-picker__date-weekday" >{{ day.format('dddd') }}</span>
-                            <span class="date-picker__date-month">{{ day.format('MMMM') }}</span>
-                            <span class="date-picker__date-day">{{ day.format('DD') }}</span>
-                        </a>
-                    </li>       
-                </ul>
-            </section>
-        </div>
-        <div ng-if="cinemas" ng-repeat="cinema in cinemas">
-            <section ng-if="movieDetails">
-                <div class="row projection-movie borders-top">
-                    <div class="col col-sm col-md-3">
-                        <div class="cinema-info">
-                            <p class="title">{{ cinema.name }}</p>
-                            <p class="address">{{ cinema.address }}</p>
-                            <p class="address">{{ cinema.phoneNumber }}</p>
-                        </div>            
-                    </div>                    
-                    <div class="col col-sm col-md-9">
-                        <p class="book-message"><i class="fa fa-ticket" aria-hidden="true">
-                            </i> Изберете час, за да запазите билет.
-                        </p>
-                        <div>
-                            <ul>
-                                <li class="projection-times" ng-repeat="time in projections | filter : {$:movieID}:projection.movieID}" >
-                                    <div >
-                                        <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
-                                        class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
-                                            <div class="items">
-                                                <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
-                                            </div>
-                                        </a>                                        
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>    
-                    <!-- <div  class="col col-sm col-md-3" >
-                        <div class="">
-                            <a href="/movies/preview-movie/{{ movie.movieID }}">
-                                <img class="movie-poster poster-shadow" ng-src="{{ movie.image }}">
-                            </a>
-                        </div>            
-                    </div>
-                    <div ng-if="movieDetails" class="col col-sm col-md-6 borders-bottom">
-                        <div class="movie-info">
-                            <div class="flex-container">
-                                <div><h3 class="title">{{ movie.name }}</h3></div>
-                                <div class="span-favourites" ng-controller="CollapseController">
-                                    <div ng-if="userChecked && $root.user" class="col col-sm-1 col-md-2 favourites">
-                                        <a href="#" title="Добави в любими" ng-if="!isInFavourites" ng-click="addToFavourites($event)"><span><i class="fa fa-heart-o" style="font-size:36px;"></i></span></a>
-                                        <a href="#" title="Премахни от любими" ng-if="isInFavourites" ng-click="addToFavourites($event)"><span><i class="fa fa-heart-o" style="font-size:36px;outline: 10px;color: rgba(247,149,30,.38);text-shadow: 0 0 18px rgba(247,149,30,.8);"></i></span></a>
-                                    </div>
+    <div class="date-picker__wrap days">
+        <section class="date-picker carousel js-movie-calendar carousel-style-strip">
+            <ul class="carousel-items week">
+                <li class="week-day date-picker__date" ng-class="{ active: activeDay === day }" ng-repeat="day in week">
+                    <a href class="date-picker__link" ng-click="setActive(day)">
+                        <span class="date-picker__date-weekday" >{{ day.format('dddd') }}</span>
+                        <span class="date-picker__date-month">{{ day.format('MMMM') }}</span>
+                        <span class="date-picker__date-day">{{ day.format('DD') }}</span>
+                    </a>
+                </li>       
+            </ul>
+        </section>
+    </div>
+    <div ng-if="cinemas" ng-repeat="cinema in cinemas track by $index">
+        <section ng-if="movieDetails">
+            <div class="row projection-movie borders-top">
+                <div class="col col-sm col-md-3">
+                    <div class="cinema-info">
+                        <p class="title">{{ cinema.name }}</p>
+                        <p class="address">{{ cinema.address }}</p>
+                        <p class="address">{{ cinema.phoneNumber }}</p>
+                    </div>            
+                </div>                    
+                <div class="col col-sm col-md-9">
+                    <p class="book-message"><i class="fa fa-ticket" aria-hidden="true">
+                        </i> Изберете час, за да запазите билет.
+                    </p>
+                    <div>
+                        <ul>
+                            <li class="projection-times" ng-repeat="time in projections track by $index| filter : {$:movieID}:projection.movieID}" >
+                                <div >
+                                    <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
+                                    class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
+                                        <div class="items">
+                                            <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
+                                        </div>
+                                    </a>                                        
                                 </div>
-                            </div>
-                            
-                            <p class="description">{{ movie.description }}</p>
-                            <p class="movie-meta"><span class="meta-data">Режисьор:</span><span class="data-response">{{ movie.director.name }}</span></p>
-                            <p ng-if="movie.actors" class="movie-meta"><span class="meta-data">Актьори:</span><span ng-repeat="actor in movie.actors" class="data-response">{{ movie.actor.name }}</span></p>
-                            <p class="movie-meta"><span class="meta-data">Продължителност:</span><span class="data-response">{{ movie.duration }} мин.</span></p>
-                            
-                        </div>
-                    </div>  
-                </div> -->
-                <!-- <div class="row projection-movie">
-                    <div class="col col-sm col-md-12">
-                        <p class="book-message"><i class="fa fa-ticket" aria-hidden="true">
-                            </i> Изберете час, за да запазите билет.
-                        </p>
-                        <div>
-                            <ul>
-                                 ng-repeat="time in movieProjections.times | orderBy: 'timestamp'" 
-                                <li class="projection-times" >
-                                    <div >
-                                        <a href="/projections/book/{{kinoID}}/{{zalaID}}/{{movieID}}/{{time}}" 
-                                        class="projection-hour" ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
-                                            <div class="items">
-                                                <label class="item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
-                                            </div>
-                                        </a>
-                                        
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
-                </div> -->
-            </section>
-        </div>
+                </div>
+            </div>    
+        </section>
     </div>
 </div>

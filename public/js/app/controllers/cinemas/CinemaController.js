@@ -49,7 +49,10 @@ app.controller('CinemaController', function ($scope, $rootScope, $routeParams, C
         console.log();
         $scope.activeDay = day;
         console.log('$scope.activeDay', $scope.activeDay);
-        showCinemaProjections($routeParams.id, day.toDate());
+        if($routeParams.id){
+            showCinemaProjections($routeParams.id, day.toDate());
+        }
+        
     }
 
     console.log('projections getProjections');
