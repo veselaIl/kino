@@ -1593,9 +1593,9 @@ div.date-picker div.dates #movieCalendar {
   margin-top: 20px;
   margin-bottom: 30px;
 }
-.table-movie>tbody>tr>td, .table-movie>tbody>tr>th, .table-movie>tfoot>tr>td, .table-movie>tfoot>tr>th, .table-movie>thead>tr>td, .table-movie>thead>tr>th{
+.table.table-movie>tbody>tr>td, .table-movie>tbody>tr>th, .table-movie>tfoot>tr>td, .table-movie>tfoot>tr>th, .table-movie>thead>tr>td, .table-movie>thead>tr>th{
   font-size: 12px;
-  color: #554c4c;
+  color: #929292;
 }
 /*END PREVIEW MOVIE PAGE*/
 

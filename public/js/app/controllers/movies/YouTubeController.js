@@ -1,18 +1,3 @@
-// app.controller('YouTubeController', []);
-// app.constant('YT_event', {
-// 	STOP:            0, 
-// 	PLAY:            1,
-// 	PAUSE:           2
-// });
-
-// app.run(function () {
-//   var tag = document.createElement('script');
-//   tag.src = "https://www.youtube.com/iframe_api";
-//   var firstScriptTag = document.getElementsByTagName('script')[0];
-//   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-// });
-
-
 app.controller('YouTubeController', function($scope, YT_event) {
 
 	var ctrl = this;

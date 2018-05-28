@@ -1,135 +1,136 @@
 <!--PAGE FOR CHOOSING TYPE AND QUANTITY OF TICKET-->
-
-    <div class="container-main">
+<div class="container-main">
+    <div class="row">
+        <div class="col col-sm-12 col-md-6 col-lg-6 projection-info">
             <div class="row">
-                <div class="col col-sm-12 col-md-6 col-lg-6 projection-info">
-                    <div class="row">
-                        <div class="col col-md-6">
-                            <div class="bkg-title">Прожекция:</div>
-                        </div>
-                        <div class="col col-md-6">
-                            <div class="bkg-attr">{{ movie.name }}</div>
-                        </div>
+                <div class="col col-md-6">
+                    <div class="bkg-title">Прожекция:</div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="bkg-attr">{{ movie.name }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <div class="bkg-title">Кино:</div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="bkg-attr">{{ cinema.name }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <div class="bkg-title">Дата:</div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="bkg-attr">{{ projection.time }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <div class="bkg-title">Час:</div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="bkg-attr">{{ projection.time }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <div class="bkg-title">Зала:</div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="bkg-attr">{{ projection.zalaID }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <div class="bkg-title">Видео формат:</div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="bkg-attr">{{ projection.type }}</div>
+                </div>
+            </div>                
+        </div>     
+        <div class="col col-sm-12 col-md-6 col-lg-6">
+            <h1 class="ch-title">Избор на билет:</h1>
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-title">Вид</div>
                     </div>
-                    <div class="row">
-                            <div class="col col-md-6">
-                                <div class="bkg-title">Кино:</div>
-                            </div>
-                            <div class="col col-md-6">
-                                <div class="bkg-attr">{{ cinema.name }}</div>
-                            </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-title">Цена</div>
                     </div>
-                    <div class="row">
-                        <div class="col col-md-6">
-                            <div class="bkg-title">Дата:</div>
-                        </div>
-                        <div class="col col-md-6">
-                            <div class="bkg-attr">{{ projection.time }}</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-md-6">
-                                <div class="bkg-title">Час:</div>
-                        </div>
-                        <div class="col col-md-6">
-                            <div class="bkg-attr">{{ projection.time }}</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-md-6">
-                            <div class="bkg-title">Зала:</div>
-                        </div>
-                        <div class="col col-md-6">
-                            <div class="bkg-attr">{{ projection.zalaID }}</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-md-6">
-                            <div class="bkg-title">Видео формат:</div>
-                        </div>
-                        <div class="col col-md-6">
-                            <div class="bkg-attr">{{ projection.type }}</div>
-                        </div>
-                    </div>                
-                </div>     
-                <div class="col col-sm-12 col-md-6 col-lg-6">
-                    <h1 class="ch-title">Избор на билет:</h1>
-                    <form action="" method="POST">
-                        <div class="row">
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-title">Вид</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-title">Цена</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-title">Количество</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-title">Намален</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-attr">{{ priceReduced }} лв.</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="spinner">                                
-                                    <span ng-click="decrement()" class="spinnerHandle minus">-</span>
-                                        <input ng-init="counter = 0" type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ counter }}" name="" readonly="readonly">
-                                    <span ng-click="increment()" class="spinnerHandle plus">+</span>                                
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-title">Редовен</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-attr">{{ priceRegular }} лв.</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="spinner">
-                                    <span ng-click="decrement()" class="spinnerHandle minus">-</span>
-                                        <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
-                                    <span ng-click="increment()" class="spinnerHandle plus">+</span>        
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-title">Студентски</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="bkg-attr">{{ priceStudent }} лв.</div>
-                            </div>
-                            <div class="col col-sm-4 col-md-4 col-lg-4">
-                                <div class="spinner">
-                                    <span ng-click="decrement()" class="spinnerHandle minus">-</span>
-                                        <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
-                                    <span ng-click="increment()" class="spinnerHandle plus">+</span>        
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="booking">
-                        <hr class="red-line">
-                        <div class="note">
-                            <p>За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр.</p>
-                            <p>Цената не включва RealD 3D и IMAX 3D очила.</p>
-                        </div>
-                        <div class="total">
-                            <div class="total-ttl">
-                                <p>Тотал:</p>
-                            </div>
-                            <div class="value">
-                                <p>{{ totalPrice | currency:''}} лв</p>
-                            </div>
-                        </div>       
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-title">Количество</div>
                     </div>
                 </div>
-            </div>        
-    </div>
+                <div class="row">
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-title">Намален</div>
+                    </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-attr">{{ priceReduced }} лв.</div>
+                    </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="spinner">                                
+                            <span ng-click="decrement()" class="spinnerHandle minus">-</span>
+                                <input ng-init="counter = 0" type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ counter }}" name="" readonly="readonly">
+                            <span ng-click="increment()" class="spinnerHandle plus">+</span>                                
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-title">Редовен</div>
+                    </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-attr">{{ priceRegular }} лв.</div>
+                    </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="spinner">
+                            <span ng-click="decrement()" class="spinnerHandle minus">-</span>
+                                <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
+                            <span ng-click="increment()" class="spinnerHandle plus">+</span>        
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-title">Студентски</div>
+                    </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="bkg-attr">{{ priceStudent }} лв.</div>
+                    </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                        <div class="spinner">
+                            <span ng-click="decrement()" class="spinnerHandle minus">-</span>
+                                <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
+                            <span ng-click="increment()" class="spinnerHandle plus">+</span>        
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="booking">
+                <hr class="red-line">
+                <div class="note">
+                    <p>За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр.</p>
+                    <p>Цената не включва RealD 3D и IMAX 3D очила.</p>
+                </div>
+                <div class="total">
+                    <div class="total-ttl">
+                        <p>Тотал:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{ totalPrice | currency:''}} лв</p>
+                    </div>
+                </div>       
+            </div>
+        </div>
+    </div> 
     <div class="button btn forward-btn">
         <a href="/booking-ticket/:id/oreder-final"><span class="fwrd-txt">Продължи</span></a>
-    </div>
+    </div>       
+</div>
+
+

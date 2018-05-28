@@ -19,16 +19,6 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/js/app/controllers/cinemas/view-cinema.html',
             title: 'Кина'
         })
-        // .when('/halls', {
-        //     controller: 'HallController',
-        //     templateUrl:'/js/app/controllers/halls/halls.html',
-        //     title: 'Зали'
-        // })
-        // .when('/movies', {
-        //     controller: 'MovieController',
-        //     templateUrl: '/js/app/controllers/movies/movies.html',
-        //     title: 'Филми'
-        // })
         .when('/movies/preview-movie/:id/projections', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/preview-movie.html',
@@ -107,7 +97,7 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: 'NFCtrl',
             templateUrl: '/js/app/controllers/404/view.html'
         });
-    
+
 });
 
 app.config(function($sceDelegateProvider) {

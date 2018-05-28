@@ -17,7 +17,7 @@ app.controller('HomeController', function($scope, $routeParams, MovieService){
     $scope.movies = [];
     $scope.movie = {};
     var errors = [];
-
+    
     $scope.genres = [
         "Комедия",
         "Екшън",
