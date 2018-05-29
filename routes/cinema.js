@@ -33,4 +33,19 @@ router.get('/api/cinemas/view-cinema/:id', function (req, res){
         })
 })
 
+//send message from user in contacts form
+router.post('/api/contacts-form', function (req, res){
+    console.log("Request body", req.body);
+    var messagesDB = req.db.get('messages');
+    messagesDB.insert({
+        creationDate: new Date(),
+        username: req.body.message.username,
+        email: req.body.message.email,
+        phoneNumber: req.body.message.phoneNumber,
+        textMessage: req.body.message.textMessage
+    }).then(function (data) {
+        res.sendStatus(200);
+    })
+})
+
 module.exports = router;

@@ -48,12 +48,8 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
             console.log('$rootScope.user', $rootScope.user);
             UserService.showUserInfo()
                 .then(function (data){
-                    // $scope.firstName = data.firstName;
-                    // $scope.lastName = data.lastName;
-                    // $scope.email = data.email;
                     $scope.user.firstName = data.firstName;
                     $scope.user.lastName = data.lastName;
-                    $scope.user.email = data.email;
                     console.log('$scope.user = data;', data);
                     // $location.path('/profile');
                     $scope.$apply();
@@ -75,6 +71,7 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
             UserService.changeUserInfo($scope.user)
             .then(function (data){
                 $rootScope.user = data;
+                $scope.msg = "Промените бяха записани успешно!"
                 $scope.$apply();
             })
             .catch(function (err){
@@ -84,19 +81,35 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
     }
 
     //Change user password 
-    $scope.changePassword = function ($event){
+    $scope.changePassword = function ($event, invalid){
         $event.preventDefault();
 
         if(!$rootScope.user){
             $location.path('/login');
         } else {
             console.log('$scope.newPassUser', $scope.user);
-            UserService.changePassword($scope.user)
+            UserService.changePassword($scope.user, invalid)
                 .then(function (data){
-                    $rootScope.user = data;
-                    $scope.$apply();
+                    if(!invalid){                        
+                        $rootScope.user = data;
+                        $scope.msg = true;
+                        $scope.msg = "Промените бяха записани успешно!";                       
+                        $scope.$apply();
+                    }                  
                 })
                 .catch(function (err){
+                    console.log('Error', err);
+                    console.log('err.data', err.data);
+                    switch(err.data){
+                        case 'Bad Request' :   
+                        console.log('Паролата не съвпада!');  
+                            $scope.errorMsg = true;                        
+                            $scope.errorMsg = 'Паролата не съвпада!';
+                            break;
+                        default:
+                            $scope.errorMsg = false;
+                    }
+                    $scope.$apply();
                     errors.push(err);
                 })
         }

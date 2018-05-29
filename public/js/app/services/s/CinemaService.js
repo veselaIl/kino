@@ -1,6 +1,7 @@
 app.factory('CinemaService', function ($http){
     var cinemas = [];
     var cinema = {};
+    var message = {};
 
     function getCinemas(){
         return new Promise(function (resolve, reject){
@@ -12,8 +13,8 @@ app.factory('CinemaService', function ($http){
                 })
                 .catch(function (err){
                     reject(err);
-                })
-        })
+                });
+        });
     }
 
     function getCinema(id){
@@ -28,13 +29,26 @@ app.factory('CinemaService', function ($http){
             })
             .catch(function (err){
                 reject(err);
-            })
-        })
+            });
+        });
        
     }
 
+    function sendMessage(message){
+        return new Promise(function (resolve, reject){
+            $http.post('/api/contacts-form', { message : message })
+                .then(function (response){
+                    console.log('sendMessage', response);
+                    resolve(response);
+                })
+                .catch(function (err){
+                    reject(err);
+                })
+        })
+    }
     return {
         getCinemas: getCinemas,
-        getCinema: getCinema
+        getCinema: getCinema,
+        sendMessage: sendMessage
     }
 })

@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 var app = angular.module('App', ['angular.filter','ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
+=======
+var app = angular.module('App', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ngMessages']);
+>>>>>>> e102ff5541bb0a6f116212ee6229e77b62152ed8
 
 app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);

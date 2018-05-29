@@ -68,23 +68,34 @@
                     <hr class="red-line">
                     
                 </div>                
-                <form class="contants-form">
+                <form ng-submit="sendMessage($event, form.$invalid)" class="contants-form" name="contactsForm" action="" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="" value="" placeholder="Вашето име">
+                    <input ng-model="message.username" type="text" class="form-control" name="username" value="" placeholder="Вашето име">
+                    <div ng-show="contactsForm.username.$touched && contactsForm.username.$invalid">Моля въведете вашето име&#33;</div>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" name="" value="" placeholder="Вашият e-mail">
+                    <input ng-model="message.email" type="email" class="form-control" name="email" value="" placeholder="Вашият e-mail">
+                    <span ng-if="message.email && !validateEmail() && isSubmitted()">Моля въведете валиден имейл!</span>
+                    <div ng-show="contactsForm.email.$touched && contactsForm.email.$invalid">Моля въведете вашият имейл адрес&#33;</div>                    
                 </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control" name="" value="" placeholder="Телефонен номер">
+                    <input ng-model="message.phoneNumber" type="tel" class="form-control" name="phoneNumber" value="" placeholder="Телефонен номер">
+                    <span ng-if="message.phoneNumber && !validatePhone() && isSubmitted()">Моля въведете валиден телефон!</span>
+                    <div ng-show="contactsForm.phoneNumber.$touched && contactsForm.phoneNumber.$invalid">Моля въведете вашият телефонен номер&#33;</div>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="" rows="3" placeholder="Съобщение"></textarea>
+                    <textarea ng-model="message.textMessage" class="form-control" name="textMessage" rows="3" placeholder="Съобщение"></textarea>
                 </div>
-                <button class="button btn" type="submit" name="button">
+                <button class="button btn" name="button">
                     <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Изпрати</span>
                 </button>
                 </form>
+                <!-- alert -->
+                <div uib-alert 
+                    ng-repeat="alert in alerts" 
+                    ng-class="'alert-' + (alert.type || 'warning')" 
+                    close="closeAlert($index)"
+                >{{alert.msg}}</div>
             </div>
         </div>
     </div>
