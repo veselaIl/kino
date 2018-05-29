@@ -271,6 +271,7 @@ a {
   border-radius: 6px;
   padding: 20px 0;
   color: white;
+  text-transform: uppercase;
 }
 .cinema-container{
   background-color: rgba(0, 0, 0, 0.2);
@@ -1675,8 +1676,74 @@ div.date-picker div.dates #movieCalendar {
   text-transform: uppercase;
   width: 150px;
   z-index: 2;
+  font-size:24px;
+}
+/* SEAT MAP */
+.seats{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.seat{
+  color:rgb(172, 15, 15);
+  font-weight: bold;
+}
+.seat-map h2{
+  display:inline-block;
+  width:300px;
+  color:#333;
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+}
+.seat-map .edit-btn{
+  display:inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid rgb(63, 63, 63);
+  background-color: rgb(75, 73, 73);
+  color:white;
+}
+.seat-map .edit-btn a{
+  text-decoration: none;
+  font-size:16px;
+  color:white;
+}
+.seat-map .titleRow{
+  color:#b30c0c;
+  font-size: 15px;
+  display: block;
+  font-weight: bold;
+}
+.seat-map th{
+  margin-right: 15px;
+  color:#333;
+  display: inline-block;
+  padding: 3px;
+  font-size: 15px;
+}
+.seat-map .img-table{
+  width:35px;
+  /* height: 25px; */
+  position: absolute;
+  z-index: 1;
+}
+.seat-map .text-table{
+  position: relative;
+  z-index: 2;
+  padding:5px 14px;
+  text-align: center;
+}
+.seat-map .seat {
+  line-height: 3.5rem;
+  position:relative;
 }
 
+/* SEAT MAP END */
+.row-seat{
+  display: inline-block;
+  bottom: 30%;
+  margin-left: 5%;
+}
 .btn-item span {
 	align-items: center;
   background: rgba(0, 0, 0, 1);

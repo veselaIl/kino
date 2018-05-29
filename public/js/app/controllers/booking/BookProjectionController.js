@@ -1,4 +1,4 @@
-app.controller('BookProjectionController', ['$scope', '$rootScope', 'BookingService', function($scope, $rootScope, $routeParams, BookingService){
+app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$routeParams', 'BookingService', function($scope, $rootScope, $routeParams, BookingService){
     $scope.projections = [];
     $scope.today = moment(new Date(),'DD-MM-YYYY');
     $scope.week = [];    
@@ -6,6 +6,14 @@ app.controller('BookProjectionController', ['$scope', '$rootScope', 'BookingServ
         $scope.activeDay = day;
         console.log($scope.activeDay);
     }
+
+    $scope.movieTypes = [
+        '2D',
+        '3D',
+        'IMAX',
+        '4DX'
+    ]
+
     $scope.counter = 0;
     $scope.priceReduced = 8;
     $scope.priceRegular = 12;
@@ -33,16 +41,18 @@ app.controller('BookProjectionController', ['$scope', '$rootScope', 'BookingServ
             }
         }
     }
-    console.log('$routeParams', $routeParams);
-    function showBookingPage(kinoID, zalaID, movieID, time){
-        BookingService.getBookingTicket(kinoID, zalaID, movieID, time)
+    function showBookingPage(id){
+        BookingService.getBookingTicket(id)
             .then(function (data){
-                console.log('showBookingPage data', data);
+                console.log(data,'booking details')
+                $scope.bookingDetails = data;
+                $scope.$apply();
+                // console.log('showBookingPage data', data);
             })
             .catch(function (err){
                 console.log(err);
             });
     }
-
+    showBookingPage($routeParams._id);
     moment.locale("bg");
 }])

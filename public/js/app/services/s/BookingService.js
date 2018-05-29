@@ -1,11 +1,10 @@
 app.factory('BookingService', function ($http){
     
-    function getBookingTicket(kinoID, zalaID, movieID, time){
-        console.log("movieId:", movieId);
+    function getBookingTicket(id){
+        console.log(id, 'Projection ID')
         return new Promise(function (resolve, reject){
-            $http.get('/api/book/'+ kinoID +'/'+ zalaID + '/' + movieID + '/' + time)
+            $http.get('/api/book/'+ id)
                 .then(function (response){
-                    console.log('getBookingTicket', response.data);
                     resolve(response.data);
                 })
                 .catch(function(err){

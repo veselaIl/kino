@@ -7,7 +7,7 @@
                     <div class="bkg-title">Прожекция:</div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="bkg-attr">{{ movie.name }}</div>
+                    <div class="bkg-attr">{{bookingDetails.movie[0].name }}</div>
                 </div>
             </div>
             <div class="row">
@@ -15,7 +15,7 @@
                     <div class="bkg-title">Кино:</div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="bkg-attr">{{ cinema.name }}</div>
+                    <div class="bkg-attr">{{ bookingDetails.cinema[0].name }}</div>
                 </div>
             </div>
             <div class="row">
@@ -23,7 +23,7 @@
                     <div class="bkg-title">Дата:</div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="bkg-attr">{{ projection.time }}</div>
+                    <div class="bkg-attr">{{ bookingDetails.projection.time * 1000 | date : 'dd MMMM' }}</div>
                 </div>
             </div>
             <div class="row">
@@ -31,7 +31,7 @@
                     <div class="bkg-title">Час:</div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="bkg-attr">{{ projection.time }}</div>
+                    <div class="bkg-attr">{{ bookingDetails.projection.time * 1000 | date: 'HH:mm' }}</div>
                 </div>
             </div>
             <div class="row">
@@ -39,7 +39,7 @@
                     <div class="bkg-title">Зала:</div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="bkg-attr">{{ projection.zalaID }}</div>
+                    <div class="bkg-attr">{{ bookingDetails.projection.zalaID }}</div>
                 </div>
             </div>
             <div class="row">
@@ -47,70 +47,24 @@
                     <div class="bkg-title">Видео формат:</div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="bkg-attr">{{ projection.type }}</div>
+                    <div class="bkg-attr">{{ movieTypes[bookingDetails.projection.type] }}</div>
                 </div>
             </div>                
         </div>     
         <div class="col col-sm-12 col-md-6 col-lg-6">
-            <h1 class="ch-title">Избор на билет:</h1>
-            <form action="" method="POST">
-                <div class="row">
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-title">Вид</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-title">Цена</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-title">Количество</div>
-                    </div>
+            <h1 class="ch-title">Избор на място:</h1>
+            <div class="row-seat">
+                <div class='seat-map'>
+                    <table>
+                    <tr class="seats" ng-repeat="row in bookingDetails.projection.mesta track by $index">
+                        <td class='seat' ng-repeat='seat in row track by $index' >
+                        <img class='img-table' src='/images/seat.gif'>
+                        <span class='text-table'></span>
+                        </td>
+                    </tr>
+                    </table>
                 </div>
-                <div class="row">
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-title">Намален</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-attr">{{ priceReduced }} лв.</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="spinner">                                
-                            <span ng-click="decrement()" class="spinnerHandle minus">-</span>
-                                <input ng-init="counter = 0" type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ counter }}" name="" readonly="readonly">
-                            <span ng-click="increment()" class="spinnerHandle plus">+</span>                                
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-title">Редовен</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-attr">{{ priceRegular }} лв.</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="spinner">
-                            <span ng-click="decrement()" class="spinnerHandle minus">-</span>
-                                <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
-                            <span ng-click="increment()" class="spinnerHandle plus">+</span>        
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-title">Студентски</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="bkg-attr">{{ priceStudent }} лв.</div>
-                    </div>
-                    <div class="col col-sm-4 col-md-4 col-lg-4">
-                        <div class="spinner">
-                            <span ng-click="decrement()" class="spinnerHandle minus">-</span>
-                                <input type="text" class="quantitySpinner" data-min="0" data-max="6" value="{{ ::counter }}" name="" readonly="readonly">
-                            <span ng-click="increment()" class="spinnerHandle plus">+</span>        
-                        </div>
-                    </div>
-                </div>
-            </form>
+            </div>   
             <div class="booking">
                 <hr class="red-line">
                 <div class="note">

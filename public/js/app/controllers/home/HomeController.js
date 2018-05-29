@@ -114,7 +114,12 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
         return $scope.selectedCinemas.indexOf(cinema) > -1;
     }
 
-    
+    MovieService.getMovie($routeParams.id)
+        .then(function (movie){
+            console.log(movie, 'movie');
+                        $scope.movie = movie;
+                        $scope.$apply();
+        })
     
    
 

@@ -518,7 +518,17 @@ span.genre{
   list-style-type: none;
   display:inline-block;
 }
-
+.dateProjection{
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #d5710f;
+}
+.projection-time-link{
+  text-decoration: none !important;
+}
+.projection-date-time ul{
+  padding:0;
+}
 .projection-hour{
   padding:10px 18px;
   background-color: #f5541b;
