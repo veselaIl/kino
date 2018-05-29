@@ -1,5 +1,17 @@
 app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionService', function($scope, $routeParams, ProjectionService){
     
+
+    MovieService.getMovie($routeParams.id)
+    .then(function (data){
+         $scope.movie = data.movie;
+         console.log('$scope.movie', $scope.movie);
+         // console.log("Genre: ", movie.genre);
+         // $scope.movie.genre = movie.genre;
+         $scope.$apply();
+    })
+    .catch(function (err){
+         errors.push(err);
+    })
     function showProjections(date) {
         ProjectionService.getProjections(date)
             .then(function (data) {
@@ -31,6 +43,7 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
         console.log('$scope.activeDay', $scope.activeDay.getTime());
         showProjections(day.toDate());
     }
+
 
     //Get all projections
     console.log('projections getProjections');

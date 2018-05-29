@@ -1,5 +1,5 @@
 
-var app = angular.module('App', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ngMessages']);
+var app = angular.module('App', ['angular.filter','ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
 
 app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -19,7 +19,7 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/js/app/controllers/cinemas/view-cinema.html',
             title: 'Кина'
         })
-        .when('/movies/preview-movie/:id/projections', {
+        .when('/movies/:id/', {
             controller: 'MovieController',
             templateUrl: '/js/app/controllers/movies/preview-movie.html',
             title: 'Филми'
@@ -34,7 +34,7 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/js/app/controllers/projections/projections.html',
             title: 'Прожекции'
         })
-        .when('/projections/book/:kinoId/:zalaID/:movieID/:time', {
+        .when('/book/:_id', {
             controller: 'BookProjectionController',
             templateUrl: '/js/app/controllers/booking/booking-ticket.html',
             title: 'Резервирай'
@@ -76,10 +76,6 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: 'UserController',
             templateUrl: '/js/app/controllers/user/orders.html',
             title: 'Моят профил'
-        })
-        .when('/movies/preview-movie/', {
-            controller: 'MovieController',
-            templateUrl: '/js/app/controllers/movies/preview-movie.html'
         })
         .when('/booking-ticket/:id', {
             controller: 'BookingController',

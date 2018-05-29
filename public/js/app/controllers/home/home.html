@@ -84,7 +84,7 @@
     </div>
     <div ng-if="movies.length" class="row movies">        
         <div ng-if="filter.length" ng-repeat="movie in filter track by $index" class="col col-lg-3 col-md-4 col-sm-6 col-xs-8 movie-content">
-            <a href="/movies/preview-movie/{{ movie.movieID }}/projections">
+            <a href="/movies/{{ movie.movieID }}">
                 <img class="thumbnail-sm" ng-src="/images/movies/{{ movie.image }}">
                 <h3 class="title-sm">{{ movie.name }}</h3>
                 <div class="premiere">Премиера: {{ movie.premierDate | date : 'dd MMMM yyyy'}} | {{ movie.duration }} минути</div>

@@ -39,11 +39,11 @@ router.get('/api/projections', function (req, res){
         }
     }
 
-    console.log('find', findObj, findFields);
+    // console.log('find', findObj, findFields);
 
     req.db.get('projection').find(findObj, findFields)
         .then(function (projections) {
-            console.log('projections', projections.length, projections);
+            // console.log('projections', projections.length, projections);
             if (projections.length) {
                 var result = {
                     projections: projections
@@ -55,10 +55,10 @@ router.get('/api/projections', function (req, res){
                         cinemas.push(p.kinoID);
                     }
                 });
-                console.log('cinemas', cinemas);
+                // console.log('cinemas', cinemas);
                 req.db.get('kino').find({ kinoID: { $in : cinemas } })
                     .then(function (cinemas){
-                        console.log('cinemas', cinemas.length);
+                        // console.log('cinemas', cinemas.length);
                         if(cinemas.length){
                             result['cinemas'] = cinemas;                        
                         } else {
@@ -78,8 +78,8 @@ router.get('/api/projections', function (req, res){
                 projections.forEach(p => {
                     
                 })
-                console.log('movies', movies);
-                console.log('times', times);
+                // console.log('movies', movies);
+                // console.log('times', times);
 
                 req.db.get('movies').find({ movieID: { $in : movies } })
                     .then(function (movies) {
@@ -191,7 +191,7 @@ router.get('/api/cinemas/:id/projections', function (req, res){
 
 //Get all projections for current movie and show all movie projections in all cinemas
 router.get('/api/movies/preview-movie/:id/projections', function (req, res){
-    console.log('/api/movies/preview-movie/:id/projections',req.params.id, req.query.date);
+    // console.log('/api/movies/preview-movie/:id/projections',req.params.id, req.query.date);
     //GET all projections
 
     var findObj = {},
@@ -206,10 +206,10 @@ router.get('/api/movies/preview-movie/:id/projections', function (req, res){
     startDate.setSeconds(0);
     startDate.setMilliseconds(0);
 
-    console.log(startDate);
-    console.log(startDate.getTime());
-    console.log(startDate.getTime()/1000);
-    console.log(parseInt(startDate.getTime()/1000));
+    // console.log(startDate);
+    // console.log(startDate.getTime());
+    // console.log(startDate.getTime()/1000);
+    // console.log(parseInt(startDate.getTime()/1000));
 
     var findObj = {
         time : {
@@ -226,21 +226,21 @@ router.get('/api/movies/preview-movie/:id/projections', function (req, res){
         }
     }
 
-    console.log('find', findObj, findFields);
+    // console.log('find', findObj, findFields);
 
     req.db.get('projection').find(findObj, findFields)
         .then(function (projections) {
-            console.log('projections', projections.length, projections);
+            // console.log('projections', projections.length, projections);
             if (projections.length) {
                 var result = {
                     projections: projections
                 }  
                 req.db.get('movies').findOne({ movieID: +req.params.id })
                     .then(function (movie){
-                        console.log('movie', movie);
+                        // console.log('movie', movie);
                         if(movie){
                             result['movie'] = movie;
-                            console.log('result', result);
+                            // console.log('result', result);
                                 
                         } else {
                             res.sendStatus(404);
@@ -248,7 +248,7 @@ router.get('/api/movies/preview-movie/:id/projections', function (req, res){
                     });      
 
                 cinemas = [];
-                console.log('result after', result);
+                // console.log('result after', result);
                 projections.forEach(p => {                  
                     if (p.movieID === +req.params.id && cinemas.indexOf(p.kinoID) === -1) {
                         //console.log('findObj.kinoID', findObj.kinoID);
@@ -257,13 +257,13 @@ router.get('/api/movies/preview-movie/:id/projections', function (req, res){
                     }                     
                 });   
 
-                console.log('cinemas', cinemas);
+                // console.log('cinemas', cinemas);
 
                 req.db.get('kino').find({ kinoID: { $in : cinemas } })
                     .then(function (cinemas) {
-                        console.log('cinemas', cinemas.length);
+                        // console.log('cinemas', cinemas.length);
                         if (cinemas.length){
-                            console.log("projectios.js : ", cinemas);
+                            // console.log("projectios.js : ", cinemas);
                             result['cinemas'] = cinemas;                           
                             res.json(result);
                         } else {
