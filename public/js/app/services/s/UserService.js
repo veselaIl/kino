@@ -13,13 +13,26 @@ app.factory('UserService', function ($http){
         });
     }
 
-    function showUserInfo(user){
+    // function showUserInfo(user){
+    //     return new Promise(function (resolve, reject){
+    //         $http.get('/api/profile/personal-info', { user: user })
+    //             .then(function (response) {
+    //                 console.log('User Service showUserInfo: ', user);
+    //                 console.log('User Service showUserInfo: ', response.data);
+    //                 resolve(response.data.user);
+    //             })
+    //             .catch(function (err){
+    //                 reject(err);
+    //             });
+    //     });
+    // }
+
+    function showUserInfo(){
         return new Promise(function (resolve, reject){
-            $http.get('/api/profile', { user: user })
+            $http.get('/api/profile/personal-info')
                 .then(function (response) {
-                    console.log('User Service showUserInfo: ', user);
                     console.log('User Service showUserInfo: ', response.data);
-                    resolve(response.data.user);
+                    resolve(response.data);
                 })
                 .catch(function (err){
                     reject(err);
@@ -30,7 +43,7 @@ app.factory('UserService', function ($http){
     function changeUserInfo(user){
         console.log('UserService changeUserInfo: ', user);
         return new Promise(function (resolve, reject){
-            $http.post('/api/profile', { user: user })
+            $http.post('/api/profile/personal-info', { user: user })
                 .then(function (response){
                     console.log("changeUserInfo", response);
                     resolve(response.data);
@@ -70,8 +83,8 @@ app.factory('UserService', function ($http){
 
     return{
         addToFavourites: addToFavourites,
-        changeUserInfo: changeUserInfo,
         showUserInfo: showUserInfo,
+        changeUserInfo: changeUserInfo,
         changePassword: changePassword,
         getFavourites: getFavourites
     }

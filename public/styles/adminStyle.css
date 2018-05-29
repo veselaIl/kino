@@ -736,6 +736,13 @@ input[type="file"]{
 .users-view h3{
   margin-top: 20px 0 0 5px;
 }
+.bolder{
+  font-weight: bold;
+}
+.bolder span{
+  padding-left: 15px;
+  font-weight: normal;
+}
 /* *****USERS END ****** */
 /* ************ EDIT FORM - ЗАЛА ************* */
 .edit-form{
@@ -1129,6 +1136,51 @@ table> thead{
   background-color:#a50000;
   border:1px solid rgb(240, 0, 0);
   cursor: pointer;
+}
+
+/*MESSAGES - VIEW MESSAGE*/
+.content.message-container{
+  padding: 10px;
+}
+.message-container .add-movie{
+  margin: 0;
+}
+h3.userMsg{
+  /* text-align: center; */
+}
+.view-message{
+  padding: 10px;
+  background-color: #9c1202;
+  color: white;
+  font-size: 20px;
+  /* text-align: center; */
+  margin: 0 10px;
+}
+.msgHeader{
+  font-size: 20px;
+  font-weight: bold;
+  /* text-align: center; */
+}
+.userMsg>span{
+  padding-left: 20px;
+}
+.msgHeader span{
+  font-size: 18px;
+  /* text-align: center; */
+}
+.msg-username{
+  font-size: 24px;
+}
+.msgContent{
+  font-size: 18px;
+  display: block;
+  padding-bottom: 20px;
+  /* text-align: center; */
+}
+.msgText{
+  font-size: 20px;
+  padding: 20px 0;
+  text-align: center;
 }
 @media (min-width: 992px){
   .panel-collapse{

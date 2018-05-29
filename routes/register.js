@@ -43,6 +43,7 @@ router.post('/api/register', function(req, res){
                         .then(function(users){
                             var user = {};
                             if (users.length){
+                                user.registerDate = new Date();
                                 user.email = req.body.user.email;
                                 user.firstName = '';
                                 user.lastName = '';
@@ -50,6 +51,7 @@ router.post('/api/register', function(req, res){
                                 user.favourites = [];
                                 user.reservations = [];
                             } else {
+                                user.registerDate = new Date();
                                 user.email = req.body.user.email;
                                 user.isAdmin = true;
                             }

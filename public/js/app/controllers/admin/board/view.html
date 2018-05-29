@@ -1,70 +1,38 @@
-<div class='content'>
-        <h1 class='title-board'>Табло</h1>
-    <!--TABLO-->
-        <div class="row">
-          <div class="col-lg-3 col-md-6">
-            <div class="panel panel-first">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-3"><i class="fa fa-user fa-5x"></i></div>
-                  <div class="col-xs-9 text-right">
-                    <div class="huge">26</div>
-                    <div>Нови потребители</div>
-                  </div>
-                </div>
-              </div><a href="/admin/users">
-                <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                  <div class="clearfix"></div>
-                </div></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="panel panel-green">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-3"><i class="fa fa-tasks fa-5x"></i></div>
-                  <div class="col-xs-9 text-right">
-                    <div class="huge">12</div>
-                    <div>Задачи</div>
-                  </div>
-                </div>
-              </div><a class='panel-href' href="#">
-                <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                  <div class="clearfix"></div>
-                </div></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-3"><i class="fa fa-ticket fa-5x"></i></div>
-                  <div class="col-xs-9 text-right">
-                    <div class="huge">124</div>
-                    <div>Резервирани билетa</div>
-                  </div>
-                </div>
-              </div><a href="#">
-                <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                  <div class="clearfix"></div>
-                </div></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-3"><i class="fa fa-support fa-5x"></i></div>
-                  <div class="col-xs-9 text-right">
-                    <div class="huge">13</div>
-                    <div>Съобщения</div>
-                  </div>
-                </div>
-              </div><a class='panel-href' href="#">
-                <div class="panel-footer"><span class="pull-left">Детайли</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                  <div class="clearfix"></div>
-                </div></a>
-            </div>
-          </div>
-        </div>
+<div class="content">
+  <div class="row users-view">
+    <div class="col-12 col-sm-8 col-xs-12">
+      <h3>Съобщения</h3>
     </div>
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+      <thead>
+        <tr class='head-table'>
+          <th st-sort="time">Дата</th>
+          <!-- <th>Потребителско име</th> -->
+          <th>Е-мейл</th>
+          <!-- <th>Телефонен номер</th> -->
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="message in messages track by $index " current-page="currentPage">
+          <td>{{ message.creationDate | date: 'dd MMMM yyyy | HH:mm'}}ч.</td>
+          <!-- <td>{{ message.username }}</td> -->
+          <td>{{ message.email }}</td>
+          <!-- <td>{{ message.phoneNumber }}</td> -->
+          <td class="buttonView">
+            <a class="btn btn-sm btn-danger" href="/admin/messages/{{message._id}}">
+              <i class="glyphicon glyphicon-eye-open"></i>
+            </a>
+          </td>
+          <td class="buttonView">
+            <a class="btn btn-sm btn-danger" mwl-confirm title="{{vm.titleBox}}" message="{{vm.message}}" on-confirm="vm.onConfirm(message._id)"
+              confirm-text='{{vm.confirmText}}' cancel-text="{{vm.cancelText}}">
+              <i class="glyphicon glyphicon-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

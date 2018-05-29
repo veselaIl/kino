@@ -67,6 +67,11 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngSanitize', 'ui.
                 templateUrl: 'js/app/controllers/admin/board/view.html',
                 title: 'Съобщения'
             })
+            .when('/admin/messages/:id', {
+                controller: 'AdminController',
+                templateUrl: 'js/app/controllers/admin/board/view-message.html',
+                title: 'Съобщениe'
+            })
             .otherwise({
                 controller: 'NotFoundController',
                 templateUrl: '/js/app/controllers/404/view.html',

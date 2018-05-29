@@ -1,4 +1,4 @@
-app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionService', function($scope, $routeParams, ProjectionService){
+app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionService', 'MovieService', function($scope, $routeParams, ProjectionService, MovieService){
     
 
     MovieService.getMovie($routeParams.id)

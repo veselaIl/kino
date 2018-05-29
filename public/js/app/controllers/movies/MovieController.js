@@ -44,7 +44,7 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService, 
           return  p.time.format('DD MM') === item.format('DD MM') 
         });
         // return item.format('DD MM') === date.format('DD MM')
-    }   
+    }
 
     function showMovieProjections(id, date) {
         ProjectionService.getMovieProjections(id, date)
@@ -85,5 +85,7 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService, 
     }
 
     moment.locale("bg");
+
+    $scope.loginNotRequired = true;
 
 })
