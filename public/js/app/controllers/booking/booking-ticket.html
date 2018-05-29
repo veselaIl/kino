@@ -1,127 +1,69 @@
-<!--PAGE FOR CHOOSING TYPE AND QUANTITY OF TICKET-->
-<div class="container-main">
-    <!-- Inspired by https://drc8llcc7rqy7.cloudfront.net/shots/2403775/day-45-info-card-large -->
-
-<div class="row">
-    <div class="info-card-movie">
-        <div class="bg-img-movie"><img src="/images/movies/{{bookingDetails.movie[0].largeImage}}" alt="" />
-        </div>
-            
-        <div class="movie-text">
-            <h1>{{bookingDetails.movie[0].name}}</h1>
-        </div>
-
-        
-        <div class="stats-movie">
-            <ul>
-            <li>
-                <p class="heading-movie">Country</p>
-                <p class="footing-movie">USA</p>
-            </li>
-            <li>
-                <p class="heading-movie">Districts</p>
-                <p class="footing-movie">97</p>
-            </li>
-            <li>
-                <p class="heading-movie">Population</p>
-                <p class="footing-movie">18,231,987</p>
-            </li>
-            </ul>
-            <div class="btn-movie">Location</div>
-        </div>
-    </di>
-</div>
+<div class="container-book">
     <div class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-6 projection-info">
-            <div class="row">
-                <div class="col col-md-6">
-                    <div class="bkg-title">Прожекция:</div>
-                </div>   
-                <div class="col col-md-6">
-                    <div class="bkg-attr">{{bookingDetails.movie[0].name }}</div>
+        <div class="info-card-movie col col-sm-12 col-md-12 col-lg-12">
+            <div class="background-header">
+                <img class="background-header-image" src="/images/movies/{{bookingDetails.movie[0].largeImage}}">
+                <div class="row">
+                    <div class="col col-sm-6 col-md-5 col-lg-5 movie-details-header">
+                        <div class="bg-img-movie">
+                            <img src="/images/movies/{{bookingDetails.movie[0].image}}" align="right"alt="" />
+                        </div>
+                    </div>
+                    <div class="col col-sm-6 col-md-7 col-lg-7 movie-details-header">
+                        <h1 class="header-booking">Разервация</h1>
+                        <h2 class="heading-movie">{{ bookingDetails.cinema[0].name }} </h2>
+                        <h2 class="heading-movie">{{bookingDetails.movie[0].name }}</h2>
+                        <h2 class="heading-movie">{{movieTypes[bookingDetails.projection.type]}}<h2>                        
+                        <p class="booking-date">Дата {{ bookingDetails.projection.time * 1000 | date : 'dd MMMM' }} Час {{ bookingDetails.projection.time * 1000 | date: 'HH:mm' }} </p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col col-md-6">
-                    <div class="bkg-title">Кино:</div>
-                </div>
-                <div class="col col-md-6">
-                    <div class="bkg-attr">{{ bookingDetails.cinema[0].name }}</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-md-6">
-                    <div class="bkg-title">Дата:</div>
-                </div>
-                <div class="col col-md-6">
-                    <div class="bkg-attr">{{ bookingDetails.projection.time * 1000 | date : 'dd MMMM' }}</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-md-6">
-                    <div class="bkg-title">Час:</div>
-                </div>
-                <div class="col col-md-6">
-                    <div class="bkg-attr">{{ bookingDetails.projection.time * 1000 | date: 'HH:mm' }}</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-md-6">
-                    <div class="bkg-title">Зала:</div>
-                </div>
-                <div class="col col-md-6">
-                    <div class="bkg-attr">{{ bookingDetails.projection.zalaID }}</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-md-6">
-                    <div class="bkg-title">Видео формат:</div>
-                </div>
-                <div class="col col-md-6">
-                    <div class="bkg-attr">{{ movieTypes[bookingDetails.projection.type] }}</div>
-                </div>
-            </div>                
-        </div>     
-        <div class="col col-sm-12 col-md-6 col-lg-6">
-            <h1 class="ch-title">Избор на място:</h1>
+        </div>
+    </div>
+    <div class="row reservation">
+        <p>Изберете свободни места и кликнете върху тях, за да ги маркирате. Екранът показва посоката на гледане. Отстоянието на седалките от екрана не представлява действителното разположение в залата.
+        <br> Свободни места: <span class='color-blue'></span> Заети места: <span class='color-black'></span></p>
+        <div class="movie-seat-map col col-sm-12 col-md-5 col-lg-5">
+            <!-- <h1 class="choose-seat-title">Избор на място:</h1> -->
             <div class="row-seat">
                 <div class='seat-map'>
                     <table>
                     <thead>
-                        <th class="screen-seat-map">screen</th>
+                        <th class="screen-seat-map">екран</th>
                     </thead>
                     <tbody>
                         <tr class="seats" ng-repeat="row in bookingDetails.projection.mesta track by $index">
                             <td class='seat' ng-repeat='seat in row track by $index' >
-                            <img class='img-table' src='/images/seat.gif'>
-                            <span class='text-table'></span>
+                            <label class="btn-reservation">
+                                <input type="checkbox" ng-click="checkSelected($parent.$index,$index)" ng-model="reserveSeat[$parent.$index][$index]">
+                                <img class='img-table' src='/images/seat.gif'>
+                            </label>
                             </td>
                         </tr>
                     </tbody>
-                   
+                    
                     </table>
                 </div>
-            </div>   
-            <div class="booking">
-                <hr class="red-line">
-                <div class="note">
-                    <p>За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр.</p>
-                    <p>Цената не включва RealD 3D и IMAX 3D очила.</p>
-                </div>
-                <div class="total">
-                    <div class="total-ttl">
-                        <p>Тотал:</p>
-                    </div>
-                    <div class="value">
-                        <p>{{ totalPrice | currency:''}} лв</p>
-                    </div>
-                </div>       
             </div>
+        </div>   
+        <div class="booking col col-sm-12 col-md-6 col-lg-6">
+            <hr class="red-line">
+            <div class="note">
+                <p>За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр.</p>
+                <p>Цената не включва RealD 3D и IMAX 3D очила.</p>
+            </div>
+            <div class="total">
+                <div class="total-ttl">
+                    <p>Общо: </p>
+                </div>
+                <div class="value">
+                    <p>{{ totalPrice | currency:''}} лв</p>
+                </div>
+            </div>
+            <div class="button btn forward-btn btn-reservation">
+                <a href="/booking-ticket/{{bookingDetails.projection._id}}/oreder-final"><span class="fwrd-txt text-reservation">Резервирай</span></a>
+            </div>       
         </div>
-    </div> 
-    <div class="button btn forward-btn">
-        <a href="/booking-ticket/:id/oreder-final"><span class="fwrd-txt">Продължи</span></a>
-    </div>       
+    </div>
 </div>
-
 

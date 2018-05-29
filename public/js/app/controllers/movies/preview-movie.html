@@ -77,12 +77,12 @@
                                             <tr>
                                             <th scope="row"></th>
                                             <td>РЕЖИСЬОР:</td>
-                                            <td>{{ movie.movie[0].directorName }}</td>
+                                            <td>{{ movie.movie[0].directorName}}</td>
                                             </tr>
                                             <tr>
                                             <th scope="row"></th>
                                             <td>КАТЕГОРИЯ:</td>
-                                            <td>Не се препоръчва за деца под {{ movie.movie[0].suitable }}</td>
+                                            <td>Не се препоръчва за деца под {{movie.movie[0].suitable}}</td>
                                             </tr>
                                             <tr>
                                             <th scope="row"></th>
@@ -105,7 +105,7 @@
                         <div ng-controller="UserController" class="row">
                             <div ng-controller="CollapseController">
                                 <div ng-if="userChecked && $root.user" class="col col-sm-12 col-md-12">
-                                    <a href="#"  class="button btn buy-ticket favourites float-right"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a>
+                                    <!-- <a href="#"  class="button btn buy-ticket favourites float-right"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a> -->
                                 </div>
                             </div>
                         </div>

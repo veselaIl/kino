@@ -804,11 +804,27 @@ table{
 
 /*BOKING TICKET PAGE*/
 /*Table with info for PROJECTION - CINEMA, DATE, HOUR AND HALL FOR PROJECTIONS MOVIE*/
-
+.background-header-image{
+  height: 500px;
+  width: 100%;
+  position:absolute;
+  filter:blur(5px) brightness(0.30);
+  z-index: -1;
+}
+.movie-details-header {
+  position:relative;
+  padding-top:5%;
+}
+.booking-date{
+  font-size: 20px; 
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+}
 /*Table for ticket choise*/
 .ch-title{
   font-size: 28px;
-  color: orange;
+  color: #f86d00;
   margin: 0 0 20px 0;
 }
 .col-md-6,.col-md-4>.bkg-title{
@@ -885,6 +901,9 @@ table{
   font-style: italic;
   color: white;
 }
+.note p{
+  font-size:16px;
+}
 .total{
   margin-top: 6px;
   display: flex;
@@ -893,13 +912,17 @@ table{
 .total-ttl{
   color: white;
   font-size: 25px;
-  padding-left: 150px;
+  /* padding-left: 150px; */
 }
 .value{
+  width:100%;
   color: white;
   font-size: 30px;
-  padding-left: 150px;
+  text-align:right;
+  text-align: right;
+  /* padding-left: 150px; */
 }
+
 .forward-btn{
   float: right;
   background-color: rgba(241, 85, 0, 0.6);
@@ -908,12 +931,26 @@ table{
   border: 0px;
   min-width: 100px;
 }
-.forward-btn{
-  background-color: rgba(241, 85, 0);
-  border: 1px solid rgb(114, 41, 1);
-}
 .fwrd-txt{
   color: #fff;
+}
+.forward-btn .text-reservation{
+  align-items: center;
+  background-color: black;
+  color: white;
+  border-radius: 0px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background .5s ease;
+  width: 100%;
+}
+.btn-reservation{
+  border-radius: 0 !important;
+}
+.btn-reservation a{
+  text-decoration: none;
 }
 .contentWrap{
   width: 664px;
@@ -1730,11 +1767,31 @@ div.date-picker div.dates #movieCalendar {
   display: block;
   font-weight: bold;
 }
+.row.reservation{
+  width : 80%;
+  margin: 0 auto;
+}
+.row.reservation p:first-of-type{
+  font-size:16px;
+  font-style: italic;
+  font-weight: bold;
+
+}
+.color-blue{
+  margin: 0 15px;
+  padding: 5px 15px;
+  background-color: #9dd4fa;;
+}
+.color-black{
+  margin-left: 15px;
+  padding: 5px 15px;  
+  background: orange;
+}
 .seat-map th{
   margin-right: 15px;
-  /* color: #333; */
+  color: #716f6f;
   display: inline-block;
-  background-color: grey;
+  background-color: #ffffffcf;
   width: 100%;
   text-align: center;
   padding: 3px 10px;
@@ -1757,6 +1814,7 @@ div.date-picker div.dates #movieCalendar {
   text-align: center;
 }
 .seat-map .seat {
+  width:30px;
   line-height: 2.4rem;
   position:relative;
 }
@@ -1765,9 +1823,15 @@ div.date-picker div.dates #movieCalendar {
 *::after {
   box-sizing: border-box;
 }
-
+.container-book{
+  padding-top: 112px;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+}
 .info-card-movie {
-  width: 575px;
+  width: 650px;
+  height:500px;
   margin: 0 auto;
   position: relative;
   top: 50%;
@@ -1775,23 +1839,24 @@ div.date-picker div.dates #movieCalendar {
  }
 
 .bg-img-movie {
-  height: 260px;
+  height: 350px;
   position: relative;
 }
 
 .bg-img-movie img {
   height: 100%;
-  margin: auto;
+  /* margin: 0 100px; */
   display: block;
-  box-shadow: 0 5px 10px orange;
+  box-shadow: 0 5px 10px orange,
+              0 0px 10px orange;
 }
 
 .movie-text {
   font-weight: 800;
   font-size: 36px;
-  border: 6px solid white;
+  /* border: 6px solid white; */
   color: white;
-  padding: 10px;
+  padding: 50px;
   position: relative;
   top: -180px;
   width: 50%;
@@ -1800,8 +1865,8 @@ div.date-picker div.dates #movieCalendar {
 }
 
 .stats-movie {
-  box-shadow: 0 5px 10px orange;
-  background-color: white;
+  box-shadow: 0 0 2px orange;
+  background-color: #101010;
   height: 123px;
   width: 450px;
   border-radius: 10px;
@@ -1814,17 +1879,32 @@ div.date-picker div.dates #movieCalendar {
   justify-content: space-around;
   align-items: center;
   height: 100%;
+  padding: 0;
+}
+.stats-movie ul li{
+  list-style-type: none;
 }
 
 .heading-movie {
-  color: gray;
-  font-weight: 300;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 400;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 30px;
   letter-spacing: 1.5px;
-  margin-bottom: 10px;
+  margin-bottom: 10px
 }
-
+.header-booking{
+  background: -webkit-linear-gradient(#f5660ae8, #f19c32);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 50px;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px
+}
 .footing-movie {
   font-size: 14px;
   font-weight: 500;
@@ -1844,12 +1924,40 @@ div.date-picker div.dates #movieCalendar {
   top: -25px;
   text-transform: uppercase;
 }
-
-
+.movie-seat-map{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.choose-seat-title{
+  margin-top:10px;
+  text-align:center;
+  background: -webkit-linear-gradient(#f5660ae8, #f19c32);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px
+}
 /* SEAT MAP END */
 .row-seat{
   display: inline-block;
   bottom: 30%;
+  margin:30px auto 0;
+}
+.btn-reservation input{
+  display: none;
+}
+.btn-reservation input:checked ~ .img-table{
+  border: 1px solid yellow;
+}
+.btn-seat{
+  padding: 5px 10px;
+}
+.table-seats{
+  background-color: rgb(241, 85, 0) !important;
 }
 .btn-item span {
 	align-items: center;
@@ -1863,6 +1971,7 @@ div.date-picker div.dates #movieCalendar {
   width: 100%;
   text-decoration: none;
 }
+
 .btn-item:hover span {
 	background:  black;
 }

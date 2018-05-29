@@ -6,14 +6,20 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$routeParam
         $scope.activeDay = day;
         console.log($scope.activeDay);
     }
-
+    $scope.reserveSeat = [];
     $scope.movieTypes = [
         '2D',
         '3D',
         'IMAX',
         '4DX'
     ]
-
+    var price;
+    $scope.suitable = [ 
+        { value : '1', name:'12+'},
+        { value: '2', name:'16+'},
+        { value: '3', name: 'Без ограничения'}
+    ]
+    $scope.price = [8, 10, 14]
     $scope.counter = 0;
     $scope.priceReduced = 8;
     $scope.priceRegular = 12;
@@ -46,12 +52,25 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$routeParam
             .then(function (data){
                 console.log(data,'booking details')
                 $scope.bookingDetails = data;
+                price = $scope.price[+$scope.bookingDetails.projection.type-1];    
                 $scope.$apply();
-                // console.log('showBookingPage data', data);
             })
             .catch(function (err){
                 console.log(err);
             });
+    }
+    var reservation = [];
+    $scope.checkSelected = function(row,seat){
+        if(!reservation.find(item => item.row === row && item.seat === seat)){
+            reservation.push({row,seat});
+            $scope.totalPrice = reservation.length * price;
+        
+        } else {
+            var index = reservation.findIndex(item => item.row === row && item.seat ===seat);
+            reservation.splice(index, 1);
+            $scope.totalPrice = reservation.length * price;
+
+        }
     }
     showBookingPage($routeParams._id);
     moment.locale("bg");
