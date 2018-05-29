@@ -38,28 +38,24 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
     }
 
     //Show user's first and last names
-    $scope.profile = function ($event){
-        $event.preventDefault();
 
-        if(!$rootScope.user){
-            $location.path('/login');
-            console.log('No $rootScope.user');
-        } else {
-            console.log('$rootScope.user', $rootScope.user);
-            UserService.showUserInfo()
-                .then(function (data){
-                    $scope.user.firstName = data.firstName;
-                    $scope.user.lastName = data.lastName;
-                    console.log('$scope.user = data;', data);
-                    // $location.path('/profile');
-                    $scope.$apply();
-                })
-                .catch(function (err){
-                    errors.push(err);
-                })
-        }
+    if(!$rootScope.user){
+        $location.path('/login');
+        console.log('No $rootScope.user');
+    } else {
+        console.log('$rootScope.user', $rootScope.user);
+        UserService.showUserInfo()
+            .then(function (data){
+                $scope.user.firstName = data.firstName;      
+                $scope.user.lastName = data.lastName;
+                console.log('$scope.user = data;', data);
+                $scope.$apply();
+            })
+            .catch(function (err){
+                errors.push(err);
+            })
     }
-    
+
     
     //change user firstName and user lastName
     $scope.changeUserInfo = function ($event){

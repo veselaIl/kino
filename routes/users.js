@@ -12,12 +12,14 @@ var sha1 = require('sha1');
 // })
 
 //GET User personal info
-router.get('/api/profile', function (req, res){
-    // console.log("req.body", req.body);
+router.get('/api/profile/personal-info', function (req, res){
+    console.log("req.body", req.body);
     if(!req.session.user){
+        console.log('GET Personal info no logged user');
         res.sendStatus(401);        
     } else {
-        console.log("_id: req.session", req.session.user._id);
+        // console.log('GET Personal info logged user');
+        // console.log("_id: req.session", req.session.user._id);
         req.db.get('users').findOne({ _id: req.session.user._id })
             .then(function (user){
                 console.log('users.js show user info user:', user);
@@ -34,7 +36,7 @@ router.get('/api/profile', function (req, res){
 });
 
 //- change user first and/or last name
-router.post('/api/profile', function (req, res){
+router.post('/api/profile/personal-info', function (req, res){
     if(!req.session.user){
         res.sendStatus(401);
     } else {
