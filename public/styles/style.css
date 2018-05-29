@@ -74,7 +74,7 @@ a {
   margin-top: 10px
 } */
 .logo>img{
-  width: 200px;
+  width: 146px;
 }
 
 /*BOOTSTRAP VIDEO CAROUSEL*/
@@ -950,13 +950,11 @@ main{
   width: 256px;
   padding: 20px 0;
   margin: 28px 0 0;
-  background: linear-gradient(to right, rgba(241, 85, 0, 0.9) 22%, rgba(241, 85, 0, 0.7) 60%, rgba(241, 85, 0, 0.3) 100%);
+  background: linear-gradient(to right, rgba(228, 126, 44, 0.95) 22%, rgba(241, 85, 0, 0.69) 60%, #060606a3 100%);
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.user-row{
-  margin-top: 50px;
-}
+
 /* .side-nav-custom{
   border-top-left-radius: 6px;
 } */
@@ -1052,6 +1050,7 @@ main{
     min-height: 414px;
     padding: 28px 38px;
     background: rgba(10, 10, 10);
+    box-shadow: 2px 2px 8px 1px rgba(0,0,0,0.76);
 }
 .active{
   background: rgba(49, 48, 48);
@@ -1172,7 +1171,19 @@ button.btn.forward-btn-lg:hover{
   margin-left: 10px;
 }
 
-/*ERRORS*/
+/*ERRORS/SUCCESS MESSAGES */
+.successMsg{
+  color: #52ee16;
+  padding-bottom: 20px;
+}
+.errorMsg{
+  color: #fa2147;
+  padding-bottom: 20px;
+}
+div.errorMsg{
+  color: #fa2147;
+  padding-bottom: 0;
+}
 ng-message{
   color:red;
 }
@@ -1407,7 +1418,10 @@ div.date-picker div.dates #movieCalendar {
 /*end movie-list-item*/
 /*new navbar color*/
 .bg-light-blue{
-  background-color: rgba(0, 0, 0, 0.4);
+  background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 79%, rgba(0,0,0,0.76) 94%, rgba(0,0,0,0.76) 99%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,0.8) 79%,rgba(0,0,0,0.76) 94%,rgba(0,0,0,0.76) 99%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.8) 79%,rgba(0,0,0,0.76) 94%,rgba(0,0,0,0.76) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#c2000000',GradientType=0 ); /* IE6-9 */
 }
 .navbar-dark{
   color: white;
@@ -1789,6 +1803,18 @@ footer.footer{
   color: rgba(220,106,26,0.7);
   font-weight: bold;
   padding-left: 20px;
+}
+.fa.fa-facebook-square{
+  font-size: 80px;
+  color: #3b5998;
+}
+.fa.fa-twitter{
+  font-size: 80px;
+  color: #00aced;
+}
+.fa.fa-google-plus{
+  font-size: 80px;
+  color: #d34836;
 }
 
 /*PROJECTIONS*/

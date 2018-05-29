@@ -26,8 +26,7 @@ router.get('/api/profile', function (req, res){
                 } else {
                     res.json({
                         firstName: user.firstName,
-                        lastName: user.lastName,
-                        email: user.email
+                        lastName: user.lastName
                     });
                 }
             });
@@ -73,21 +72,28 @@ router.post('/api/profile/change-password', function(req, res){
                     var oldPass = sha1(user.email + req.body.user.oldPassword),
                         newPass = sha1(user.email + req.body.user.newPassword),
                         confirmNewPassword = sha1(user.email + req.body.user.confirmNewPassword);
+                        console.log('oldPass', oldPass);
+                        console.log('newPass', newPass);
+                        console.log('confirmNewPassword', confirmNewPassword);
                         //user.password = sha1(req.body.user.email + req.body.user.password);
                     if(oldPass !== user.password 
                         || newPass !== confirmNewPassword){
-                            res.sendStatus(400);
+                            res.sendStatus(400);                            
                     } else {
-                        req.db.get('users').findOneAndUpdate({ _id: req.session.user._id }, 
-                            { $set: { password: newPass } })
-                            .then(function (result){
-                                if(!result){
-                                    res.sendStatus(500);
-                                } else {
-                                    console.log('Change password was success: ');
-                                    res.sendStatus(200);
-                                }
-                            });
+                        if(req.body.user.newPassword.length >= 6 && req.body.user.confirmNewPassword.length >= 6) {
+                            console.log('req.body.user.newPassword');
+                            req.db.get('users').findOneAndUpdate({ _id: req.session.user._id }, 
+                                { $set: { password: newPass } })
+                                .then(function (result){
+                                    if(!result){
+                                        res.sendStatus(500);
+                                    } else {
+                                        console.log('Change password was success: ');
+                                        res.sendStatus(200);
+                                    }
+                                });
+                        } 
+                        
                     }
                 }
             });
