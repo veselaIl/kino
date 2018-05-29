@@ -567,10 +567,13 @@ li {
 }
 .seat-map th{
   margin-right: 15px;
-  color:#333;
+  /* color: #333; */
   display: inline-block;
-  padding: 3px;
-  font-size: 15px;
+  background-color: grey;
+  width: 100%;
+  text-align: center;
+  padding: 3px 10px;
+  margin-bottom: 10px;
 }
 .seat-map .img-table{
   width:35px;
@@ -587,6 +590,10 @@ li {
 .seat-map .seat {
   line-height: 3.5rem;
   position:relative;
+}
+.screen-seat-map{
+  width:100%;
+  text-transform: uppercase;
 }
 /* MOVIES START*/
 .content-movies {

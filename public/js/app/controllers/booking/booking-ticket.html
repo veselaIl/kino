@@ -1,11 +1,42 @@
 <!--PAGE FOR CHOOSING TYPE AND QUANTITY OF TICKET-->
 <div class="container-main">
+    <!-- Inspired by https://drc8llcc7rqy7.cloudfront.net/shots/2403775/day-45-info-card-large -->
+
+<div class="row">
+    <div class="info-card-movie">
+        <div class="bg-img-movie"><img src="/images/movies/{{bookingDetails.movie[0].largeImage}}" alt="" />
+        </div>
+            
+        <div class="movie-text">
+            <h1>{{bookingDetails.movie[0].name}}</h1>
+        </div>
+
+        
+        <div class="stats-movie">
+            <ul>
+            <li>
+                <p class="heading-movie">Country</p>
+                <p class="footing-movie">USA</p>
+            </li>
+            <li>
+                <p class="heading-movie">Districts</p>
+                <p class="footing-movie">97</p>
+            </li>
+            <li>
+                <p class="heading-movie">Population</p>
+                <p class="footing-movie">18,231,987</p>
+            </li>
+            </ul>
+            <div class="btn-movie">Location</div>
+        </div>
+    </di>
+</div>
     <div class="row">
         <div class="col col-sm-12 col-md-6 col-lg-6 projection-info">
             <div class="row">
                 <div class="col col-md-6">
                     <div class="bkg-title">Прожекция:</div>
-                </div>
+                </div>   
                 <div class="col col-md-6">
                     <div class="bkg-attr">{{bookingDetails.movie[0].name }}</div>
                 </div>
@@ -56,12 +87,18 @@
             <div class="row-seat">
                 <div class='seat-map'>
                     <table>
-                    <tr class="seats" ng-repeat="row in bookingDetails.projection.mesta track by $index">
-                        <td class='seat' ng-repeat='seat in row track by $index' >
-                        <img class='img-table' src='/images/seat.gif'>
-                        <span class='text-table'></span>
-                        </td>
-                    </tr>
+                    <thead>
+                        <th class="screen-seat-map">screen</th>
+                    </thead>
+                    <tbody>
+                        <tr class="seats" ng-repeat="row in bookingDetails.projection.mesta track by $index">
+                            <td class='seat' ng-repeat='seat in row track by $index' >
+                            <img class='img-table' src='/images/seat.gif'>
+                            <span class='text-table'></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                   
                     </table>
                 </div>
             </div>   
