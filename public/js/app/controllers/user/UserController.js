@@ -40,7 +40,10 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
     //Show user's first and last names
 
     if(!$rootScope.user){
-        $location.path('/login');
+        console.log('loginNotRequired', $scope.loginNotRequired);
+        if (!$scope.loginNotRequired) {
+            $location.path('/login');
+        }
         console.log('No $rootScope.user');
     } else {
         console.log('$rootScope.user', $rootScope.user);
@@ -112,9 +115,7 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
     }
 
     //Get User favourites page
-    if(!$rootScope.user){
-        $location.path('/login');
-    } else {
+    if ($rootScope.user) {
         UserService.getFavourites()
             .then(function (data){
                 //$rootScope.user = data;
@@ -132,9 +133,8 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
         var active = (viewLocation === $location.path());
         return active;
     };
-
    
-   var errors = [], 
+    var errors = [], 
        sending = false;
     
     $scope.user = {

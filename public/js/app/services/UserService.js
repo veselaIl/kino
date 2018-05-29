@@ -14,9 +14,9 @@ myApp.factory('UserService', function($http) {
         },
         removeUser : function(id){
             return new Promise(function (resolve, rejects){
-                $http.post('/amin/api/users/remove' + id)
+                $http.post('/admin/api/users/remove/' + id)
                     .then(function (response){
-                        resolve();
+                        resolve(response);
                     })
                     .catch(function (err){
                         reject(err);

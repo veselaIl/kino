@@ -39,7 +39,7 @@
                         </div>
                         <hr class="red-line">
                         <!--Movie Poster and Description-->
-                        <div ng-controller="UserController"  class="row">
+                        <div ng-controller="UserController" class="row">
                             <div class="col col-sm-12 col-md-3">
                                 <img class="movie-poster center-block" ng-src="/images/movies/{{ movie.movie[0].image }}">
                             </div>
@@ -48,8 +48,8 @@
                                     {{ movie.movie[0].description }}
                                 </p>
                             </div>
-                            <div ng-controller="CollapseController">
-                                <div ng-if="userChecked && $root.user" class="col col-sm-1 col-md-2 favourites">
+                            <div>
+                                <div class="col col-sm-1 col-md-2 favourites">
                                     <a href="#" title="Добави в любими" ng-if="!isInFavourites" ng-click="addToFavourites($event)"><span><i class="fa fa-heart-o" style="font-size:36px;"></i></span></a>
                                     <a href="#" title="Премахни от любими" ng-if="isInFavourites" ng-click="addToFavourites($event)"><span><i class="fa fa-heart-o" style="font-size:36px;outline: 10px;color: rgba(247,149,30,.38);text-shadow: 0 0 18px rgba(247,149,30,.8);"></i></span></a>
                                 </div>
@@ -102,13 +102,13 @@
                         
                         <!--Buttons favourites and buy ticket-->
                         <!-- ng-controller="UserController"  -->
-                        <div ng-controller="UserController" class="row">
+                        <!-- <div ng-controller="UserController" class="row">
                             <div ng-controller="CollapseController">
                                 <div ng-if="userChecked && $root.user" class="col col-sm-12 col-md-12">
                                     <a href="#"  class="button btn buy-ticket favourites float-right"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
             </div>

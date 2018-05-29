@@ -12,18 +12,17 @@
             <thead>            
                 <tr class='head-table'>
                     <th st-sort="time">Информация </th>                
-                    <th st-sort="type">Резервирани билети</th>
+                    <th st-sort="type">Дата на регистрация</th>
                     <th colspan='3'></th>
-                    
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="user in users track by $index " current-page="currentPage">
                     <td>
-                        <h5> E-mail {{user.email}}</h5>
-                        <span ng-if="user.firstName && user.lastName"> Име{{ user.firstName }} {{ user.lastName }}</span>
+                        <h5 class="bolder">E-mail: <span>{{user.email}}</span></h5>
+                        <span ng-if="user.firstName && user.lastName" class="bolder">Име: <span>{{ user.firstName }} {{ user.lastName }}</span></span>
                     </td>
-                    <td>{{ user.reservations.length }}</td>
+                    <td>{{ user.registerDate | date: 'dd MMMM yyyy | HH:mm'}}ч.</td>
                     <td class="buttonView">
                         <a  class="btn btn-sm btn-danger" mwl-confirm  title ="{{vm.titleBox}}" message="{{vm.message}}"
                             on-confirm ="vm.onConfirm(user._id)" confirm-text = '{{vm.confirmText}}' cancel-text = "{{vm.cancelText}}"> 

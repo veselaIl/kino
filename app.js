@@ -76,6 +76,18 @@ app.all('/admin', (req, res) => {
     res.sendFile('public/admin.html', {
       root: __dirname
     });
+  } else {
+    return res.redirect('/login');
+  }
+});
+app.all('/admin/*', (req, res) => {
+  console.log(req.session)
+  if(req.session.user && req.session.user.isAdmin){
+    res.sendFile('public/admin.html', {
+      root: __dirname
+    });
+  } else {
+    return res.redirect('/login');
   }
 });
 

@@ -17,12 +17,12 @@ myApp.controller('UserController', function ($scope, $location, $routeParams, Us
     $scope.vm.onConfirm = function(userID){
     UserService.removeUser(userID)
         .then(function (response){
-        if(response.status === 200){
-            var index = $scope.users.findIndex(user => user._id === userID);
-            // var zalaIndex = $scope.cinemas[index].zali.findIndex(item => item.zalaID === zala.zalaID);
-            $scope.users.splice(index, 1);
-            $scope.$apply();
-        }
+            if(response.status === 200){
+                var index = $scope.users.findIndex(user => user._id === userID);
+                // var zalaIndex = $scope.cinemas[index].zali.findIndex(item => item.zalaID === zala.zalaID);
+                $scope.users.splice(index, 1);
+                $scope.$apply();
+            }
         })
     }
 });

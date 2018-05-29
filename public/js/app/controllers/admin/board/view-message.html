@@ -1,0 +1,35 @@
+<div class="content message-container" ng-if="message">
+    <div class="row">
+        <div class="col-12 col-sm-8 col-xs-12">
+            <h3 class="userMsg">Съобщениe от:</h3>
+        </div>
+        <div class="col-12 col-sm-4 col-xs-12">
+            <h3 class="userMsg">{{ message.username }}</h3>
+        </div>
+    </div>
+    <div class='row add-movie'>
+        <div class="col col-sm-12 col-md-12 userMsg">Получено на:
+            <span>{{ message.creationDate | date: 'dd MMMM yyyy | HH:mm'}}ч.</span>
+        </div>
+    </div>
+    <!--  -->
+    <div class="row itemsPerPage">
+        <div class="col col-sm-12 col-md-6">
+            <p class="msgHeader">Имейл на потребителя:</p>
+            <span class="msgContent">{{ message.email }}</span>
+        </div>
+        <div class="col col-sm-12 col-md-6">
+            <p class="msgHeader">Телефонен номер: </p>
+            <span class="msgContent">{{ message.phoneNumber }}</span>
+        </div>
+    </div>
+    <div class="row add-movie">
+        <div class="col col-sm-12 col-md-12">Текст на съобщението: </div>
+    </div>
+    <div>
+        <p class="msgText">{{ message.textMessage }}</p>
+    </div>
+</div>
+
+
+   
