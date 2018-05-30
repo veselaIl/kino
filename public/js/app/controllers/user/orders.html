@@ -1,5 +1,5 @@
 <!--Get History Reserved/Buyed/Canceled tickets page-->
-<div ng-controller="UserController" ng-if="$root.user" class="container-main">
+<div ng-if="$root.user" class="container-main">
         <!--Navbar side vertical menu-->
         <div class="row">
             <div class="col-sm-3">
@@ -48,19 +48,19 @@
                                         <div>
                                             Резервирани билети
                                         </div>
-                                        <table class="table table-sm table-dark">
+                                        <table ng-repeat="reservation in user.reservations" class="table table-sm table-dark">
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"></th>
                                                     <td class="thumb-sm">
-                                                        <img src="/images/super-patrul-2-2018.jpg">
+                                                        <img ng-src="/images/movies/{{ movie.image }}">
                                                     </td>
                                                     <td>
-                                                        <h6>Супер патрул 2</h6>
-                                                        <div>гр.Бургас ул. „Княз Александър Батенберг“ 28</div>
-                                                        <div>Зала: 3 | Ред: 2 | Място: 22</div>
-                                                        <div>Дата: 16 май 2018г. | Час: 14:30</div>
-                                                        <div>Резервация: WP3SDS2 | Сума: 15.80лв.</div>
+                                                        <h6>{{ movie.name }}</h6>
+                                                        <div>{{ cinema.name }}</div>
+                                                        <div>Зала: {{ projection.zalaID }} | Брой билети: {{ reservation.length }} </div>
+                                                        <div>Дата: {{ projection.time * 1000 | date: 'dd MMMM yyyy | HH:mm' }}ч.</div>
+                                                        
                                                     </td>
                                                 </tr>
                                             </tbody>

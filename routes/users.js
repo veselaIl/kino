@@ -1,6 +1,8 @@
+
 var express = require('express');
 var router = express.Router();
 var sha1 = require('sha1');
+var ObjectId = require('mongodb').ObjectId;
 
 //GET if user is logged
 // router.get('/profile', function (res, req){
@@ -11,6 +13,8 @@ var sha1 = require('sha1');
 //     }
 // })
 
+
+
 //GET User personal info
 router.get('/api/profile/personal-info', function (req, res){
     console.log("req.body", req.body);
@@ -18,8 +22,6 @@ router.get('/api/profile/personal-info', function (req, res){
         console.log('GET Personal info no logged user');
         res.sendStatus(401);        
     } else {
-        // console.log('GET Personal info logged user');
-        // console.log("_id: req.session", req.session.user._id);
         req.db.get('users').findOne({ _id: req.session.user._id })
             .then(function (user){
                 console.log('users.js show user info user:', user);
@@ -31,6 +33,7 @@ router.get('/api/profile/personal-info', function (req, res){
                         lastName: user.lastName
                     });
                 }
+                console.log('personal-info end');
             });
     }
 });
@@ -137,24 +140,83 @@ router.post('/api/user/favourites/:id', function (req, res){
 
 //Get user FAVOURITES
 router.get('/api/profile/favourites', function (req, res){
+    console.log("/api/profile/favourites init ");
     if(!req.session.user){
         res.sendStatus(401);
     } else {
-        req.db.get('users').findOne({ _id: req.session.user._id})
+        req.db.get('users').findOne({ _id: req.session.user._id })
             .then(function (user){
                 if(!user){
                     res.sendStatus(404);
                 } else {
-                    console.log("favourites: ", user.favourites);
                     req.db.get('movies').find({ movieID: { $in: user.favourites }})
                         .then(function (movies){
-                            console.log("movies: ", movies);
+                            //console.log("movies: ", movies.length);
                             res.json({ movies: movies });
-                        })
-                    
+                        });
                 }
             });
     }
 });
+
+//GET users reservations
+router.get('/api/profile/orders', function (req, res){
+    console.log('/api/profile/orders init');
+    if(!req.session.user){
+        res.sendStatus(401);
+    } else {
+        console.log("orders _id: req.session", req.session.user._id);
+        req.db.get('reservations').find({ userID: req.session.user._id })
+            .then(function (reservations){
+                console.log('Reservations', reservations.length);
+                if(!reservations.length){
+                    res.sendStatus(404);
+                } else {
+                    var result = {
+                        reservations : reservations
+                    }
+                    console.log('Reservations', reservations);
+                    res.json({ reservations: reservations });
+                    
+                    console.log('orders end');
+                    // req.db.get('users').findOne({ _id : req.session.user._id })
+                    //     .then(function (user){
+                    //         if(!user){
+                    //             res.sendStatus(404);
+                    //         } else {
+                    //             result['user'] = user;
+                    //         }                            
+                    //     })
+
+                    // req.db.get('projections').findOne({ _id: reservations[0].projectionID })
+                    //     .then(function (projection){
+                    //         if(!projection){
+                    //             res.sendStatus(404);
+                    //         } else {
+                    //             result['projection'] = projection;
+
+                    //             req.db.get('kino').findOne({ kinoID: projection.kinoID })
+                    //                 .then(function (kino){
+                    //                     if(!kino){
+                    //                         res.sendStatus(404);
+                    //                     } else {
+                    //                         result['kino'] = kino;
+                    //                     }   
+                    //                 })
+
+                    //             req.db.get('movies').findOne({ movieID : projection.movieID })
+                    //                 .then(function (movie){
+                    //                     if(!movie){
+                    //                         res.sendStatus(404);
+                    //                     } else {
+                    //                         result['movie'] = movie;
+                    //                     }
+                    //                 })
+                    //         }
+                    //     })
+                }
+            })
+    }
+})
 
 module.exports = router;

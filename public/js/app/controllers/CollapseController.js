@@ -13,7 +13,7 @@ app.controller('CollapseController', function ($scope, $rootScope, $http, $sessi
                 $scope.userChecked = true;
                 $timeout(function () {
                     $scope.$apply();
-                    $timeout(checkUser, 1000);
+                    //$timeout(checkUser, 1000);
                 }, 0);
             });
     }

@@ -1,4 +1,4 @@
-app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$timeout','$routeParams', 'BookingService' , '$uibModal',function($scope, $rootScope, $timeout, $routeParams, BookingService,  $uibModal){
+app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$timeout','$routeParams', '$location', 'BookingService' , '$uibModal',function($scope, $rootScope, $timeout, $routeParams, $location, BookingService,  $uibModal){
     $scope.projections = [];
     $scope.today = moment(new Date(),'DD-MM-YYYY');
     $scope.week = [];    
@@ -28,6 +28,7 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$timeout','
     $scope.priceRegular = 12;
     $scope.priceStudent = 10;
     $scope.totalPrice = 0;
+
     
     function showBookingPage(id){
         BookingService.getBookingTicket(id)
@@ -41,11 +42,12 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$timeout','
             .catch(function (err){
                 console.log(err);
             });
-    }
+        }
+
     $rootScope.reservation = [];
     $scope.checkSelected = function(row,seat){
         if(!$rootScope.reservation.find(item => item.row === row && item.seat === seat)){
-            $rootScope.reservation.push({row,seat});
+            $rootScope.reservation.push({ row,seat });
             $scope.totalPrice = $rootScope.reservation.length * price;
         } else {
             var index = $rootScope.reservation.findIndex(item => item.row === row && item.seat ===seat);
@@ -58,11 +60,11 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$timeout','
     $scope.finishReservation = function(reservations, event){
        if (reservations.length) {
            var mesta = $scope.bookingDetails.projection.mesta;
-        //    console.log(reservation, 'reservation')
+            console.log(reservation, 'reservation')
            reservations.forEach(function (reservation){
                mesta[reservation.row][reservation.seat] = 1;
            });
-        //    console.log( $scope.bookingDetails.projection.mesta);
+            console.log( $scope.bookingDetails.projection.mesta);
            BookingService.book(mesta ,$scope.bookingDetails.projection._id);
        } else {
            event.preventDefault();
@@ -75,8 +77,12 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$timeout','
         console.log($routeParams);
         showBookingPage($routeParams._id);
     } else {
-        console.log($routeParams)
-        showBookingPage($routeParams.id);
+        if($rootScope.user){
+            console.log($routeParams)
+            showBookingPage($routeParams.id);
+        } else {
+            $location.path('/login');
+        }        
     }
 
         
@@ -155,4 +161,6 @@ app.filter('secondsToDateTime', [function() {
     return function(seconds) {
  return new Date(1970, 0, 1).setSeconds(seconds);
 }   
+
+
 }]);

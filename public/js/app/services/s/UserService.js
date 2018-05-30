@@ -81,11 +81,25 @@ app.factory('UserService', function ($http){
         });
     }
 
+    function getReservations(){
+        return new Promise(function (resolve, reject){
+            $http.get('/api/profile/orders')
+                .then(function (response){
+                    console.log('Reservations', response);
+                    resolve(response);
+                })
+                .catch(function (err){
+                    reject(err);
+                });
+        });
+    }
+
     return{
         addToFavourites: addToFavourites,
         showUserInfo: showUserInfo,
         changeUserInfo: changeUserInfo,
         changePassword: changePassword,
-        getFavourites: getFavourites
+        getFavourites: getFavourites,
+        getReservations: getReservations
     }
 })

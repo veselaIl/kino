@@ -142,7 +142,7 @@
                         <div>
                             <ul>
                                 <li class="projection-times" ng-repeat="projection in movie.projections " >
-                                    <div >
+                                    <div>
                                         <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
                                         ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
                                             <div class="items">
@@ -180,11 +180,10 @@
                                             <div ng-if="projection.time.format('DD MMMM') === item">                  
                                                 <a class="projection-time-link" href="/book/{{projection._id}}" >                                        
                                                     <div class="items">
-                                                        <label class="button-item btn-item"><input type="checkbox">
+                                                        <label class="button-item btn-item" title=""><input type="checkbox">
                                                             <span class="item-name">{{projection.time.format('HH:mm')}}
                                                                 <div class="details-tag">{{ projection.movieType }}</div>
-                                                            </span>
-                                                            
+                                                            </span>                                                            
                                                         </label>
                                                     </div>
                                                 </a>                                        
