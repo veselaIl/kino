@@ -4,28 +4,25 @@
         <a href='/admin/projections/add'>Добави прожекция</a> 
     </div>
     <!--  -->
-   <div class="row itemsPerPage">
-        <div class="col-6 col-sm-5 col-xs-10">
-            <h3>Следващи прожекции</h3> 
-        </div>    
-        <div class="col-4 col-sm-5 col-xs-6 cinema-group">
+   
+    <div class="col-12 col-sm-12 col-xs-12 projection-header">
+        <h3>Следващи прожекции</h3> 
+    </div>    
+    <div class="row itemsPerPage">
+        <div class="col-6 col-sm-6 col-xs-6 field-input">
+            <input type="text" ng-model="searchText" placeholder="Търси прожекция..."/><span> </span>
+        </div>          
+        <div class="col-4 col-sm-4 col-xs-4 cinema-group">
             <div class='select-cinema-group'>
-                <label>Избери кино</label> 
+                <label>Избери кино: </label> 
                 <select class='select-cinema' ng-model='cinemaValue'>
                     <option value="" selected='selected'>Кино </option>
                     <option ng-repeat="cinema in cinemas track by $index" value="{{$index}}">{{cinema.name}}</option>
                 </select>   
             </div>
-            <!-- <div class='select-cinema-group' ng-if="cinemaValue">
-                <label>Избери зала</label> 
-                <select class='select-cinema' ng-disabled="disabled"  ng-model="zalaValue">
-                    <option value="" selected='selected'>Зала </option>zala
-                    <option ng-repeat="zala in cinemas[cinemaValue].zali">{{zala.zalaID}}</option>
-                </select>
-            </div> -->
         </div>
         <!--  -->
-        <div class="col-2 col-sm-2 col-xs-6 projections-per-page">
+        <div class="col-2 col-sm-2 col-xs-2 projections-per-page">
             <label class="projectionsPerPage" for="search"> Брой &nbsp;
                 <select class="contol projectionsPage" ng-init="pageSize = '10'" ng-model="pageSize">
                     <option>10</option>
@@ -45,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr dir-paginate="projection in projects | itemsPerPage: pageSize track by $index " current-page="currentPage">
+            <tr dir-paginate="projection in projects | itemsPerPage: pageSize | filter: searchText track by $index " current-page="currentPage">
 				<td>
                     <h5><strong>Дата/час:</strong> {{projection.time  * 1000 | date:'dd MMMM yyyy | HH:mm' }}</h5>
                     <span><strong>Резервирани билети:</strong> {{ projection.count }}</span>

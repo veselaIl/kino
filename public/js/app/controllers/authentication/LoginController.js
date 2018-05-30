@@ -1,6 +1,7 @@
 app.controller('LoginController', ['$scope', '$rootScope', '$location', 'LoginService',
               function($scope, $rootScope, $location, LoginService){
 
+    $scope.errorMsg = false;
     $scope.title = 'Вход';
     $scope.initUser = {
         email: '',
@@ -25,6 +26,9 @@ app.controller('LoginController', ['$scope', '$rootScope', '$location', 'LoginSe
                 })
                 .catch(function (err){
                     console.log(err);
+                    $scope.errorMsg = true;                        
+                    $scope.errorMsg = 'Грешно потребителско име или парола!';
+                    $scope.$apply();
                 });
         }        
     }

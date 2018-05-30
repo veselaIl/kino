@@ -30,7 +30,7 @@ router.get('/admin/api/messages/:id', function (req, res){
 });
 
 //delete message
-router.get('/admin/api/messages/remove/:id', function(req, res){
+router.post('/admin/api/messages/remove/:id', function(req, res){
     console.log('req.params.id', req.params);
     req.db.get('messages').remove({ _id: ObjectId(req.params.id) })
         .then(function (message){

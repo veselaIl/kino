@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/api/logout', function (req, res){
+    console.log('user', req.session.user);
     if (req.session.user) {
         req.session.destroy(function (err) {
             console.log('destroy', err);
@@ -9,7 +10,7 @@ router.get('/api/logout', function (req, res){
             res.sendStatus(err ? 500 : 200);
         });
     } else {
-        res.sendStatus(401);
+        res.sendStatus(200);
     }
 });
 

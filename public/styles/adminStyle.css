@@ -751,7 +751,18 @@ input[type="file"]{
   border: 1px solid #203F53;
   border-radius: 5px;
 }
-
+.field-input{
+  display: inline-block;
+  padding: 12px 28px;
+  width: 40%;
+}
+.field-input input{
+  width:100px;
+  width:100%;
+  border: 0;
+  padding: 10px;
+  border-bottom: 1px solid grey;
+}
 .icon-folder {
   background-image: url("../images/icon-folder.png");
 }
@@ -958,6 +969,9 @@ img.left {
   margin-left: 0;
   padding: 0;
 }
+.projection-header{
+  padding: 0;
+}
 .projection-h2 {
   padding-top: 5px;
   margin-right: 12px;
@@ -999,6 +1013,7 @@ img.left {
 /* PROJECTION DETAILS END */ 
 /* PROJECTION START*/
 .projectionsPerPage{
+  margin-bottom: 0;
   margin-top: 5px;
   text-align: right;
   display: inline-block;
@@ -1012,14 +1027,17 @@ img.left {
   font-weight: bold;
 }
 .cinema-group{
-  padding-top: 25px
+  padding-top: 30px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .select-cinema-group{
   display:inline-block;
-  margin: 0 15px ;
+
 }
 .select-cinema-group>label{
   font-size: 16px;
+  margin : 0;
 }
 .select-cinema{
   border: none;
@@ -1034,7 +1052,7 @@ img.left {
 .projections-per-page{
   display: inline-block;
   text-align: right;
-  padding-top: 22px;
+  padding-top: 26px;
   border: none;
 }
 .next td{

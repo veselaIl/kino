@@ -8,3 +8,6 @@
 .owl-carousel{
     margin-top: 100px;
 }
+.owl-theme .owl-controls .owl-page span{
+    background: #d2812c;
+}

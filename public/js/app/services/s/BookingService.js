@@ -12,7 +12,6 @@ app.factory('BookingService', function ($http){
                 })
         })
     }
-
     function book(mesta, id, reservation){
         return new Promise(function (resolve, reject){
             $http.post('/api/book/projection/'+id, {mesta : mesta, reservation : reservation})

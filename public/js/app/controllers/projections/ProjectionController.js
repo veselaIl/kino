@@ -21,6 +21,10 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
                 $scope.cinemaDetails = Array.isArray(data.cinemas) ? data.cinemas : [];
                 //$scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
                 $scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
+                //$scope.price = data.movies
+                data.movies.forEach(m => {
+                    console.log("Movie type", m.type);
+                });
                 //$scope.movieProjections = Array.isArray(data.times) ? data.times : [];
                 console.log($scope.projections, 'projections')
                 console.log($scope);
@@ -59,7 +63,7 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
         return $scope.movieDetails.find(movie => movie.movieID === movieID);
     }
 
-
+    $scope.prices = [12, 8, 15];
     //Get all projections
     console.log('projections getProjections');
     showProjections($scope.activeDay.toDate());

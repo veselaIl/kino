@@ -1,4 +1,5 @@
 app.controller('RegisterController', function ($scope, $location, $rootScope, RegisterService) {
+    $scope.errorMsg = false; 
     $scope.users = [];
     $scope.initUser = {
         email: '',
@@ -30,6 +31,9 @@ app.controller('RegisterController', function ($scope, $location, $rootScope, Re
                 })
                 .catch(function (err){
                     console.log(err);
+                    $scope.errorMsg = true;                        
+                    $scope.errorMsg = 'Вече има регистриран потребител с този и-мейл!';
+                    $scope.$apply();
                 })
             
         }

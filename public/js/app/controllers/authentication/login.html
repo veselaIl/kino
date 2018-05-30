@@ -13,16 +13,17 @@
                         </div>
                         <hr>
                         <form ng-submit="loginUser($event, form.$invalid)" name="loginForm" action="" method="POST">
+                            <div class="errorMsgLogin" ng-if="errorMsg"><p class="errcontainer">{{ errorMsg }}</p></div>
                             <div ng-if="errors.length" class="errors">
                                 <div ng-repeat="error in errors" class="error">{{error}}</div>
                             </div>
                             <div class="form-group">
                                 <input ng-model="user.email" class="form-control" name="email"  placeholder="Вашият e-mail" type="email" required>                                
-                                <div class="messages" ng-show="loginForm.email.$touched && loginForm.email.$invalid">Моля въведете вашият имейл адрес!</div>
+                                <div  class="errorMsg" ng-show="loginForm.email.$touched && loginForm.email.$invalid">Моля въведете вашият имейл адрес!</div>
                             </div> <!-- form-group// -->
                             <div class="form-group">
                                 <input ng-model="user.password" class="form-control" name="password"  placeholder="Вашата парола" type="password" required>
-                                <div class="messages" ng-show="loginForm.password.$touched && loginForm.password.$invalid">Моля въведете вашата парола!</div>
+                                <div  class="errorMsg" ng-show="loginForm.password.$touched && loginForm.password.$invalid">Моля въведете вашата парола!</div>
                             </div> <!-- form-group// -->                                      
                             <div class="row">
                                 <div class="col col-sm-6 col-md-12">
