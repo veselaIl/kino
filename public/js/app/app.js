@@ -85,8 +85,8 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: 'BookingController',
             templateUrl: '/js/app/controllers/booking/ticket-type.html'
         })
-        .when('/booking-ticket/:id/oreder-final', {
-            controller: 'BookingController',
+        .when('/booking-ticket/:id/order-final', {
+            controller: 'BookProjectionController',
             templateUrl: '/js/app/controllers/booking/ticket-order-final.html'
         })
         .otherwise({

@@ -55,44 +55,36 @@ router.get('/api/projections', function (req, res){
                         cinemas.push(p.kinoID);
                     }
                 });
-                // console.log('cinemas', cinemas);
+                console.log('cinemas', cinemas);
                 req.db.get('kino').find({ kinoID: { $in : cinemas } })
                     .then(function (cinemas){
                         // console.log('cinemas', cinemas.length);
                         if(cinemas.length){
-                            result['cinemas'] = cinemas;                        
-                        } else {
-                            res.sendStatus(404);
-                        }
-                    });
-
-                movies = [];
-                times = [];
-
-                projections.forEach(p => {                  
-                    if (movies.indexOf(p.movieID) === -1) {
-                        movies.push(p.movieID);  
-                    }                     
-                });   
+                            result['cinemas'] = cinemas;  
+                            movies = [];
                 
-                projections.forEach(p => {
-                    
-                })
-                // console.log('movies', movies);
-                // console.log('times', times);
-
-                req.db.get('movies').find({ movieID: { $in : movies } })
-                    .then(function (movies) {
-                        //console.log('movies', movies.length);
-                        if (movies.length){
-                            //console.log("projectios.js : ", movies);
-                            result['movies'] = movies; 
-                            result['times'] = times;                           
-                            res.json(result);
+                            projections.forEach(p => {                  
+                                if (movies.indexOf(p.movieID) === -1) {
+                                    movies.push(p.movieID);  
+                                }                     
+                            });   
+                            req.db.get('movies').find({ movieID: { $in : movies } })
+                                .then(function (movies) {
+                                    //console.log('movies', movies.length);
+                                    if (movies.length){
+                                        //console.log("projectios.js : ", movies);
+                                        result['movies'] = movies; 
+                                        res.json(result);
+                                    } else {
+                                        res.sendStatus(404);
+                                    }
+                                });                          
+                            // result['cinemas'] = cinemas;                        
                         } else {
                             res.sendStatus(404);
                         }
                     });
+               
 
             } else {
                 res.sendStatus(404);

@@ -1,39 +1,30 @@
-<div class="container-main">
+<div class="container-main" ng-controller="BookProjectionController">
     <div class="bkg-form">
         <div class="row moviePlot">
             <div class="moviePlot-row">
                 <div class="bkg-title"> Прожекция:</div>
-                <div class="bkg-attr">упер Патрул 2</div>
+                <div class="bkg-attr">{{bookingDetails.movie[0].name}}</div>
             </div>
             <div class="moviePlot-row">
                 <div class="bkg-title">Кино:</div>
-                <div class="bkg-attr">БулгарУуд</div>
+                <div class="bkg-attr">{{bookingDetails.cinema[0].name}}</div>
             </div>
             <div class="moviePlot-row">
                 <div class="bkg-title">Дата:</div>
-                <div class="bkg-attr">16 май 2018г.</div>
-            </div>
-            <div class="moviePlot-row">
-                <div class="bkg-title">Час:</div>
-                <div class="bkg-attr">14:30</div>
-            </div>
-            <div class="moviePlot-row">
-                <div class="bkg-title">Зала:</div>
-                <div class="bkg-attr">3</div>
+                <div class="bkg-attr">{{bookingDetails.projection.time * 1000 | date :'dd MMMM yyyy | HH:mm'}}</div>
             </div>
             <div class="moviePlot-row">
                 <div class="bkg-title">Видео формат:</div>
-                <div class="bkg-attr">2D</div>
+                <div class="bkg-attr">{{bookingDetails.projection.movieType}}</div>
             </div>
         </div>
         <div class="contentWrap">
             <div class="row ticket-choose-row">
-                <h1 class="ch-title">Тип на билета:</h1>
-                    <!--Table with tickets choose-->
+                <h1 class="ch-title">Данни за резервацията</h1>
+                <!--Table with tickets choose-->
                 <table class="table booking-table">
                     <thead>
                         <tr class="table-row">
-                            <th scope="col">Вид</th>
                             <th scope="col">Количество</th>
                             <th scope="col">Ед. цена</th>
                             <th scope="col">Сума</th>
@@ -41,21 +32,20 @@
                     </thead>
                     <tbody class="table-body">
                         <tr>
-                            <th class="th-title" scope="row">Намален</th>
-                            <td class="td-quantity">2</td>
-                            <td class="td-price">7.90лв</td>
-                            <td class="td-price">15.80лв</td>
+                            <td class="td-quantity">{{$root.reservation}}</td>
+                            <td class="td-price">{{totalPrice / ticketDetails.length | currency :'лв'}}</td>
+                            <td class="td-price">{{totalPrice | currency: 'лв'}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="row ticket-choose-row">
-               <h1 class="ch-title">Вашето място:</h1>
-               <!--Table with tickets choose-->
+                <h1 class="ch-title">Вашето място:</h1>
+                <!--Table with tickets choose-->
                 <table class="table booking-table">
                     <thead>
                         <tr class="table-row">
-                            <th class="crow"scope="col">Ред</th>
+                            <th class="crow" scope="col">Ред</th>
                             <th class="cplace" scope="col">Място</th>
                         </tr>
                     </thead>
@@ -70,6 +60,8 @@
         </div>
     </div>
     <div class="button btn forward-btn">
-        <a href="/booking-ticket/:id/oreder-final"><span class="fwrd-txt">Продължи</span></a>
+        <a href="/booking-ticket/:id/oreder-final">
+            <span class="fwrd-txt">Продължи</span>
+        </a>
     </div>
 </div>

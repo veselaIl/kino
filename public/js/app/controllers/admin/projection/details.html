@@ -3,29 +3,50 @@
         <span class="s1"> {{ projection.movie.name}}</span>
         <h4 class="projection-h4">Кино {{ projection.cinema.name }} | Зала {{ projection.projection.zalaID }} | {{ projection.projection.time  * 1000 | date:'dd MMMM yyyy | HH:mm' }}</h4>
     </div>
-    <div class="cardDetails">
-        <div class="thumbnail"><img class="left" src="{{ projection.movie.image }}"/></div>
-        <div class="right-projection">
-        <h1 class="projection-h1">  </h1>
-            <div class="row-seat">
+    <div class="cardDetails row">
+        <div class="thumbnail col col-sm-12 col-md-4 col-lg-4"><img class="left" src="/images/movies/{{ projection.movie.image }}"/></div>
+        <div class="right-projection col col-sm-12 col-md-8 col-lg-8">
+            <!-- <div class="row-seat">
                 <div class='seat-map'>
                     <table>
-                    <tr class="seats" ng-repeat="row in projection.cinema.zali | filter : {zalaID : projection.projection.zalaID} track by $index">
-                        <td class='seat' ng-repeat='i in getNumber(row.space) track by $index' >
+                    <tr class="seats" ng-repeat="row in projection.projection.mesta track by $index">
+                        <td class='seat' ng-repeat='seat in row track by $index' >
                         <img class='img-table' src='/images/seat.gif'>
                         <span class='text-table'>{{$index+1}}</span>
                         </td>
                     </tr>
                     </table>
                 </div>
-            </div>   
-        <div class="premier-date">
+            </div>    -->
+            <div class="movie-seat-map col col-sm-12 col-md-10 col-lg-10">
+                <p class='legend'>Заети места: <span class='color-grey'></span>&nbsp; Свободни места: <span class='color-red'></span></p>
+                    <!-- <h1 class="choose-seat-title">Избор на място:</h1> -->
+                 <div class="row-seat">
+                     <div class='seat-map'>
+                         <table>
+                         <thead>
+                             <th class="screen-seat-map">екран</th>
+                         </thead>
+                         <tbody>
+                             <tr class="seats" ng-repeat="row in projection.projection.mesta track by $index">
+                                 <td class='seat' ng-repeat='seat in row track by $index' >
+                                 <label class="btn-reservation">
+                                     <input  ng-disabled="seat === 1" type="checkbox" ng-click="checkSelected($parent.$index,$index)" ng-model="reserveSeat">
+                                     <!-- <img class='img-table' src='/images/seat.gif'> -->
+                                     <span class="img-table"></span>
+                                 </label>
+                                 </td>
+                             </tr>
+                         </tbody>
+                         
+                         </table>
+                     </div>
+                 </div>
+        <div class="premier-date col-md-12 col-lg-12 col-sm-12">
             <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
                 <thead>            
                     <tr class='head-table'>
-                        <th st-sort="time">Информация </th>                
-                        <th st-sort="type">Филм</th>
-                        <th>Тип</th>
+                        <th st-sort="time">Информация </th>                   
                         <th></th>
                     </tr>
                 </thead>

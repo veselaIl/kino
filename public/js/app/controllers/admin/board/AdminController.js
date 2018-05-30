@@ -47,6 +47,7 @@ myApp.controller('AdminController', function($scope, $rootScope, $location, $tim
         });
 
     //get current message
+    console.log($routeParams);
     if($routeParams.id){
         MessagesService.getMessageByID($routeParams.id)
         .then(function (data) {

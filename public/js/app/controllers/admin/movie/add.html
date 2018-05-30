@@ -92,7 +92,7 @@
                             <input type="file" id="file1" accept="image/*" single onchange="angular.element(this).scope().fileNameChanged(this)">
                             <!-- <input type="file" class='form-control' ng-file-select="onFileSelect($files)" ng-model="movie.image" name='image' required> -->
                             <button class="upload-file-button btn btn-primary" ng-click="uploadFile($files)">Качете постер *</button>
-                            <span ng-if="movie.image">{{movie.image}}</span>
+                            <span ng-if="movie.image">{{movie.largeImage}}</span>
                             <div ng-messages="form.image.$error" ng-show="form.image.$invalid && form.image.$touched">
                                 <ng-message when="required"> Това поле е задължително</ng-message>
                             </div>
@@ -102,7 +102,7 @@
                             <input type="file" id="file2" accept="image/*" onchange="angular.element(this).scope().fileNameChanged1(this)">
                             <!-- <input type="file" class='form-control' ng-file-select="onFileSelect($files)" ng-model="movie.image" name='image' required> -->
                             <button class="upload-file-button btn btn-primary" single ng-click="uploadFile1($file)">Качете снимка *</button>
-                            <span ng-if="movie.largeImage">{{movie.largeImage}}</span>
+                            <span ng-if="movie.largeImage">{{movie.image}}</span>
                             <div ng-messages="form.largeImage.$error" ng-show="form.largeImage.$invalid && form.largeImage.$touched">
                                 <ng-message when="required"> Това поле е задължително</ng-message>
                             </div>

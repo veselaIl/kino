@@ -58,21 +58,19 @@ myApp.controller('MovieController', function($scope, $routeParams, $location,  M
 
     $scope.editMovie = function (event, invalid){
         event.preventDefault();
-        // $scope.movie.genres.forEach(function (genre) {
-        //     if (genre === false && $scope.movie.genre.indexOf(genre) === 1){
-        //        var index = $scope.movie.genre.findIndex(item => item === genre);
-        //        $scope.movie.genre.splice( index, 1);
-        //     } else if (genre === true){
-
-        //     }
-
-            
-        // });
-        // if (!invalid){
+        console.log($scope.movie);
+        $scope.movie.genre.forEach(function (genre, index) {
+            if (genre == true){
+               $scope.movie.genre[index] = $scope.genres[index]
+            }
+        }) 
+        if (!invalid){
           console.log($scope);
-        //   MovieService.editMovie($scope.movie);
+          MovieService.editMovie($scope.movie);
         //   $location.path('/admin/movies');
-        // }
+        }
+            
+        
     }
     
     $scope.checkSelected = function(){

@@ -1,4 +1,4 @@
-app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionService', 'MovieService', function($scope, $routeParams, ProjectionService, MovieService){
+app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionService', 'MovieService' ,function($scope, $routeParams, ProjectionService, MovieService){
     
 
     MovieService.getMovie($routeParams.id)
@@ -12,6 +12,7 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
     .catch(function (err){
          errors.push(err);
     })
+    
     function showProjections(date) {
         ProjectionService.getProjections(date)
             .then(function (data) {
@@ -22,6 +23,7 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
                 $scope.movieDetails = Array.isArray(data.movies) ? data.movies : [];
                 //$scope.movieProjections = Array.isArray(data.times) ? data.times : [];
                 console.log($scope.projections, 'projections')
+                console.log($scope);
                 $scope.$apply();
             })
             .catch(function (err){
@@ -35,12 +37,13 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
         $scope.week.push(moment().add(i,'days'));
     }
     $scope.activeDay = $scope.week[0];
-    console.log('activeDay ' + $scope.activeDay, $scope.activeDay);
+    // console.log('activeDay ' + $scope.activeDay, $scope.activeDay);
     $scope.setActive = function(day){
-        console.log('setActive ' + day, day);
-        console.log();
+        // console.log('setActive ' + day, day);
+        // console.log();
+        console.log(day);
         $scope.activeDay = day;
-        console.log('$scope.activeDay', $scope.activeDay.getTime());
+        // console.log('$scope.activeDay', $scope.activeDay.getTime());
         showProjections(day.toDate());
     }
 

@@ -47,8 +47,8 @@
         <tbody>
             <tr dir-paginate="projection in projects | itemsPerPage: pageSize track by $index " current-page="currentPage">
 				<td>
-                    <h5> Дата/час {{projection.time  * 1000 | date:'dd MMMM yyyy | HH:mm' }}</h5>
-                    <span>{{ projection.mesta }}</span>
+                    <h5><strong>Дата/час:</strong> {{projection.time  * 1000 | date:'dd MMMM yyyy | HH:mm' }}</h5>
+                    <span><strong>Резервирани билети:</strong> {{ projection.count }}</span>
                 </td>
                 <td>{{ (projection.movieName) }}</td>
                 <td>{{ types.availableOptions[projection.type - 1].name }}</td>

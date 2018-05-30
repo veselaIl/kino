@@ -54,12 +54,22 @@ myApp.controller('ProjectionController', function ($scope, $document, $location,
       $scope.$apply(function () {
         $scope.projections = projections;
         $scope.projects = $scope.projections.projections;
+        $scope.projects.forEach(function (projection){
+          var count = 0; 
+          for (var i = 0; i < projection.mesta.length; i++){
+            for (var j = 0; j < projection.mesta[i].length; j++){
+              if(projection.mesta[i][j] === 1){
+                count++;
+              }
+            }
+          }
+          projection['count'] = count;
+        })
       });
     })
     .catch(function (err) {
       console.log(err);
     })
-  
   //get Cinemas
   CinemaService.getCinemas()
     .then(function (cinemas) {
