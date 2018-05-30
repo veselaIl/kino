@@ -20,8 +20,6 @@
     max-height: 100%;
 }
 .movies{
-    width:85%;
-    margin: 0 auto;
     margin-top: 5%;
 }
 .field-input {
@@ -126,9 +124,6 @@
 }
 .button.collapse:hover {
     background-color: #f34734;
-}
-.filter{
-    margin-top:15%;
 }
 .button-home input{
     display: none;
@@ -244,4 +239,9 @@
     background-image: linear-gradient(to right, #b74d1c 0%, #eec42a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; 
+}
+@media screen and (max-width: 980px) {
+    .container-main{
+        width: 100%;
+    }
 }

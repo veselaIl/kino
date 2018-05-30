@@ -2,34 +2,18 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
     //Get all movies 
     MovieService.getMovies()
         .then(function (movies){            
-            console.log('Home Controller: movies', movies);
+            // console.log('Home Controller: movies', movies);
             $scope.movies = movies;
-            $scope.filter = $scope.movies;   
+            $scope.filter = $scope.movies; 
             $scope.$apply();
         })
         .catch(function (err){
             errors.push(err);
         })
-       
-    console.log('$routeParams.id', $routeParams);
-    //Get current movie
-    // MovieService.getMovie($routeParams.id)
-    //    .then(function (movie){
-    //         $scope.movie = movie;
-    //         console.log('$scope.movie', $scope.movie);
-    //         // console.log("Genre: ", movie.genre);
-    //         // $scope.movie.genre = movie.genre;
-    //         console.log('Actors:', movie.actors);
-            
-    //         // $scope.actor = movie.actors.forEach(a => {
-    //         //     console.log("Actor: ", a.name);
-    //         //     return a.name;
-    //         // });
-    //         $scope.$apply();
-    //    })
-    //    .catch(function (err){
-    //         errors.push(err);
-    //    })
+    
+    
+    // console.log('$routeParams.id', $routeParams);
+
     CinemaService.getCinemas()
     .then(function (cinemas){
         if (cinemas){
@@ -37,22 +21,6 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
             $scope.$apply();
         }
     })  
-    $scope.myInterval = 3000;
-    $scope.slides = [
-        {
-        image: '/images/movies/102NotOutl.jpg'
-        },
-        {
-        image: '/images/movies/Mubarakanl.jpg'
-        },
-        {
-        image: '/images/movies/HighJackl.jpg'
-        },
-        {
-        image: '/images/movies/Rambol.jpg'
-        }
-    ];
- 
     $scope.selectedCinemas = [];
     $scope.title = "Филми";
     $scope.movies = [];
@@ -94,6 +62,7 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
             angular.element(document.querySelector(customClass)).addClass('activeCinema');
             $scope.selectedCinemas.push(cinema);
         }
+
         $scope.movies.filter(function (movie){
             if ($scope.selectedCinemas.length){
                 $scope.selectedCinemas.forEach(function (selected){
@@ -114,31 +83,14 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
        $scope.filmi = [];
     }
 
-    // $scope.toggleType = function(cinema, event, index) { 
-    //     var customClass = '.type' + index;
-    //     console.log(cinema);
-    //     if($scope.isSelected(cinema)) {
-    //         angular.element(document.querySelector(customClass)).removeClass('activeCinema');
-    //         $scope.selectedCinemas.splice($scope.selectedCinemas.indexOf(cinema), 1);
-    //     } else {
-    //         angular.element(document.querySelector(customClass)).addClass('activeCinema');
-    //         $scope.selectedCinemas.push(cinema);
-    //     }
-    // }
     $scope.isSelected = function(cinema) {
         return $scope.selectedCinemas.indexOf(cinema) > -1;
     }
 
     MovieService.getMovie($routeParams.id)
         .then(function (movie){
-            console.log(movie, 'movie');
-                        $scope.movie = movie;
-                        $scope.$apply();
+            // console.log(movie, 'movie');
+            $scope.movie = movie;
+            $scope.$apply();
         })
-    
-  
-      
-
-    
-    
 });

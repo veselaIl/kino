@@ -1,17 +1,10 @@
-<div class="container-main">           
-    <!-- <div id="slides_control">
-        <div class='carousel-container'>
-            <carousel interval="myInterval">
-            <slide ng-repeat="slide in slides" active="slide.active">
-                <img class="carousel-img" ng-src="{{slide.image}}">
-                <div class="carousel-caption">
-                <h4>Slide {{$index+1}}</h4>
-                </div>
-            </slide>
-            </carousel>
-        </div> -->
-    </div>                
-    <div class="container-movies " > 
+<data-owl-carousel class="owl-carousel" data-options="{singleItem: true,items: 1, pagination: true}">
+    <owl-carousel-item ng-repeat="movie in ::filter" class="item">
+        <img src="/images/movies/{{::movie.largeImage}}" title="{{::movie.name}}">
+    </owl-carousel-item>
+</data-owl-carousel>
+<div class="container-main main-container-home">   
+  <div class="container-movies " > 
         <div class="filter ">          
             <div class="announcement" id="announcement-wrapper">
                 <ul class="cinema-filter">
