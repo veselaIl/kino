@@ -1,5 +1,5 @@
 <div ng-controller="CollapseController">
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-light-blue" role="navigation">
+    <nav class="navbar navbar-header fixed-top navbar-expand-md navbar-dark bg-light-blue" role="navigation">
         <a class="navbar-brand logo" href="/">
             <img src="/images/logo.png">
         </a>
@@ -9,11 +9,11 @@
     
         <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
             <ul class="navbar-nav mr-auto navbar-right nav-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Начало<span class="sr-only">(current)</span></a>
+                <li class="nav-item nav-item-header">
+                    <a class="nav-link nav-link-header" href="/">Начало<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cinemas">Кина</a>
+                <li class="nav-item nav-item-header">
+                    <a class="nav-link nav-link-header" href="/cinemas">Кина</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="/halls">Зали</a>
@@ -21,16 +21,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/movies">Филми</a>
                 </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/projections">Програма</a>                   
+                <li class="nav-item nav-item-header">
+                    <a class="nav-link nav-link-header" href="/projections">Програма</a>                   
                 </li>
-                <li ng-if="userChecked && !$root.user" class="nav-item">
-                    <a class="nav-link" href="/login">Вход</a>
+                <li ng-if="userChecked && !$root.user" class="nav-item nav-item-header">
+                    <a class="nav-link nav-link-header" href="/login">Вход</a>
                 </li>
-                <li ng-if="userChecked && $root.user" class="nav-item">
-                    <a ng-click="profile($event)" class="nav-link" href="/profile">Профил</a>
+                <li ng-if="userChecked && $root.user" class="nav-item nav-item-header">
+                    <a ng-click="profile($event)" class="nav-link nav-link-header" href="/profile">Профил</a>
                 </li>
-                <li ng-if="userChecked && $root.user" class="nav-item">
+                <li ng-if="userChecked && $root.user" class="nav-item nav-item-header">
                     <a ng-click="logout($event)" class="nav-link" href="/logout">Изход</a>
                 </li>
             </ul>

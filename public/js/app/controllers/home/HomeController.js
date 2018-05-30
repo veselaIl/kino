@@ -1,5 +1,4 @@
 app.controller('HomeController', function($scope, $routeParams, $document, MovieService, CinemaService){   
-
     //Get all movies 
     MovieService.getMovies()
         .then(function (movies){            
@@ -37,7 +36,23 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
             $scope.cinemas = cinemas;
             $scope.$apply();
         }
-    })   
+    })  
+    $scope.myInterval = 3000;
+    $scope.slides = [
+        {
+        image: '/images/movies/102NotOutl.jpg'
+        },
+        {
+        image: '/images/movies/Mubarakanl.jpg'
+        },
+        {
+        image: '/images/movies/HighJackl.jpg'
+        },
+        {
+        image: '/images/movies/Rambol.jpg'
+        }
+    ];
+ 
     $scope.selectedCinemas = [];
     $scope.title = "Филми";
     $scope.movies = [];
@@ -99,17 +114,17 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
        $scope.filmi = [];
     }
 
-    $scope.toggleType = function(cinema, event, index) { 
-        var customClass = '.type' + index;
-        console.log(cinema);
-        if($scope.isSelected(cinema)) {
-            angular.element(document.querySelector(customClass)).removeClass('activeCinema');
-            $scope.selectedCinemas.splice($scope.selectedCinemas.indexOf(cinema), 1);
-        } else {
-            angular.element(document.querySelector(customClass)).addClass('activeCinema');
-            $scope.selectedCinemas.push(cinema);
-        }
-    }
+    // $scope.toggleType = function(cinema, event, index) { 
+    //     var customClass = '.type' + index;
+    //     console.log(cinema);
+    //     if($scope.isSelected(cinema)) {
+    //         angular.element(document.querySelector(customClass)).removeClass('activeCinema');
+    //         $scope.selectedCinemas.splice($scope.selectedCinemas.indexOf(cinema), 1);
+    //     } else {
+    //         angular.element(document.querySelector(customClass)).addClass('activeCinema');
+    //         $scope.selectedCinemas.push(cinema);
+    //     }
+    // }
     $scope.isSelected = function(cinema) {
         return $scope.selectedCinemas.indexOf(cinema) > -1;
     }
@@ -121,7 +136,8 @@ app.controller('HomeController', function($scope, $routeParams, $document, Movie
                         $scope.$apply();
         })
     
-   
+  
+      
 
     
     

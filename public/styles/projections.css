@@ -578,3 +578,14 @@ span.genre{
   color: #41C1F2;
   text-decoration: none;
 }
+.no-projections-header{
+  margin: 0 auto;
+  margin-top:10%;
+  width: 60%;
+}
+.navbar{
+  height: 80px;
+}
+.logo>img{
+  width: 200px;
+}

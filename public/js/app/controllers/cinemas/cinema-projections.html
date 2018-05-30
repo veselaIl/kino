@@ -12,7 +12,7 @@
             </ul>
         </section>
     </div>
-    <div ng-if="cinemaDetails">
+    <div ng-if="projections.length">
         <section ng-if="movieDetails" ng-repeat="movie in movieDetails track by $index">
             <div class="row projection-movie borders-top">
                 <div  class="col col-sm col-md-4" >
@@ -47,16 +47,16 @@
                         <div>
                             <ul>
                                     <!-- ng-repeat="time in movieProjections.times | orderBy: 'timestamp'" -->
-                                <li class="projection-times " ng-repeat="projection in projections | filter : movie.movieID track by $index" >                                    
-                                    <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
-                                        ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
+                                <li class="projection-times " ng-repeat="projection in projections | filterBy: ['movieID'] : movie.movieID track by $index" >                                                                    
+                                    <a href="/book/{{projection._id}}" 
+                                    ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
                                         <div class="items">
                                             <label class="button-item btn-item">                                            
                                                 <input type="checkbox">                                                    
                                                 <span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span>                                                    
                                             </label>
                                         </div>
-                                    </a>                                        
+                                    </a>                                         
                                 </li>
                             </ul>
                         </div>
@@ -64,5 +64,8 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div ng-if="!projections.length">
+        <h1 class="no-projections-header">Няма прожекции на тази дата.</h1>
     </div>
 </div>
