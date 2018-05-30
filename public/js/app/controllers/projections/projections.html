@@ -12,7 +12,50 @@
             </ul>
         </section>
     </div>
-        <div ng-if="cinemaDetails" ng-repeat="cinema in cinemaDetails track by $index">           
+    <div ng-repeat="projectionCinemaGroup in projections | groupBy : 'kinoID'">
+        <div ng-repeat="projectionGroup in projectionCinemaGroup | groupBy : 'movieID'">
+            <section>
+                <div class="row projection-movie borders-top">
+                    <div class="col col-sm col-md-3">
+                        <div class="cinema-info"  ng-init="cinema = getCinemaById(projectionCinemaGroup[0].kinoID)">
+                            <p class="title">{{ cinema.name }}</p>
+                            <p class="address">{{ cinema.address }}</p>
+                            <p class="address">{{ cinema.phoneNumber }}</p>
+                        </div>
+                    </div>
+                    <div class="col col-sm col-md-3" ng-init="movie = getMovieById(projectionGroup[0].movieID)" >
+                        <div class="">
+                            <a href="/movies/{{ movie.movieID }}/projections">
+                                <img class="movie-poster poster-shadow" ng-src="/images/movies/{{ movie.image }}">
+                            </a>
+                        </div>            
+                    </div>
+                </div>            
+            </section> 
+            <div >
+                <div class="row projection-movie">
+                    <div class="col col-sm col-md-12">
+                        <p class="book-message"><i class="fa fa-ticket" aria-hidden="true"></i> Изберете час, за да запазите билет.</p>
+                        <div>
+                            <ul>
+                                <li class="projection-times" ng-repeat="projection in projectionGroup">
+                                    <a href="/book/{{projection._id}}" 
+                                        ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
+                                        <div class="items">
+                                            <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- <div ng-if="projections.length" ng-repeat="cinema in cinemaDetails track by $index">
+        <section ng-if="movieDetails" ng-repeat="movie in movieDetails track by $index">
             <div class="row projection-movie borders-top">
                 <div class="col col-sm col-md-3">
                     <div class="cinema-info">
@@ -54,22 +97,21 @@
                     </p>
                     <div>
                         <ul>
-                                <!-- ng-repeat="time in movieProjections.times | orderBy: 'timestamp'" -->
-                            <li class="projection-times" ng-repeat="projection in projections | filterBy: ['movieID']: movie.movieID | groupBy : ['kinoID'] track by $index" >
-                                <!-- <p>{{projection}}</p> -->
-                                    <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
-                                     ng-if="(activeDay.toDate() | date:'dd-MM') == (project.time * 1000 | date: 'dd-MM')">                                        
-                                        <div class="items">
-                                            <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
-                                        </div>
-                                    </a>
-                                    
-                                </div>
+                            <li class="projection-times" ng-repeat="projection in projections | filterBy : ['movieID'] : movie.movieID track by $index" >
+                                <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
+                                    ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
+                                    <div class="items">
+                                        <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    <!-- </div> -->
+        </section>
+    </div> -->
+    <div ng-if="!projections.length">
+        <h1 class="no-projections-header">Няма прожекции на тази дата.</h1>
+    </div>
 </div>

@@ -43,7 +43,7 @@ router.get('/api/projections', function (req, res){
 
     req.db.get('projection').find(findObj, findFields)
         .then(function (projections) {
-            // console.log('projections', projections.length, projections);
+            console.log('projections', projections.length, projections);
             if (projections.length) {
                 var result = {
                     projections: projections

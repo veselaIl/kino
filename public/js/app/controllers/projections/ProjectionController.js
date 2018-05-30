@@ -27,9 +27,14 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
                 $scope.$apply();
             })
             .catch(function (err){
+                $scope.projections = [];
+                $scope.$apply();
+                console.log($scope.projections);
                 console.log(err);
+               
             });
     }
+    console.log($scope.projections, 'scope projections'); 
     
     $scope.today = moment(new Date(),'DD-MM-YYYY');
     $scope.week = [];
@@ -45,6 +50,13 @@ app.controller('ProjectionController', ['$scope', '$routeParams', 'ProjectionSer
         $scope.activeDay = day;
         // console.log('$scope.activeDay', $scope.activeDay.getTime());
         showProjections(day.toDate());
+    }
+
+    $scope.getCinemaById = function(kinoID) {
+       return $scope.cinemaDetails.find(cinema => cinema.kinoID === kinoID);
+    }
+    $scope.getMovieById = function (movieID) {
+        return $scope.movieDetails.find(movie => movie.movieID === movieID);
     }
 
 

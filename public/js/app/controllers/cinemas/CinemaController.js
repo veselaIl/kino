@@ -31,6 +31,8 @@ app.controller('CinemaController', function ($scope, $rootScope, $routeParams, C
                 $scope.$apply();
             })
             .catch(function (err){
+                $scope.projections = [];
+                $scope.$apply();
                 console.log(err);
             });
     }
