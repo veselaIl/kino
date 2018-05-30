@@ -100,6 +100,17 @@ a {
   margin-top: 15px;
   color: #fff;
 } */
+.cinema-wrapper{
+  background: #000000;
+  width: 100%;
+  margin: 0;
+}
+.top-margin{
+  margin-top: 100px;
+}
+.container-main.top-margin{
+  margin-top: 100px;
+}
 .cinema-title{
   text-align: center;
   border: 1px solid rgb(241, 85, 0);
@@ -2268,3 +2279,7 @@ div strong{
               -webkit-text-fill-color: transparent;
 } */
   
+/*video movie trailer*/
+.row.video-wrapper{
+  background: #000000;
+}

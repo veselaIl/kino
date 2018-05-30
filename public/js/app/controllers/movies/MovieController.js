@@ -1,4 +1,4 @@
-app.controller('MovieController', function ($scope, $routeParams, MovieService, ProjectionService) {
+app.controller('MovieController', function ($scope, $routeParams, MovieService, ProjectionService, ngYoutubeEmbedService) {
     $scope.title = "Филми";
     var errors = [];
 
@@ -23,6 +23,21 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService, 
        .then(function (data){
             console.log(data, 'MOVIE DETAILS MOVIE CONTROLLER');
             $scope.movie = data;
+            //console.log('movie trailer url', data.movie[0].trailer);
+            $scope.videoURL = data.movie[0].trailer;
+            $scope.playVideo = function() {
+                var player = ngYoutubeEmbedService.getPlayerById('stillEchoes');
+                player.playVideo();
+              };
+            
+              $scope.showVideoInfo = function() {
+                var player = ngYoutubeEmbedService.getPlayerById('stillEchoes');
+                player.showVideoInfo();
+              };
+            
+              $scope.stateChanged = function(e) {
+                console.log(e);
+              };
             $scope.movie.projections.forEach(element => {
                 var mom = moment(element.time * 1000);
                 dates.push(mom)

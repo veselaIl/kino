@@ -1,4 +1,12 @@
-<div class="container-main">
+
+<div class="container top-margin">
+    <div class="row">
+        <div class="col-md-12 cinema-title">
+            <h3>{{cinema.name}}</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
     <div class="date-picker__wrap days">
         <section class="date-picker carousel js-movie-calendar carousel-style-strip">
             <ul class="carousel-items week">
@@ -53,7 +61,9 @@
                                         <div class="items">
                                             <label class="button-item btn-item">                                            
                                                 <input type="checkbox">                                                    
-                                                <span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span>                                                    
+                                                <span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}
+                                                    <div class="details-tag">{{ projection.movieType }}</div>
+                                                </span>                                                    
                                             </label>
                                         </div>
                                     </a>                                         

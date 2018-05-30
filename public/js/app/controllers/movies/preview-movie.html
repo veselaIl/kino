@@ -1,14 +1,20 @@
 <!--Movie info-->
 <div class="container">
     <!-- <div youtube-modal="youtube-link" ng-controller="YouTubeController"> -->
-    <div>
-        <a href="{{ movie.movie[0].trailer }}" class="youtube-link" target="_blank" title="{{movie.movie[0].name }}">
-            <div class="screen">
-                <img class="movie-poster-background" ng-src="/images/movies/{{movie.movie[0].largeImage }}">
-                <div class="bottom-grad"></div>
+        <div class="row video-wrapper">
+            <div class="col col-sm-12 col-md-12">
+                <div class="">
+                    <div class="screen">
+                        
+                        <!-- <img class="movie-poster-background" ng-src="/images/movies/{{movie.movie[0].largeImage }}"> -->
+                        <ng-youtube-embed video="videoURL" width="100%"></ng-youtube-embed>
+                        <div class="bottom-grad"></div>
+                        
+                    </div>
+                </div>
             </div>
-        </a>
-    </div>
+        </div>
+    
     <div class="row">
         <div class="col col-sm col-md col-lg">
             <div class="gradient-dark">
@@ -80,72 +86,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Table with info for Director, Actors etc.-->
-                        <!-- <div class="row">
-                            <div class="col col-sm-12 col-md-12">
-                                    <table class="table table-sm table-movie">
-                                        <tbody>
-                                            <tr>
-                                            <th scope="row">
-                                                <td><strong>Жанр:</strong></td>
-                                                <td ng-repeat="genre in movie.movie[0].genre track by $index">
-                                                    {{ genre }}
-                                                </td>
-                                            </th>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row"></th>
-                                                <td ng-if="movie.movie[0].actors"><strong>Актьори:</strong></td>
-                                                <td>
-                                                    <span>{{ movie.movie[0].actors }}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row"></th>
-                                            <td><strong>Режисиьор:</strong></td>
-                                            <td>{{ movie.movie[0].directorName}}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row"></th>
-                                            <td><strong>Категория:</strong></td>
-                                            <td>Не се препоръчва за деца под {{movie.movie[0].suitable}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"></th>
-                                                <td><strong>Дублиран:</strong></td>
-                                                <td ng-if="!movie.movie[0].dublaj">НЕ</td>
-                                                <td ng-if="movie.movie[0].dublaj">ДА</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                        </div> -->
-
-                        <!--Buttons favourites and buy ticket-->
-                        <!-- ng-controller="UserController"  -->
-                        <!-- <div ng-controller="UserController" class="row">
-                            <div ng-controller="CollapseController">
-                                <div ng-if="userChecked && $root.user" class="col col-sm-12 col-md-12">
-                                    <!-- <a href="#"  class="button btn buy-ticket favourites float-right"><span class="txt"><i class="fa fa-ticket" aria-hidden="true"></i>Купи билет</span></a> -->
                     </div>
                 </section>
             </div>
         </div>
     </div>
-    <!-- 
-    <div class="date-picker__wrap days">
-        <section class="date-picker carousel js-movie-calendar carousel-style-strip">
-            <ul class="carousel-items week">
-                <li class="week-day date-picker__date" ng-class="{ active: activeDay === day }" ng-repeat="day in week">
-                    <a href class="date-picker__link" ng-click="setActive(day)">
-                        <span class="date-picker__date-weekday" >{{ day.format('dddd') }}</span>
-                        <span class="date-picker__date-month">{{ day.format('MMMM') }}</span>
-                        <span class="date-picker__date-day">{{ day.format('DD') }}</span>
-                    </a>
-                </li>       
-            </ul>
-        </section>
-    </div> -->
     <div>
         <div ng-if="activeDay" ng-repeat="cinema in cinemas track by $index">
             <section ng-if="movie">

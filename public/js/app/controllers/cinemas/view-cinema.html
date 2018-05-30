@@ -1,5 +1,15 @@
-<div class="container-main">
-    <div class="container">
+<div class="container">
+    <div class="row cinema-wrapper">
+        <div class="col col-sm-12 col-md-12">
+            <div class="screen">
+                <img ng-src="/images/cinemas/{{ cinema.image }}" alt="" height="450px">
+                <div class="bottom-grad"></div>
+            </div>            
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
         <div class="col-md-12 cinema-title">
             <h3>{{cinema.name}}</h3>
             <div class="row cinema-head col-md-11">
@@ -21,17 +31,17 @@
                 </div>
             </div>
         </div>
-        <div class="row cinema-description">
-            <div class="col-md-7">
-                <h4>Зали</h4>
-                <hr class="red-line">
-                <p>Описание на залите</p>
-            </div>
-            <div class="col-md-5">
-                <h4>Паркинг</h4>
-                <hr class="red-line">
-                <p>Открит, платен паркинг. Паркингът е неохраняем!Безплатен престой от четири часа за зрителите и клиентите на ресторантите в киното. Паркинг талонът се валидира на касите на киното.</p>                
-            </div>
+    </div>
+    <div class="row cinema-description">
+        <div class="col-md-7">
+            <h4>Зали</h4>
+            <hr class="red-line">
+            <p>Описание на залите</p>
+        </div>
+        <div class="col-md-5">
+            <h4>Паркинг</h4>
+            <hr class="red-line">
+            <p>Открит, платен паркинг. Паркингът е неохраняем!Безплатен престой от четири часа за зрителите и клиентите на ресторантите в киното. Паркинг талонът се валидира на касите на киното.</p>                
         </div>
     </div>
     <div class="container">
@@ -96,5 +106,4 @@
             </div>
         </div>
     </div>
-    
 </div>

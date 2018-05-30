@@ -1,5 +1,5 @@
 
-var app = angular.module('App', ['angular.filter','ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
+var app = angular.module('App', ['angular.filter','ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ngYoutubeEmbed']);
 
 app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
