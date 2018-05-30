@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/api/projections', function (req, res){
 
     console.log('/api/projections', req.query.date);
-    //GET all projections
+    //GET a ll projections
 
     var findObj = {},
         findFields = { sort: { time: 1 } };

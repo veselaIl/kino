@@ -13,6 +13,12 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService, 
     //         errors.push(err);
     //     })
     var dates = [];
+    $scope.suitable = [ 
+        { value : '1', name:'12+'},
+        { value: '2', name:'16+'},
+        { value: '3', name: 'Без ограничения'}
+    ]
+
     MovieService.getMovie($routeParams.id)
        .then(function (data){
             console.log(data, 'MOVIE DETAILS MOVIE CONTROLLER');
@@ -45,7 +51,15 @@ app.controller('MovieController', function ($scope, $routeParams, MovieService, 
         });
         // return item.format('DD MM') === date.format('DD MM')
     }
-
+    $scope.checkItem = function(item, cinema){
+        console.log($scope);
+        var filter = $scope.movie.projections.some(projection => projection.kinoID === cinema.kinoID);
+        console.log(filter, 'checkItem')
+        if(filter.length){
+         console.log(item);// console.log(filter.some(projection => projection.time.format('DD MMMM') === item));
+          filter.some(projection => projection.time.format('DD MMMM') === item)
+        }
+    }
     function showMovieProjections(id, date) {
         ProjectionService.getMovieProjections(id, date)
             .then(function (data) {

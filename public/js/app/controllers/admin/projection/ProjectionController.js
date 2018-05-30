@@ -161,9 +161,7 @@ myApp.controller('ProjectionController', function ($scope, $document, $location,
       $location.path('/admin/projections');
     }
      
-  }
-        
-    
+  } 
 
   // Projection Dates to be added
   $scope.$watch('projectionDates', function (newValue, oldValue) {
