@@ -1,4 +1,4 @@
-app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$routeParams', 'BookingService', function($scope, $rootScope, $routeParams, BookingService){
+app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$timeout','$routeParams', 'BookingService' , '$uibModal',function($scope, $rootScope, $timeout, $routeParams, BookingService,  $uibModal){
     $scope.projections = [];
     $scope.today = moment(new Date(),'DD-MM-YYYY');
     $scope.week = [];    
@@ -12,7 +12,10 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$routeParam
         '3D',
         'IMAX',
         '4DX'
+    
     ]
+    $scope.class = false;
+    $scope.class1 = false;
     var price;
     $scope.suitable = [ 
         { value : '1', name:'12+'},
@@ -25,53 +28,131 @@ app.controller('BookProjectionController', ['$scope', '$rootScope' ,'$routeParam
     $scope.priceRegular = 12;
     $scope.priceStudent = 10;
     $scope.totalPrice = 0;
-    $scope.decrement = function(){
-        if($scope.counter > 0){
-            $scope.counter--;
-            switch($scope.price){
-                case $scope.priceReduced : $scope.totalPrice -= $scope.priceReduced;
-                case $scope.priceRegular : $scope.totalPrice -= $scope.priceRegular;
-                case $scope.priceStudent : $scope.totalPrice -= $scope.priceStudent;
-                default: $scope.TotalPrice = 0;
-            }
-        }
-    }
-    $scope.increment = function(){
-        if($scope.counter < 6){
-            $scope.counter++;
-            switch(price){
-                case $scope.priceReduced : $scope.totalPrice += $scope.priceReduced;
-                case $scope.priceRegular : $scope.totalPrice += $scope.priceRegular;
-                case $scope.priceStudent : $scope.totalPrice += $scope.priceStudent;
-                default: $scope.TotalPrice = 0;
-            }
-        }
-    }
+    
     function showBookingPage(id){
         BookingService.getBookingTicket(id)
             .then(function (data){
                 console.log(data,'booking details')
                 $scope.bookingDetails = data;
-                price = $scope.price[+$scope.bookingDetails.projection.type-1];    
+                price = $scope.price[+$scope.bookingDetails.projection.type-1]; 
+                $scope.bookingDetails['booking'] = $rootScope.reservation;
                 $scope.$apply();
             })
             .catch(function (err){
                 console.log(err);
             });
     }
-    var reservation = [];
+    $rootScope.reservation = [];
     $scope.checkSelected = function(row,seat){
-        if(!reservation.find(item => item.row === row && item.seat === seat)){
-            reservation.push({row,seat});
-            $scope.totalPrice = reservation.length * price;
-        
+        if(!$rootScope.reservation.find(item => item.row === row && item.seat === seat)){
+            $rootScope.reservation.push({row,seat});
+            $scope.totalPrice = $rootScope.reservation.length * price;
         } else {
-            var index = reservation.findIndex(item => item.row === row && item.seat ===seat);
-            reservation.splice(index, 1);
-            $scope.totalPrice = reservation.length * price;
+            var index = $rootScope.reservation.findIndex(item => item.row === row && item.seat ===seat);
+            $rootScope.reservation.splice(index, 1);
+            $scope.totalPrice = $rootScope.reservation.length * price;
+            
+        }
+        return $rootScope.reservation;
+    }
+    $scope.finishReservation = function(reservations, event){
+       if (reservations.length) {
+           var mesta = $scope.bookingDetails.projection.mesta;
+        //    console.log(reservation, 'reservation')
+           reservations.forEach(function (reservation){
+               mesta[reservation.row][reservation.seat] = 1;
+           });
+        //    console.log( $scope.bookingDetails.projection.mesta);
+           BookingService.book(mesta ,$scope.bookingDetails.projection._id);
+       } else {
+           event.preventDefault();
+           $scope.message = "Трябва да маркирате поне едно място, за да направите резарвация.";
+           
+       }
+    }
+   
+    if ($routeParams._id) {
+        console.log($routeParams);
+        showBookingPage($routeParams._id);
+    } else {
+        console.log($routeParams)
+        showBookingPage($routeParams.id);
+    }
 
+        
+    $scope.open = function(event) {
+        if($scope.reservation.length === 0){
+            $scope.message = "Трябва да маркирате поне едно място, за да направите резарвация.";
+        } else{
+            $scope.message ='';
+            $scope.class = true;
+            var modalContent = $uibModal.open({
+                templateUrl: 'modal.html',
+                controller: 'ModalInstanceCtrl',
+                controllerAs: '$ctrl',
+                resolve: {
+                bookingDetails: function() {
+                    return $scope.bookingDetails;
+                },
+                reservation : function(){
+                    return $rootScope.reservation;
+                },
+                totalPrice : function(){
+                    return $scope.totalPrice;
+                }   
+                }
+            })
         }
     }
-    showBookingPage($routeParams._id);
-    moment.locale("bg");
-}])
+
+    $scope.counter = 1200;
+    $scope.onTimeout = function () {
+    if ($scope.counter == 0) {
+        alert('Сесията ви изтече');
+        $location.path('/');
+        $scope.counter = 0;
+    }
+    else{
+        $scope.counter--;
+        mytimeout = $timeout($scope.onTimeout, 1000);
+    }       
+    }
+    var mytimeout = $timeout($scope.onTimeout, 1000);
+
+
+    
+  moment.locale("bg");
+  //});//Uncomment
+}]);
+
+app.controller('ModalInstanceCtrl', function($uibModalInstance, BookingService, bookingDetails,totalPrice, reservation, $scope) {
+    $scope.data = bookingDetails;
+    $scope.reservations = reservation;
+    $scope.totalPrice = totalPrice;
+    console.log($scope);
+
+    $scope.cancel = function(){
+        $uibModalInstance.dismiss('cancel');
+
+    }
+    $scope.ok = function(){
+        $scope.class1 = true;
+        var mesta = $scope.data.projection.mesta;
+        $scope.reservations.forEach(function (reservation){
+            mesta[reservation.row][reservation.seat] = 1;
+           });
+        BookingService.book(mesta ,$scope.data.projection._id, $scope.reservations)
+                $uibModalInstance.close();
+                $scope.message = 'Успешна резервация. До 5 секунди ще бъдете автоматично прехвърлени към начална страница.';
+                setTimeout(function () {
+                    // after 2 seconds
+                    $location.path = "/";
+                }, 5000)
+    }
+});
+
+app.filter('secondsToDateTime', [function() {
+    return function(seconds) {
+ return new Date(1970, 0, 1).setSeconds(seconds);
+}   
+}]);

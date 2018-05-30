@@ -36,6 +36,7 @@ myApp.controller('AddCinemaController', function($scope, $location, CinemaServic
                 capacity : mesta
             })
             $scope.disabled === true;
+            $scope.numRows = 0;
             $(".collapse").collapse('toggle');
         }
     }

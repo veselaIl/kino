@@ -9,25 +9,25 @@
                     </div> -->
                     <div class="error"></div>
                     <form ng-submit="registerUser($event, form.$invalid)" name="registerForm" action="" method="POST">
+                        <div class="errorMsgLogin" ng-if="errorMsg"><p class="errcontainer">{{ errorMsg }}</p></div>
                         <div ng-if="errors.length" class="errors">                            
                             <div ng-repeat="error in errors" class="error">{{error}}</div>
                         </div>
                         <div class="form-group has-error">
                             <input ng-model="newUser.email" class="form-control input-lg" placeholder="Въведете e-mail" name="email" type="email" required>
-                            <div ng-show="registerForm.email.$touched && registerForm.email.$invalid">Моля въведете вашият имейл адрес&#33;</div>
+                            <div class="errorMsg" ng-show="registerForm.email.$touched && registerForm.email.$invalid">Моля въведете вашият имейл адрес&#33;</div>
                         </div>
                         <div class="form-group has-success">
                             <input ng-model="newUser.password" class="form-control input-lg" placeholder="Въведете парола" name="password" value="" type="password" ng-minlength="6" ng-maxlength="30" required>
-                            <div class="messages" ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched && registerForm.password.$invalid">
-                                <div ng-message="required">Моля въведете парола!</div>
-                                <div ng-message="minlength">Моля въведете парола от минимум 6 символа!</div>
-                                <div ng-message="maxlength">Паролата е твърде дълга. Максимум 30 символа!</div>
+                            <div class="errorMsg" ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched && registerForm.password.$invalid">
+                                <div ng-message="required">Моля въведете парола от минимум 6 символа!</div>
+                                <!-- <div ng-message="minlength">Моля въведете парола от минимум 6 символа!</div>
+                                <div ng-message="maxlength">Паролата е твърде дълга. Максимум 30 символа!</div> -->
                             </div>
-                            
                         </div>
                         <div class="form-group has-success">
                             <input ng-model="newUser.confirmPassword" class="form-control input-lg" placeholder="Потвърдете паролата" name="confirmPassword" value="" type="password" required>
-                            <div ng-show="registerForm.confirmPassword.$touched && registerForm.confirmPassword.$invalid">Моля потвърдете паролата!</div>
+                            <div class="errorMsg" ng-show="registerForm.confirmPassword.$touched && registerForm.confirmPassword.$invalid">Моля потвърдете паролата!</div>
                         </div>                                    
                         <div class="checkbox">
                             <label class="small">

@@ -12,8 +12,7 @@
             </ul>
         </section>
     </div>
-    <div ng-if="cinemaDetails" ng-repeat="cinema in cinemaDetails track by $index">
-        <section ng-if="movieDetails" ng-repeat="movie in movieDetails track by $index">
+        <div ng-if="cinemaDetails" ng-repeat="cinema in cinemaDetails track by $index">           
             <div class="row projection-movie borders-top">
                 <div class="col col-sm col-md-3">
                     <div class="cinema-info">
@@ -24,7 +23,7 @@
                 </div>
                 <div  class="col col-sm col-md-3" >
                     <div class="">
-                        <a href="/movies/preview-movie/{{ movie.movieID }}/projections">
+                        <a href="/movies/{{ movie.movieID }}/projections">
                             <img class="movie-poster poster-shadow" ng-src="/images/movies/{{ movie.image }}">
                         </a>
                     </div>            
@@ -39,8 +38,7 @@
                                     <a href="#" title="Премахни от любими" ng-if="isInFavourites" ng-click="addToFavourites($event)"><span><i class="fa fa-heart-o" style="font-size:36px;outline: 10px;color: rgba(247,149,30,.38);text-shadow: 0 0 18px rgba(247,149,30,.8);"></i></span></a>
                                 </div>
                             </div>
-                        </div>
-                        
+                        </div>                        
                         <p class="description">{{ movie.description }}</p>
                         <p class="movie-meta"><span class="meta-data">Режисьор:</span><span class="data-response">{{ movie.directorName }}</span></p>
                         <p ng-if="movie.actors" class="movie-meta"><span class="meta-data">Актьори:</span><span class="data-response">{{ movie.actors }}</span></p>
@@ -57,10 +55,10 @@
                     <div>
                         <ul>
                                 <!-- ng-repeat="time in movieProjections.times | orderBy: 'timestamp'" -->
-                            <li class="projection-times" ng-repeat="projection in projections track by $index" >
-                                <div >
+                            <li class="projection-times" ng-repeat="projection in projections | filterBy: ['movieID']: movie.movieID | groupBy : ['kinoID'] track by $index" >
+                                <!-- <p>{{projection}}</p> -->
                                     <a href="/projections/book/{{projection.kinoID}}/{{projection.zalaID}}/{{projection.movieID}}/{{projection.time}}" 
-                                     ng-if="(activeDay.toDate() | date:'dd-MM') == (projection.time * 1000 | date: 'dd-MM')">                                        
+                                     ng-if="(activeDay.toDate() | date:'dd-MM') == (project.time * 1000 | date: 'dd-MM')">                                        
                                         <div class="items">
                                             <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time * 1000 | date: 'HH:mm'}}</span></label>
                                         </div>
@@ -72,6 +70,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    <!-- </div> -->
 </div>

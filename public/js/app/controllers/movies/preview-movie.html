@@ -61,15 +61,16 @@
                                     <table class="table table-sm table-movie">
                                         <tbody>
                                             <tr>
-                                            <th ng-if="movie.genre.length" scope="row"></th>
+                                            <th scope="row">
                                                 <td>ЖАНР:</td>
-                                                <td ng-repeat="genre in movie.genre track by $index">
-                                                    {{ movie.movie[0].genre.join(', ') }}
+                                                <td ng-repeat="genre in movie.movie[0].genre track by $index">
+                                                    {{ genre }}
                                                 </td>
+                                            </th>
                                             </tr>
                                             <tr>
                                             <th scope="row"></th>
-                                                <td ng-if="movie.actors">АКТЬОРИ</td>
+                                                <td ng-if="movie.movie[0].actors">АКТЬОРИ:</td>
                                                 <td>
                                                     <span>{{ movie.movie[0].actors }}</span>
                                                 </td>
@@ -83,11 +84,6 @@
                                             <th scope="row"></th>
                                             <td>КАТЕГОРИЯ:</td>
                                             <td>Не се препоръчва за деца под {{movie.movie[0].suitable}}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row"></th>
-                                            <td>ИЗЛЪЧВА СЕ В:</td>
-                                            <td>{{ movie.movie[0].movieType }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"></th>
@@ -184,7 +180,12 @@
                                             <div ng-if="projection.time.format('DD MMMM') === item">                  
                                                 <a class="projection-time-link" href="/book/{{projection._id}}" >                                        
                                                     <div class="items">
-                                                        <label class="button-item btn-item"><input type="checkbox"><span class="item-name">{{projection.time.format('HH:mm')}}</span></label>
+                                                        <label class="button-item btn-item"><input type="checkbox">
+                                                            <span class="item-name">{{projection.time.format('HH:mm')}}
+                                                                <div class="details-tag">{{ projection.movieType }}</div>
+                                                            </span>
+                                                            
+                                                        </label>
                                                     </div>
                                                 </a>                                        
                                             </div>

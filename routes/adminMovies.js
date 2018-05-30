@@ -90,6 +90,21 @@ router.get('/admin/api/movies/movie/:id', function(req, res){
 
 router.post('/admin/api/movies/edit', function (req, res){
   console.log(req.body);
+  if (req.body.movie){
+    req.db.get('movies')
+    .update({ _id : new ObjectId(req.body.movie._id)}, {$set : req.body.movie})
+    .then(function (response){
+      if (response) {
+        console.log(response);
+        res.json({ text : 'Movie successfully edited!'});
+      } else { 
+        res.sendStatus(400);
+      }
+    })
+  } else {
+    res.sendStatus(500);
+  }
+  
 })
 // /* GET MOVIE BY NAME */
 // router.get('/admin/api/movie/:name', function(req, res){

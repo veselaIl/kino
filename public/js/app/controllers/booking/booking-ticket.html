@@ -2,6 +2,10 @@
     <div class="row">
         <div class="info-card-movie col col-sm-12 col-md-12 col-lg-12">
             <div class="background-header">
+                <div class="counter-session" >                       
+                    <h1 class='timer'>{{counter | secondsToDateTime | date:'mm:ss'}}</h1> 
+                    <h4 class='timer heading-four'>Време за избор</h4>
+                </div>
                 <img class="background-header-image" src="/images/movies/{{bookingDetails.movie[0].largeImage}}">
                 <div class="row">
                     <div class="col col-sm-6 col-md-5 col-lg-5 movie-details-header">
@@ -21,10 +25,25 @@
         </div>
     </div>
     <div class="row reservation">
-        <p>Изберете свободни места и кликнете върху тях, за да ги маркирате. Екранът показва посоката на гледане. Отстоянието на седалките от екрана не представлява действителното разположение в залата.
-        <br> Свободни места: <span class='color-blue'></span> Заети места: <span class='color-black'></span></p>
+        <div class="col col-sm-12 col-md-12 col-lg-12">
+                <link href='https://fonts.googleapis.com/css?family=Palanquin:500' rel='stylesheet' type='text/css'>
+                <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+                <div class="row progress-bar-names ">
+                  <span class="progress-bar-title col col-sm-4 col-md-4 col-lg-4">Избор на прожекция</span>
+                  <span class="progress-bar-title progress-bar-middle col col-sm-4 col-md-4 col-lg-4">Избор на място</span>
+                  <span class="progress-bar-title col col-sm-4 col-md-4 col-lg-4">Потвърждение</span>
+                </div>
+                <ul class="progress">
+                  <!-- <li class="progress__bar progress--done"></li> -->
+                  <li class="progress__circle progress--active"></li>
+                  <li class="progress__bar progress--active"></li>
+                  <li ng-class="{'progress--active' : reservation.length}" class="progress__circle"></li>
+                  <li ng-class="{'progress--active' : class === true}" class="progress__bar"></li>        
+                  <li ng-class="{'progress--active' : class === true}" class="progress__circle"></li>
+                </ul>
+        </div>
         <div class="movie-seat-map col col-sm-12 col-md-5 col-lg-5">
-            <!-- <h1 class="choose-seat-title">Избор на място:</h1> -->
+               <!-- <h1 class="choose-seat-title">Избор на място:</h1> -->
             <div class="row-seat">
                 <div class='seat-map'>
                     <table>
@@ -35,8 +54,9 @@
                         <tr class="seats" ng-repeat="row in bookingDetails.projection.mesta track by $index">
                             <td class='seat' ng-repeat='seat in row track by $index' >
                             <label class="btn-reservation">
-                                <input type="checkbox" ng-click="checkSelected($parent.$index,$index)" ng-model="reserveSeat[$parent.$index][$index]">
-                                <img class='img-table' src='/images/seat.gif'>
+                                <input  ng-disabled="seat === 1" type="checkbox" ng-click="checkSelected($parent.$index,$index)" ng-model="reserveSeat">
+                                <!-- <img class='img-table' src='/images/seat.gif'> -->
+                                <span class="img-table"></span>
                             </label>
                             </td>
                         </tr>
@@ -45,9 +65,10 @@
                     </table>
                 </div>
             </div>
+            <p class="legend">Свободни места: <span class='color-blue'></span> Заети места: <span class='color-black'></span></p>        
         </div>   
         <div class="booking col col-sm-12 col-md-6 col-lg-6">
-            <hr class="red-line">
+            <!-- <hr class="red-line"> -->
             <div class="note">
                 <p>За филми в 3D формат са ви необходими 3D очила, които се купуват отделно от билета в кината на цена 2 лв./бр.</p>
                 <p>Цената не включва RealD 3D и IMAX 3D очила.</p>
@@ -57,13 +78,35 @@
                     <p>Общо: </p>
                 </div>
                 <div class="value">
-                    <p>{{ totalPrice | currency:''}} лв</p>
+                    <p ng-model="totalPrice">{{ totalPrice | currency:''}} лв</p>
                 </div>
             </div>
-            <div class="button btn forward-btn btn-reservation">
-                <a href="/booking-ticket/{{bookingDetails.projection._id}}/oreder-final"><span class="fwrd-txt text-reservation">Резервирай</span></a>
-            </div>       
+            <div class="">
+                <script type="text/ng-template" id="modal.html">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Потвърди резервация</h3>
+                    </div>                
+                    <div class="modal-body">
+                        <h4>Кино: {{data.cinema[0].name}}</h4>
+                        <h4>Филм: {{data.movie[0].name}}</h4>
+                        <h4>Дата: {{data.projection.time * 1000 | date : 'dd MMMM yyyy | HH:mm'}}</h4>
+                        <h4>Билети: {{reservation.length}} бр. | Сума: {{totalPrice}} лв</h4>
+                    </div>                    
+                    <div class="modal-footer">
+                        <button class="btn btn-primary btn-book" type="button" ng-click="ok()">Потвърди</button>
+                        <button class="btn btn-warning btn-cancel-book" type="button" ng-click="cancel()">Откажи</button>
+                    </div>
+                </script> 
+                <!-- <button class="btn btn-small" type="button" ng-click="deleteItem(drink)">Delete</button> -->
+                <button class="button btn forward-btn btn-reservation btn-booking" type="button"  ng-click="open($event)"><span class="fwrd-txt text-reservation">Резервирай</span></button>
+                
+                <!-- <a href="/booking-ticket/{{bookingDetails.projection._id}}/order-final" ng-click="finishReservation(reservation,$event)"></a> -->
+                <!-- <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button>         -->
+            </div>     
+            <p class="message-reservation">{{message}}</p>                              
         </div>
+        <span class='border-line'></span>        
+        <p>Изберете свободни места и кликнете върху тях, за да ги маркирате. Екранът показва посоката на гледане. Отстоянието на седалките от екрана не представлява действителното разположение в залата.</p>
     </div>
 </div>
 

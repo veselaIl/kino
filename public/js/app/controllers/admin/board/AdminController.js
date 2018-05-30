@@ -47,6 +47,7 @@ myApp.controller('AdminController', function($scope, $rootScope, $location, $tim
         });
 
     //get current message
+    console.log($routeParams);
     if($routeParams.id){
         MessagesService.getMessageByID($routeParams.id)
         .then(function (data) {
@@ -65,11 +66,15 @@ myApp.controller('AdminController', function($scope, $rootScope, $location, $tim
     $scope.vm.message = "Сигурни ли сте? ";
     $scope.vm.confirmText = "Да <i class='glyphicon glyphicon-ok'></i> ";
     $scope.vm.cancelText = "Не <i class='glyphicon glyphicon-remove'></i>";
-    $scope.vm.onConfirm = function(id){
-        MessagesService.removeMessage(id)
+    $scope.vm.onConfirm = function(messageID){
+        console.log("Message ID:", messageID);
+        // console.log("Message ID:", _id);
+        // console.log("Message ID:", _id);
+        MessagesService.removeMessage(messageID)
             .then(function (response){
+                console.log("response", response);
                 if(response.status === 200){
-                    var index = $scope.messages.findIndex(msg => msg._id === id);
+                    var index = $scope.messages.findIndex(msg => msg._id === messageID);
                     $scope.messages.splice(index, 1);
                     $scope.$apply();
                 }

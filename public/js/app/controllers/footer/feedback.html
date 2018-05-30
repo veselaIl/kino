@@ -1,0 +1,48 @@
+<div class="container-main"> 
+        <div class="row cinema-description">
+            <div class="col-md-7">
+                <h4>И така, какво мислите?</h4>
+                <p>
+                    Независимо дали имате нещо чудесно да се каже за вашия голям екран опит или има нещо, което мислите, че можем да направим по-добре, ние искаме да знаем за него.
+                    
+                    Ако имате пет минути за резервиране, ние имаме клиентско проучване, което бихме искали да попълните. Обратната информация ще ни помогне да продължим да ви даваме най-доброто преживяване на голям екран и можете да получите ръцете си върху някои безплатни пуканки, когато закупете си напитка при следващото си посещение, ако ни помогнете.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="cinema-description">
+                    <h4>Връзка с нас:<span><i class="fa fa-phone" aria-hidden="true"></i><h3 class="h3"><span class="services"> +359 887 000 020</span></h3></span></h4>
+                    <hr class="red-line">
+                    
+                </div>                
+                <form ng-submit="sendMessage($event, form.$invalid)" class="contants-form" name="contactsForm" action="" method="POST">
+                <div class="form-group">
+                    <input ng-model="message.username" type="text" class="form-control" name="username" value="" placeholder="Вашето име">
+                    <div ng-show="contactsForm.username.$touched && contactsForm.username.$invalid">Моля въведете вашето име&#33;</div>
+                </div>
+                <div class="form-group">
+                    <input ng-model="message.email" type="email" class="form-control" name="email" value="" placeholder="Вашият e-mail">
+                    <span ng-if="message.email && !validateEmail() && isSubmitted()">Моля въведете валиден имейл!</span>
+                    <div ng-show="contactsForm.email.$touched && contactsForm.email.$invalid">Моля въведете вашият имейл адрес&#33;</div>                    
+                </div>
+                <div class="form-group">
+                    <input ng-model="message.phoneNumber" type="tel" class="form-control" name="phoneNumber" value="" placeholder="Телефонен номер">
+                    <span ng-if="message.phoneNumber && !validatePhone() && isSubmitted()">Моля въведете валиден телефон!</span>
+                    <div ng-show="contactsForm.phoneNumber.$touched && contactsForm.phoneNumber.$invalid">Моля въведете вашият телефонен номер&#33;</div>
+                </div>
+                <div class="form-group">
+                    <textarea ng-model="message.textMessage" class="form-control" name="textMessage" rows="3" placeholder="Съобщение"></textarea>
+                    <div ng-show="contactsForm.textMessage.$touched && contactsForm.textMessage.$invalid">Моля въведете вашият телефонен номер&#33;</div>
+                </div>
+                <button class="button btn" name="button">
+                    <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Изпрати</span>
+                </button>
+                </form>
+                <!-- alert -->
+                <div uib-alert 
+                    ng-repeat="alert in alerts" 
+                    ng-class="'alert-' + (alert.type || 'warning')" 
+                    close="closeAlert($index)"
+                >{{alert.msg}}</div>
+            </div>
+        </div>
+    </div>

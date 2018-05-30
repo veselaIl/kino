@@ -1,0 +1,46 @@
+<div class="filter ">          
+    <button class="button-collapse" onclick="document.getElementById('announcement-wrapper').classList.toggle('open');"><i class="fa fa-filter"></i>
+        Филтър</button>
+    <div class="announcement" id="announcement-wrapper">
+        <!-- <ul class="cinema-filter"> 
+            <h4> Филтрирай по кино</h4>
+            <li class="projection-times cinema-label" ng-repeat="cinema in cinemas track by $index" >
+                <a name="cinemaFilter" >                                        
+                    <div class="cinema-items cine" ng-click="toggleCinema(cinema.kinoID, $event, $index)" >
+                        <label class="button-home btn-home  cine{{$index}}" >
+                            <!-- ng-init='checkStatus=false' -->
+                            <!-- <input type="checkbox" value="{{cinema.kinoID}}" ng-checked="isSelected(cinema)" >
+                            <span class="cinemaName cinema-name">{{cinema.name}}</span>
+                        </label>
+                    </div>
+                </a>
+            </li>
+        </ul> -->
+        <ul class="cinema-filter">
+            <h4> По жанр</h4>
+            <li class="projection-times" ng-repeat="genre in genres.slice(0,10)">
+                <a>                                        
+                    <div class="cinema-items" ng-click="toggleCinema(genre, $event, $index)">
+                        <label class="button-home btn-home cine{{$index}}">
+                            <input type="checkbox" ng-model="checked">
+                            <span class="cinema-name">{{::genre}}</span>
+                        </label>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="type-filter">
+          <h4>По тип</h4>
+          <li class="types-filter" ng-repeat="type in movieTypes track by $index">
+                <a>                                        
+                    <div class="type-items" ng-click="toggleType(type, $event, $index)">
+                        <label class="button-type btn-type type{{$index}}">
+                            <input type="radio" ng-model="checked">
+                            <span class="type-name">{{::type}}</span>
+                        </label>
+                    </div>
+                </a>
+          </li>
+        </ul>
+    </div>
+</div> 

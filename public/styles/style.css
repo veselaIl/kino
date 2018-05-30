@@ -270,8 +270,12 @@ table{
   color: red;
 }
 /*END OF SETTINGS OF PROJECTIONS TABLE*/
-
-
+.modal{
+  position: absolute !important;
+  margin: 0 auto;
+  height: 420px;
+  top: 50%;
+}
 /*LOGIN/REGISTER FORMS MODAL*/
 
 .form-elegant .font-small {
@@ -609,8 +613,17 @@ table{
   text-shadow: 0 0 18px rgba(247,149,30,.8);
 }
 /*END OF PAGE MOVIEW PREVIEW MORE INFO*/
+.btn-primary{
+  width: 50%;
+  margin-left:50%;
+  text-transform: uppercase;
+  font-size:20px;
+  background-image: linear-gradient(to right, #b74d1c 0%, #eec42a 100%);
+}
 
-
+.btn-warning{
+  width: 50%;
+}
 /*STYLES FOR BUY TICKET PAGE*/
 /*PARRAGRAPHS - KINO NAME, ADDRESS, PHONENUMBER*/
 .col-md-3>.container-kino-info{
@@ -653,6 +666,83 @@ table{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; 
 }
+.btn-book{
+  width:50%;
+  margin: 0;
+  background-image: none;
+  color: #040202;
+}
+.btn-cancel-book{
+  width: 50%;
+  font-size: 20px;
+  color: #040202;
+  text-transform: uppercase;
+}
+/* PROGRESS BAR START */
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css";
+.progress {
+  height:100%;
+  background:transparent;
+  display: inline-flex;
+  align-items: center;
+  counter-reset: step;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  /* color: #F2F2F2; */
+  font-family: "Palanquin", sans-serif;
+  list-style: none;
+  text-transform: uppercase;
+}
+.progress-bar-name{
+  padding: 0;
+  
+}
+.progress__circle {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f5660ae8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+.progress__circle:before {
+  content: '\f00c';
+  font-family: 'FontAwesome';
+  font-size: 2em;
+  /* color: #fff; */
+  margin-top: 0.3em;
+}
+.progress__circle:after {
+  /* counter-increment: 1;
+  content: "Стъпка " counter(step);
+  margin-top: 0.1em; */
+}
+.progress__bar {
+  flex: 1;
+  height: 5px;
+  /* background: #F2F2F2; */
+}
+.progress-bar-title{
+  padding: 0;
+  color:#ece4e4c7;
+}
+.progress-bar-middle{
+  text-align:center;
+}
+.progress-bar-title:last-of-type{
+  margin:0;
+  text-align: right;
+}
+.progress--done {
+  background: rgb(234, 153, 46);
+}
+.progress--active {
+  background: -webkit-linear-gradient(#f5660ae8, #f19c32);
+}
+
+/* PROGRESS BAR END */
 /*Table for ticket choise*/
 .ch-title{
   font-size: 28px;
@@ -669,6 +759,7 @@ table{
 .col-md-6,.col-md-4 .bkg-attr{
   color: white;
 }
+
 /*INPUT FOR TICKET QUANTITY*/
 .spinner {
   width: 125px;
@@ -783,6 +874,9 @@ table{
 }
 .btn-reservation a{
   text-decoration: none;
+}
+.btn-booking{
+  height:60px !important;
 }
 .contentWrap{
   width: 664px;
@@ -1054,6 +1148,19 @@ div.errorMsg{
   color: #fa2147;
   padding-bottom: 0;
 }
+.errorMsgLogin{
+  display: block;
+  /* padding-bottom: 20px; */
+  padding-top: 0;
+  margin: 0 0 20px 0;
+  background: #fa2147;
+  border: 1px solid #c70327;
+  border-radius: 6px;
+}
+.errcontainer{
+  padding: 12px 0 12px 15px;
+  margin: 0;
+}
 ng-message{
   color:red;
 }
@@ -1317,6 +1424,12 @@ div.date-picker div.dates #movieCalendar {
   border: 0.5px solid  rgb(241, 85, 0);
   margin: 0 0 20px 0;
 }
+.border-line{
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  border-top: 2px solid #4e4e4e;
+}
 .center-block{
   display: table;
   margin: auto;
@@ -1507,6 +1620,10 @@ div.date-picker div.dates #movieCalendar {
 .projection-times>a{
   text-decoration: none;
 }
+.movie-type{
+  font-size: 12px;
+}
+
 .items {
   margin: 20px;
 }
@@ -1563,6 +1680,10 @@ div.date-picker div.dates #movieCalendar {
   z-index: 2;
   font-size:24px;
 }
+.button-item.btn-item .item-name{
+  display: block;
+  padding-top: 10px;
+}
 /* SEAT MAP */
 .seats{
   display: flex;
@@ -1604,26 +1725,108 @@ div.date-picker div.dates #movieCalendar {
   margin: 0 auto;
 }
 .row.reservation p:first-of-type{
-  font-size:16px;
+  padding-top: 20px;
   font-style: italic;
   font-weight: bold;
+}
+.counter-session{
+  position: absolute;
+  right: 0;
+  margin-top: 45px;
 
+}
+.timer.heading-four{
+  font-size:30px;
+  letter-spacing: 0;
+}
+/* dsda */
+.timer {
+  font-family: 'CoreCircus', sans-serif;
+  font-size: 60px;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: -webkit-linear-gradient(#7d736de8, #1f1a13);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+  /* color: #2d2d2d; */
+  letter-spacing: -.5rem;
+}
+/* .timer:before {
+  content: attr(data-heading);
+  position: absolute;
+  overflow: hidden;
+  color: #ffcc00;
+  width: 100%;
+  z-index: 5;
+  text-shadow: none;
+  left: 27%;
+  text-align: left;
+  -webkit-animation: flicker 3s linear infinite;
+          animation: flicker 3s linear infinite;
+} */
+
+/*
+ * Webfont: CoreCircus by S-Core
+ * URL: http://www.myfonts.com/fonts/s-core/core-circus/regular/
+ * Copyright: Copyright (c) 2013 by S-Core Co., Ltd.. All rights reserved.
+ * Licensed pageviews: 10,000
+*
+ * Webfont: CoreCircus2DDot1 by S-Core
+ * URL: http://www.myfonts.com/fonts/s-core/core-circus/dot1/
+ * Copyright: Copyright (c) 2013 by S-Core Co., Ltd.. All rights reserved.
+ * Licensed pageviews: 10,000
+*/
+@font-face {
+  font-family: 'CoreCircus2DDot1';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.woff2") format("woff2"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'CoreCircus';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.woff2") format("woff2"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.ttf") format("truetype");
+}
+
+/* dsada */
+.counter{
+  font-size: 25px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  background-image: -webkit-linear-gradient(#f0edede8, #c98f47);
+  -webkit-background-clip: text;
+  font-weight: 800;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 #ccc,
+              0 2px 0 #c9c9c9,
+              0 3px 0 #bbb,
+              0 4px 0 #b9b9b9,
+              0 5px 0 #aaa,
+              0 6px 1px rgba(0,0,0,.1),
+              0 0 5px rgba(0,0,0,.1),
+              0 1px 3px rgba(0,0,0,.3),
+              0 3px 5px rgba(0,0,0,.2),
+              0 5px 10px rgba(0,0,0,.25),
+              0 10px 10px rgba(0,0,0,.2),
+              0 20px 20px rgba(0,0,0,.15);
 }
 .color-blue{
   margin: 0 15px;
   padding: 5px 15px;
-  background-color: #9dd4fa;;
+  background-color: #b40000;
 }
 .color-black{
   margin-left: 15px;
   padding: 5px 15px;  
-  background: orange;
+  background: grey;
 }
 .seat-map th{
   margin-right: 15px;
-  color: #716f6f;
+  color: #cfc8c8;
   display: inline-block;
-  background-color: #ffffffcf;
+  background: -webkit-linear-gradient(#7d736de8, #1f1a13);
   width: 100%;
   text-align: center;
   padding: 3px 10px;
@@ -1634,10 +1837,11 @@ div.date-picker div.dates #movieCalendar {
   text-transform: uppercase;
 }
 .seat-map .img-table{
-  width:35px;
-  /* height: 25px; */
-  position: absolute;
-  z-index: 1;
+padding: 10px 10px;
+background-color: #a81717;
+/* width:30px; */
+position: absolute;
+z-index: 1;
 }
 .seat-map .text-table{
   position: relative;
@@ -1647,7 +1851,7 @@ div.date-picker div.dates #movieCalendar {
 }
 .seat-map .seat {
   width:30px;
-  line-height: 2.4rem;
+  /* line-height: 2.4rem; */
   position:relative;
 }
 *,
@@ -1773,17 +1977,41 @@ div.date-picker div.dates #movieCalendar {
   letter-spacing: 1.5px;
   margin-bottom: 10px
 }
+/* Confirmation */
+.open-dialog {
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.confirmation-dialog {
+  display: none;
+}
+
+/* Confirmation end */
 /* SEAT MAP END */
 .row-seat{
   display: inline-block;
   bottom: 30%;
   margin:30px auto 0;
 }
+.btn-reservation{
+  
+}
 .btn-reservation input{
   display: none;
 }
 .btn-reservation input:checked ~ .img-table{
-  border: 1px solid yellow;
+  background-color:orange;
+}
+.btn-reservation input:disabled ~ .img-table{
+  background-color: grey;
+}
+.message-reservation{
+  color: #b40000; 
+  font-size: 18px;
+}
+.legend {
+  text-align: center;
 }
 .btn-seat{
   padding: 5px 10px;
