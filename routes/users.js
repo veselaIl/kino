@@ -167,16 +167,16 @@ router.get('/api/profile/orders', function (req, res){
     } else {
         console.log("orders _id: req.session", req.session.user._id);
        
-        req.db.get('reservations').find({ userID: ObjectId(req.session.user._id) })
-            .then(function (reservations){
-                console.log('Reservations', reservations);
-                if(!reservations){
+        req.db.get('reservations').findOne({ userID: ObjectId(req.session.user._id) })
+            .then(function (reservation){
+                console.log('Reservations', reservation);
+                if(!reservation){
                     res.sendStatus(404);
                 } else {
                     var result = {
-                        reservations : reservations
+                        reservation : reservation
                     }
-                    console.log('Reservations', reservations); 
+                    console.log('Reservations', reservation); 
                     req.db.get('users').findOne({ _id : ObjectId(req.session.user._id) })
                         .then(function (user){
                             if(!user){
@@ -187,44 +187,49 @@ router.get('/api/profile/orders', function (req, res){
                             }                            
                         })
 
-                        projs = [];
-                        reservations.forEach(r => {
-                            if(projs.indexOf(ObjectId(r.projectionID)) === -1){
-                                console.log('r.projectionID', r.projectionID);
-                                console.log('r.projectionID', ObjectId(r.projectionID));
-                                projs.push(ObjectId(r.projectionID));
-                            }
-                        });
+                        // projs = [];
+                        // reservations.forEach(r => {
+                        //     if(projs.indexOf(ObjectId(r.projectionID)) === -1){
+                        //         console.log('r.projectionID', r.projectionID);
+                        //         console.log('r.projectionID', ObjectId(r.projectionID));
+                        //         projs.push(ObjectId(r.projectionID));
+                        //     }
+                        // });
                         
-                        console.log('Projs', projs);
-                    req.db.get('projections').find({ _id: { $in : projs } })
-                        .then(function (projections){
-                            if(!projections){
+                        //console.log('Projs', projs);
+                    req.db.get('projections').findOne({ _id: reservation.projectionID })
+                        .then(function (projection){
+                            if(!projection){
                                 res.sendStatus(404);
                             } else {
-                                result['projections'] = projections;
-                                console.log('Projections', projections);
+                                result['projection'] = projection;
+                                console.log('Projections', projection);
+
+                                req.db.get('kino').findOne({ kinoID: projection.kinoID })
+                                    .then(function (kino){
+                                        if(!kino){
+                                            res.sendStatus(404);
+                                        } else {
+                                            result['kino'] = kino;
+                                        }   
+                                    })
+
+                                console.log('Kino', kino);;
+
+                                req.db.get('movies').findOne({ movieID : projection.movieID })
+                                    .then(function (movie){
+                                        if(!movie){
+                                            res.sendStatus(404);
+                                        } else {
+                                            result['movie'] = movie;
+                                            console.log('Result', result);
+                                            res.json(result);
+                                        }
+
+                                         console.log('Movie', movie);
+                                        
+                                    })
                             }
-
-                                // req.db.get('kino').findOne({ kinoID: projection.kinoID })
-                                //     .then(function (kino){
-                                //         if(!kino){
-                                //             res.sendStatus(404);
-                                //         } else {
-                                //             result['kino'] = kino;
-                                //         }   
-                                //     })
-
-                    //             req.db.get('movies').findOne({ movieID : projection.movieID })
-                    //                 .then(function (movie){
-                    //                     if(!movie){
-                    //                         res.sendStatus(404);
-                    //                     } else {
-                    //                         result['movie'] = movie;
-                    //                         res.json(result);
-                    //                     }
-                    //                 })
-                    //         }
                          })
                 }
             })

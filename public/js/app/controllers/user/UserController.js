@@ -128,17 +128,17 @@ app.controller('UserController', function ($scope, $routeParams, $rootScope, $lo
             });
     }    
 
-    if($rootScope.user){
-        UserService.getReservations()
-            .then(function (data){
-                $scope.user.reservations = data;
-                console.log('UserController getReservations $scope.reservations', $scope.reservations);
-                $scope.$apply();
-            })
-            .catch(function (err){
-                errors.push(err);
-            });
-    }
+    // if($rootScope.user){
+    //     UserService.getReservations()
+    //         .then(function (data){
+    //             $scope.user.reservations = data;
+    //             console.log('UserController getReservations $scope.reservations', $scope.reservations);
+    //             $scope.$apply();
+    //         })
+    //         .catch(function (err){
+    //             errors.push(err);
+    //         });
+    // }
 
     //Active menu item in user profile menu
     $scope.isActive = function (viewLocation) {
